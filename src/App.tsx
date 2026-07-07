@@ -1,0 +1,32 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Home } from './pages/Home'
+import { AboutUs } from './pages/AboutUs'
+import { Reviews } from './pages/Reviews'
+import { Contact } from './pages/Contact'
+import { Regio } from './pages/Regio'
+import { Producten } from './pages/Producten'
+import { Zakelijk } from './pages/Zakelijk'
+import { Blog } from './pages/Blog'
+import { BlogPost } from './pages/BlogPost'
+import { Reparatie } from './pages/Reparatie'
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/over-ons" element={<AboutUs />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/regio" element={<Regio />} />
+        <Route path="/regio/:city" element={<Regio />} />
+        <Route path="/producten" element={<Producten />} />
+        <Route path="/zakelijk" element={<Zakelijk />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/reparatie" element={<Reparatie />} />
+        <Route path="/reparatie/:slug" element={<Reparatie />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}

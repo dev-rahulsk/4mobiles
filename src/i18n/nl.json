@@ -1,0 +1,1320 @@
+{
+  "ann": {
+    "text": "🔧 Vandaag tot 20:00 open — loop gerust binnen voor een snelle reparatie!",
+    "dismiss": "Melding sluiten"
+  },
+  "topbar": {
+    "address": "Molenstraat 2 · 2671 EX Naaldwijk",
+    "reviews": "{{count}} reviews",
+    "phone": "0174 23 70 22"
+  },
+  "logo": {
+    "tag": "alles voor je mobieltje"
+  },
+  "nav": {
+    "repairs": "Reparaties",
+    "products": "Producten",
+    "business": "Zakelijk",
+    "about": "Over ons",
+    "reviews": "Reviews",
+    "blog": "Blog",
+    "contact": "Contact",
+    "otherBrands": "Overige merken",
+    "findRepair": "Mijn reparatie",
+    "makeAppointment": "Maak afspraak",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "whatsappUs": "WhatsApp ons"
+  },
+  "hero": {
+    "eyebrow": "Sinds 2014 · Naaldwijk · Westland",
+    "title": "Je telefoon stuk?",
+    "titleAccent": "Binnen het uur weer als nieuw.",
+    "sub": "Vakkundige reparatie van iPhone, Samsung, iPad en meer. Transparante prijzen, 90 dagen garantie — en je toestel is écht binnen een uur klaar.",
+    "step1": "Welk toestel heb je?",
+    "searchPlaceholder": "Zoek je {{device}} model — bv. {{placeholder}}",
+    "viewPrice": "Bekijk prijs",
+    "deviceOther": "Andere",
+    "trust": {
+      "warranty": "90 dagen garantie",
+      "ready": "Klaar terwijl u wacht",
+      "nocure": "No cure, no pay",
+      "parking": "Gratis parkeren"
+    },
+    "badges": {
+      "screenTitle": "Schermbreuk",
+      "screenFrom": "vanaf €49",
+      "batteryTitle": "Batterij",
+      "batteryFrom": "vanaf €39",
+      "waterTitle": "Waterschade",
+      "waterSub": "offerte op maat"
+    },
+    "stat": "reparaties uitgevoerd",
+    "brandStrip": "Wij repareren toestellen van"
+  },
+  "mhero": {
+    "title1": "Telefoon kapot?",
+    "title2": "Binnen",
+    "titleAccent": "60 minuten",
+    "title3": "weer in gebruik.",
+    "sub": "Scherm stuk, batterij leeg of waterschade?\nWij repareren je toestel snel en vakkundig.\nOften ready while you wait.",
+    "sub1": "Scherm stuk, batterij leeg of waterschade?",
+    "sub2": "Wij repareren je toestel snel en vakkundig.",
+    "sub3": "Vaak klaar terwijl je wacht.",
+    "label1": "💥 Ongelukje",
+    "label2": "💧 Waterschade",
+    "label3": "🔋 Batterij",
+    "badge1": "{{count}} Google",
+    "badge2": "{{count}}+ reparaties",
+    "cta": "Boek reparatie",
+    "pill1": "Vandaag nog mogelijk",
+    "pill2": "Geen afspraak nodig",
+    "pill3": "Transparante prijzen",
+    "review1": "{{rating}}/5 uit {{count}}+ reviews",
+    "review2": "{{count}}+ klanten geholpen",
+    "feat1Title": "Klaar binnen\n60 minuten",
+    "feat1Sub": "Vaak terwijl je wacht",
+    "feat2Title": "90 dagen\ngarantie",
+    "feat2Sub": "Op alle reparaties",
+    "feat3Title": "No cure,\nno pay",
+    "feat3Sub": "Niet gerepareerd? Dan betaal je niet",
+    "stickyAriaLabel": "Boek reparatie"
+  },
+  "search": {
+    "title": "Wat mogen wij voor u repareren?",
+    "placeholder": "Zoek uw model (bijv. iPhone 15 Pro, Samsung S24, iPad Air…)",
+    "button": "Zoeken"
+  },
+  "popular": {
+    "eyebrow": "Reparaties",
+    "titleAccent": "Veel",
+    "title": "voorkomende reparaties",
+    "sub": "Bekijk direct de prijzen voor scherm- en accureparaties van populaire modellen.",
+    "screen": "Scherm",
+    "battery": "Accu",
+    "viewRepair": "Bekijk reparatie",
+    "viewAll": "Bekijk alle reparaties"
+  },
+  "process": {
+    "eyebrow": "⚡ Eenvoudig & snel",
+    "title": "Stappenplan",
+    "titleAccent": "reparatie",
+    "sub": "Uw reparatie in 4 eenvoudige stappen",
+    "steps": [
+      {
+        "title": "Afspraak",
+        "desc": "Kom direct langs of maak eenvoudig een afspraak. Geen wachttijden, altijd welkom.",
+        "detail": "Molenstraat 2, Naaldwijk · Ma t/m Za open"
+      },
+      {
+        "title": "Analyse",
+        "desc": "We bekijken uw toestel gratis en geven een eerlijke prijsindicatie. Geen verrassingen.",
+        "detail": "Diagnose gratis · Vaste prijs vooraf"
+      },
+      {
+        "title": "Reparatie",
+        "desc": "Vakkundige reparatie met originele of A-kwaliteit onderdelen. Klaar terwijl u wacht.",
+        "detail": "Gemiddeld 30–60 minuten · Op locatie"
+      },
+      {
+        "title": "Resultaat",
+        "desc": "U krijgt uw toestel terug met 90 dagen garantie. Niet tevreden? No cure, no pay.",
+        "detail": "90 dagen garantie · No cure, no pay"
+      }
+    ]
+  },
+  "reviews": {
+    "title": "klanten gingen u voor.",
+    "sub": "Lees waarom klanten uit Naaldwijk en Westland ons beoordelen met 4.8 uit 5 sterren.",
+    "ratingCount": "200+ reviews",
+    "verified": "Geverifieerd",
+    "viewAll": "Bekijk alle reviews",
+    "items": [
+      {
+        "time": "1 week geleden",
+        "text": "Mijn iPhone 14 Pro scherm was binnen 30 minuten vervangen. Topservice, vriendelijk en dichtbij. Echt een aanrader!"
+      },
+      {
+        "time": "2 weken geleden",
+        "text": "Snelle en professionele service. Mijn batterij was snel vervangen en werkt weer perfect. Zeer tevreden!"
+      },
+      {
+        "time": "3 weken geleden",
+        "text": "Vakkundig en betaalbaar. Mijn telefoon was binnen een uur klaar. Topzaak in het Westland!"
+      },
+      {
+        "time": "1 maand geleden",
+        "text": "Al jaren mijn vaste plek. Of je voor iets kleins komt of een groter probleem hebt, ze helpen je altijd vriendelijk en zonder gedoe."
+      },
+      {
+        "time": "1 maand geleden",
+        "text": "Heel prettige service. Mijn telefoon wilde niet meer laden — niets gevonden, maar wel weer aan de praat gekregen. Dank is groot."
+      },
+      {
+        "time": "6 weken geleden",
+        "text": "Heel aardig, vanmiddag mijn telefoon laten maken en nu weer top. Snel klaar, nette prijs. Echt top!"
+      },
+      {
+        "time": "2 maanden geleden",
+        "text": "Top winkel met toppers van personeel. Dank voor jullie hulp en oplossing voor het scherm. Super!"
+      },
+      {
+        "time": "2 maanden geleden",
+        "text": "Scherm in 40 minuten gerepareerd terwijl ik een koffie haalde. Nette prijs en geen verrassingen. Aanrader!"
+      },
+      {
+        "time": "3 maanden geleden",
+        "text": "Geweldige service! Mijn Samsung scherm was stuk, ze hadden het onderdeel op voorraad. Zelfde dag nog klaar."
+      },
+      {
+        "time": "3 maanden geleden",
+        "text": "Vriendelijk personeel en eerlijke prijzen. Heb hier al meerdere keren mijn telefoon laten repareren en altijd tevreden."
+      }
+    ]
+  },
+  "business": {
+    "eyebrow": "Zakelijk",
+    "title": "Zakelijke service,",
+    "titleAccent": "geregeld.",
+    "titleMid": "professioneel",
+    "sub": "Van snelle reparaties tot compleet fleet management. 4Mobiles is dé partner voor bedrijven die geen stilstand kunnen veroorloven.",
+    "bullets": [
+      "Snelle doorlooptijd & minimale downtime",
+      "Zakelijke facturatie & duidelijke afspraken",
+      "Schaalbare oplossingen voor elk bedrijf"
+    ],
+    "ctaPrimary": "Bekijk zakelijke mogelijkheden",
+    "ctaSecondary": "Bel direct",
+    "features": [
+      {
+        "title": "Zakelijke specialisten",
+        "sub": "Persoonlijk contact met vaste accountmanagers."
+      },
+      {
+        "title": "Snelle service",
+        "sub": "Korte doorlooptijden en prioriteit voor zakelijke klanten."
+      },
+      {
+        "title": "Duidelijke afspraken",
+        "sub": "Transparante offertes, facturatie en rapportages."
+      },
+      {
+        "title": "Veilig & betrouwbaar",
+        "sub": "Uw data en apparaten zijn bij ons in veilige handen."
+      }
+    ],
+    "counterLabel": "bedrijven vertrouwen op 4Mobiles",
+    "counterSub": "Voor snelle reparaties en duidelijke afspraken."
+  },
+  "shop": {
+    "eyebrow": "In de winkel",
+    "title": "Accessoires die we zelf zouden kopen.",
+    "viewShop": "Bezoek onze winkel",
+    "items": [
+      {
+        "name": "Hoesjes",
+        "count": "240+ modellen"
+      },
+      {
+        "name": "Screenprotectors",
+        "count": "Glas & TPU"
+      },
+      {
+        "name": "Opladers & kabels",
+        "count": "USB-C, Lightning, MagSafe"
+      },
+      {
+        "name": "Auto houders",
+        "count": "Magnetisch & klem"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Veelgestelde vragen",
+    "title": "Nog vragen of twijfels?",
+    "sub": "We helpen je graag verder. Bel, mail of stap binnen — Molenstraat 2 in Naaldwijk.",
+    "ctaChat": "Start een gesprek",
+    "ctaPhone": "Bel 0174 23 70 22",
+    "items": [
+      {
+        "q": "Kan ik mijn apparaat ter plaatse laten repareren?",
+        "a": "Ja. De meeste reparaties — scherm, batterij, speaker — doen we ter plaatse in 30 tot 60 minuten. Je kunt langslopen of een afspraak maken; beide werkt."
+      },
+      {
+        "q": "Hoeveel garantie krijg ik op een reparatie?",
+        "a": "Standaard 90 dagen garantie op alle reparaties. Werkt het achteraf niet? Dan lossen we het op of krijg je je geld terug — no cure, no pay."
+      },
+      {
+        "q": "Welke producten en merken bieden jullie aan?",
+        "a": "We repareren Apple, Samsung, Xiaomi, OnePlus, Oppo, Motorola, Sony en meer. In de winkel verkopen we hoesjes, screenprotectors, opladers, kabels en auto houders."
+      },
+      {
+        "q": "Moet ik een afspraak maken of kan ik gewoon binnenlopen?",
+        "a": "Beide kan. Met een afspraak ben je sneller geholpen, maar walk-ins zijn altijd welkom tijdens openingstijden."
+      },
+      {
+        "q": "Wat kost een reparatie bij jullie?",
+        "a": "Schermen vanaf €49, batterijen vanaf €39, waterschade-diagnose €25. Voor je exacte model krijg je vooraf een vaste prijs — geen verrassingen."
+      },
+      {
+        "q": "Werken jullie ook voor bedrijven?",
+        "a": "Ja. We bedienen 120+ Westlandse bedrijven met factuur op rekening, pickup-service en same-day SLA voor toestellen die voor 11u binnen zijn."
+      }
+    ]
+  },
+  "locations": {
+    "eyebrow": "In de buurt",
+    "title": "Het reparatie-adres\nvan het Westland.",
+    "sub": "Klanten komen uit het hele Westland en omstreken voor onze service. Of je nu uit Naaldwijk komt, Delft of Den Haag — je toestel is in goede handen.",
+    "directions": "Route plannen",
+    "hours": {
+      "mon": "Ma",
+      "tueThu": "Di–Do",
+      "fri": "Vr",
+      "sat": "Za"
+    }
+  },
+  "footer": {
+    "logoTag": "Het reparatie-adres van het Westland. Sinds 2014.",
+    "col1Title": "Reparaties",
+    "col1Items": [
+      "iPhone",
+      "Samsung",
+      "iPad",
+      "OnePlus",
+      "Xiaomi",
+      "Overige merken",
+      "Alle reparaties"
+    ],
+    "col2Title": "Populaire modellen",
+    "col2Items": [
+      "iPhone 15 Pro",
+      "iPhone 14",
+      "iPhone 13",
+      "Samsung A52",
+      "Samsung S23",
+      "iPad Air"
+    ],
+    "col3Title": "Informatie",
+    "col3Items": [
+      "Over ons",
+      "Onze dienstverlening",
+      "Zakelijk",
+      "Blog",
+      "Veelgestelde vragen",
+      "Regio"
+    ],
+    "col4Title": "Contact",
+    "whatsapp": "WhatsApp ons",
+    "copyright": "© 2025 4Mobiles — Alle rechten voorbehouden.",
+    "privacy": "Privacy",
+    "terms": "Algemene voorwaarden",
+    "disclaimer": "Disclaimer"
+  },
+  "sticky": {
+    "title": "Vaak binnen 1 uur klaar",
+    "sub": "Vandaag gerepareerd",
+    "button": "Boek reparatie",
+    "ariaLabel": "Reparatie boeken"
+  },
+  "services": {
+    "eyebrow": "Onze diensten",
+    "title": "Alles wat er kapot kan gaan, repareren wij.",
+    "viewAll": "Bekijk alle reparaties",
+    "screen": {
+      "title": "Schermreparatie",
+      "desc": "Origineel of A-kwaliteit scherm. Klaar in 30–60 minuten.",
+      "price": "vanaf €49",
+      "tag": "Meest gevraagd"
+    },
+    "battery": {
+      "title": "Batterij vervangen",
+      "desc": "Nieuwe accu, volle dag op één lading. Inclusief test.",
+      "price": "vanaf €39"
+    },
+    "water": {
+      "title": "Waterschade",
+      "desc": "Diagnose binnen 24u. We schatten reëel in of het loont.",
+      "price": "diagnose €25"
+    },
+    "speaker": {
+      "title": "Speaker & microfoon",
+      "desc": "Geen geluid of slechte ontvangst tijdens bellen? Opgelost.",
+      "price": "vanaf €45"
+    },
+    "camera": {
+      "title": "Camera & lens",
+      "desc": "Wazige foto's of een gebarsten lens — vervanging in 1 dag.",
+      "price": "vanaf €55"
+    },
+    "software": {
+      "title": "Software & data",
+      "desc": "Vastloper, herstel of overzetten naar je nieuwe toestel.",
+      "price": "vanaf €25"
+    }
+  },
+  "aboutUs": {
+    "heroEyebrow": "OVER ONS",
+    "heroTitle": "Dé mobiele specialist in Naaldwijk en regio Westland",
+    "heroSub": "Al meer dan 15 jaar helpen wij klanten met smartphone- en tabletproblemen, accessoires en eerlijk advies. Betrouwbaar, vakkundig, en altijd klaar voor service.",
+    "heroWa": "WhatsApp ons",
+    "heroCall": "Bel direct",
+    "heroTrust1": "4.8/5 · 900+ reviews",
+    "heroTrust2": "10.000+ reparaties",
+    "heroTrust3": "Binnen 30 min klaar",
+    "heroImgPlaceholder": "Winkelexterieur foto",
+    "pillars": [
+      {
+        "title": "Persoonlijke service",
+        "desc": "Geen callcenter, maar een echt gesprek. Wij nemen de tijd voor uw vraag en bieden maatwerkadvies voor uw situatie."
+      },
+      {
+        "title": "Eerlijk & transparant",
+        "desc": "Vaste prijzen zonder verborgen kosten. U weet vooraf wat de reparatie kost — geen verrassingen achteraf."
+      },
+      {
+        "title": "Vakmanschap",
+        "desc": "Meer dan 15 jaar ervaring met smartphones, tablets en accessoires. Kwaliteitsonderdelen, 90 dagen garantie."
+      }
+    ],
+    "storyEyebrow": "ONS VERHAAL",
+    "storyTitle": "Van passie naar een betrouwbare service",
+    "storyBody1": "4Mobiles begon als een kleine reparatiewinkel met grote ambities. Wat als passie voor technologie startte, groeide uit tot het vertrouwde adres voor iedereen in Naaldwijk en de Westland-regio die hulp nodig heeft met zijn of haar smartphone of tablet.",
+    "storyBody2": "Wij geloven dat technologie mensen verbindt — en dat een kapot scherm of lege batterij daar niet tussen mag komen. Daarom repareren wij snel, eerlijk en vakkundig. Niet voor de winst, maar voor de klant.",
+    "storyImgPlaceholder": "Teamfoto",
+    "statYears": "jaar ervaring",
+    "statClients": "tevreden klanten",
+    "statDeadline": "klaar op deadline",
+    "servicesEyebrow": "WAT WE VOOR JE DOEN",
+    "servicesTitle": "Ons volledige dienstenaanbod",
+    "services": [
+      {
+        "title": "Reparaties",
+        "body": "Scherm, batterij, camera, lader-poort, speaker — wij repareren vrijwel alles, vaak binnen 30 minuten."
+      },
+      {
+        "title": "Accessoires",
+        "body": "Hoesjes, screenprotectors, kabels, opladers en meer. Altijd een ruim assortiment in de winkel."
+      },
+      {
+        "title": "Zakelijk",
+        "body": "Contractbeheer, bulkreparaties en apparatuuradvies voor ondernemers in de regio Westland."
+      },
+      {
+        "title": "Advies & Help",
+        "body": "Nieuwe telefoon, data-overzetting of gewoon een vraag? We helpen u graag, ook zonder aankoop."
+      }
+    ],
+    "reasonsEyebrow": "WAAROM KLANTEN VOOR 4MOBILES KIEZEN",
+    "reasons": [
+      "Meeste reparaties binnen 30 minuten",
+      "90 dagen garantie op elk onderdeel",
+      "Geen verborgen kosten, vaste prijzen",
+      "4.8/5 op Google · 900+ beoordelingen"
+    ],
+    "callDirect": "Bel direct",
+    "whatsappUs": "WhatsApp ons",
+    "locationEyebrow": "BEZOEK ONS",
+    "locationTitle": "Kom je langs in onze winkel?",
+    "locationSub": "We staan voor je klaar in het hart van Naaldwijk. Loop gerust binnen — geen afspraak nodig.",
+    "locationHours1": "Ma – Vr: 09:00 – 18:00",
+    "locationHours2": "Zaterdag: 09:00 – 17:00",
+    "locationHours3": "Zondag: Gesloten",
+    "getDirections": "Route krijgen",
+    "locationImgPlaceholder": "Winkelexterieur"
+  },
+  "contact": {
+    "eyebrow": "CONTACT",
+    "title": "Contact met",
+    "sub": "Heb je een vraag, wil je een reparatie inplannen of gewoon even langskomen? Wij helpen je graag snel verder.",
+    "ctaMessage": "Stuur een bericht",
+    "methodsTitle": "Hoe kunt u contact met ons opnemen?",
+    "callUs": "Bel ons",
+    "email": "E-mail",
+    "hoursTitle": "Openingstijden",
+    "mapTitle": "Bezoek onze winkel",
+    "today": "Vandaag",
+    "closed": "Gesloten",
+    "getDirections": "Route krijgen",
+    "whatsappUs": "WhatsApp ons",
+    "noAppointment": "Geen afspraak nodig — loop gewoon binnen!",
+    "days": [
+      "Maandag",
+      "Dinsdag",
+      "Woensdag",
+      "Donderdag",
+      "Vrijdag",
+      "Zaterdag",
+      "Zondag"
+    ],
+    "mapIframeTitle": "4Mobiles locatie",
+    "openLabel": "Open — sluit om {{hour}}:00 uur",
+    "openSoon": "Open — sluit over {{mins}} minuten",
+    "opensAt": "Opent om 09:00 uur",
+    "opensTomorrow": "Gesloten — opent morgen 09:00",
+    "callDirect": "Bel direct",
+    "parkingTitle": "Gratis parkeren",
+    "parkingSub": "Parkeergelegenheid beschikbaar vlak bij de winkel aan de Molenstraat.",
+    "copyAddress": "Kopieer",
+    "copied": "Gekopieerd!",
+    "accTitle": "Bezoek onze winkel voor accessoires",
+    "accSub": "Naast reparaties vindt u bij 4MOBILES ook telefoonhoesjes, screenprotectors, kabels en meer. Kom gerust even langs!",
+    "accItem1": "Hoesjes & screenprotectors",
+    "accItem2": "Opladers & kabels",
+    "accItem3": "Powerbanks & meer",
+    "accCta1": "Bekijk assortiment",
+    "accCta2": "Vraag beschikbaarheid"
+  },
+  "reviewsPage": {
+    "eyebrow": "GOOGLE REVIEWS",
+    "heroTitle": "Wat klanten zeggen over",
+    "heroSub": "Echte ervaringen van klanten die hun telefoon, tablet of accessoire bij ons hebben laten repareren of gekocht.",
+    "viewOnGoogle": "Bekijk op Google",
+    "writeReview": "Schrijf review",
+    "ratingNote": "Gebaseerd op 900+ Google reviews",
+    "ratingRows": [
+      {
+        "label": "Service",
+        "score": 4.9
+      },
+      {
+        "label": "Snelheid",
+        "score": 4.8
+      },
+      {
+        "label": "Prijs / Kwaliteit",
+        "score": 4.7
+      },
+      {
+        "label": "Communicatie",
+        "score": 4.6
+      }
+    ],
+    "trust": [
+      {
+        "title": "Binnen 30 minuten klaar",
+        "sub": "Snel, geen wachttijd"
+      },
+      {
+        "title": "90 dagen garantie",
+        "sub": "Op alle reparaties"
+      },
+      {
+        "title": "Geen verborgen kosten",
+        "sub": "Duidelijke, eerlijke prijzen"
+      },
+      {
+        "title": "Persoonlijk advies",
+        "sub": "Van specialisten"
+      }
+    ],
+    "featured": [
+      {
+        "name": "Hike de Jong",
+        "date": "10 april 2024",
+        "text": "Super snel geholpen en mijn scherm was dezelfde dag nog gerepareerd. Topservice en vriendelijk personeel!"
+      },
+      {
+        "name": "Sanne Vermeer",
+        "date": "15 april 2024",
+        "text": "Goede service, duidelijke uitleg en een vriendelijk personeel. Snel aan de beurt!"
+      },
+      {
+        "name": "Daan Verhoven",
+        "date": "15 april 2024",
+        "text": "Mijn batterij was niet duurder vervangen en toch perfect. Binnen 30 minuten klaar, zeker aanrader!"
+      }
+    ],
+    "allReviews": [
+      {
+        "name": "Jo Bakker",
+        "age": "3 dagen geleden",
+        "tag": "Reparaties",
+        "text": "Top service! Binnen 30 minuten was mijn telefoon gerepareerd. Duidelijke uitleg en vriendelijk geholpen."
+      },
+      {
+        "name": "Lisa van Dijk",
+        "age": "4 dagen geleden",
+        "tag": "Reparaties",
+        "text": "Fijne ervaring, de medewerker goed met je mee en de prijs is eerlijk. Ik kom zeker terug!"
+      },
+      {
+        "name": "Rik Pieters",
+        "age": "1 week geleden",
+        "tag": "Accessoires",
+        "text": "Snel geholpen en goede kwaliteit. Mooi perfect en zo snel geholpen. Aanrader!"
+      },
+      {
+        "name": "Emma Jansen",
+        "age": "2 weken geleden",
+        "tag": "Reparaties",
+        "text": "Vriendelijk personeel en heel eerlijk over wat nodig was. Geen onnodige kosten aangerekend."
+      },
+      {
+        "name": "Tom Adriaan",
+        "age": "3 weken geleden",
+        "tag": "Reparaties",
+        "text": "Prima service, snel klaar. Scherm ziet er weer als nieuw uit. Zou dit zeker aanbevelen!"
+      }
+    ],
+    "filterAll": "Alle reviews",
+    "filterRepairs": "Reparaties",
+    "filterAccessoires": "Accessoires",
+    "featuredTitle": "Uitgelichte reviews",
+    "allTitle": "Alle reviews",
+    "viewAllLink": "Bekijk alle reviews →",
+    "ctaTitle": "Ook snel geholpen worden?",
+    "ctaSub": "Plan je reparatie of neem direct contact op met 4Mobiles.",
+    "planRepair": "Plan je reparatie",
+    "whatsappUs": "WhatsApp ons",
+    "callDirect": "Bel direct",
+    "trust1": "Binnen 30 minuten klaar",
+    "trust2": "90 dagen garantie",
+    "trust3": "Geen verborgen kosten",
+    "trust4": "4.8/5 op Google"
+  },
+  "regio": {
+    "breadcrumbHome": "Home",
+    "breadcrumbRegion": "Servicegebied",
+    "cityHeroTitle": "Telefoon reparatie in",
+    "defaultHeroTitle": "Telefoon reparatie in jouw regio",
+    "defaultHeroSub": "Woon je in Westland, Den Haag, Delft of omgeving? Bij 4MOBILES hebben we je met iPhone, Samsung en andere telefoonreparaties. Kies je plaats en bekijk direct de mogelijkheden.",
+    "planRepair": "Plan je reparatie",
+    "viewAllAreas": "Bekijk alle servicegebieden →",
+    "defaultMapLabel": "Westland & omgeving",
+    "steps": [
+      {
+        "title": "Als per ervaring",
+        "sub": "Meer dan 15 jaar expertise"
+      },
+      {
+        "title": "Gratis diagnose",
+        "sub": "Geen kosten, wel zekerheid"
+      },
+      {
+        "title": "Snelle reparatie",
+        "sub": "Meeste reparaties < 30 min"
+      },
+      {
+        "title": "Snel geholpen",
+        "sub": "90 dagen garantie"
+      }
+    ],
+    "citiesEyebrow": "SERVICEGEBIEDEN",
+    "citiesTitle": "Populaire servicegebieden",
+    "cities": [
+      {
+        "name": "Westland",
+        "sub": "iPhone, Samsung, iPad reparaties",
+        "slug": "westland"
+      },
+      {
+        "name": "Den Haag",
+        "sub": "Scherm, batterij en meer",
+        "slug": "den-haag"
+      },
+      {
+        "name": "Delft",
+        "sub": "Officiële 4Mobiles service",
+        "slug": "delft"
+      },
+      {
+        "name": "Naaldwijk",
+        "sub": "Onze thuisbasis",
+        "slug": "naaldwijk"
+      },
+      {
+        "name": "Middelharnis",
+        "sub": "Snel gerepareerd",
+        "slug": "middelharnis"
+      },
+      {
+        "name": "Monster",
+        "sub": "Snelle service regio",
+        "slug": "monster"
+      }
+    ],
+    "cityData": {
+      "westland": {
+        "name": "Westland",
+        "region": "regio Westland",
+        "desc": "Wij repareren dagelijks smartphones en tablets voor inwoners van Westland. iPhone, Samsung, iPad — snel en eerlijk bij 4Mobiles in Naaldwijk."
+      },
+      "den-haag": {
+        "name": "Den Haag",
+        "region": "Den Haag en omgeving",
+        "desc": "Klanten uit Den Haag en omgeving vinden ons centraal gelegen in Naaldwijk. Snelle service, eerlijke prijzen, vakkundige reparaties."
+      },
+      "delft": {
+        "name": "Delft",
+        "region": "Delft en Midden-Delfland",
+        "desc": "Vanuit Delft ben je zo bij ons. 4Mobiles staat klaar voor al je telefoon- en tabletreparaties."
+      },
+      "naaldwijk": {
+        "name": "Naaldwijk",
+        "region": "Naaldwijk centrum",
+        "desc": "Wij zitten in het hart van Naaldwijk. Loop gerust binnen voor een snelle diagnose of reparatie."
+      },
+      "middelharnis": {
+        "name": "Middelharnis",
+        "region": "Goeree-Overflakkee",
+        "desc": "Ook vanuit Middelharnis helpen wij je graag. Meld je aan en kom langs voor een vakkundige reparatie."
+      },
+      "monster": {
+        "name": "Monster",
+        "region": "Westland kust",
+        "desc": "Vanuit Monster ben je zo in Naaldwijk. 4Mobiles repareert je toestel snel en professioneel."
+      }
+    },
+    "ctaTitle": "Niet in jouw stad?",
+    "ctaSub": "Wij helpen klanten uit de hele regio. Neem contact op — we kijken mee!",
+    "whatsappUs": "WhatsApp ons",
+    "callDirect": "Bel direct"
+  },
+  "zakelijk": {
+    "eyebrow": "ZAKELIJK",
+    "heroTitle1": "Zakelijke service,",
+    "heroTitle2": "professioneel",
+    "heroTitle3": "geregeld.",
+    "heroSub": "Van reparatie tot preventie van beschadigingen, accessoires op maat en het persoonlijk beheren van grote aantallen smartphones en tablets. 4Mobiles ontzorgt bedrijven zodat jullie team kan doorwerken.",
+    "contactUs": "Neem contact op",
+    "viewOptions": "Bekijk mogelijkheden →",
+    "trustRow": [
+      {
+        "label": "Service op locatie"
+      },
+      {
+        "label": "Preventieve aanpak"
+      },
+      {
+        "label": "Voor bedrijven op maat"
+      },
+      {
+        "label": "Snel en flexibel"
+      }
+    ],
+    "heroImgPlaceholder": "Zakelijk repair foto",
+    "stats": [
+      {
+        "num": "4.8/5",
+        "label": "Google reviews"
+      },
+      {
+        "num": "12+",
+        "label": "jaar actief in Westland"
+      },
+      {
+        "num": "10.000+",
+        "label": "reparaties uitgevoerd"
+      }
+    ],
+    "partnersLabel": "Bedrijven die op 4Mobiles vertrouwen",
+    "testimonialsTitle": "Wat zakelijke klanten zeggen",
+    "testimonials": [
+      {
+        "initial": "R",
+        "name": "R. van Dijk",
+        "role": "Directeur · Westland",
+        "stars": 5,
+        "text": "\"Dankzij 4Mobiles hebben wij nauwelijks nog uitval bij onze medewerkers. Ze helpen ons snel en staan altijd klaar bij schade en snelle uitvoeringsservice.\""
+      },
+      {
+        "initial": "S",
+        "name": "Sanne V.",
+        "role": "Office manager",
+        "stars": 5,
+        "text": "\"Preventieve bescherming op de toestellen van ons team. Al de reparaties worden doeltreffend en snel geregeld. Aanrader!\""
+      }
+    ],
+    "servicesEyebrow": "DIENSTEN",
+    "servicesTitle": "Hoe wij bedrijven ontzorgen",
+    "services": [
+      {
+        "title": "Snelle reparaties",
+        "desc": "Snel en doeltreffend — geen onnodige wachttijden voor je team."
+      },
+      {
+        "title": "Bescherming & preventie",
+        "desc": "Beschermhoesjes, screenprotectors en accessoires voor de gehele vloot."
+      },
+      {
+        "title": "Accessoires op maat",
+        "desc": "Specifiek voor jouw organisatie geselecteerd en ingekocht."
+      },
+      {
+        "title": "Toestelbeheer op maat",
+        "desc": "Overzicht en beheer van apparaten binnen jouw organisatie."
+      },
+      {
+        "title": "Service op locatie",
+        "desc": "Wij komen bij de klant langs voor praktische ondersteuning op locatie."
+      },
+      {
+        "title": "Advies & ondersteuning",
+        "desc": "Persoonlijk aanspreekpunt voor al jouw zakelijke device-vragen."
+      }
+    ],
+    "preventTitle1": "Voorkomen is",
+    "preventTitle2": "slimmer",
+    "preventTitle3": "dan repareren",
+    "preventSub": "4Mobiles helpt bedrijven om de kosten van beschadigingen en uitval tot een minimum te beperken. Zo blijft jouw organisatie productief aangehecht.",
+    "preventBullets": [
+      "Bescherming op maat voor elk toestel",
+      "Mindere uitval en stilstand",
+      "Minder schade en minder verlies",
+      "Meer focus op jouw core business",
+      "Producten op maat voor jouw team"
+    ],
+    "preventCta": "Neem contact op voor 4Mobiles",
+    "preventImgPlaceholder": "Bescherming foto",
+    "reasonsTitle1": "Waarom kiezen bedrijven voor",
+    "reasonsTitle2": "4Mobiles Zakelijk?",
+    "reasons": [
+      "Een vast aanspreekpunt aangehecht",
+      "Snelle communicatie en afhandeling",
+      "Preventieve aanpak voor minder uitval",
+      "Heldere afrekens en transparante prijzen"
+    ],
+    "makeAppointment": "Maak een afspraak",
+    "whatsappUs": "WhatsApp ons",
+    "callDirect": "Bel direct",
+    "statOnSite": "Service op locatie mogelijk",
+    "contactEyebrow": "ZAKELIJK CONTACT",
+    "contactTitle": "Interesse in zakelijke mogelijkheden?",
+    "contactSub": "Neem contact op voor een vrijblijvend gesprek over onze zakelijke diensten. Wij stellen een plan op maat voor uw organisatie samen.",
+    "contactBullet1": "Vaste contactpersoon voor uw bedrijf",
+    "contactBullet2": "Maandelijkse factuur & rapportage",
+    "contactBullet3": "Servicelevel agreements (SLA)",
+    "contactBullet4": "Service op locatie mogelijk",
+    "contactEmailCta": "Stuur zakelijke aanvraag",
+    "contactPhone": "+31 174 123 456"
+  },
+  "producten": {
+    "heroEyebrow": "ACCESSOIRES",
+    "heroTitle": "Alles voor je telefoon en tablet, gewoon bij ons in de winkel",
+    "heroSub": "Van stevige hoesjes en screenprotectors tot opladers en autohouders. Wij hebben een ruim aanbod accessoires op voorraad en helpen je graag de juiste keuze voor jouw toestel.",
+    "viewAssortment": "Bekijk ons aanbod",
+    "askProduct": "Vraag naar product",
+    "heroTrust1": "4.8/5 op Google",
+    "heroTrust2": "1000den artikelen op voorraad",
+    "uspPillars": [
+      {
+        "title": "Vandaag nog in bezit",
+        "sub": "Geen wachttijden, geen bezorging"
+      },
+      {
+        "title": "Persoonlijk advies",
+        "sub": "We helpen je de juiste keuze"
+      },
+      {
+        "title": "1000den artikelen",
+        "sub": "Direct op voorraad in de winkel"
+      },
+      {
+        "title": "Geen webshop",
+        "sub": "Wel direct geholpen, 100% service"
+      }
+    ],
+    "assortmentEyebrow": "ASSORTIMENT",
+    "assortmentTitle": "Accessoires die passen bij jouw toestel en jouw gebruik",
+    "assortmentSub": "Elk toestel en elke gebruiker is anders. In onze winkel kun je accessoires bekijken, passen en meteen direct uitproberen. Zoek je iets dat 100% bevalt.",
+    "filterAll": "Alle",
+    "catsEyebrow": "CATEGORIEËN",
+    "catsTitle": "Onze populaire categorieën",
+    "categories": [
+      {
+        "title": "Hoesjes",
+        "bullets": [
+          "Hoesjes vanaf €9,99",
+          "Bescherming op maat",
+          "Superstijlvol en zoveel keuze"
+        ],
+        "cta": "Kom naar de winkel"
+      },
+      {
+        "title": "Screenprotectors",
+        "bullets": [
+          "Premium kwaliteit",
+          "Gehard glas / Tempered glass",
+          "Folie op maat gesneden",
+          "Helpen en omgaan geplaatst"
+        ],
+        "cta": "Laat je screenprotector plaatsen"
+      },
+      {
+        "title": "Opladers & kabels",
+        "bullets": [
+          "Wij groeien razend snel in kabels",
+          "Origineel Apple & Samsung",
+          "2M op voorraad",
+          "Meerdere soorten wattage"
+        ],
+        "cta": "Kom naar adres"
+      },
+      {
+        "title": "Autohouders",
+        "bullets": [
+          "Voor stam of dashboard",
+          "Voor MagSafe & telefoons",
+          "Veilige bevestiging",
+          "Brede prijs en keuze"
+        ],
+        "cta": "Kom naar de juiste autohouder"
+      }
+    ],
+    "brandsLabel": "Merken die wij verkopen",
+    "ctaTitle": "Kom langs en bekijk alles zelf",
+    "ctaSub": "Geen webshop, wel échte service. Wij helpen je direct in de winkel.",
+    "visitShop": "Bezoek de winkel",
+    "askUs": "Vraag ons iets",
+    "upsellEyebrow": "NIEUW TOESTEL?",
+    "upsellTitle": "Bescherm uw nieuwe telefoon meteen",
+    "upsellSub": "Een nieuw toestel is een investering. Bescherm hem direct met een kwalitatief hoesje en screenprotector — verkrijgbaar bij 4MOBILES in Naaldwijk.",
+    "upsellBullet1": "Geplaatst in de winkel — gratis",
+    "upsellBullet2": "Grote keuze merken & modellen",
+    "upsellBullet3": "Persoonlijk advies van onze experts",
+    "upsellCta1": "Kom langs in de winkel",
+    "upsellCta2": "Vraag beschikbaarheid",
+    "citiesLabel": "Wij helpen klanten uit heel Westland & omgeving",
+    "noResults": "Geen producten gevonden voor",
+    "showAll": "Toon alles",
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Veelgestelde vragen over onze producten",
+    "faq": [
+      {
+        "q": "Welke merken accessoires verkopen jullie?",
+        "a": "Wij voeren merken zoals Apple, Samsung, Spigen, OtterBox, Belkin, Hama en meer. Vraag naar beschikbaarheid als u een specifiek merk zoekt."
+      },
+      {
+        "q": "Kan ik ook online bestellen?",
+        "a": "Op dit moment verkopen wij onze accessoires uitsluitend in de winkel. U kunt via WhatsApp vooraf vragen of een product op voorraad is."
+      },
+      {
+        "q": "Hebben jullie ook screenprotectors voor mijn model?",
+        "a": "Ja, wij hebben screenprotectors voor de meeste populaire modellen. Kom langs of app ons met uw toesteltype."
+      },
+      {
+        "q": "Kan ik een hoesje laten aanpassen of op maat bestellen?",
+        "a": "Neem contact op voor de mogelijkheden. Wij denken graag met u mee en kunnen in sommige gevallen iets speciaals regelen."
+      }
+    ]
+  },
+  "reparatie": {
+    "heroBadge": "Reparatie boeken",
+    "heroTitle1": "Snelle reparatie,",
+    "heroTitle2": "vandaag nog klaar",
+    "heroSub": "Plan uw reparatie in 4 eenvoudige stappen. Geen wachttijden — direct geholpen in Naaldwijk of Westland.",
+    "stepLabels": [
+      "Toestel & reparatie",
+      "Diagnose",
+      "Afspraak",
+      "Bevestiging"
+    ],
+    "deviceOther": "Overig",
+    "repairTypes": [
+      "Scherm reparatie",
+      "Batterij vervangen",
+      "Lader poort",
+      "Achterkant glas",
+      "Camera reparatie",
+      "Speaker reparatie",
+      "Waterschade",
+      "Overig"
+    ],
+    "step1Title": "Kies uw toestel",
+    "step1RepairTitle": "Kies het type reparatie",
+    "nextStep": "Volgende stap",
+    "summaryDevice": "Toestel",
+    "summaryRepair": "Reparatie",
+    "step2Title": "Uw gegevens",
+    "labelName": "Naam",
+    "labelPhone": "Telefoonnummer",
+    "labelEmail": "E-mailadres",
+    "labelComment": "Opmerking",
+    "optional": "optioneel",
+    "required": "*",
+    "placeholderName": "Jan de Vries",
+    "placeholderPhone": "06 12345678",
+    "placeholderEmail": "jan@email.nl",
+    "placeholderComment": "Beschrijf eventueel het probleem...",
+    "back": "← Terug",
+    "step3DateTitle": "Kies een datum",
+    "step3TimeTitle": "Kies een tijdstip",
+    "confirmAppointment": "Bevestig afspraak",
+    "step4Title": "Bedankt voor uw vertrouwen 🎉",
+    "step4Text": "Uw reparatieafspraak is succesvol ingepland. We kijken ernaar uit u te helpen!",
+    "summaryDate": "Datum",
+    "summaryTime": "Tijd",
+    "summaryName": "Naam",
+    "confirmMailBox": "Bevestiging in uw mailbox — controleer ook uw spam.",
+    "backToHome": "Terug naar home",
+    "whatsappUs": "WhatsApp ons",
+    "trust1": "90 dagen garantie",
+    "trust2": "Klaar in 1 uur",
+    "trust3": "Gratis diagnose",
+    "days": [
+      "Zo",
+      "Ma",
+      "Di",
+      "Wo",
+      "Do",
+      "Vr",
+      "Za"
+    ],
+    "months": [
+      "jan",
+      "feb",
+      "mrt",
+      "apr",
+      "mei",
+      "jun",
+      "jul",
+      "aug",
+      "sep",
+      "okt",
+      "nov",
+      "dec"
+    ],
+    "longDays": [
+      "zondag",
+      "maandag",
+      "dinsdag",
+      "woensdag",
+      "donderdag",
+      "vrijdag",
+      "zaterdag"
+    ],
+    "longMonths": [
+      "januari",
+      "februari",
+      "maart",
+      "april",
+      "mei",
+      "juni",
+      "juli",
+      "augustus",
+      "september",
+      "oktober",
+      "november",
+      "december"
+    ],
+    "stepMerk": "Merk",
+    "stepModel": "Model",
+    "stepReparatie": "Reparatie",
+    "stepGegevens": "Gegevens",
+    "s1Title": "Kies het merk van uw toestel",
+    "s1Sub": "Selecteer snel en eenvoudig het merk, kies daarna het model en de reparatie die u nodig heeft.",
+    "s1Trust1": "4,8/5 uit 10.000+ beoordelingen",
+    "s1Trust2": "10.000+ klanten gingen u voor",
+    "s1Chip1": "Transparante prijzen",
+    "s1Chip2": "Snelle service",
+    "s1Chip3": "Garantie op reparatie",
+    "s1Hint": "Stap 1 van 4 — Kies het merk van uw toestel.",
+    "notFoundTitle": "Staat uw merk er niet tussen?",
+    "notFoundSub": "Neem contact met ons op, wij helpen u graag verder.",
+    "notFoundCta": "Neem contact op →",
+    "trustSecureTitle": "Veilig en vertrouwd",
+    "trustSecureSub": "Uw gegevens zijn 100% veilig bij 4MOBILES.",
+    "trustExpertTitle": "Deskundig & betrouwbaar",
+    "trustExpertSub": "Onze specialisten staan klaar met 12+ jaar ervaring.",
+    "s2Title": "Kies uw {{brand}} model",
+    "s2Sub": "Selecteer eenvoudig het exacte model, zodat wij u de juiste reparatie en prijs kunnen tonen.",
+    "s2SearchPlaceholder": "Zoek uw {{brand}} model",
+    "s2Hint": "Stap 2 van 4 — Kies uw {{brand}} model.",
+    "notFoundModelTitle": "Staat uw model er niet tussen?",
+    "s3ColorTitle": "1  Selecteer de kleur van je toestel",
+    "s3RepairTitle": "2  Selecteer je reparatie",
+    "badge6mnd": "6 mnd garantie",
+    "badgeTransparent": "Transparante prijzen",
+    "badgeFast": "Snelle service",
+    "inStock": "Op voorraad",
+    "lowStock": "Beperkt op voorraad",
+    "mostChosen": "Meest gekozen",
+    "planRepair": "Plan reparatie",
+    "s4DetailsTitle": "1. Jouw gegevens",
+    "s4ServiceTitle": "2. Kies je servicemethode",
+    "s4DateTitle": "3. Kies datum en tijd",
+    "s4DateLabel": "Kies een datum",
+    "s4TimeLabel": "Kies een tijdstip",
+    "agreeText": "Ik accepteer de",
+    "termsLabel": "algemene voorwaarden",
+    "andLabel": "en het",
+    "privacyLabel": "privacybeleid",
+    "storeMethodTitle": "Langskomen in de winkel",
+    "storeMethodSub": "Klaar terwijl je wacht",
+    "postMethodTitle": "Versturen per post",
+    "postMethodSub": "Veilig opsturen met duidelijke instructies",
+    "storeAddress": "4MOBILES Naaldwijk — Molenstraat 2, 2671 EX Naaldwijk",
+    "bookingNote": "Na je aanvraag ontvang je direct een bevestiging per e-mail met alle details van je afspraak.",
+    "totalInclVat": "Totaal (incl. btw)",
+    "submitBtn": "Reparatie aanvragen",
+    "payAfter": "Betalen na reparatie",
+    "sidebarSafe": "Veilig & vertrouwd — gegevens alleen gebruikt voor deze reparatie.",
+    "sidebarRepairLabel": "Gekozen reparatie",
+    "sidebarDurationLabel": "Reparatieduur",
+    "sidebarServiceLabel": "Servicemethode",
+    "sidebarShopLabel": "Winkel",
+    "sidebarAppointmentLabel": "Afspraak",
+    "storeMethodValue": "Langskomen in de winkel",
+    "postMethodValue": "Versturen per post",
+    "shopName": "4MOBILES Naaldwijk",
+    "trust6mnd": "6 maanden garantie",
+    "trustTime": "Snelle service 30–60 min",
+    "trustNoCost": "Geen verborgen kosten",
+    "googleReviews": "Google reviews — 10.000+ klanten",
+    "confirmTitle": "Bedankt voor uw vertrouwen 🎉",
+    "confirmSub": "Uw reparatieaanvraag is succesvol ontvangen. Wij gaan voor u aan de slag en zorgen dat alles klaarstaat voor uw afspraak.",
+    "confirmMailTitle": "Bevestiging in uw mailbox",
+    "confirmMailSub": "De bevestiging van uw afspraak is naar uw e-mailadres gestuurd. Controleer eventueel ook uw spam- of ongewenste map.",
+    "confirmSummaryTitle": "Uw afspraak",
+    "confirmDeviceLabel": "Toestel",
+    "confirmRepairLabel": "Reparatie",
+    "confirmDateLabel": "Moment",
+    "confirmServiceLabel": "Service",
+    "confirmLocationLabel": "Locatie",
+    "confirmTrust1": "Veilig & vertrouwd — 10.000+ tevreden klanten",
+    "confirmTrust2": "4,8/5 op Google",
+    "confirmHomeBtn": "Terug naar home",
+    "confirmContactNote": "Heeft u vragen? Neem gerust",
+    "confirmContactLink": "contact met ons op",
+    "popularBadge": "⭐ Meest gekozen 11:00",
+    "repairCats": [
+      {
+        "id": "screen",
+        "name": "Beeldscherm en glas"
+      },
+      {
+        "id": "battery",
+        "name": "Batterij en opladen"
+      },
+      {
+        "id": "housing",
+        "name": "Behuizing & frame"
+      },
+      {
+        "id": "camera",
+        "name": "Camera & speaker"
+      },
+      {
+        "id": "water",
+        "name": "Waterschade"
+      },
+      {
+        "id": "other",
+        "name": "Onderzoek & overige"
+      }
+    ]
+  },
+  "blog": {
+    "eyebrow": "BLOG",
+    "heroTitle": "Tips, uitleg en advies over je mobiel of tablet.",
+    "heroSub": "Praktische antwoorden voor reparaties, tips en advies, updates en meer. Wij helpen je snel en eerlijk in Naaldwijk.",
+    "callDirect": "Bel direct",
+    "planRepair": "Plan reparatie →",
+    "heroTrust1": "10.000+ reparaties",
+    "heroTrust2": "Binnen 30 min",
+    "featuredTitle": "iPhone scherm stuk? Dit zijn je opties",
+    "featuredSub": "Alles over schermreparatie, kosten, en de beste keuze voor jouw situatie.",
+    "featuredCta": "Lees meer →",
+    "catsTitle": "Waar kunnen we je mee helpen?",
+    "categories": [
+      {
+        "label": "Scherm stuk?"
+      },
+      {
+        "label": "Batterij leeg?"
+      },
+      {
+        "label": "Waterschade?"
+      },
+      {
+        "label": "Toestel kapot?"
+      },
+      {
+        "label": "Scherm vernieuwen"
+      },
+      {
+        "label": "Tablet kapot"
+      }
+    ],
+    "tags": [
+      "Reparaties",
+      "Tips & advies",
+      "iPhone",
+      "Samsung",
+      "Batterij",
+      "Scherm",
+      "Overig",
+      "Accessoires"
+    ],
+    "filterDefaultTag": "Reparaties",
+    "viewMoreCats": "Bekijk alle categorieën →",
+    "readMore": "Lees meer →",
+    "viewMore": "Bekijk meer artikelen →",
+    "popularTitle": "Populaire artikelen",
+    "sidebarCtaTitle": "Twijfel je wat er aan de hand is?",
+    "sidebarCtaSub": "Kom langs of neem contact in Naaldwijk. Wij helpen je graag uit de hand te helpen.",
+    "servicesStripLabel": "iPhone, Samsung, tablets en reparaties",
+    "serviceLinks": [
+      {
+        "label": "Samsung reparatie"
+      },
+      {
+        "label": "Tablet reparatie"
+      },
+      {
+        "label": "Batterij vervangen"
+      },
+      {
+        "label": "Scherm reparatie"
+      },
+      {
+        "label": "Waterschade herstellen"
+      }
+    ],
+    "articles": [
+      {
+        "slug": "iphone-scherm-stuk",
+        "title": "iPhone scherm stuk? Dit zijn je opties",
+        "excerpt": "Alles over schermproblemen, kosten, en de beste oplossing voor jouw situatie.",
+        "tag": "iPhone",
+        "readTime": "4 min"
+      },
+      {
+        "slug": "batterij-leeg",
+        "title": "Batterij leeg? Dit kun je doen",
+        "excerpt": "Waarom je batterij snel leegloopt en wanneer je hem beter kunt vervangen.",
+        "tag": "Batterij",
+        "readTime": "3 min"
+      },
+      {
+        "slug": "iphone-kapot",
+        "title": "iPhone kapot? Zo is het aan te pakken",
+        "excerpt": "Stap voor stap wat je kunt doen als je iPhone niet meer werkt.",
+        "tag": "iPhone",
+        "readTime": "5 min"
+      },
+      {
+        "slug": "tablet-scherm-kapot",
+        "title": "Tablet scherm kapot? Repareren of vervangen?",
+        "excerpt": "Wanneer reparatie loont en wanneer een nieuw toestel de slimmere keuze is.",
+        "tag": "Reparaties",
+        "readTime": "4 min"
+      },
+      {
+        "slug": "samsung-scherm-reparatie",
+        "title": "Samsung scherm reparatie: wat kost het?",
+        "excerpt": "Overzicht van kosten en hoe lang een Samsung schermdisplay reparatie duurt.",
+        "tag": "Samsung",
+        "readTime": "3 min"
+      },
+      {
+        "slug": "waterschade-telefoon",
+        "title": "Waterschade aan je telefoon? Doe dit meteen",
+        "excerpt": "De eerste stappen die je direct moet nemen om erger te voorkomen.",
+        "tag": "Reparaties",
+        "readTime": "3 min"
+      }
+    ],
+    "whatsappLabel": "WhatsApp",
+    "topicsTitle": "Populaire onderwerpen",
+    "topics": [
+      {
+        "label": "Schermreparatie",
+        "href": "/reparatie"
+      },
+      {
+        "label": "Batterijproblemen",
+        "href": "/reparatie"
+      },
+      {
+        "label": "Waterschade",
+        "href": "/reparatie"
+      },
+      {
+        "label": "iPhone reparatie",
+        "href": "/reparatie/iphone"
+      },
+      {
+        "label": "Tablet reparatie",
+        "href": "/reparatie"
+      },
+      {
+        "label": "Overige reparaties",
+        "href": "/reparatie"
+      }
+    ],
+    "helpTodayEyebrow": "4,8/5 — 10.000+ klanten",
+    "helpTodayTitle": "Vandaag nog geholpen?",
+    "helpTodaySub": "Geen lang wachten, geen gedoe. Kom langs in Naaldwijk — uw toestel is vaak binnen 30–60 minuten als nieuw.",
+    "helpTodayCta1": "Plan reparatie",
+    "helpTodayCta2": "WhatsApp ons",
+    "helpTodayCta3": "Bel direct",
+    "helpCard1Title": "30–60 min",
+    "helpCard1Sub": "Gemiddelde reparatietijd",
+    "helpCard2Title": "6 mnd",
+    "helpCard2Sub": "Garantie op elke reparatie",
+    "helpCard3Title": "Geen fix?",
+    "helpCard3Sub": "Dan betaalt u niets"
+  },
+  "blogPost": {
+    "popularTitle": "Populaire artikelen",
+    "sidebarCtaTitle": "Twijfel je?",
+    "sidebarCtaSub": "Kom langs of neem contact op in Naaldwijk. We helpen je snel en eerlijk verder.",
+    "planRepair": "Plan reparatie →",
+    "callDirect": "Bel direct",
+    "relatedTitle": "Gerelateerde artikelen",
+    "ctaTitle": "Ook snel geholpen worden?",
+    "ctaSub": "Langskomen in Naaldwijk — reparatie meestal binnen 30 minuten klaar.",
+    "readTime": "leestijd",
+    "notFoundTitle": "Artikel niet gevonden",
+    "notFoundSub": "Het artikel dat je zoekt bestaat niet of is verplaatst.",
+    "backToBlog": "← Terug naar blog",
+    "articles": {
+      "iphone-scherm-stuk": {
+        "title": "iPhone scherm stuk? Dit zijn je opties",
+        "tag": "iPhone",
+        "readTime": "4 min",
+        "excerpt": "Alles over schermproblemen, kosten, en de beste oplossing voor jouw situatie.",
+        "body": [
+          "Een gebarsten iPhone-scherm is vervelend, maar het overkómt iedereen wel een keer. De grote vraag is: wat doe je nu? Je hebt ruwweg drie opties: repareren via een specialist, zelf repareren met een kit, of een nieuw toestel kopen. In de meeste gevallen is professionele reparatie de slimste en veiligste keuze, zeker als je iPhone minder dan drie jaar oud is.",
+          "De kosten voor schermreparatie variëren sterk per model. Voor een iPhone 13 of 14 liggen de reparatiekosten bij een goed servicepunt doorgaans tussen de €89 en €149, afhankelijk van het schermtype (OLED of LCD). Nieuwere modellen zoals de iPhone 15 Pro kunnen iets duurder zijn vanwege het Dynamic Island-display. Vergelijk dit met een nieuw toestel dat al snel €800 of meer kost — repareren is bijna altijd goedkoper.",
+          "Bij 4Mobiles in Naaldwijk repareren wij iPhone-schermen meestal binnen 30 minuten. We gebruiken uitsluitend kwalitatieve onderdelen en geven zes maanden garantie op de reparatie. Kom gerust langs voor een gratis diagnose, of bel ons vooraf om je specifieke model en de verwachte kosten te bespreken. Zo sta je nooit voor verrassingen."
+        ]
+      },
+      "batterij-leeg": {
+        "title": "Batterij leeg? Dit kun je doen",
+        "tag": "Batterij",
+        "readTime": "3 min",
+        "excerpt": "Waarom je batterij snel leegloopt en wanneer je hem beter kunt vervangen.",
+        "body": [
+          "Een smartphone-batterij heeft een beperkte levensduur. Na zo'n 500 volledige laadcycli neemt de capaciteit merkbaar af. Dat betekent dat een telefoon die je twee à drie jaar gebruikt minder lang meegaat op één lading. Herken je jezelf in meerdere keren per dag opladen, terwijl dat vroeger eens per dag voldoende was? Dan is batterijvervanging waarschijnlijk de oplossing.",
+          "Er zijn een paar simpele dingen die je zelf kunt doen om de batterij langer mee te laten gaan. Laad je telefoon bij voorkeur op tussen de 20% en 80%, vermijd extreme temperaturen, en schakel energieverslindende functies zoals Always-On Display uit als je ze niet nodig hebt. Op een iPhone kun je via Instellingen > Batterij > Batterijstatus controleren hoe gezond je accu nog is.",
+          "Is de batterijcapaciteit gedaald onder de 80%? Dan is het slim om hem te laten vervangen. Bij 4Mobiles wisselen we batterijen voor de meeste iPhone- en Samsung-modellen binnen 30 minuten. De prijzen beginnen al vanaf €39,95 en we geven zes maanden garantie. Een frisse batterij voelt als een nieuw toestel — voor een fractie van de prijs."
+        ]
+      },
+      "iphone-kapot": {
+        "title": "iPhone kapot? Zo is het aan te pakken",
+        "tag": "iPhone",
+        "readTime": "5 min",
+        "excerpt": "Stap voor stap wat je kunt doen als je iPhone niet meer werkt.",
+        "body": [
+          "Je iPhone doet het niet meer. Dat kan van alles betekenen: het scherm blijft zwart, het toestel start niet op, er is waterschade, of bepaalde knoppen werken niet. In elk geval is het belangrijk om rustig te blijven en stap voor stap te werk te gaan. Paniek helpt niet, maar een goede diagnose wel.",
+          "Stap één is een geforceerde herstart proberen. Op een iPhone 8 of nieuwer doe je dat door snel de volumeknop omhoog in te drukken, dan de volumeknop omlaag, en vervolgens de zijknop ingedrukt te houden totdat het Apple-logo verschijnt. Helpt dit niet, dan is de kans groot dat er een hardware- of softwareprobleem speelt dat je zelf niet kunt oplossen. Probeer het toestel niet open te maken als je hier geen ervaring mee hebt — je kunt de schade verergeren.",
+          "Is er waterschade in het spel, zet het toestel dan direct uit (als dat nog kan), verwijder de SIM-kaart en leg het toestel plat met de aansluitpoort naar beneden. Gebruik geen föhn of rijst: die helpen niet en kunnen de situatie verergeren. Breng het toestel zo snel mogelijk naar een specialist. Bij 4Mobiles doen we altijd eerst een gratis diagnose, zodat je precies weet wat er aan de hand is en wat het kost om het te repareren. Transparantie staat bij ons voorop."
+        ]
+      },
+      "tablet-scherm-kapot": {
+        "title": "Tablet scherm kapot? Repareren of vervangen?",
+        "tag": "Reparaties",
+        "readTime": "4 min",
+        "excerpt": "Wanneer reparatie loont en wanneer een nieuw toestel de slimmere keuze is.",
+        "body": [
+          "Een tablet met een kapot scherm is een stuk onhandiger dan een telefoon met dezelfde schade — het scherm is immers het belangrijkste interactievlak. Of je nu een iPad, een Samsung Galaxy Tab of een andere tablet hebt, de keuze tussen repareren en vervangen hangt af van een paar praktische factoren: de leeftijd van het toestel, de reparatiekosten en hoe intensief je het gebruikt.",
+          "Als vuistregel geldt: als de reparatiekosten meer dan de helft van de aanschafwaarde van een vergelijkbaar nieuw model bedragen, is vervangen de verstandigere keuze. Bij recente modellen (1 à 2 jaar oud) is repareren vrijwel altijd voordeliger. Een iPad-schermreparatie kost bij ons doorgaans tussen de €99 en €179, afhankelijk van het model en of het scherm ook een touchprobleem heeft.",
+          "Een ander aandachtspunt is de vraag of alleen het glas kapot is, of ook het lcd-paneel eronder. Een gebarsten buitenglas zonder schermen op het beeld is goedkoper te repareren. Zie je zwarte vlekken, kleurstrepen of werkt de aanraking niet meer goed? Dan is het hele display beschadigd en zijn de kosten hoger. Kom langs bij 4Mobiles voor een gratis inspectie, zodat je een eerlijk advies krijgt voordat je een beslissing neemt."
+        ]
+      }
+    }
+  }
+}
