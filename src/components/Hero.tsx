@@ -10,6 +10,13 @@ interface HeroProps {
 export function Hero({ accent: _accent }: HeroProps) {
   const { t } = useTranslation()
   const [device, setDevice] = useState('iPhone')
+  const [announcementVisible, setAnnouncementVisible] = useState(() => {
+    try {
+      return sessionStorage.getItem('ann-v1') !== '1'
+    } catch {
+      return true
+    }
+  })
   const devices = ['iPhone', 'Samsung', 'iPad', 'OnePlus', 'Xiaomi', t('hero.deviceOther')]
 
   const trust = [
@@ -26,6 +33,15 @@ export function Hero({ accent: _accent }: HeroProps) {
       ? 'iPad Air 5'
       : 'iPhone 15 Pro'
 
+  const dismissAnnouncement = () => {
+    try {
+      sessionStorage.setItem('ann-v1', '1')
+    } catch {
+      // Storage may be unavailable in private browsing contexts.
+    }
+    setAnnouncementVisible(false)
+  }
+
   return (
     <section className="hero">
       <div className="hero-rays" aria-hidden="true" />
@@ -36,6 +52,20 @@ export function Hero({ accent: _accent }: HeroProps) {
 
       <div className="container hero-inner">
         <div className="hero-content">
+          {announcementVisible && (
+            <div className="hero-announcement" role="banner">
+              <span className="hero-announcement-text">{t('ann.text')}</span>
+              <button
+                className="hero-announcement-close"
+                type="button"
+                aria-label={t('ann.dismiss')}
+                onClick={dismissAnnouncement}
+              >
+                <Icon.X width="18" height="18" />
+              </button>
+            </div>
+          )}
+
           <div className="hero-eyebrow">
             <span className="dot" /> {t('hero.eyebrow')}
           </div>

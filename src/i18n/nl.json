@@ -454,14 +454,18 @@
     "opensTomorrow": "Gesloten — opent morgen 09:00",
     "callDirect": "Bel direct",
     "parkingTitle": "Gratis parkeren",
-    "parkingSub": "Parkeergelegenheid beschikbaar vlak bij de winkel aan de Molenstraat.",
+    "parkingSub": "U kunt gratis voor de deur parkeren.",
+    "lastSunday": "Elke laatste zondag van de maand geopend",
     "copyAddress": "Kopieer",
     "copied": "Gekopieerd!",
     "accTitle": "Bezoek onze winkel voor accessoires",
     "accSub": "Naast reparaties vindt u bij 4MOBILES ook telefoonhoesjes, screenprotectors, kabels en meer. Kom gerust even langs!",
-    "accItem1": "Hoesjes & screenprotectors",
-    "accItem2": "Opladers & kabels",
-    "accItem3": "Powerbanks & meer",
+    "accItem1": "Hoesjes",
+    "accItem2": "Screenprotectors",
+    "accItem3": "Opladers",
+    "accItem4": "Kabels",
+    "accItem5": "Powerbanks",
+    "accItem6": "Autohouders",
     "accCta1": "Bekijk assortiment",
     "accCta2": "Vraag beschikbaarheid"
   },
@@ -471,7 +475,7 @@
     "heroSub": "Echte ervaringen van klanten die hun telefoon, tablet of accessoire bij ons hebben laten repareren of gekocht.",
     "viewOnGoogle": "Bekijk op Google",
     "writeReview": "Schrijf review",
-    "ratingNote": "Gebaseerd op 900+ Google reviews",
+    "ratingNote": "Gebaseerd op 200+ reviews",
     "ratingRows": [
       {
         "label": "Service",
@@ -492,20 +496,20 @@
     ],
     "trust": [
       {
-        "title": "Binnen 30 minuten klaar",
-        "sub": "Snel, geen wachttijd"
+        "title": "Over 12 jaar ervaring",
+        "sub": "Meer dan 150.000 klanten geholpen"
       },
       {
-        "title": "90 dagen garantie",
-        "sub": "Op alle reparaties"
+        "title": "10.000+ reparaties",
+        "sub": "Ervaren specialisten"
       },
       {
-        "title": "Geen verborgen kosten",
-        "sub": "Duidelijke, eerlijke prijzen"
+        "title": "Persoonlijke service",
+        "sub": "Altijd eerlijk advies"
       },
       {
-        "title": "Persoonlijk advies",
-        "sub": "Van specialisten"
+        "title": "Google beoordeling",
+        "sub": "4.8 / 5 op reviews"
       }
     ],
     "featured": [
@@ -563,6 +567,7 @@
     "featuredTitle": "Uitgelichte reviews",
     "allTitle": "Alle reviews",
     "viewAllLink": "Bekijk alle reviews →",
+    "viewMoreLink": "Bekijk meer reviews",
     "ctaTitle": "Ook snel geholpen worden?",
     "ctaSub": "Plan je reparatie of neem direct contact op met 4Mobiles.",
     "planRepair": "Plan je reparatie",

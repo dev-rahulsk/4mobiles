@@ -29,6 +29,8 @@ export function Reviews() {
   const { t } = useTranslation()
   const [slide, setSlide] = useState(0)
   const [filter, setFilter] = useState(t('reviewsPage.filterAll'))
+  const [visibleReviews, setVisibleReviews] = useState(3)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
 
   const filterAll = t('reviewsPage.filterAll')
   const filterRepairs = t('reviewsPage.filterRepairs')
@@ -37,12 +39,28 @@ export function Reviews() {
 
   const featured = t('reviewsPage.featured', { returnObjects: true }) as { name: string; date: string; text: string }[]
   const allReviews = t('reviewsPage.allReviews', { returnObjects: true }) as { name: string; age: string; tag: string; text: string }[]
-  const ratingRows = t('reviewsPage.ratingRows', { returnObjects: true }) as { label: string; score: number }[]
   const trust = t('reviewsPage.trust', { returnObjects: true }) as { title: string; sub: string }[]
 
   const TRUST_ICONS = [Icon.Clock, Icon.Shield, Icon.Euro, Icon.Chat]
 
   const shown = filter === filterAll ? allReviews : allReviews.filter(r => r.tag === filter)
+  const visibleShown = shown.slice(0, visibleReviews)
+
+  const setActiveFilter = (nextFilter: string) => {
+    setFilter(nextFilter)
+    setVisibleReviews(3)
+  }
+
+  const prevFeatured = () => setSlide(s => (s === 0 ? featured.length - 1 : s - 1))
+  const nextFeatured = () => setSlide(s => (s === featured.length - 1 ? 0 : s + 1))
+
+  const onFeaturedTouchEnd = (clientX: number) => {
+    if (touchStart === null) return
+    const dx = clientX - touchStart
+    if (dx > 36) prevFeatured()
+    if (dx < -36) nextFeatured()
+    setTouchStart(null)
+  }
 
   return (
     <Layout>
@@ -57,14 +75,21 @@ export function Reviews() {
               </h1>
               <p className="rv2-hero-sub">{t('reviewsPage.heroSub')}</p>
               <div className="rv2-hero-ctas">
-                <a href="https://g.page/4mobiles" target="_blank" rel="noopener noreferrer" className="btn-accent rv2-btn">
-                  <GoogleLogo size={18} />
-                  {t('reviewsPage.viewOnGoogle')}
+                <a href="/reparatie" className="btn-accent rv2-btn">
+                  <Icon.Wrench width="16" height="16" />
+                  {t('reviewsPage.planRepair')}
                 </a>
                 <a href="https://g.page/4mobiles/review" target="_blank" rel="noopener noreferrer" className="rv2-btn rv2-btn-outline">
                   <Icon.Star width="16" height="16" />
                   {t('reviewsPage.writeReview')}
                 </a>
+              </div>
+            </div>
+            <div className="rv2-hero-device" aria-hidden="true">
+              <div className="rv2-device-phone">
+                <span />
+                <strong>4.8</strong>
+                <small>Google reviews</small>
               </div>
             </div>
             <div className="rv2-rating-card">
@@ -74,17 +99,6 @@ export function Reviews() {
                   <div className="rv2-score">4.8<span>/5</span></div>
                   <Stars n={5} />
                 </div>
-              </div>
-              <div className="rv2-breakdown">
-                {ratingRows.map(row => (
-                  <div key={row.label} className="rv2-brow">
-                    <span className="rv2-brow-label">{row.label}</span>
-                    <div className="rv2-brow-bar">
-                      <div className="rv2-brow-fill" style={{ width: `${(row.score / 5) * 100}%` }} />
-                    </div>
-                    <span className="rv2-brow-score">{row.score}</span>
-                  </div>
-                ))}
               </div>
               <p className="rv2-rating-note">{t('reviewsPage.ratingNote')}</p>
             </div>
@@ -122,7 +136,13 @@ export function Reviews() {
                 <h2 className="rv2-section-title">{t('reviewsPage.featuredTitle')}</h2>
                 <a href="#alle" className="rv2-link">{t('reviewsPage.viewAllLink')}</a>
               </div>
-              <div className="rv2-featured-card">
+              <div
+                className="rv2-featured-card"
+                onPointerDown={e => setTouchStart(e.clientX)}
+                onPointerUp={e => onFeaturedTouchEnd(e.clientX)}
+                onTouchStart={e => setTouchStart(e.touches[0].clientX)}
+                onTouchEnd={e => onFeaturedTouchEnd(e.changedTouches[0].clientX)}
+              >
                 <Stars n={5} />
                 <p className="rv2-card-text">"{featured[slide]?.text}"</p>
                 <div className="rv2-card-author">
@@ -147,12 +167,12 @@ export function Reviews() {
                 <h2 className="rv2-section-title">{t('reviewsPage.allTitle')}</h2>
                 <div className="rv2-filters">
                   {FILTERS.map(f => (
-                    <button key={f} className={`rv2-filter${filter === f ? ' active' : ''}`} onClick={() => setFilter(f)}>{f}</button>
+                    <button key={f} className={`rv2-filter${filter === f ? ' active' : ''}`} onClick={() => setActiveFilter(f)}>{f}</button>
                   ))}
                 </div>
               </div>
               <div className="rv2-all-list">
-                {shown.map((r, i) => (
+                {visibleShown.map((r, i) => (
                   <div key={i} className="rv2-review-row">
                     <div className="rv2-review-head">
                       <span className="rv2-avatar rv2-avatar-sm">{ALL_INITIALS[i] ?? r.name[0]}</span>
@@ -167,9 +187,11 @@ export function Reviews() {
                   </div>
                 ))}
               </div>
-              <a href="https://g.page/4mobiles" target="_blank" rel="noopener noreferrer" className="rv2-link rv2-link-more">
-                {t('reviewsPage.viewAllLink')}
-              </a>
+              {visibleReviews < shown.length && (
+                <button className="rv2-link rv2-link-more" onClick={() => setVisibleReviews(count => count + 3)}>
+                  {t('reviewsPage.viewMoreLink')}
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -186,12 +208,6 @@ export function Reviews() {
             <div className="rv2-cta-btns">
               <a href="/#reparatie" className="btn-accent rv2-btn">
                 <Icon.Wrench width="16" height="16" />{t('reviewsPage.planRepair')}
-              </a>
-              <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="rv2-btn rv2-btn-wa">
-                <Icon.WhatsApp width="16" height="16" />{t('reviewsPage.whatsappUs')}
-              </a>
-              <a href="tel:+31174123456" className="rv2-btn rv2-btn-outline-dark">
-                <Icon.Phone width="16" height="16" />{t('reviewsPage.callDirect')}
               </a>
             </div>
           </div>

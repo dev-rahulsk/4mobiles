@@ -453,14 +453,18 @@
     "opensTomorrow": "Closed — opens tomorrow at 09:00",
     "callDirect": "Call us",
     "parkingTitle": "Free parking",
-    "parkingSub": "Parking available right next to the shop on Molenstraat.",
+    "parkingSub": "You can park for free right in front of the shop.",
+    "lastSunday": "Open every last Sunday of the month",
     "copyAddress": "Copy",
     "copied": "Copied!",
     "accTitle": "Visit our shop for accessories",
     "accSub": "Besides repairs, 4MOBILES also stocks phone cases, screen protectors, cables and more. Feel free to stop by!",
-    "accItem1": "Cases & screen protectors",
-    "accItem2": "Chargers & cables",
-    "accItem3": "Power banks & more",
+    "accItem1": "Cases",
+    "accItem2": "Screen protectors",
+    "accItem3": "Chargers",
+    "accItem4": "Cables",
+    "accItem5": "Power banks",
+    "accItem6": "Car holders",
     "accCta1": "View assortment",
     "accCta2": "Check availability"
   },
@@ -470,7 +474,7 @@
     "heroSub": "Real experiences from customers who had their phone, tablet or accessory repaired or purchased at our shop.",
     "viewOnGoogle": "View on Google",
     "writeReview": "Write a review",
-    "ratingNote": "Based on 900+ Google reviews",
+    "ratingNote": "Based on 200+ reviews",
     "ratingRows": [
       {
         "label": "Service",
@@ -491,20 +495,20 @@
     ],
     "trust": [
       {
-        "title": "Ready in 30 minutes",
-        "sub": "Fast, no waiting"
+        "title": "Over 12 years experience",
+        "sub": "More than 150,000 people helped"
       },
       {
-        "title": "90-day warranty",
-        "sub": "On all repairs"
+        "title": "10,000+ repairs",
+        "sub": "Experienced specialists"
       },
       {
-        "title": "No hidden costs",
-        "sub": "Clear, honest prices"
+        "title": "Personal service",
+        "sub": "Always honest advice"
       },
       {
-        "title": "Personal advice",
-        "sub": "From specialists"
+        "title": "Google rating",
+        "sub": "4.8 / 5 on reviews"
       }
     ],
     "featured": [
@@ -562,6 +566,7 @@
     "featuredTitle": "Featured reviews",
     "allTitle": "All reviews",
     "viewAllLink": "View all reviews →",
+    "viewMoreLink": "View more reviews",
     "ctaTitle": "Want to be helped quickly too?",
     "ctaSub": "Book your repair or contact 4Mobiles directly.",
     "planRepair": "Book your repair",

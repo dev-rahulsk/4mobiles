@@ -70,6 +70,15 @@ export function Contact() {
     },
   ]
 
+  const ACCESSORIES = [
+    { icon: <Icon.Shield width="16" height="16" />, label: t('contact.accItem1') },
+    { icon: <Icon.Phone width="16" height="16" />, label: t('contact.accItem2') },
+    { icon: <Icon.Battery width="16" height="16" />, label: t('contact.accItem3') },
+    { icon: <Icon.Euro width="16" height="16" />, label: t('contact.accItem4') },
+    { icon: <Icon.Battery width="16" height="16" />, label: t('contact.accItem5') },
+    { icon: <Icon.Park width="16" height="16" />, label: t('contact.accItem6') },
+  ]
+
   function copyAddress() {
     navigator.clipboard.writeText('Molenstraat 2, 2671 BE Naaldwijk').then(() => {
       setCopied(true)
@@ -81,23 +90,16 @@ export function Contact() {
     <Layout>
       {/* Hero */}
       <section className="ct-hero">
+        <div className="ct-hero-media" aria-hidden="true" />
         <div className="container ct-hero-inner">
           <span className="ct-eyebrow">{t('contact.eyebrow')}</span>
           <h1 className="ct-hero-title">{t('contact.title')} <span className="ct-green">4MOBILES</span></h1>
-          <p className="ct-hero-sub">{t('contact.sub')}</p>
           <div className="ct-hero-chips">
             <span className={`ct-open-badge${openStatus.open ? ' ct-open-badge--open' : ' ct-open-badge--closed'}`}>
               <span className="ct-open-dot" />
               {openLabel}
             </span>
-            <a href="tel:+31174123456" className="ct-hero-chip">
-              <Icon.Phone width="14" height="14" /> {t('contact.callDirect')}
-            </a>
           </div>
-          <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="btn-accent ct-btn ct-hero-cta">
-            <Icon.WhatsApp width="18" height="18" />
-            {t('contact.ctaMessage')}
-          </a>
         </div>
       </section>
 
@@ -148,6 +150,8 @@ export function Contact() {
                   )
                 })}
               </ul>
+
+              <p className="ct-hours-note">{t('contact.lastSunday')}</p>
 
               {/* Parking card */}
               <div className="ct-parking-card">
@@ -210,18 +214,10 @@ export function Contact() {
               <h2 className="ct-acc-title">{t('contact.accTitle')}</h2>
               <p className="ct-acc-sub">{t('contact.accSub')}</p>
               <div className="ct-acc-items">
-                <span><Icon.Check width="14" height="14" /> {t('contact.accItem1')}</span>
-                <span><Icon.Check width="14" height="14" /> {t('contact.accItem2')}</span>
-                <span><Icon.Check width="14" height="14" /> {t('contact.accItem3')}</span>
+                {ACCESSORIES.map(item => (
+                  <span key={item.label}>{item.icon} {item.label}</span>
+                ))}
               </div>
-            </div>
-            <div className="ct-acc-ctas">
-              <a href="/producten" className="btn-accent ct-btn">
-                <Icon.Cart width="16" height="16" /> {t('contact.accCta1')}
-              </a>
-              <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="ct-btn ct-btn-wa">
-                <Icon.WhatsApp width="16" height="16" /> {t('contact.accCta2')}
-              </a>
             </div>
           </div>
         </div>

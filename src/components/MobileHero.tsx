@@ -25,7 +25,9 @@ export function MobileHero({ accent }: MobileHeroProps) {
 
   const [progress, setProgress] = useState(0)
   const progressRef = useRef(0)
-  const [stickyVisible, setStickyVisible] = useState(false)
+  const [announcementVisible, setAnnouncementVisible] = useState(() => {
+    try { return !sessionStorage.getItem('ann-v1') } catch { return true }
+  })
 
   useEffect(() => {
     FRAME_SRCS.forEach((src, i) => {
@@ -59,17 +61,6 @@ export function MobileHero({ accent }: MobileHeroProps) {
       window.removeEventListener('resize', onScroll)
       if (rafId !== null) cancelAnimationFrame(rafId)
     }
-  }, [])
-
-  useEffect(() => {
-    const cta = ctaRef.current
-    if (!cta) return
-    const io = new IntersectionObserver(
-      ([entry]) => setStickyVisible(!entry.isIntersecting),
-      { threshold: 0, rootMargin: '0px 0px -20px 0px' }
-    )
-    io.observe(cta)
-    return () => io.disconnect()
   }, [])
 
   const smoothFrame = useRef(0)
@@ -116,6 +107,11 @@ export function MobileHero({ accent }: MobileHeroProps) {
   const badge1 = ease(mapRange(progress, 0.56, 0.70))
   const badge2 = ease(mapRange(progress, 0.62, 0.76))
 
+  const dismissAnnouncement = () => {
+    try { sessionStorage.setItem('ann-v1', '1') } catch { /* ignore */ }
+    setAnnouncementVisible(false)
+  }
+
   return (
     <>
       <section ref={wrapRef} className="mhero" style={{ height: '200vh' }}>
@@ -126,6 +122,14 @@ export function MobileHero({ accent }: MobileHeroProps) {
               className="mhero-text"
               style={{ opacity: textFade, transform: `translateY(${(1 - textFade) * -16}px)` }}
             >
+              {announcementVisible && (
+                <div className="mhero-announcement" role="banner">
+                  <span className="mhero-announcement-text">{t('ann.text')}</span>
+                  <button className="mhero-announcement-close" onClick={dismissAnnouncement} aria-label={t('ann.dismiss')}>
+                    <Icon.X width="16" height="16" />
+                  </button>
+                </div>
+              )}
               <h1 className="mhero-title">
                 {t('mhero.title1')}<br />
                 {t('mhero.title2')} <span className="mhero-accent">{t('mhero.titleAccent')}</span><br />
@@ -241,18 +245,6 @@ export function MobileHero({ accent }: MobileHeroProps) {
           <div className="mf-sub">{t('mhero.feat3Sub')}</div>
         </div>
       </section>
-
-      <div
-        className={`mhero-sticky-cta${stickyVisible ? ' visible' : ''}`}
-        role="region"
-        aria-label={t('mhero.stickyAriaLabel')}
-      >
-        <button className="mhero-cta">
-          <Icon.Calendar width="20" height="20" />
-          <span>{t('mhero.cta')}</span>
-          <Icon.ArrowRight width="18" height="18" />
-        </button>
-      </div>
     </>
   )
 }

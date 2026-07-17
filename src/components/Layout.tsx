@@ -1,8 +1,6 @@
 import { useEffect } from 'react'
-import { AnnouncementBar } from './AnnouncementBar'
 import { TopBar, Nav } from './Header'
 import { Footer } from './Footer'
-import { StickyBookCTA } from './StickyBookCTA'
 
 const ACCENT = '#7AB827'
 const ACCENT_DARK = '#5e9020'
@@ -22,12 +20,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <AnnouncementBar />
       <TopBar />
       <Nav />
       <main>{children}</main>
       <Footer />
-      <StickyBookCTA />
     </>
   )
 }
