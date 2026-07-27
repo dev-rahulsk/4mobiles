@@ -206,9 +206,10 @@
     "counterSub": "For fast repairs and clear agreements."
   },
   "shop": {
-    "eyebrow": "In the shop",
-    "title": "Accessories we'd buy ourselves.",
+    "eyebrow": "Accessories",
+    "title": "Accessories we have in stock",
     "viewShop": "Visit our shop",
+    "viewMore": "Read more",
     "items": [
       {
         "name": "Cases",
@@ -710,6 +711,10 @@
       {
         "num": "10,000+",
         "label": "repairs completed"
+      },
+      {
+        "num": "50+",
+        "label": "regular business clients"
       }
     ],
     "partnersLabel": "Businesses that trust 4Mobiles",
@@ -730,32 +735,34 @@
         "text": "\"Preventive protection on our team's devices. All repairs are handled effectively and quickly. Recommended!\""
       }
     ],
-    "servicesEyebrow": "SERVICES",
-    "servicesTitle": "How we take care of businesses",
+    "servicesEyebrow": "WHAT WE DO",
+    "servicesTitle1": "How we support",
+    "servicesTitle2": "businesses",
+    "servicesSub": "From repairs to prevention: we offer smart solutions so your team stays connected at all times.",
     "services": [
       {
         "title": "Fast repairs",
-        "desc": "Quick and effective — no unnecessary waiting times for your team."
+        "desc": "Quickly reachable again with fast turnaround times."
       },
       {
         "title": "Protection & prevention",
-        "desc": "Protective cases, screen protectors and accessories for the entire fleet."
+        "desc": "Prevent damage and extend device lifespan."
       },
       {
         "title": "Custom accessories",
-        "desc": "Specifically selected and sourced for your organisation."
+        "desc": "Chargers, cases and screen protectors tailored to your usage."
       },
       {
         "title": "Custom device management",
-        "desc": "Overview and management of devices within your organisation."
+        "desc": "Support for larger numbers of smartphones and tablets."
       },
       {
         "title": "On-site service",
-        "desc": "We visit the client for practical on-site support."
+        "desc": "On-site support whenever practically needed."
       },
       {
         "title": "Advice & support",
-        "desc": "Personal point of contact for all your business device questions."
+        "desc": "Single point of contact for questions, choices and service."
       }
     ],
     "preventTitle1": "Prevention is",

@@ -1,243 +1,289 @@
-import { useRef, useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 
-function useCountUp(target: number, active: boolean, duration = 1800) {
-  const [count, setCount] = useState(0)
-  useEffect(() => {
-    if (!active) return
-    let start: number | null = null
-    const step = (ts: number) => {
-      if (!start) start = ts
-      const p = Math.min((ts - start) / duration, 1)
-      const ease = 1 - Math.pow(1 - p, 4)
-      setCount(Math.round(ease * target))
-      if (p < 1) requestAnimationFrame(step)
-    }
-    requestAnimationFrame(step)
-  }, [active, target, duration])
-  return count
-}
-
-function useInView(threshold = 0.3) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true) }, { threshold })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [threshold])
-  return { ref, visible }
-}
-
-function StatsSection() {
-  const { t, i18n } = useTranslation()
-  const { ref, visible } = useInView()
-  const years = useCountUp(15, visible, 1600)
-  const clients = useCountUp(10000, visible, 2000)
-  const locale = i18n.language === 'nl' ? 'nl-NL' : 'en-US'
-
-  return (
-    <section className="aou-stats" ref={ref}>
-      <div className="container">
-        <div className="aou-stats-grid">
-          <div className="aou-stat">
-            <span className="aou-stat-num">{years}+</span>
-            <span className="aou-stat-label">{t('aboutUs.statYears')}</span>
-          </div>
-          <div className="aou-stat">
-            <span className="aou-stat-num">{clients >= 10000 ? '10.000' : clients.toLocaleString(locale)}+</span>
-            <span className="aou-stat-label">{t('aboutUs.statClients')}</span>
-          </div>
-          <div className="aou-stat">
-            <span className="aou-stat-num">100%</span>
-            <span className="aou-stat-label">{t('aboutUs.statDeadline')}</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export function AboutUs() {
-  const { t } = useTranslation()
-  const [openIdx, setOpenIdx] = useState<number | null>(0)
-
-  const pillars = t('aboutUs.pillars', { returnObjects: true }) as { title: string; desc: string }[]
-  const services = t('aboutUs.services', { returnObjects: true }) as { title: string; body: string }[]
-  const reasons = t('aboutUs.reasons', { returnObjects: true }) as string[]
-
-  const PILLAR_ICONS = [Icon.Star, Icon.Shield, Icon.Wrench]
-
   return (
     <Layout>
-      {/* Hero */}
-      <section className="aou-hero">
-        <div className="aou-hero-inner container">
-          <div className="aou-hero-content">
-            <span className="aou-eyebrow">{t('aboutUs.heroEyebrow')}</span>
-            <h1 className="aou-hero-title">{t('aboutUs.heroTitle')}</h1>
-            <p className="aou-hero-sub">{t('aboutUs.heroSub')}</p>
-            <div className="aou-hero-ctas">
-              <a href="https://wa.me/31612345678" className="btn-accent aou-btn" target="_blank" rel="noopener noreferrer">
-                <Icon.WhatsApp width="18" height="18" />
-                {t('aboutUs.heroWa')}
-              </a>
-              <a href="tel:+31174123456" className="btn-outline-light aou-btn">
-                <Icon.Phone width="18" height="18" />
-                {t('aboutUs.heroCall')}
-              </a>
-            </div>
-            <div className="aou-hero-trust">
-              <span className="aou-trust-item"><Icon.Star width="14" height="14" />{t('aboutUs.heroTrust1')}</span>
-              <span className="aou-trust-sep">·</span>
-              <span className="aou-trust-item">{t('aboutUs.heroTrust2')}</span>
-              <span className="aou-trust-sep">·</span>
-              <span className="aou-trust-item"><Icon.Clock width="14" height="14" />{t('aboutUs.heroTrust3')}</span>
-            </div>
-          </div>
-          <div className="aou-hero-img">
-            <div className="aou-hero-img-placeholder">
-              <Icon.Wrench width="48" height="48" />
-              <span>{t('aboutUs.heroImgPlaceholder')}</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="aou-page-redesign">
 
-      {/* Pillars */}
-      <section className="aou-pillars">
-        <div className="container">
-          <div className="aou-pillars-grid">
-            {pillars.map((p, i) => {
-              const Ic = PILLAR_ICONS[i]
-              return (
-                <div key={i} className="aou-pillar">
-                  <div className="aou-pillar-icon"><Ic width="28" height="28" /></div>
-                  <h3 className="aou-pillar-title">{p.title}</h3>
-                  <p className="aou-pillar-desc">{p.desc}</p>
+        {/* ─── SECTION 01: HERO ───────────────────────────────────────────── */}
+        <section className="aou-hero-v2">
+          <div className="container aou-hero-v2-container">
+            <div className="aou-hero-v2-content">
+              <span className="aou-tag-badge">OVER ONS</span>
+              <h1 className="aou-hero-v2-title">
+                Begonnen als jeugdvrienden.<br />
+                Gegroeid door vertrouwen.
+              </h1>
+              <p className="aou-hero-v2-sub">
+                Al meer dan 12 jaar een vertrouwd adres in Naaldwijk en het Westland. Voor reparaties, accessoires en eerlijk advies waar u echt verder mee komt.
+              </p>
+
+              {/* 3 Glassmorphism Badges */}
+              <div className="aou-hero-v2-badges">
+                <div className="aou-glass-badge">
+                  <div className="aou-glass-icon"><Icon.Shield width={20} height={20} /></div>
+                  <div className="aou-glass-text">
+                    <strong>12+ jaar</strong>
+                    <span>ervaring</span>
+                  </div>
                 </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
 
-      {/* Story */}
-      <section className="aou-story">
-        <div className="container">
-          <div className="aou-story-grid">
-            <div className="aou-story-content">
-              <span className="aou-eyebrow">{t('aboutUs.storyEyebrow')}</span>
-              <h2 className="aou-story-title">{t('aboutUs.storyTitle')}</h2>
-              <p className="aou-story-body">{t('aboutUs.storyBody1')}</p>
-              <p className="aou-story-body">{t('aboutUs.storyBody2')}</p>
-            </div>
-            <div className="aou-story-img">
-              <div className="aou-story-img-placeholder">
-                <Icon.Camera width="40" height="40" />
-                <span>{t('aboutUs.storyImgPlaceholder')}</span>
+                <div className="aou-glass-badge">
+                  <div className="aou-glass-icon"><Icon.Star width={20} height={20} /></div>
+                  <div className="aou-glass-text">
+                    <strong>4,8/5</strong>
+                    <span>op Google</span>
+                  </div>
+                </div>
+
+                <div className="aou-glass-badge">
+                  <div className="aou-glass-icon"><Icon.Wrench width={20} height={20} /></div>
+                  <div className="aou-glass-text">
+                    <strong>10.000+</strong>
+                    <span>reparaties</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Stats */}
-      <StatsSection />
+        {/* ─── SECTION 02: ONZE MANIER VAN WERKEN ──────────────────────────── */}
+        <section className="aou-way">
+          <div className="container aou-way-container">
+            <div className="aou-way-watermark">SINDS 2012</div>
+            <div className="aou-way-content">
+              <span className="aou-tag-badge aou-tag-badge--green">ONZE MANIER VAN WERKEN</span>
+              <h2 className="aou-way-title">
+                Binnenlopen met een probleem.<br />
+                Weggaan met duidelijkheid.
+              </h2>
+              <p className="aou-way-highlight">
+                Eerst begrijpen. Dan adviseren. En pas repareren als het zin heeft.
+              </p>
+              <p className="aou-way-body">
+                Wij luisteren naar uw verhaal, stellen de juiste vragen en leggen alles duidelijk uit. Zo weet u altijd waar u aan toe bent — zonder verrassingen. Eerlijk advies staat bij ons altijd op nummer één.
+              </p>
+            </div>
+          </div>
+        </section>
 
-      {/* Services + Reasons */}
-      <section className="aou-services">
-        <div className="container">
-          <div className="aou-services-grid">
-            <div className="aou-services-left">
-              <span className="aou-eyebrow">{t('aboutUs.servicesEyebrow')}</span>
-              <h2 className="aou-services-title">{t('aboutUs.servicesTitle')}</h2>
-              <div className="aou-acc">
-                {services.map((s, i) => (
-                  <div key={i} className={`aou-acc-item${openIdx === i ? ' open' : ''}`}>
-                    <button className="aou-acc-trigger" onClick={() => setOpenIdx(openIdx === i ? null : i)} aria-expanded={openIdx === i}>
-                      <span>{s.title}</span>
-                      <span className="aou-acc-icon"><Icon.Plus width="18" height="18" /></span>
-                    </button>
-                    <div className="aou-acc-body" style={{ maxHeight: openIdx === i ? '200px' : '0' }}>
-                      <p>{s.body}</p>
+        {/* ─── SECTION 03: ONS VERHAAL ────────────────────────────────────── */}
+        <section className="aou-story-v2">
+          <div className="container">
+            <div className="aou-story-v2-grid">
+              <div className="aou-story-v2-img-wrap">
+                <div className="aou-img-placeholder">
+                  <Icon.Camera width={44} height={44} />
+                  <span>FOTO WINKEL / TEAM OMGEVING</span>
+                </div>
+              </div>
+
+              <div className="aou-story-v2-content">
+                <span className="aou-tag-badge aou-tag-badge--green">ONS VERHAAL</span>
+                <h2 className="aou-story-v2-title">
+                  Van telecom collega's tot een vertrouwd adres in het hart van het Westland.
+                </h2>
+                <p className="aou-story-v2-text">
+                  We leerden elkaar kennen in de telecomwereld en ontdekten onze gedeelde passie voor techniek en service. Wat begon met helpen in onze vrije tijd, gegroeid uit tot 4Mobiles: een winkel waar kwaliteit, eerlijkheid en persoonlijk contact centraal staan.
+                </p>
+                <p className="aou-story-v2-text">
+                  Door de jaren heen bouwden we aan sterke relaties met onze klanten. Velen van bezoekers zijn vaste gezichten geworden.
+                </p>
+
+                <div className="aou-quote-box">
+                  <span className="aou-quote-mark">“</span>
+                  <p className="aou-quote-text">Van bezoekers vaste gezichten maken.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── SECTION 04: ONS TEAM ───────────────────────────────────────── */}
+        <section className="aou-team">
+          <div className="container">
+            <div className="aou-team-header">
+              <span className="aou-tag-badge aou-tag-badge--green">ONS TEAM</span>
+              <h2 className="aou-team-title">De gezichten achter 4Mobiles.</h2>
+            </div>
+
+            <div className="aou-team-collage">
+              {/* Card 1: Left Large */}
+              <div className="aou-team-card aou-team-card--large">
+                <div className="aou-team-avatar-placeholder">
+                  <Icon.User width={54} height={54} />
+                </div>
+                <div className="aou-team-info">
+                  <h3 className="aou-team-name">Kevin</h3>
+                  <p className="aou-team-role">Eigenaar / Techniek</p>
+                </div>
+              </div>
+
+              {/* Center Stack */}
+              <div className="aou-team-center-stack">
+                <div className="aou-team-card aou-team-card--small">
+                  <div className="aou-team-avatar-placeholder">
+                    <Icon.User width={40} height={40} />
+                  </div>
+                  <div className="aou-team-info">
+                    <h3 className="aou-team-name">Dylan</h3>
+                    <p className="aou-team-role">Technicus</p>
+                  </div>
+                </div>
+
+                <div className="aou-team-card aou-team-card--small">
+                  <div className="aou-team-avatar-placeholder">
+                    <Icon.User width={40} height={40} />
+                  </div>
+                  <div className="aou-team-info">
+                    <h3 className="aou-team-name">Milan</h3>
+                    <p className="aou-team-role">Technicus</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 4: Right Large */}
+              <div className="aou-team-card aou-team-card--large">
+                <div className="aou-team-avatar-placeholder">
+                  <Icon.User width={54} height={54} />
+                </div>
+                <div className="aou-team-info">
+                  <h3 className="aou-team-name">Ruben</h3>
+                  <p className="aou-team-role">Eigenaar / Advies</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── SECTION 05: MEER DAN REPARATIES ────────────────────────────── */}
+        <section className="aou-more">
+          <div className="container">
+            <div className="aou-more-grid">
+              <div className="aou-more-content">
+                <span className="aou-tag-badge aou-tag-badge--green">MEER DAN REPARATIES</span>
+                <h2 className="aou-more-title">
+                  Niet alleen herstellen.<br />
+                  Ook helpen voorkomen.
+                </h2>
+                <p className="aou-more-sub">
+                  Met persoonlijk advies, passende accessoires en service helpen wij u om langer en zorgeloos gebruik te maken van uw toestel.
+                </p>
+
+                {/* 4 Value Props Grid */}
+                <div className="aou-props-grid">
+                  <div className="aou-prop-card">
+                    <div className="aou-prop-icon"><Icon.User width={20} height={20} /></div>
+                    <span className="aou-prop-title">Persoonlijk advies</span>
+                  </div>
+
+                  <div className="aou-prop-card">
+                    <div className="aou-prop-icon"><Icon.Phone width={20} height={20} /></div>
+                    <span className="aou-prop-title">Passende accessoires</span>
+                  </div>
+
+                  <div className="aou-prop-card">
+                    <div className="aou-prop-icon"><Icon.Cart width={20} height={20} /></div>
+                    <span className="aou-prop-title">Service na aankoop</span>
+                  </div>
+
+                  <div className="aou-prop-card">
+                    <div className="aou-prop-icon"><Icon.Scale width={20} height={20} /></div>
+                    <span className="aou-prop-title">Eerlijk & transparant</span>
+                  </div>
+                </div>
+
+                {/* 2 Bottom Trust Items */}
+                <div className="aou-more-trust-bar">
+                  <div className="aou-more-trust-item">
+                    <Icon.Users width={18} height={18} />
+                    <span>Vertrouwen van duizenden klanten.</span>
+                  </div>
+
+                  <div className="aou-more-trust-item">
+                    <Icon.ShieldCheck width={18} height={18} />
+                    <span>90 dagen garantie op uw reparatie.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="aou-more-img-wrap">
+                <div className="aou-img-placeholder aou-img-placeholder--dark">
+                  <Icon.Camera width={48} height={48} />
+                  <span>FOTO WINKEL & OMGEVING</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── SECTION 06: BEZOEK ONS ─────────────────────────────────────── */}
+        <section className="aou-visit">
+          <div className="container">
+            <div className="aou-visit-grid">
+              <div className="aou-visit-content">
+                <span className="aou-tag-badge aou-tag-badge--green">BEZOEK ONS</span>
+                <h2 className="aou-visit-title">Loop gerust binnen.</h2>
+
+                <div className="aou-visit-info-list">
+                  <div className="aou-visit-info-item">
+                    <div className="aou-visit-icon"><Icon.Pin width={20} height={20} /></div>
+                    <div>
+                      <strong>4Mobiles Naaldwijk</strong>
+                      <p>Kerkstraat 54, 2671 CG Naaldwijk</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            <div className="aou-reasons-card">
-              <span className="aou-reasons-eyebrow">{t('aboutUs.reasonsEyebrow')}</span>
-              <ul className="aou-reasons-list">
-                {reasons.map((r, i) => {
-                  const REASON_ICONS = [Icon.Clock, Icon.Shield, Icon.Euro, Icon.Star]
-                  const Ic = REASON_ICONS[i]
-                  return (
-                    <li key={i} className="aou-reason">
-                      <span className="aou-reason-icon"><Ic width="20" height="20" /></span>
-                      <span>{r}</span>
-                    </li>
-                  )
-                })}
-              </ul>
-              <div className="aou-reasons-ctas">
-                <a href="tel:+31174123456" className="btn-accent aou-btn aou-btn-full">
-                  <Icon.Phone width="16" height="16" />{t('aboutUs.callDirect')}
-                </a>
-                <a href="https://wa.me/31612345678" className="aou-btn-outline-dark aou-btn aou-btn-full" target="_blank" rel="noopener noreferrer">
-                  <Icon.WhatsApp width="16" height="16" />{t('aboutUs.whatsappUs')}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+                  <div className="aou-visit-info-item">
+                    <div className="aou-visit-icon"><Icon.Clock width={20} height={20} /></div>
+                    <div>
+                      <strong>Openingstijden</strong>
+                      <p>Maandag t/m Zaterdag: 09:30 - 18:00</p>
+                    </div>
+                  </div>
 
-      {/* Location CTA */}
-      <section className="aou-location">
-        <div className="container">
-          <div className="aou-location-grid">
-            <div className="aou-location-content">
-              <span className="aou-eyebrow">{t('aboutUs.locationEyebrow')}</span>
-              <h2 className="aou-location-title">{t('aboutUs.locationTitle')}</h2>
-              <p className="aou-location-sub">{t('aboutUs.locationSub')}</p>
-              <div className="aou-location-details">
-                <div className="aou-loc-row">
-                  <Icon.Pin width="18" height="18" />
-                  <span>Molenstraat 2, 2671 BE Naaldwijk</span>
-                </div>
-                <div className="aou-loc-row">
-                  <Icon.Clock width="18" height="18" />
-                  <div className="aou-hours">
-                    <span>{t('aboutUs.locationHours1')}</span>
-                    <span>{t('aboutUs.locationHours2')}</span>
-                    <span>{t('aboutUs.locationHours3')}</span>
+                  <div className="aou-visit-info-item">
+                    <div className="aou-visit-icon"><Icon.Phone width={20} height={20} /></div>
+                    <div>
+                      <strong>Contact</strong>
+                      <p>0174 - 62 42 42 | WhatsApp: 06 - 12 34 56 78</p>
+                    </div>
                   </div>
                 </div>
+
+                <div className="aou-visit-ctas">
+                  <a
+                    href="https://maps.google.com/?q=Kerkstraat+54+Naaldwijk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary"
+                  >
+                    <Icon.MapLink width={16} height={16} /> Route bekijken
+                  </a>
+                  <a
+                    href="https://wa.me/31612345678"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-ghost"
+                  >
+                    <Icon.WhatsApp width={16} height={16} /> WhatsApp ons
+                  </a>
+                </div>
               </div>
-              <div className="aou-location-ctas">
-                <a href="https://maps.google.com/?q=Molenstraat+2+Naaldwijk" className="btn-accent aou-btn" target="_blank" rel="noopener noreferrer">
-                  <Icon.MapLink width="18" height="18" />{t('aboutUs.getDirections')}
-                </a>
-                <a href="https://wa.me/31612345678" className="aou-btn-outline-dark aou-btn" target="_blank" rel="noopener noreferrer">
-                  <Icon.WhatsApp width="18" height="18" />{t('aboutUs.whatsappUs')}
-                </a>
-              </div>
-            </div>
-            <div className="aou-location-img">
-              <div className="aou-location-img-placeholder">
-                <Icon.Pin width="40" height="40" />
-                <span>{t('aboutUs.locationImgPlaceholder')}</span>
+
+              <div className="aou-visit-img-wrap">
+                <div className="aou-img-placeholder">
+                  <Icon.Camera width={48} height={48} />
+                  <span>FOTO TEAM IN DE WINKEL</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </div>
     </Layout>
   )
 }

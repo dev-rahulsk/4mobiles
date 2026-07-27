@@ -132,7 +132,7 @@
     "items": [
       {
         "time": "1 week geleden",
-        "text": "Mijn iPhone 14 Pro scherm was binnen 30 minuten vervangen. Topservice, vriendelijk en dichtbij. Echt een aanrader!"
+        "text": "Mijn iPhone 14 Pro scherm was binnen 60 minuten vervangen. Topservice, vriendelijk en dichtbij. Echt een aanrader!"
       },
       {
         "time": "2 weken geleden",
@@ -207,9 +207,10 @@
     "counterSub": "Voor snelle reparaties en duidelijke afspraken."
   },
   "shop": {
-    "eyebrow": "In de winkel",
-    "title": "Accessoires die we zelf zouden kopen.",
+    "eyebrow": "Accessoires",
+    "title": "Accessoires die wij op voorraad hebben",
     "viewShop": "Bezoek onze winkel",
+    "viewMore": "Bekijk meer",
     "items": [
       {
         "name": "Hoesjes",
@@ -361,7 +362,7 @@
     "heroCall": "Bel direct",
     "heroTrust1": "4.8/5 · 900+ reviews",
     "heroTrust2": "10.000+ reparaties",
-    "heroTrust3": "Binnen 30 min klaar",
+    "heroTrust3": "Binnen 60 min klaar",
     "heroImgPlaceholder": "Winkelexterieur foto",
     "pillars": [
       {
@@ -390,7 +391,7 @@
     "services": [
       {
         "title": "Reparaties",
-        "body": "Scherm, batterij, camera, lader-poort, speaker — wij repareren vrijwel alles, vaak binnen 30 minuten."
+        "body": "Scherm, batterij, camera, lader-poort, speaker — wij repareren vrijwel alles, vaak binnen 60 minuten."
       },
       {
         "title": "Accessoires",
@@ -407,7 +408,7 @@
     ],
     "reasonsEyebrow": "WAAROM KLANTEN VOOR 4MOBILES KIEZEN",
     "reasons": [
-      "Meeste reparaties binnen 30 minuten",
+      "Meeste reparaties binnen 60 minuten",
       "90 dagen garantie op elk onderdeel",
       "Geen verborgen kosten, vaste prijzen",
       "4.8/5 op Google · 900+ beoordelingen"
@@ -448,7 +449,7 @@
       "Zondag"
     ],
     "mapIframeTitle": "4Mobiles locatie",
-    "openLabel": "Open — sluit om {{hour}}:00 uur",
+    "openLabel": "Nu open — sluit om {{hour}}:00 uur",
     "openSoon": "Open — sluit over {{mins}} minuten",
     "opensAt": "Opent om 09:00 uur",
     "opensTomorrow": "Gesloten — opent morgen 09:00",
@@ -526,7 +527,7 @@
       {
         "name": "Daan Verhoven",
         "date": "15 april 2024",
-        "text": "Mijn batterij was niet duurder vervangen en toch perfect. Binnen 30 minuten klaar, zeker aanrader!"
+        "text": "Mijn batterij was niet duurder vervangen en toch perfect. Binnen 60 minuten klaar, zeker aanrader!"
       }
     ],
     "allReviews": [
@@ -534,7 +535,7 @@
         "name": "Jo Bakker",
         "age": "3 dagen geleden",
         "tag": "Reparaties",
-        "text": "Top service! Binnen 30 minuten was mijn telefoon gerepareerd. Duidelijke uitleg en vriendelijk geholpen."
+        "text": "Top service! Binnen 60 minuten was mijn telefoon gerepareerd. Duidelijke uitleg en vriendelijk geholpen."
       },
       {
         "name": "Lisa van Dijk",
@@ -573,7 +574,7 @@
     "planRepair": "Plan je reparatie",
     "whatsappUs": "WhatsApp ons",
     "callDirect": "Bel direct",
-    "trust1": "Binnen 30 minuten klaar",
+    "trust1": "Binnen 60 minuten klaar",
     "trust2": "90 dagen garantie",
     "trust3": "Geen verborgen kosten",
     "trust4": "4.8/5 op Google"
@@ -598,7 +599,7 @@
       },
       {
         "title": "Snelle reparatie",
-        "sub": "Meeste reparaties < 30 min"
+        "sub": "Meeste reparaties < 60 min"
       },
       {
         "title": "Snel geholpen",
@@ -701,16 +702,20 @@
     "heroImgPlaceholder": "Zakelijk repair foto",
     "stats": [
       {
-        "num": "4.8/5",
+        "num": "4,8/5",
         "label": "Google reviews"
       },
       {
         "num": "12+",
-        "label": "jaar actief in Westland"
+        "label": "jaar actief in het Westland"
       },
       {
         "num": "10.000+",
         "label": "reparaties uitgevoerd"
+      },
+      {
+        "num": "50+",
+        "label": "vaste zakelijke klanten"
       }
     ],
     "partnersLabel": "Bedrijven die op 4Mobiles vertrouwen",
@@ -731,32 +736,34 @@
         "text": "\"Preventieve bescherming op de toestellen van ons team. Al de reparaties worden doeltreffend en snel geregeld. Aanrader!\""
       }
     ],
-    "servicesEyebrow": "DIENSTEN",
-    "servicesTitle": "Hoe wij bedrijven ontzorgen",
+    "servicesEyebrow": "WAT WIJ DOEN",
+    "servicesTitle1": "Hoe wij bedrijven",
+    "servicesTitle2": "ontzorgen",
+    "servicesSub": "Van reparaties tot preventie: wij bieden slimme oplossingen zodat jouw team altijd verbonden blijft.",
     "services": [
       {
         "title": "Snelle reparaties",
-        "desc": "Snel en doeltreffend — geen onnodige wachttijden voor je team."
+        "desc": "Snel weer bereikbaar met korte doorlooptijden."
       },
       {
         "title": "Bescherming & preventie",
-        "desc": "Beschermhoesjes, screenprotectors en accessoires voor de gehele vloot."
+        "desc": "Voorkom schade en verleng de levensduur van toestellen."
       },
       {
         "title": "Accessoires op maat",
-        "desc": "Specifiek voor jouw organisatie geselecteerd en ingekocht."
+        "desc": "Laders, hoesjes en screenprotectors passend bij jullie gebruik."
       },
       {
         "title": "Toestelbeheer op maat",
-        "desc": "Overzicht en beheer van apparaten binnen jouw organisatie."
+        "desc": "Ondersteuning bij grotere aantallen smartphones en tablets."
       },
       {
         "title": "Service op locatie",
-        "desc": "Wij komen bij de klant langs voor praktische ondersteuning op locatie."
+        "desc": "Ondersteuning op locatie wanneer dat praktisch nodig is."
       },
       {
         "title": "Advies & ondersteuning",
-        "desc": "Persoonlijk aanspreekpunt voor al jouw zakelijke device-vragen."
+        "desc": "Één aanspreekpunt voor vragen, keuzes en service."
       }
     ],
     "preventTitle1": "Voorkomen is",
@@ -765,7 +772,7 @@
     "preventSub": "4Mobiles helpt bedrijven om de kosten van beschadigingen en uitval tot een minimum te beperken. Zo blijft jouw organisatie productief aangehecht.",
     "preventBullets": [
       "Bescherming op maat voor elk toestel",
-      "Mindere uitval en stilstand",
+      "Minder uitval en stilstand",
       "Minder schade en minder verlies",
       "Meer focus op jouw core business",
       "Producten op maat voor jouw team"
@@ -1117,7 +1124,7 @@
     "callDirect": "Bel direct",
     "planRepair": "Plan reparatie →",
     "heroTrust1": "10.000+ reparaties",
-    "heroTrust2": "Binnen 30 min",
+    "heroTrust2": "Binnen 60 min",
     "featuredTitle": "iPhone scherm stuk? Dit zijn je opties",
     "featuredSub": "Alles over schermreparatie, kosten, en de beste keuze voor jouw situatie.",
     "featuredCta": "Lees meer →",
@@ -1270,7 +1277,7 @@
     "callDirect": "Bel direct",
     "relatedTitle": "Gerelateerde artikelen",
     "ctaTitle": "Ook snel geholpen worden?",
-    "ctaSub": "Langskomen in Naaldwijk — reparatie meestal binnen 30 minuten klaar.",
+    "ctaSub": "Langskomen in Naaldwijk — reparatie meestal binnen 60 minuten klaar.",
     "readTime": "leestijd",
     "notFoundTitle": "Artikel niet gevonden",
     "notFoundSub": "Het artikel dat je zoekt bestaat niet of is verplaatst.",
@@ -1284,7 +1291,7 @@
         "body": [
           "Een gebarsten iPhone-scherm is vervelend, maar het overkómt iedereen wel een keer. De grote vraag is: wat doe je nu? Je hebt ruwweg drie opties: repareren via een specialist, zelf repareren met een kit, of een nieuw toestel kopen. In de meeste gevallen is professionele reparatie de slimste en veiligste keuze, zeker als je iPhone minder dan drie jaar oud is.",
           "De kosten voor schermreparatie variëren sterk per model. Voor een iPhone 13 of 14 liggen de reparatiekosten bij een goed servicepunt doorgaans tussen de €89 en €149, afhankelijk van het schermtype (OLED of LCD). Nieuwere modellen zoals de iPhone 15 Pro kunnen iets duurder zijn vanwege het Dynamic Island-display. Vergelijk dit met een nieuw toestel dat al snel €800 of meer kost — repareren is bijna altijd goedkoper.",
-          "Bij 4Mobiles in Naaldwijk repareren wij iPhone-schermen meestal binnen 30 minuten. We gebruiken uitsluitend kwalitatieve onderdelen en geven zes maanden garantie op de reparatie. Kom gerust langs voor een gratis diagnose, of bel ons vooraf om je specifieke model en de verwachte kosten te bespreken. Zo sta je nooit voor verrassingen."
+          "Bij 4Mobiles in Naaldwijk repareren wij iPhone-schermen meestal binnen 60 minuten. We gebruiken uitsluitend kwalitatieve onderdelen en geven zes maanden garantie op de reparatie. Kom gerust langs voor een gratis diagnose, of bel ons vooraf om je specifieke model en de verwachte kosten te bespreken. Zo sta je nooit voor verrassingen."
         ]
       },
       "batterij-leeg": {
@@ -1295,7 +1302,7 @@
         "body": [
           "Een smartphone-batterij heeft een beperkte levensduur. Na zo'n 500 volledige laadcycli neemt de capaciteit merkbaar af. Dat betekent dat een telefoon die je twee à drie jaar gebruikt minder lang meegaat op één lading. Herken je jezelf in meerdere keren per dag opladen, terwijl dat vroeger eens per dag voldoende was? Dan is batterijvervanging waarschijnlijk de oplossing.",
           "Er zijn een paar simpele dingen die je zelf kunt doen om de batterij langer mee te laten gaan. Laad je telefoon bij voorkeur op tussen de 20% en 80%, vermijd extreme temperaturen, en schakel energieverslindende functies zoals Always-On Display uit als je ze niet nodig hebt. Op een iPhone kun je via Instellingen > Batterij > Batterijstatus controleren hoe gezond je accu nog is.",
-          "Is de batterijcapaciteit gedaald onder de 80%? Dan is het slim om hem te laten vervangen. Bij 4Mobiles wisselen we batterijen voor de meeste iPhone- en Samsung-modellen binnen 30 minuten. De prijzen beginnen al vanaf €39,95 en we geven zes maanden garantie. Een frisse batterij voelt als een nieuw toestel — voor een fractie van de prijs."
+          "Is de batterijcapaciteit gedaald onder de 80%? Dan is het slim om hem te laten vervangen. Bij 4Mobiles wisselen we batterijen voor de meeste iPhone- en Samsung-modellen binnen 60 minuten. De prijzen beginnen al vanaf €39,95 en we geven zes maanden garantie. Een frisse batterij voelt als een nieuw toestel — voor een fractie van de prijs."
         ]
       },
       "iphone-kapot": {

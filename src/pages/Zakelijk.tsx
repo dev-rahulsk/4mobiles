@@ -1,11 +1,15 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
+import desktopHeroImg from '../assets/business_desktop_hero.png'
+import mobileHeroImg from '../assets/business_mobile_hero.png'
+import section4Img from '../assets/section_4_image.png'
+import sec5DesktopImg from '../assets/section_5_image1.png'
+import sec5MobileImg from '../assets/section_5_mobilei_image.png'
 
-const STAT_ICONS = [Icon.Star, Icon.Calendar, Icon.Wrench, Icon.Truck]
-const SERVICE_ICONS = [Icon.Wrench, Icon.Shield, Icon.Cart, Icon.Phone, Icon.Pin, Icon.Chat]
-const TRUST_ICONS = [Icon.Pin, Icon.Shield, Icon.Check, Icon.Clock]
+const DESKTOP_STAT_ICONS = [Icon.Apple, Icon.Calendar, Icon.Wrench, Icon.Users]
+const MOBILE_STAT_ICONS = [Icon.Star, Icon.Calendar, Icon.Wrench, Icon.Users]
+const SERVICE_ICONS = [Icon.Wrench, Icon.Shield, Icon.Accessory, Icon.Devices, Icon.Pin, Icon.Headset]
 
 function Stars({ n }: { n: number }) {
   return (
@@ -17,112 +21,163 @@ function Stars({ n }: { n: number }) {
   )
 }
 
-const PARTNERS = ['Partner 1', 'Partner 2', 'Partner 3', 'Partner 4', 'Partner 5']
 
 export function Zakelijk() {
   const { t } = useTranslation()
-  const [openService, setOpenService] = useState<number | null>(null)
 
-  const statsBase = t('zakelijk.stats', { returnObjects: true }) as { num: string; label: string }[]
-  const stats = [...statsBase, { num: '✓', label: t('zakelijk.statOnSite') }]
-  const trustRow = t('zakelijk.trustRow', { returnObjects: true }) as { label: string }[]
+  const stats = t('zakelijk.stats', { returnObjects: true }) as { num: string; label: string }[]
   const testimonials = t('zakelijk.testimonials', { returnObjects: true }) as { initial: string; name: string; role: string; stars: number; text: string }[]
   const services = t('zakelijk.services', { returnObjects: true }) as { title: string; desc: string }[]
   const preventBullets = t('zakelijk.preventBullets', { returnObjects: true }) as string[]
-  const reasons = t('zakelijk.reasons', { returnObjects: true }) as string[]
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="zk-hero">
-        <div className="container">
-          <div className="zk-hero-grid">
-            <div className="zk-hero-content">
-              <span className="zk-eyebrow">{t('zakelijk.eyebrow')}</span>
-              <h1 className="zk-hero-title">
-                {t('zakelijk.heroTitle1')}<br />
-                <span className="zk-green">{t('zakelijk.heroTitle2')}</span> {t('zakelijk.heroTitle3')}
-              </h1>
-              <p className="zk-hero-sub">{t('zakelijk.heroSub')}</p>
-              <div className="zk-hero-ctas">
-                <a href="/contact" className="btn-accent zk-btn">{t('zakelijk.contactUs')}</a>
-                <a href="#diensten" className="zk-btn zk-btn-outline">{t('zakelijk.viewOptions')}</a>
-              </div>
-              <div className="zk-trust-row">
-                {trustRow.map((item, i) => {
-                  const Ic = TRUST_ICONS[i]
-                  return (
-                    <span key={i} className="zk-trust-item">
-                      <Ic width="18" height="18" />{item.label}
-                    </span>
-                  )
-                })}
-              </div>
-            </div>
-            <div className="zk-hero-img">
-              <div className="zk-hero-img-placeholder">
-                <Icon.Wrench width="48" height="48" />
-                <span>{t('zakelijk.heroImgPlaceholder')}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="zk-stats">
-        <div className="container">
-          <div className="zk-stats-grid">
-            {stats.map((s, i) => {
-              const Ic = STAT_ICONS[i]
-              return (
-                <div key={i} className="zk-stat">
-                  <span className="zk-stat-icon"><Ic width="24" height="24" /></span>
-                  <span className="zk-stat-num">{s.num}</span>
-                  <span className="zk-stat-label">{s.label}</span>
+      {/* Business Page Hero Section */}
+      <section className="zk-hero-section">
+        {/* DESKTOP HERO VIEW */}
+        <div className="zk-hero-desktop-wrapper">
+          <div className="zk-hero-container">
+            {/* White Top Hero Card */}
+            <div className="zk-hero-card">
+              <div className="zk-hero-left">
+                <span className="zk-eyebrow-tag">{t('zakelijk.eyebrow')}</span>
+                <h1 className="zk-hero-h1">
+                  {t('zakelijk.heroTitle1')}<br />
+                  <span className="zk-green-text">{t('zakelijk.heroTitle2')}</span> {t('zakelijk.heroTitle3')}
+                </h1>
+                <p className="zk-hero-body">{t('zakelijk.heroSub')}</p>
+                <div className="zk-hero-cta-wrap">
+                  <a href="/contact" className="zk-btn-green-pill">
+                    <Icon.Phone width="18" height="18" />
+                    {t('zakelijk.contactUs')}
+                  </a>
                 </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Partner logos */}
-      <section className="zk-partners">
-        <div className="container">
-          <p className="zk-partners-label">{t('zakelijk.partnersLabel')}</p>
-          <div className="zk-partners-row">
-            {PARTNERS.map(p => (
-              <div key={p} className="zk-partner-logo">
-                <Icon.Shield width="24" height="24" />
-                <span>{p}</span>
               </div>
-            ))}
+              <div className="zk-hero-right">
+                <div className="zk-hero-img-mask">
+                  <img src={desktopHeroImg} alt="Zakelijke service 4Mobiles" className="zk-hero-desktop-img" />
+                </div>
+              </div>
+            </div>
+
+            {/* Dark Bottom Stat Bar — Infinite Marquee */}
+            <div className="zk-dark-stats-bar">
+              <div className="zk-marquee-track">
+                <div className="zk-marquee-inner">
+                  {[...stats, ...stats].map((s, i) => {
+                    const Ic = DESKTOP_STAT_ICONS[i % DESKTOP_STAT_ICONS.length] || Icon.Star
+                    return (
+                      <div key={i} className="zk-dark-stat-card">
+                        <div className="zk-dark-stat-icon-tile">
+                          <Ic width="26" height="26" />
+                        </div>
+                        <div className="zk-dark-stat-content">
+                          <span className="zk-dark-stat-num">{s.num}</span>
+                          <span className="zk-dark-stat-label">{s.label}</span>
+                          {i % stats.length === 0 && (
+                            <div className="zk-dark-stat-stars">
+                              {Array.from({ length: 5 }, (_, k) => (
+                                <Icon.Star key={k} width="13" height="13" style={{ color: '#f59e0b' }} />
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* MOBILE HERO VIEW */}
+        <div className="zk-hero-mobile-wrapper">
+          <div className="zk-mobile-hero-container">
+            {/* Mobile Hero Top Card with Background Overlay */}
+            <div className="zk-mobile-hero-top-card">
+              <img src={mobileHeroImg} alt="Zakelijke service mobile" className="zk-mobile-bg-img" />
+              <div className="zk-mobile-bg-overlay" />
+
+              <div className="zk-mobile-content-overlay">
+                <span className="zk-eyebrow-mobile">{t('zakelijk.eyebrow')}</span>
+                <h1 className="zk-mobile-h1">
+                  {t('zakelijk.heroTitle1')}<br />
+                  <span className="zk-green-text-mobile">{t('zakelijk.heroTitle2')}</span><br />
+                  {t('zakelijk.heroTitle3')}
+                </h1>
+                <p className="zk-mobile-body">{t('zakelijk.heroSub')}</p>
+                <div className="zk-mobile-cta-wrap">
+                  <a href="/contact" className="zk-btn-white-pill">
+                    <Icon.Phone width="18" height="18" />
+                    {t('zakelijk.contactUs')}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* 2x2 Dark Glass Stat Grid */}
+            <div className="zk-mobile-stats-grid">
+              {stats.map((s, i) => {
+                const Ic = MOBILE_STAT_ICONS[i] || Icon.Star
+                return (
+                  <div key={i} className="zk-mobile-stat-card">
+                    <div className="zk-mobile-stat-icon-tile">
+                      <Ic width="24" height="24" />
+                    </div>
+                    <div className="zk-mobile-stat-content">
+                      <span className="zk-mobile-stat-num">{s.num}</span>
+                      <span className="zk-mobile-stat-label">{s.label}</span>
+                      {i === 0 && (
+                        <div className="zk-mobile-stat-stars">
+                          {Array.from({ length: 5 }, (_, k) => (
+                            <Icon.Star key={k} width="12" height="12" style={{ color: '#f59e0b' }} />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
+
+
+      {/* Testimonials — What clients say */}
       <section className="zk-testimonials">
         <div className="container">
-          <h2 className="zk-section-title">{t('zakelijk.testimonialsTitle')}</h2>
+          <div className="zk-test-header">
+            <span className="zk-eyebrow">ZAKELIJKE KLANTEN</span>
+            <h2 className="zk-section-title">Wat zeggen onze klanten?</h2>
+            <p className="zk-test-subtitle">Echte ervaringen van bedrijven die dagelijks op 4Mobiles vertrouwen.</p>
+          </div>
           <div className="zk-test-grid">
             {testimonials.map((item, i) => (
               <div key={i} className="zk-test-card">
+                <div className="zk-test-quote-icon">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M9.333 21.333C7.493 21.333 6 19.84 6 18V14.667C6 10.985 8.985 8 12.667 8h.666v2.667h-.666c-2.206 0-4 1.794-4 4v.666h4v6zm13.334 0C20.827 21.333 19.333 19.84 19.333 18V14.667c0-3.682 2.985-6.667 6.667-6.667H26.667v2.667H26c-2.206 0-4 1.794-4 4v.666h4v6z" fill="#16a34a" opacity="0.3"/>
+                  </svg>
+                </div>
                 <Stars n={item.stars} />
                 <p className="zk-test-text">{item.text}</p>
                 <div className="zk-test-author">
-                  <span className="zk-avatar">{item.initial}</span>
-                  <div>
+                  <div className="zk-photo-avatar" style={{ background: i === 0 ? 'linear-gradient(135deg, #1e3a2f 0%, #16a34a 100%)' : 'linear-gradient(135deg, #1e2e3a 0%, #2563eb 100%)' }}>
+                    <span className="zk-avatar-initial">{item.initial}</span>
+                  </div>
+                  <div className="zk-author-info">
                     <p className="zk-author-name">{item.name}</p>
                     <p className="zk-author-role">{item.role}</p>
                   </div>
                   <a href="https://g.page/4mobiles" target="_blank" rel="noopener noreferrer" className="zk-g-badge" aria-label="Google review">
                     <svg width="18" height="18" viewBox="0 0 24 24">
-                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
                     </svg>
                   </a>
                 </div>
@@ -132,22 +187,66 @@ export function Zakelijk() {
         </div>
       </section>
 
-      {/* Services grid */}
+      {/* Services grid — Section 4 */}
       <section className="zk-services" id="diensten">
-        <div className="container">
-          <span className="zk-eyebrow">{t('zakelijk.servicesEyebrow')}</span>
-          <h2 className="zk-section-title">{t('zakelijk.servicesTitle')}</h2>
+        {/* Desktop Container Background Image */}
+        <div className="zk-services-bg-wrap">
+          <img src={section4Img} alt="" className="zk-services-bg-img" />
+        </div>
+
+        <div className="container zk-services-relative-container">
+          {/* Desktop Top-Right Absolute Floating Glass Card */}
+          <div className="zk-services-floating-badge">
+            <div className="zk-badge-check-icon">
+              <Icon.Check width="16" height="16" />
+            </div>
+            <div className="zk-badge-content">
+              <p className="zk-badge-title">Zakelijke service</p>
+              <p className="zk-badge-sub">Snel, betrouwbaar<br />en persoonlijk.</p>
+            </div>
+          </div>
+
+          {/* Mobile Top Hero Image Wrapper */}
+          <div className="zk-services-mobile-img-wrap">
+            <img src={section4Img} alt="Wat wij doen - Zakelijke service 4Mobiles" className="zk-services-mobile-img" />
+            
+            {/* Mobile Top-Right Floating Glass Card */}
+            <div className="zk-services-mobile-floating-badge">
+              <div className="zk-badge-check-icon">
+                <Icon.Check width="14" height="14" />
+              </div>
+              <div className="zk-badge-content">
+                <p className="zk-badge-title">Zakelijke service</p>
+                <p className="zk-badge-sub">Snel, betrouwbaar<br />en persoonlijk.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="zk-services-header">
+            <span className="zk-eyebrow-tag">{t('zakelijk.servicesEyebrow')}</span>
+            <h2 className="zk-services-h2">
+              {t('zakelijk.servicesTitle1')}<br />
+              <span className="zk-green-text">{t('zakelijk.servicesTitle2')}</span>
+            </h2>
+            <p className="zk-services-sub">{t('zakelijk.servicesSub')}</p>
+          </div>
+
           <div className="zk-services-grid">
             {services.map((s, i) => {
-              const Ic = SERVICE_ICONS[i]
+              const Ic = SERVICE_ICONS[i] || Icon.Wrench
               return (
-                <div key={i} className={`zk-service-card${openService === i ? ' active' : ''}`} onClick={() => setOpenService(openService === i ? null : i)}>
-                  <span className="zk-service-icon"><Ic width="22" height="22" /></span>
-                  <div>
+                <div key={i} className="zk-service-card">
+                  <div className="zk-service-icon-tile">
+                    <Ic width="26" height="26" />
+                  </div>
+                  <div className="zk-service-content">
                     <h3 className="zk-service-title">{s.title}</h3>
                     <p className="zk-service-desc">{s.desc}</p>
+                    <div className="zk-service-green-line" />
                   </div>
-                  <Icon.ArrowRight width="16" height="16" className="zk-service-arrow" />
+                  <div className="zk-service-arrow-wrap">
+                    <Icon.ChevronRight width="18" height="18" className="zk-service-arrow" />
+                  </div>
                 </div>
               )
             })}
@@ -155,61 +254,78 @@ export function Zakelijk() {
         </div>
       </section>
 
-      {/* Prevent dark section */}
-      <section className="zk-prevent">
-        <div className="container">
-          <div className="zk-prevent-grid">
-            <div className="zk-prevent-content">
-              <h2 className="zk-prevent-title">
-                {t('zakelijk.preventTitle1')} <span className="zk-green">{t('zakelijk.preventTitle2')}</span> {t('zakelijk.preventTitle3')}
-              </h2>
-              <p className="zk-prevent-sub">{t('zakelijk.preventSub')}</p>
-              <ul className="zk-prevent-list">
-                {preventBullets.map((b, i) => (
-                  <li key={i}><Icon.Check width="16" height="16" />{b}</li>
-                ))}
-              </ul>
-              <a href="/contact" className="btn-accent zk-btn zk-prevent-cta">
-                <Icon.WhatsApp width="16" height="16" />{t('zakelijk.preventCta')}
-              </a>
+      {/* Section 5 — Bescherming & Preventie */}
+      <section className="zk-sec5">
+        {/* DESKTOP VIEW */}
+        <div className="zk-sec5-desktop-wrapper">
+          <div className="zk-sec5-desktop-container">
+            <img src={sec5DesktopImg} alt="Bescherming & Preventie" className="zk-sec5-desktop-bg" />
+            <div className="container zk-sec5-desktop-content-wrap">
+              <div className="zk-sec5-content">
+                <div className="zk-sec5-accent-bar" />
+                <span className="zk-sec5-eyebrow">BESCHERMING & PREVENTIE</span>
+                <h2 className="zk-sec5-h2">
+                  Minder schade.<br />
+                  Minder stilstand.<br />
+                  <span className="zk-green-text">Meer</span> zekerheid.
+                </h2>
+                <p className="zk-sec5-sub">
+                  Met de juiste bescherming blijven toestellen langer heel en medewerkers bereikbaar. Zo voorkom je onnodige kosten en vertraging.
+                </p>
+                <ul className="zk-sec5-list">
+                  {preventBullets.map((bullet, i) => (
+                    <li key={i} className="zk-sec5-item">
+                      <div className="zk-sec5-check-circle">
+                        <Icon.Check width="13" height="13" />
+                      </div>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="zk-prevent-img">
-              <div className="zk-prevent-img-placeholder">
-                <Icon.Shield width="48" height="48" />
-                <span>{t('zakelijk.preventImgPlaceholder')}</span>
+          </div>
+        </div>
+
+        {/* MOBILE VIEW */}
+        <div className="zk-sec5-mobile-wrapper">
+          <div className="zk-sec5-mobile-container">
+            <img src={sec5MobileImg} alt="Bescherming & Preventie mobile" className="zk-sec5-mobile-bg-img" />
+
+            {/* Mobile Top Text Header */}
+            <div className="zk-sec5-mobile-header">
+              <div className="zk-sec5-accent-bar" />
+              <span className="zk-sec5-eyebrow">BESCHERMING & PREVENTIE</span>
+              <h2 className="zk-sec5-mobile-h2">
+                Minder schade.<br />
+                Minder stilstand.<br />
+                <span className="zk-green-text">Meer</span> zekerheid.
+              </h2>
+              <p className="zk-sec5-mobile-sub">
+                Met de juiste bescherming blijven toestellen langer heel en medewerkers bereikbaar. Zo voorkom je onnodige kosten en vertraging.
+              </p>
+            </div>
+
+            {/* Glassmorphism Floating Card Overlay */}
+            <div className="zk-sec5-mobile-card-wrap">
+              <div className="zk-sec5-glass-card">
+                <ul className="zk-sec5-glass-list">
+                  {preventBullets.map((bullet, i) => (
+                    <li key={i} className="zk-sec5-glass-item">
+                      <div className="zk-sec5-glass-check-circle">
+                        <Icon.Check width="13" height="13" />
+                      </div>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Reasons */}
-      <section className="zk-reasons">
-        <div className="container">
-          <h2 className="zk-section-title">
-            {t('zakelijk.reasonsTitle1')} <span className="zk-green">{t('zakelijk.reasonsTitle2')}</span>
-          </h2>
-          <div className="zk-reasons-grid">
-            {reasons.map((r, i) => (
-              <div key={i} className="zk-reason">
-                <span className="zk-reason-check"><Icon.Check width="16" height="16" /></span>
-                <span>{r}</span>
-              </div>
-            ))}
-          </div>
-          <div className="zk-reasons-ctas">
-            <a href="/contact" className="btn-accent zk-btn">
-              <Icon.Calendar width="16" height="16" />{t('zakelijk.makeAppointment')}
-            </a>
-            <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="zk-btn zk-btn-wa">
-              <Icon.WhatsApp width="16" height="16" />{t('zakelijk.whatsappUs')}
-            </a>
-            <a href="tel:+31174123456" className="zk-btn zk-btn-outline-dark">
-              <Icon.Phone width="16" height="16" />{t('zakelijk.callDirect')}
-            </a>
-          </div>
-        </div>
-      </section>
+
       {/* Bottom contact section */}
       <section className="zk-contact-section">
         <div className="container">
@@ -228,8 +344,8 @@ export function Zakelijk() {
             <div className="zk-contact-ctas">
               <a href="mailto:zakelijk@4mobiles.nl" className="btn-accent zk-btn zk-contact-email-btn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
                 </svg>
                 {t('zakelijk.contactEmailCta')}
               </a>

@@ -4,18 +4,18 @@ import { useParams } from 'react-router-dom'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 
-// ─── Types ──────────────────────────────────────────────────────────────────
+// ─── Interfaces ──────────────────────────────────────────────────────────────
 
 interface Brand { id: string; name: string; wordmark: string; bg: string; fg: string }
 interface DeviceColor { id: string; name: string; hex: string }
-interface DeviceModel { id: string; name: string; imgColor: string; colors: DeviceColor[] }
+interface DeviceModel { id: string; name: string; code: string; imgColor: string; colors: DeviceColor[] }
 interface RepairOption {
   id: string; name: string; badge?: string; desc: string
   price: number; stock: 'Op voorraad' | 'Beperkt op voorraad'; repairTime: string
 }
 interface RepairCategory { id: string; name: string; fromPrice: number; options: RepairOption[] }
 
-// ─── Brands ─────────────────────────────────────────────────────────────────
+// ─── Brands Data ─────────────────────────────────────────────────────────────
 
 const BRANDS: Brand[] = [
   { id: 'apple',    name: 'Apple',    wordmark: 'Apple',    bg: '#111',    fg: '#fff' },
@@ -29,132 +29,121 @@ const BRANDS: Brand[] = [
   { id: 'google',   name: 'Google',   wordmark: 'Google',   bg: '#4285F4', fg: '#fff' },
 ]
 
-// ─── Models ─────────────────────────────────────────────────────────────────
+// ─── Models Data ─────────────────────────────────────────────────────────────
 
 const MODELS: Record<string, DeviceModel[]> = {
   apple: [
-    { id: 'iphone-16-pro',  name: 'iPhone 16 Pro',   imgColor: '#4a4a45',
+    { id: 'iphone-16-pro',  name: 'iPhone 16 Pro',   code: 'A3106', imgColor: '#4a4a45',
       colors: [{ id: 'natural', name: 'Natural Titanium', hex: '#c0b99e' }, { id: 'white', name: 'White Titanium', hex: '#e8e3d8' }, { id: 'black', name: 'Black Titanium', hex: '#3d3b37' }, { id: 'desert', name: 'Desert Titanium', hex: '#c9a97d' }] },
-    { id: 'iphone-16',      name: 'iPhone 16',        imgColor: '#5d7d9e',
+    { id: 'iphone-16',      name: 'iPhone 16',        code: 'A3287', imgColor: '#5d7d9e',
       colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }, { id: 'pink', name: 'Roze', hex: '#f1a7b4' }, { id: 'teal', name: 'Teal', hex: '#4a9d8e' }, { id: 'ultra', name: 'Ultramarine', hex: '#3d5fa0' }] },
-    { id: 'iphone-15-pro',  name: 'iPhone 15 Pro',   imgColor: '#6e6e6e',
+    { id: 'iphone-15-pro',  name: 'iPhone 15 Pro',   code: 'A2848', imgColor: '#6e6e6e',
       colors: [{ id: 'natural', name: 'Natural Titanium', hex: '#c0b99e' }, { id: 'blue', name: 'Blue Titanium', hex: '#4a6b8a' }, { id: 'white', name: 'White Titanium', hex: '#e8e3d8' }, { id: 'black', name: 'Black Titanium', hex: '#3d3b37' }] },
-    { id: 'iphone-15',      name: 'iPhone 15',        imgColor: '#4a7f9e',
+    { id: 'iphone-15',      name: 'iPhone 15',        code: 'A2846', imgColor: '#4a7f9e',
       colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'green', name: 'Groen', hex: '#4a8a5e' }, { id: 'yellow', name: 'Geel', hex: '#e8d44d' }, { id: 'pink', name: 'Roze', hex: '#f1a7b4' }] },
-    { id: 'iphone-14-pro',  name: 'iPhone 14 Pro',   imgColor: '#5a5a52',
+    { id: 'iphone-14-pro',  name: 'iPhone 14 Pro',   code: 'A2890', imgColor: '#5a5a52',
       colors: [{ id: 'graphite', name: 'Grafiet', hex: '#4a4a45' }, { id: 'silver', name: 'Zilver', hex: '#c0bdb5' }, { id: 'gold', name: 'Goud', hex: '#c9a97d' }, { id: 'sierra', name: 'Sierra Blue', hex: '#8aadcc' }, { id: 'alpine', name: 'Alpine Green', hex: '#4a6b55' }] },
-    { id: 'iphone-14',      name: 'iPhone 14',        imgColor: '#6a8ca0',
+    { id: 'iphone-14',      name: 'iPhone 14',        code: 'A2882', imgColor: '#6a8ca0',
       colors: [{ id: 'midnight', name: 'Midnight', hex: '#1c1c1e' }, { id: 'starlight', name: 'Starlight', hex: '#e8e3d8' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'purple', name: 'Paars', hex: '#7a5a8a' }, { id: 'yellow', name: 'Geel', hex: '#fcd34d' }, { id: 'red', name: 'Rood', hex: '#e02020' }] },
-    { id: 'iphone-13-pro',  name: 'iPhone 13 Pro',   imgColor: '#5a6e7a',
+    { id: 'iphone-13-pro',  name: 'iPhone 13 Pro',   code: 'A2638', imgColor: '#5a6e7a',
       colors: [{ id: 'graphite', name: 'Grafiet', hex: '#4a4a45' }, { id: 'gold', name: 'Goud', hex: '#c9a97d' }, { id: 'silver', name: 'Zilver', hex: '#c0bdb5' }, { id: 'sierra', name: 'Sierra Blue', hex: '#8aadcc' }, { id: 'alpine', name: 'Alpine Green', hex: '#4a6b55' }] },
-    { id: 'iphone-13',      name: 'iPhone 13',        imgColor: '#6a7a8a',
+    { id: 'iphone-13',      name: 'iPhone 13',        code: 'A2633', imgColor: '#6a7a8a',
       colors: [{ id: 'midnight', name: 'Midnight', hex: '#1c1c1e' }, { id: 'starlight', name: 'Starlight', hex: '#e8e3d8' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'pink', name: 'Roze', hex: '#f1a7b4' }, { id: 'red', name: 'Rood', hex: '#e02020' }, { id: 'green', name: 'Groen', hex: '#4a8a5e' }] },
-    { id: 'iphone-12',      name: 'iPhone 12',        imgColor: '#7a8a9a',
+    { id: 'iphone-12',      name: 'iPhone 12',        code: 'A2403', imgColor: '#7a8a9a',
       colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }, { id: 'red', name: 'Rood', hex: '#e02020' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'green', name: 'Groen', hex: '#4a8a5e' }, { id: 'purple', name: 'Paars', hex: '#7a5a8a' }] },
-    { id: 'iphone-se-2022', name: 'iPhone SE (2022)', imgColor: '#8a8a8a',
+    { id: 'iphone-se-2022', name: 'iPhone SE (2022)', code: 'A2783', imgColor: '#8a8a8a',
       colors: [{ id: 'midnight', name: 'Midnight', hex: '#1c1c1e' }, { id: 'starlight', name: 'Starlight', hex: '#e8e3d8' }, { id: 'red', name: 'Rood', hex: '#e02020' }] },
   ],
   samsung: [
-    { id: 's24-ultra', name: 'Galaxy S24 Ultra', imgColor: '#2d2d2d',
+    { id: 's24-ultra', name: 'Galaxy S24 Ultra', code: 'SM-S928B', imgColor: '#2d2d2d',
       colors: [{ id: 'black', name: 'Titanium Black', hex: '#2d2d2d' }, { id: 'gray', name: 'Titanium Gray', hex: '#8a8a8a' }, { id: 'violet', name: 'Titanium Violet', hex: '#6a4a8a' }, { id: 'yellow', name: 'Titanium Yellow', hex: '#e8c84d' }] },
-    { id: 's24-plus',  name: 'Galaxy S24+',      imgColor: '#1a3a5e',
+    { id: 's24-plus',  name: 'Galaxy S24+',      code: 'SM-S926B', imgColor: '#1a3a5e',
       colors: [{ id: 'black', name: 'Onyx Black', hex: '#1c1c1e' }, { id: 'gray', name: 'Marble Gray', hex: '#8a8a8a' }, { id: 'violet', name: 'Cobalt Violet', hex: '#4a3a7a' }] },
-    { id: 's24',       name: 'Galaxy S24',        imgColor: '#2a4a6a',
+    { id: 's24',       name: 'Galaxy S24',        code: 'SM-S921B', imgColor: '#2a4a6a',
       colors: [{ id: 'black', name: 'Onyx Black', hex: '#1c1c1e' }, { id: 'gray', name: 'Marble Gray', hex: '#8a8a8a' }, { id: 'violet', name: 'Cobalt Violet', hex: '#4a3a7a' }] },
-    { id: 's23',       name: 'Galaxy S23',        imgColor: '#3a3a3a',
+    { id: 's23',       name: 'Galaxy S23',        code: 'SM-S911B', imgColor: '#3a3a3a',
       colors: [{ id: 'black', name: 'Phantom Black', hex: '#1a1a1a' }, { id: 'cream', name: 'Cream', hex: '#f0ebe0' }, { id: 'green', name: 'Green', hex: '#4a8a6a' }, { id: 'lavender', name: 'Lavender', hex: '#c4b8d0' }] },
-    { id: 'a55', name: 'Galaxy A55', imgColor: '#4a6a8a',
+    { id: 'a55', name: 'Galaxy A55', code: 'SM-A556B', imgColor: '#4a6a8a',
       colors: [{ id: 'black', name: 'Awesome Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Awesome Iceblue', hex: '#7ab3d0' }, { id: 'lilac', name: 'Awesome Lilac', hex: '#b8a0d0' }] },
-    { id: 'a35', name: 'Galaxy A35', imgColor: '#5a7a9a',
+    { id: 'a35', name: 'Galaxy A35', code: 'SM-A356B', imgColor: '#5a7a9a',
       colors: [{ id: 'black', name: 'Awesome Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Awesome Iceblue', hex: '#7ab3d0' }] },
   ],
   motorola: [
-    { id: 'edge-50-pro', name: 'Edge 50 Pro',  imgColor: '#4a2a6a', colors: [{ id: 'black', name: 'Black Beauty', hex: '#1c1c1e' }, { id: 'purple', name: 'Luxe Lavender', hex: '#8a6aa0' }] },
-    { id: 'edge-40',     name: 'Edge 40',       imgColor: '#3a4a5a', colors: [{ id: 'black', name: 'Eclipse Black', hex: '#1c1c1e' }, { id: 'green', name: 'Nebula Green', hex: '#3a7a5a' }] },
-    { id: 'moto-g84',   name: 'Moto G84',      imgColor: '#2a3a4a', colors: [{ id: 'blue', name: 'Midnight Blue', hex: '#1c2a3e' }, { id: 'magenta', name: 'Viva Magenta', hex: '#c03060' }] },
-    { id: 'moto-g54',   name: 'Moto G54',      imgColor: '#3a5a7a', colors: [{ id: 'blue', name: 'Pearl Blue', hex: '#6a9ab8' }, { id: 'green', name: 'Mint Green', hex: '#6ab890' }] },
+    { id: 'edge-50-pro', name: 'Edge 50 Pro',  code: 'XT2403-2', imgColor: '#4a2a6a', colors: [{ id: 'black', name: 'Black Beauty', hex: '#1c1c1e' }, { id: 'purple', name: 'Luxe Lavender', hex: '#8a6aa0' }] },
+    { id: 'edge-40',     name: 'Edge 40',       code: 'XT2303-2', imgColor: '#3a4a5a', colors: [{ id: 'black', name: 'Eclipse Black', hex: '#1c1c1e' }, { id: 'green', name: 'Nebula Green', hex: '#3a7a5a' }] },
+    { id: 'moto-g84',   name: 'Moto G84',      code: 'XT2343-1', imgColor: '#2a3a4a', colors: [{ id: 'blue', name: 'Midnight Blue', hex: '#1c2a3e' }, { id: 'magenta', name: 'Viva Magenta', hex: '#c03060' }] },
   ],
   xiaomi: [
-    { id: 'xiaomi-14',     name: 'Xiaomi 14',      imgColor: '#1a1a1a', colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }, { id: 'green', name: 'Jade Green', hex: '#4a8a7a' }] },
-    { id: 'xiaomi-13t',    name: 'Xiaomi 13T',     imgColor: '#2a3a4a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Alpine Blue', hex: '#4a6a9a' }, { id: 'meadow', name: 'Meadow Green', hex: '#5a8a6a' }] },
-    { id: 'redmi-note-13', name: 'Redmi Note 13',  imgColor: '#4a6a9a', colors: [{ id: 'black', name: 'Graphite Black', hex: '#2a2a2a' }, { id: 'blue', name: 'Ice Blue', hex: '#8ab8d0' }] },
-    { id: 'redmi-note-12', name: 'Redmi Note 12',  imgColor: '#5a7a9a', colors: [{ id: 'black', name: 'Onyx Gray', hex: '#3a3a3a' }, { id: 'blue', name: 'Ice Blue', hex: '#8ab8d0' }] },
+    { id: 'xiaomi-14',     name: 'Xiaomi 14',      code: '23127PN0CG', imgColor: '#1a1a1a', colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }] },
+    { id: 'xiaomi-13t',    name: 'Xiaomi 13T',     code: '2306EPN60G', imgColor: '#2a3a4a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Alpine Blue', hex: '#4a6a9a' }] },
+    { id: 'redmi-note-13', name: 'Redmi Note 13',  code: '23129RAA4G', imgColor: '#4a6a9a', colors: [{ id: 'black', name: 'Graphite Black', hex: '#2a2a2a' }] },
   ],
   oppo: [
-    { id: 'reno11', name: 'Reno11', imgColor: '#4a6a8a', colors: [{ id: 'black', name: 'Dark Matter', hex: '#1c1c1e' }, { id: 'blue', name: 'Sky Blue', hex: '#7ab0c8' }] },
-    { id: 'reno10', name: 'Reno10', imgColor: '#5a7a9a', colors: [{ id: 'purple', name: 'Glossy Purple', hex: '#7a5a9a' }, { id: 'blue', name: 'Ice Blue', hex: '#8ab8d0' }] },
-    { id: 'a98',    name: 'A98',    imgColor: '#3a5a7a', colors: [{ id: 'black', name: 'Cool Black', hex: '#2a2a2a' }, { id: 'blue', name: 'Dreamy Blue', hex: '#7ab0c8' }] },
+    { id: 'reno11', name: 'Reno11', code: 'CPH2599', imgColor: '#4a6a8a', colors: [{ id: 'black', name: 'Dark Matter', hex: '#1c1c1e' }] },
+    { id: 'reno10', name: 'Reno10', code: 'CPH2531', imgColor: '#5a7a9a', colors: [{ id: 'purple', name: 'Glossy Purple', hex: '#7a5a9a' }] },
   ],
   huawei: [
-    { id: 'p60-pro', name: 'P60 Pro',  imgColor: '#2a4a6a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'white', name: 'Rococo Pearl', hex: '#e8e3d8' }] },
-    { id: 'nova-11', name: 'Nova 11',  imgColor: '#4a5a6a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'silver', name: 'Silver', hex: '#c0bdb5' }] },
-    { id: 'mate-50', name: 'Mate 50',  imgColor: '#2a3a4a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'orange', name: 'Orange', hex: '#e87a30' }] },
+    { id: 'p60-pro', name: 'P60 Pro',  code: 'MNA-LX9', imgColor: '#2a4a6a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }] },
   ],
   oneplus: [
-    { id: 'op12',   name: 'OnePlus 12', imgColor: '#1a1a1a', colors: [{ id: 'black', name: 'Silky Black', hex: '#1c1c1e' }, { id: 'green', name: 'Flowy Emerald', hex: '#3a7a6a' }] },
-    { id: 'op11',   name: 'OnePlus 11', imgColor: '#2a2a2a', colors: [{ id: 'black', name: 'Titan Black', hex: '#1c1c1e' }, { id: 'green', name: 'Eternal Green', hex: '#3a6a5a' }] },
-    { id: 'nord-4', name: 'Nord 4',     imgColor: '#4a6a8a', colors: [{ id: 'silver', name: 'Mercurial Silver', hex: '#c0bdb5' }, { id: 'green', name: 'Oasis Green', hex: '#5a9a8a' }] },
+    { id: 'op12',   name: 'OnePlus 12', code: 'CPH2581', imgColor: '#1a1a1a', colors: [{ id: 'black', name: 'Silky Black', hex: '#1c1c1e' }] },
   ],
   sony: [
-    { id: 'xperia-1-vi', name: 'Xperia 1 VI',   imgColor: '#1a2a3a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'platinum', name: 'Platinum Silver', hex: '#c0bdb5' }, { id: 'khaki', name: 'Khaki Green', hex: '#7a8a6a' }] },
-    { id: 'xperia-5-v',  name: 'Xperia 5 V',    imgColor: '#2a3a4a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'platinum', name: 'Platinum Silver', hex: '#c0bdb5' }] },
-    { id: 'xperia-10-vi', name: 'Xperia 10 VI', imgColor: '#3a4a5a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'white', name: 'White', hex: '#f5f5f0' }, { id: 'lavender', name: 'Lavender', hex: '#c4b8d0' }] },
+    { id: 'xperia-1-vi', name: 'Xperia 1 VI', code: 'XQ-EC54', imgColor: '#1a2a3a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }] },
   ],
   google: [
-    { id: 'pixel-9-pro', name: 'Pixel 9 Pro', imgColor: '#2a2a2a', colors: [{ id: 'obsidian', name: 'Obsidian', hex: '#1c1c1e' }, { id: 'porcelain', name: 'Porcelain', hex: '#e8e0d0' }, { id: 'hazel', name: 'Hazel', hex: '#6a7a6a' }, { id: 'rose', name: 'Rose Quartz', hex: '#d8b0b8' }] },
-    { id: 'pixel-9',     name: 'Pixel 9',     imgColor: '#3a3a3a', colors: [{ id: 'obsidian', name: 'Obsidian', hex: '#1c1c1e' }, { id: 'porcelain', name: 'Porcelain', hex: '#e8e0d0' }, { id: 'wintergreen', name: 'Wintergreen', hex: '#6a9a8a' }, { id: 'peony', name: 'Peony', hex: '#e0a0b0' }] },
-    { id: 'pixel-8',     name: 'Pixel 8',     imgColor: '#4a4a4a', colors: [{ id: 'obsidian', name: 'Obsidian', hex: '#1c1c1e' }, { id: 'hazel', name: 'Hazel', hex: '#6a7a6a' }, { id: 'rose', name: 'Rose', hex: '#d8a0a8' }] },
-    { id: 'pixel-7a',    name: 'Pixel 7a',    imgColor: '#5a5a5a', colors: [{ id: 'charcoal', name: 'Charcoal', hex: '#3a3a3a' }, { id: 'snow', name: 'Snow', hex: '#e8e8e8' }, { id: 'sea', name: 'Sea', hex: '#5a9aaa' }, { id: 'coral', name: 'Coral', hex: '#e87a6a' }] },
+    { id: 'pixel-9-pro', name: 'Pixel 9 Pro', code: 'G4SKM', imgColor: '#2a2a2a', colors: [{ id: 'obsidian', name: 'Obsidian', hex: '#1c1c1e' }] },
+    { id: 'pixel-9',     name: 'Pixel 9',     code: 'GUR23', imgColor: '#3a3a3a', colors: [{ id: 'obsidian', name: 'Obsidian', hex: '#1c1c1e' }] },
   ],
 }
 
-// ─── Repair categories ───────────────────────────────────────────────────────
+// ─── Repair Categories ───────────────────────────────────────────────────────
 
 const REPAIR_CATS: RepairCategory[] = [
   {
     id: 'screen', name: 'Beeldscherm en glas', fromPrice: 69,
     options: [
-      { id: 'screen-original', name: 'Display / scherm module vervangen', badge: 'Meest gekozen', desc: 'Het beeldscherm/glas van jouw toestel is gebroken, gebarsten of beschadigd of jouw touchscreen reageert (deels) niet meer.', price: 89.95, stock: 'Op voorraad', repairTime: '90 minuten' },
-      { id: 'screen-refurbished', name: 'Display / scherm module vervangen refurbished', desc: 'Origineel gereviseerd scherm voor volledig en betrouwbaar herstel van jouw toestel.', price: 139.95, stock: 'Op voorraad', repairTime: '120 minuten' },
-      { id: 'screen-compatible', name: 'Display / scherm module vervangen compatible', desc: 'Voordelige schermmodule voor functioneel scherm.', price: 99.95, stock: 'Op voorraad', repairTime: '120 minuten' },
+      { id: 'screen-original', name: 'Display / scherm module (Origineel)', badge: 'Meest gekozen', desc: 'Het beeldscherm/glas van jouw toestel is gebroken of jouw touchscreen reageert niet meer. Originele fabrieksmodule.', price: 89.95, stock: 'Op voorraad', repairTime: '90 minuten' },
+      { id: 'screen-refurbished', name: 'Display / scherm module (Refurbished Origineel)', desc: 'Origineel gereviseerd OLED scherm met nieuw glas voor betrouwbaar herstel.', price: 139.95, stock: 'Op voorraad', repairTime: '120 minuten' },
+      { id: 'screen-compatible', name: 'Display / scherm module (Compatible A-Kwaliteit)', desc: 'Voordelige High-Copy schermmodule voor functioneel schermherstel.', price: 99.95, stock: 'Op voorraad', repairTime: '120 minuten' },
     ],
   },
   {
     id: 'battery', name: 'Batterij en opladen', fromPrice: 49,
     options: [
-      { id: 'battery-replace', name: 'Batterij vervangen', badge: 'Meest gekozen', desc: 'Jouw batterij laadt niet meer goed op, de telefoon gaat snel leeg of hij gaat onverwachts uit.', price: 59.95, stock: 'Op voorraad', repairTime: '45 minuten' },
-      { id: 'charging-port', name: 'Laadpoort vervangen', desc: 'De laadpoort is beschadigd of jouw toestel laadt niet meer op.', price: 49.95, stock: 'Op voorraad', repairTime: '60 minuten' },
+      { id: 'battery-replace', name: 'Batterij vervangen (Originele capaciteit)', badge: 'Meest gekozen', desc: 'Jouw batterij laadt niet meer goed op, de telefoon gaat snel leeg of hij valt zomaar uit.', price: 59.95, stock: 'Op voorraad', repairTime: '45 minuten' },
+      { id: 'charging-port', name: 'Laadpoort / connector vervangen', desc: 'De laadpoort is beschadigd of jouw toestel laadt niet meer op.', price: 49.95, stock: 'Op voorraad', repairTime: '60 minuten' },
     ],
   },
   {
     id: 'housing', name: 'Behuizing & frame', fromPrice: 89,
     options: [
-      { id: 'back-cover', name: 'Achterkant vervangen', desc: 'De achterkant van jouw toestel is gebarsten of beschadigd.', price: 89.95, stock: 'Op voorraad', repairTime: '90 minuten' },
-      { id: 'frame', name: 'Frame vervangen', desc: 'Het frame is gebogen of beschadigd en zorgt voor problemen.', price: 119.95, stock: 'Beperkt op voorraad', repairTime: '120 minuten' },
+      { id: 'back-cover', name: 'Achterkant (Glass Back) vervangen', desc: 'De glazen achterkant van jouw toestel is gebarsten of beschadigd.', price: 89.95, stock: 'Op voorraad', repairTime: '90 minuten' },
+      { id: 'frame', name: 'Frame & behuizing herstel', desc: 'Het frame is gebogen of beschadigd en zorgt voor problemen.', price: 119.95, stock: 'Beperkt op voorraad', repairTime: '120 minuten' },
     ],
   },
   {
     id: 'camera', name: 'Camera & speaker', fromPrice: 49,
     options: [
-      { id: 'camera-replace', name: 'Camera vervangen', desc: 'De camera maakt onscherpe foto\'s of werkt niet meer.', price: 69.95, stock: 'Op voorraad', repairTime: '60 minuten' },
-      { id: 'speaker-replace', name: 'Speaker vervangen', desc: 'Het geluid van jouw toestel is vervormd of niet meer hoorbaar.', price: 49.95, stock: 'Op voorraad', repairTime: '45 minuten' },
+      { id: 'camera-replace', name: 'Achtercamera / Selfie camera vervangen', desc: 'De camera maakt onscherpe foto\'s of geeft een zwart beeld.', price: 69.95, stock: 'Op voorraad', repairTime: '60 minuten' },
+      { id: 'speaker-replace', name: 'Oorluidspreker / Speaker vervangen', desc: 'Het geluid van jouw toestel is krakerig of niet meer hoorbaar.', price: 49.95, stock: 'Op voorraad', repairTime: '45 minuten' },
     ],
   },
   {
     id: 'water', name: 'Waterschade', fromPrice: 79,
     options: [
-      { id: 'water-treatment', name: 'Waterschade behandeling', desc: 'Jouw toestel is in contact geweest met water of een andere vloeistof.', price: 79.95, stock: 'Op voorraad', repairTime: '60 minuten' },
+      { id: 'water-treatment', name: 'Ultrasone Waterschade Behandeling', desc: 'Grondige chemische & ultrasone reiniging om vocht en corrosie te verwijderen.', price: 79.95, stock: 'Op voorraad', repairTime: '60 minuten' },
     ],
   },
   {
     id: 'other', name: 'Onderzoek & overige', fromPrice: 29,
     options: [
-      { id: 'diagnosis', name: 'Diagnose & onderzoek', desc: 'Wij onderzoeken jouw toestel en geven advies over de beste oplossing.', price: 29.95, stock: 'Op voorraad', repairTime: '30 minuten' },
+      { id: 'diagnosis', name: 'Diagnose & onderzoek op locatie', desc: 'Wij onderzoeken jouw toestel en geven vooraf een transparante prijsopgave.', price: 29.95, stock: 'Op voorraad', repairTime: '30 minuten' },
     ],
   },
 ]
 
-// ─── Date/time helpers ───────────────────────────────────────────────────────
+// ─── Helpers ─────────────────────────────────────────────────────────────────
 
 const TIME_SLOTS = ['09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30']
 
@@ -176,21 +165,28 @@ function formatLongDate(iso: string, dayLong: string[], monthLong: string[]) {
   return `${dayLong[d.getDay()]} ${d.getDate()} ${monthLong[d.getMonth()]} ${d.getFullYear()}`
 }
 
-// ─── Form state ──────────────────────────────────────────────────────────────
+// ─── Form State ──────────────────────────────────────────────────────────────
 
 interface FormState {
   brandId: string; modelId: string; colorId: string
   repairCatId: string; repairOptId: string
   naam: string; telefoon: string; email: string; agree: boolean
-  serviceMethod: 'store' | 'post'; datum: string; tijd: string
+  serviceMethod: 'store' | 'post'
+  straat: string; huisnummer: string; postcode: string; plaats: string
+  shippingOption: 'standard' | 'registered'
+  datum: string; tijd: string
 }
+
 const INITIAL: FormState = {
   brandId: '', modelId: '', colorId: '', repairCatId: '', repairOptId: '',
   naam: '', telefoon: '', email: '', agree: false,
-  serviceMethod: 'store', datum: '', tijd: '',
+  serviceMethod: 'store',
+  straat: '', huisnummer: '', postcode: '', plaats: '',
+  shippingOption: 'standard',
+  datum: '', tijd: '',
 }
 
-// ─── Step indicator ──────────────────────────────────────────────────────────
+// ─── Step Indicator ──────────────────────────────────────────────────────────
 
 function StepIndicator({ step }: { step: number }) {
   const { t } = useTranslation()
@@ -213,98 +209,224 @@ function StepIndicator({ step }: { step: number }) {
   )
 }
 
-// ─── Step 1: Brand ───────────────────────────────────────────────────────────
+// ─── Step 1: Brand Selection ─────────────────────────────────────────────────
 
 function Step1({ form, onChange, onNext }: { form: FormState; onChange: (p: Partial<FormState>) => void; onNext: () => void }) {
   const { t } = useTranslation()
   return (
     <div className="rp-step-content">
-      <div className="rp-step-banner">
-        <div className="rp-step-banner-left">
-          <div className="rp-step-banner-icon"><Icon.Phone width={28} height={28} /></div>
+      {/* 1. Top Section Background: Homepage Notification Bar Style */}
+      <div className="rp-top-banner-dark">
+        <div className="rp-top-banner-inner">
+          <span className="rp-top-banner-chip">
+            <Icon.Zap width={13} height={13} /> Snel & Professioneel
+          </span>
+          <h2 className="rp-top-banner-title">{t('reparatie.s1Title')}</h2>
+          <p className="rp-top-banner-sub">{t('reparatie.s1Sub')}</p>
+        </div>
+      </div>
+
+      {/* 2. Brand Selection Area: Soft Light-Blue Background */}
+      <div className="rp-brands-light-blue-box">
+        <p className="rp-brand-selection-hint">{t('reparatie.s1Hint')}</p>
+
+        <div className="rp-brands-grid">
+          {BRANDS.map(b => (
+            <button
+              key={b.id}
+              className={`rp-brand-tile${form.brandId === b.id ? ' rp-brand-tile--selected' : ''}`}
+              onClick={() => { onChange({ brandId: b.id, modelId: '', colorId: '', repairCatId: '', repairOptId: '' }); onNext() }}
+            >
+              {form.brandId === b.id && <span className="rp-brand-check"><Icon.Check width={12} height={12} /></span>}
+              <span className="rp-brand-logo" style={{ background: b.bg, color: b.fg }}>{b.wordmark}</span>
+              <span className="rp-brand-name">{b.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 3. Alignment of Three Items (Contact Help Banner) */}
+      <div className="rp-help-centered-group">
+        <div className="rp-not-found-card">
+          <div className="rp-not-found-icon"><Icon.Chat width={24} height={24} /></div>
+          <div className="rp-not-found-info">
+            <p className="rp-not-found-title">{t('reparatie.notFoundTitle')}</p>
+            <p className="rp-not-found-sub">{t('reparatie.notFoundSub')}</p>
+          </div>
+          <a href="/contact" className="rp-not-found-cta">{t('reparatie.notFoundCta')}</a>
+        </div>
+      </div>
+
+      {/* 4. Trust Badges: Glassmorphism Badges */}
+      <div className="rp-glass-trust-badges">
+        <div className="rp-glass-badge">
+          <div className="rp-glass-badge-icon"><Icon.Shield width={20} height={20} /></div>
           <div>
-            <h2 className="rp-step-banner-title">{t('reparatie.s1Title')}</h2>
-            <p className="rp-step-banner-sub">{t('reparatie.s1Sub')}</p>
-            <div className="rp-step-banner-trust">
-              <span><Icon.Star width={13} height={13} /> {t('reparatie.s1Trust1')}</span>
-              <span><Icon.Shield width={13} height={13} /> {t('reparatie.s1Trust2')}</span>
-            </div>
+            <p className="rp-glass-badge-title">{t('reparatie.trustSecureTitle')}</p>
+            <p className="rp-glass-badge-sub">{t('reparatie.trustSecureSub')}</p>
           </div>
         </div>
-        <div className="rp-step-banner-chips">
-          <span className="rp-trust-chip-sm"><Icon.Check width={12} height={12} /> {t('reparatie.s1Chip1')}</span>
-          <span className="rp-trust-chip-sm"><Icon.Clock width={12} height={12} /> {t('reparatie.s1Chip2')}</span>
-          <span className="rp-trust-chip-sm"><Icon.Shield width={12} height={12} /> {t('reparatie.s1Chip3')}</span>
-        </div>
-      </div>
 
-      <p className="rp-step-hint">{t('reparatie.s1Hint')}</p>
-
-      <div className="rp-brands-grid">
-        {BRANDS.map(b => (
-          <button
-            key={b.id}
-            className={`rp-brand-tile${form.brandId === b.id ? ' rp-brand-tile--selected' : ''}`}
-            onClick={() => { onChange({ brandId: b.id, modelId: '', colorId: '', repairCatId: '', repairOptId: '' }); onNext() }}
-          >
-            {form.brandId === b.id && <span className="rp-brand-check"><Icon.Check width={12} height={12} /></span>}
-            <span className="rp-brand-logo" style={{ background: b.bg, color: b.fg }}>{b.wordmark}</span>
-            <span className="rp-brand-name">{b.name}</span>
-          </button>
-        ))}
-      </div>
-
-      <div className="rp-not-found">
-        <Icon.Chat width={22} height={22} />
-        <div>
-          <p className="rp-not-found-title">{t('reparatie.notFoundTitle')}</p>
-          <p className="rp-not-found-sub">{t('reparatie.notFoundSub')}</p>
-        </div>
-        <a href="/contact" className="rp-not-found-cta">{t('reparatie.notFoundCta')}</a>
-      </div>
-
-      <div className="rp-bottom-trust">
-        <div className="rp-btrust-item">
-          <Icon.Shield width={16} height={16} />
-          <div><p className="rp-btrust-title">{t('reparatie.trustSecureTitle')}</p><p className="rp-btrust-sub">{t('reparatie.trustSecureSub')}</p></div>
-        </div>
-        <div className="rp-btrust-item">
-          <Icon.Check width={16} height={16} />
-          <div><p className="rp-btrust-title">{t('reparatie.trustExpertTitle')}</p><p className="rp-btrust-sub">{t('reparatie.trustExpertSub')}</p></div>
+        <div className="rp-glass-badge">
+          <div className="rp-glass-badge-icon"><Icon.Check width={20} height={20} /></div>
+          <div>
+            <p className="rp-glass-badge-title">{t('reparatie.trustExpertTitle')}</p>
+            <p className="rp-glass-badge-sub">{t('reparatie.trustExpertSub')}</p>
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
-// ─── Step 2: Model ───────────────────────────────────────────────────────────
+// ─── Find My Model Modal ──────────────────────────────────────────────────────
+
+function FindMyModelModal({ onClose }: { onClose: () => void }) {
+  const [tab, setTab] = useState<'ios' | 'android'>('ios')
+
+  return (
+    <div className="rp-modal-overlay" onClick={onClose}>
+      <div className="rp-modal rp-modal--wide" onClick={e => e.stopPropagation()}>
+        <button className="rp-modal-close" onClick={onClose}>✕</button>
+
+        <div className="rp-fmm-header">
+          <div className="rp-fmm-icon"><Icon.HelpCircle width={24} height={24} /></div>
+          <div>
+            <h3 className="rp-fmm-title">Help mij mijn model te vinden</h3>
+            <p className="rp-fmm-sub">Weet je niet precies welke smartphone je hebt? Volg de onderstaande stappen.</p>
+          </div>
+        </div>
+
+        <div className="rp-fmm-tabs">
+          <button className={`rp-fmm-tab${tab === 'ios' ? ' active' : ''}`} onClick={() => setTab('ios')}>
+            <Icon.Apple width={16} height={16} /> Apple iOS (iPhone)
+          </button>
+          <button className={`rp-fmm-tab${tab === 'android' ? ' active' : ''}`} onClick={() => setTab('android')}>
+            <Icon.Phone width={16} height={16} /> Android (Samsung, Xiaomi, Oppo etc.)
+          </button>
+        </div>
+
+        <div className="rp-fmm-body">
+          {tab === 'ios' ? (
+            <div className="rp-fmm-steps">
+              <div className="rp-fmm-step">
+                <span className="rp-fmm-num">1</span>
+                <div>
+                  <strong>Open Instellingen</strong>
+                  <p>Tik op de 'Instellingen' app op je iPhone startscherm.</p>
+                </div>
+              </div>
+              <div className="rp-fmm-step">
+                <span className="rp-fmm-num">2</span>
+                <div>
+                  <strong>Ga naar Algemeen</strong>
+                  <p>Scrol een klein stukje naar beneden en kies 'Algemeen'.</p>
+                </div>
+              </div>
+              <div className="rp-fmm-step">
+                <span className="rp-fmm-num">3</span>
+                <div>
+                  <strong>Tik op Info</strong>
+                  <p>Bovenaan het scherm zie je de optie 'Info'.</p>
+                </div>
+              </div>
+              <div className="rp-fmm-step">
+                <span className="rp-fmm-num">4</span>
+                <div>
+                  <strong>Zie Modelnaam & Modelnummer</strong>
+                  <p>Hier staat exact jouw iPhone type (bijv. iPhone 14 Pro, Model A2890).</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="rp-fmm-steps">
+              <div className="rp-fmm-step">
+                <span className="rp-fmm-num">1</span>
+                <div>
+                  <strong>Open Instellingen</strong>
+                  <p>Open de 'Instellingen' app in je telefoonmenu.</p>
+                </div>
+              </div>
+              <div className="rp-fmm-step">
+                <span className="rp-fmm-num">2</span>
+                <div>
+                  <strong>Scrol naar 'Over de telefoon'</strong>
+                  <p>Helemaal onderaan vind je 'Over de telefoon' of 'Toestel-info'.</p>
+                </div>
+              </div>
+              <div className="rp-fmm-step">
+                <span className="rp-fmm-num">3</span>
+                <div>
+                  <strong>Bekijk Modelnaam & Modelnummer</strong>
+                  <p>Je ziet direct de naam (bijv. Galaxy S24) en het modelnummer (bijv. SM-S928B).</p>
+                </div>
+              </div>
+              <div className="rp-fmm-step">
+                <span className="rp-fmm-num">4</span>
+                <div>
+                  <strong>Alternatief: Achterkant of Verpakking</strong>
+                  <p>Veel telefoons hebben het modelnummer ook klein op de achterkant of de originele doos geprint.</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <button className="rp-btn rp-btn--primary rp-fmm-close-btn" onClick={onClose}>
+          Begrepen, terug naar modelleren
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// ─── Step 2: Choose Model ────────────────────────────────────────────────────
 
 function Step2({ form, onChange, onNext, onBack }: { form: FormState; onChange: (p: Partial<FormState>) => void; onNext: () => void; onBack: () => void }) {
   const { t } = useTranslation()
   const [search, setSearch] = useState('')
+  const [showFindModal, setShowFindModal] = useState(false)
   const brand = BRANDS.find(b => b.id === form.brandId)
   const models = MODELS[form.brandId] ?? []
   const filtered = useMemo(() =>
-    search.trim() ? models.filter(m => m.name.toLowerCase().includes(search.toLowerCase())) : models
+    search.trim() ? models.filter(m => m.name.toLowerCase().includes(search.toLowerCase()) || m.code.toLowerCase().includes(search.toLowerCase())) : models
   , [search, models])
 
   return (
     <div className="rp-step-content">
-      <div className="rp-step-banner rp-step-banner--compact">
-        <Icon.Phone width={22} height={22} style={{ color: 'var(--accent)', flexShrink: 0 }} />
-        <div>
-          <h2 className="rp-step-banner-title">{t('reparatie.s2Title', { brand: brand?.name })}</h2>
-          <p className="rp-step-banner-sub">{t('reparatie.s2Sub')}</p>
-        </div>
+      {/* Aligned Header Group */}
+      <div className="rp-step2-header-group">
+        <h2 className="rp-step2-title">Kies je model</h2>
+        <p className="rp-step2-sub">Uw {brand?.name ?? 'telefoon'} model</p>
+      </div>
+
+      {/* Light-Blue Contact Bar */}
+      <div className="rp-step2-contact-bar">
+        <Icon.Phone width={20} height={20} style={{ color: 'var(--accent)', flexShrink: 0 }} />
+        <span>Kies hieronder het juiste type. Twijfel je over jouw model? Wij helpen je direct.</span>
       </div>
 
       <div className="rp-model-search-wrap">
-        <Icon.Search width={15} height={15} />
-        <input className="rp-model-search" placeholder={t('reparatie.s2SearchPlaceholder', { brand: brand?.name })} value={search} onChange={e => setSearch(e.target.value)} />
+        <Icon.Search width={16} height={16} />
+        <input
+          className="rp-model-search"
+          placeholder={t('reparatie.s2SearchPlaceholder', { brand: brand?.name })}
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
       </div>
-      <p className="rp-step-hint">{t('reparatie.s2Hint', { brand: brand?.name })}</p>
 
-      <div className="rp-models-grid">
+      {/* 5-Column Grid with Helper Card as Card 1 */}
+      <div className="rp-models-grid-5">
+        {/* Helper Card */}
+        <button className="rp-model-tile rp-model-tile--helper" onClick={() => setShowFindModal(true)}>
+          <div className="rp-model-helper-icon">
+            <Icon.HelpCircle width={28} height={28} />
+          </div>
+          <span className="rp-model-name">Weet je je model niet?</span>
+          <span className="rp-model-code-text">Help mij mijn model te vinden</span>
+        </button>
+
         {filtered.map(m => (
           <button
             key={m.id}
@@ -313,16 +435,17 @@ function Step2({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
           >
             {form.modelId === m.id && <span className="rp-model-check"><Icon.Check width={12} height={12} /></span>}
             <div className="rp-model-img" style={{ background: `linear-gradient(150deg, ${m.imgColor}dd 0%, ${m.imgColor}66 100%)` }}>
-              <Icon.Phone width={26} height={26} style={{ color: '#fff', opacity: 0.85 }} />
+              <Icon.Phone width={28} height={28} style={{ color: '#fff', opacity: 0.9 }} />
             </div>
             <span className="rp-model-name">{m.name}</span>
+            <span className="rp-model-code-text">{m.code}</span>
           </button>
         ))}
       </div>
 
-      <div className="rp-not-found">
-        <Icon.Chat width={22} height={22} />
-        <div>
+      <div className="rp-not-found-card">
+        <div className="rp-not-found-icon"><Icon.Chat width={24} height={24} /></div>
+        <div className="rp-not-found-info">
           <p className="rp-not-found-title">{t('reparatie.notFoundModelTitle')}</p>
           <p className="rp-not-found-sub">{t('reparatie.notFoundSub')}</p>
         </div>
@@ -332,11 +455,59 @@ function Step2({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
       <div className="rp-actions">
         <button className="rp-btn rp-btn--ghost" onClick={onBack}>{t('reparatie.back')}</button>
       </div>
+
+      {showFindModal && <FindMyModelModal onClose={() => setShowFindModal(false)} />}
     </div>
   )
 }
 
-// ─── Step 3: Repair ──────────────────────────────────────────────────────────
+// ─── Screen Quality Modal ────────────────────────────────────────────────────
+
+function ScreenQualityModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="rp-modal-overlay" onClick={onClose}>
+      <div className="rp-modal rp-modal--wide" onClick={e => e.stopPropagation()}>
+        <button className="rp-modal-close" onClick={onClose}>✕</button>
+
+        <div className="rp-fmm-header">
+          <div className="rp-fmm-icon" style={{ background: 'rgba(37, 99, 235, 0.1)', color: '#2563eb' }}>
+            <Icon.Info width={24} height={24} />
+          </div>
+          <div>
+            <h3 className="rp-fmm-title">Schermkwaliteiten & Verschillen</h3>
+            <p className="rp-fmm-sub">Bij 4Mobiles kun je kiezen uit verschillende soorten beeldschermen. Hieronder leggen we de verschillen uit.</p>
+          </div>
+        </div>
+
+        <div className="rp-sq-list">
+          <div className="rp-sq-item">
+            <div className="rp-sq-badge rp-sq-badge--orig">Origineel (Fabriekskwaliteit)</div>
+            <p className="rp-sq-title">Origineel Scherm</p>
+            <p className="rp-sq-desc">Exact hetzelfde beeldscherm als waarmee jouw telefoon uit de fabriek kwam. Maximale helderheid, perfecte kleurweergave, True Tone en de meest duurzame touchgevoeligheid.</p>
+          </div>
+
+          <div className="rp-sq-item">
+            <div className="rp-sq-badge rp-sq-badge--refurb">Refurbished Origineel</div>
+            <p className="rp-sq-title">Refurbished Origineel Scherm</p>
+            <p className="rp-sq-desc">Een origineel Apple of Samsung OLED panel waarvan het gebroken topglas vakkundig is vervangen door nieuw gehard glas. 100% originele beeldkwaliteit voor een scherpere prijs.</p>
+          </div>
+
+          <div className="rp-sq-item">
+            <div className="rp-sq-badge rp-sq-badge--comp">Compatible (A-Kwaliteit)</div>
+            <p className="rp-sq-title">Compatible / High-Copy Scherm</p>
+            <p className="rp-sq-desc">Een voordelig alternatief beeldscherm van hoge A-kwaliteit. Zeer geschikt als budgetvriendelijke oplossing voor functioneel herstel van een ouder toestel.</p>
+          </div>
+        </div>
+
+        <button className="rp-btn rp-btn--primary rp-fmm-close-btn" onClick={onClose}>
+          Begrepen
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// ─── Step 3: Choose Repair ───────────────────────────────────────────────────
 
 const CAT_ICONS: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
   screen: Icon.Crack, battery: Icon.Battery, housing: Icon.Phone,
@@ -345,7 +516,10 @@ const CAT_ICONS: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
 
 function Step3({ form, onChange, onNext, onBack }: { form: FormState; onChange: (p: Partial<FormState>) => void; onNext: () => void; onBack: () => void }) {
   const { t } = useTranslation()
-  const [openCat, setOpenCat] = useState<string>('screen')
+  // All repair categories collapsed by default
+  const [openCat, setOpenCat] = useState<string>('')
+  const [showQualityModal, setShowQualityModal] = useState(false)
+
   const model = MODELS[form.brandId]?.find(m => m.id === form.modelId)
   const selectedOpt = REPAIR_CATS.flatMap(c => c.options).find(o => o.id === form.repairOptId)
   const isLight = (hex: string) => ['#f5f5f0','#e8e3d8','#e8e0d0','#e8e8e8','#f0ebe0','#c0bdb5','#c0b99e','#e8d44d','#e8c84d'].includes(hex)
@@ -355,16 +529,20 @@ function Step3({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
   return (
     <div className="rp-step-content">
       {model && (
-        <div className="rp-device-header">
-          <div className="rp-device-header-img" style={{ background: `linear-gradient(150deg, ${model.imgColor}cc, ${model.imgColor}44)` }}>
-            <Icon.Phone width={22} height={22} style={{ color: '#fff', opacity: 0.9 }} />
+        <div className="rp-device-header-clean">
+          {/* 2x Phone Image without card/border */}
+          <div className="rp-device-large-img" style={{ background: `linear-gradient(150deg, ${model.imgColor}dd, ${model.imgColor}55)` }}>
+            <Icon.Phone width={48} height={48} style={{ color: '#fff', opacity: 0.95 }} />
           </div>
-          <div className="rp-device-header-info">
-            <h3 className="rp-device-header-name">{model.name}</h3>
-            <div className="rp-device-header-badges">
-              <span><Icon.Shield width={11} height={11} /> {t('reparatie.badge6mnd')}</span>
-              <span><Icon.Check width={11} height={11} /> {t('reparatie.badgeTransparent')}</span>
-              <span><Icon.Clock width={11} height={11} /> {t('reparatie.badgeFast')}</span>
+          <div className="rp-device-clean-info">
+            <h3 className="rp-device-large-title">{model.name}</h3>
+            <p className="rp-device-code-sub">{model.code}</p>
+
+            {/* Desktop Only Badges */}
+            <div className="rp-device-header-badges rp-desktop-only">
+              <span><Icon.Shield width={12} height={12} /> {t('reparatie.badge6mnd')}</span>
+              <span><Icon.Check width={12} height={12} /> {t('reparatie.badgeTransparent')}</span>
+              <span><Icon.Clock width={12} height={12} /> {t('reparatie.badgeFast')}</span>
             </div>
           </div>
         </div>
@@ -392,6 +570,7 @@ function Step3({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
         </div>
       )}
 
+      {/* Repair Accordion — Collapsed by default */}
       <div className="rp-repair-section">
         <p className="rp-section-title">{t('reparatie.s3RepairTitle')}</p>
         <div className="rp-repair-cats">
@@ -400,31 +579,54 @@ function Step3({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
             return (
               <div key={cat.id} className={`rp-cat${openCat === cat.id ? ' rp-cat--open' : ''}`}>
                 <button className="rp-cat-header" onClick={() => setOpenCat(openCat === cat.id ? '' : cat.id)}>
-                  <span className="rp-cat-icon-wrap"><CatIcon width={18} height={18} /></span>
+                  {/* Large Icon without surrounding frame */}
+                  <span className="rp-cat-icon-frameless"><CatIcon width={26} height={26} /></span>
                   <span className="rp-cat-name">{getCatName(cat.id)}</span>
-                  <span className="rp-cat-from">Vanaf €{cat.fromPrice.toFixed(2).replace('.', ',')}</span>
+                  {/* Lowercase vanaf */}
+                  <span className="rp-cat-from">vanaf €{cat.fromPrice.toFixed(2).replace('.', ',')}</span>
                   <span className="rp-cat-chevron">›</span>
                 </button>
                 {openCat === cat.id && (
                   <div className="rp-cat-options">
                     {cat.options.map(opt => (
                       <label key={opt.id} className={`rp-option${form.repairOptId === opt.id ? ' rp-option--selected' : ''}`}>
-                        <input type="radio" name="repair" value={opt.id} checked={form.repairOptId === opt.id}
-                          onChange={() => onChange({ repairCatId: cat.id, repairOptId: opt.id })} className="rp-option-radio" />
+                        <input
+                          type="radio"
+                          name="repair"
+                          value={opt.id}
+                          checked={form.repairOptId === opt.id}
+                          onChange={() => onChange({ repairCatId: cat.id, repairOptId: opt.id })}
+                          className="rp-option-radio"
+                        />
                         <div className="rp-option-body">
                           <div className="rp-option-top">
                             <span className="rp-option-name">
                               {opt.name}
-                              {opt.badge && <span className="rp-option-badge">{t('reparatie.mostChosen')}</span>}
+                              {/* Blue "Meest gekozen" Badge */}
+                              {opt.badge && <span className="rp-option-badge-blue">Meest gekozen</span>}
                             </span>
-                            <span className="rp-option-price">€{opt.price.toFixed(2).replace('.', ',')}</span>
+                            {/* Accessible Darker Green Price */}
+                            <span className="rp-option-price-dark">€{opt.price.toFixed(2).replace('.', ',')}</span>
                           </div>
                           <p className="rp-option-desc">{opt.desc}</p>
                           <div className="rp-option-meta">
                             <span className={`rp-option-stock${opt.stock === 'Op voorraad' ? ' rp-option-stock--ok' : ' rp-option-stock--low'}`}>
                               <span className="rp-stock-dot" /> {opt.stock === 'Op voorraad' ? t('reparatie.inStock') : t('reparatie.lowStock')}
                             </span>
-                            <span className="rp-option-time"><Icon.Clock width={11} height={11} /> {opt.repairTime}</span>
+                            <span className="rp-option-time">
+                              <Icon.Clock width={12} height={12} /> {opt.repairTime}
+                              {/* Blue Info Icon for Screen Quality Modal */}
+                              {cat.id === 'screen' && (
+                                <button
+                                  type="button"
+                                  className="rp-info-btn-blue"
+                                  onClick={(e) => { e.stopPropagation(); setShowQualityModal(true) }}
+                                  title="Bekijk schermkwaliteiten"
+                                >
+                                  <Icon.Info width={15} height={15} />
+                                </button>
+                              )}
+                            </span>
                           </div>
                         </div>
                       </label>
@@ -437,29 +639,51 @@ function Step3({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
         </div>
       </div>
 
-      <div className="rp-actions rp-actions--spread">
+      {/* Back Button */}
+      <div className="rp-actions">
         <button className="rp-btn rp-btn--ghost" onClick={onBack}>{t('reparatie.back')}</button>
-        <button className="rp-btn rp-btn--primary" onClick={onNext} disabled={!form.repairOptId}>
-          {t('reparatie.nextStep')} <Icon.ArrowRight width={18} height={18} />
-        </button>
       </div>
 
-      {selectedOpt && (
-        <div className="rp-sticky-bar">
+      {/* Single Sticky CTA Bar: "Laatste stap" */}
+      <div className="rp-sticky-bar-wrap">
+        <div className={`rp-sticky-bar${selectedOpt ? ' active' : ''}`}>
           <div className="rp-sticky-bar-info">
-            <span className="rp-sticky-bar-repair">{selectedOpt.name}</span>
-            <span className="rp-sticky-bar-price">€{selectedOpt.price.toFixed(2).replace('.', ',')}</span>
+            <span className="rp-sticky-bar-repair">{selectedOpt ? selectedOpt.name : 'Selecteer een reparatie...'}</span>
+            <span className="rp-sticky-bar-price">{selectedOpt ? `€${selectedOpt.price.toFixed(2).replace('.', ',')}` : ''}</span>
           </div>
-          <button className="rp-btn rp-btn--primary" onClick={onNext}>
-            {t('reparatie.planRepair')} <Icon.ArrowRight width={16} height={16} />
+          <button className="rp-btn rp-btn--primary" onClick={onNext} disabled={!selectedOpt}>
+            Laatste stap <Icon.ArrowRight width={16} height={16} />
           </button>
         </div>
-      )}
+      </div>
+
+      {/* SEO Content Section */}
+      <div className="rp-seo-section">
+        <h3 className="rp-seo-title">Telefoon Reparatie bij 4Mobiles in het Westland</h3>
+        <p className="rp-seo-text">
+          Is het beeldscherm van jouw smartphone gebroken, laadt de batterij niet meer goed op of heeft je telefoon waterschade opgelopen? Bij <strong>4Mobiles</strong> in Naaldwijk staan onze professionele monteurs klaar om jouw telefoon snel, vakkundig en transparant te herstellen. Wij werken uitsluitend met hoogwaardige onderdelen en bieden standaard garantie op al onze reparaties.
+        </p>
+        <div className="rp-seo-grid">
+          <div>
+            <strong>Schermvervanging</strong>
+            <p>Van iPhone en Samsung tot Xiaomi en Oppo: wij vervangen je gebroken scherm binnen 30-60 minuten met behoud van True Tone en touchkwaliteit.</p>
+          </div>
+          <div>
+            <strong>Batterij & Opladen</strong>
+            <p>Loopt je accu snel leeg of laadt het toestel niet meer op? Wij vervangen je batterij en laadpoort direct uit voorraad.</p>
+          </div>
+        </div>
+        <p className="rp-seo-links">
+          Heb je vragen of specifieke verzoeken? <a href="/contact" className="rp-link">Neem contact met ons op</a> of bekijk onze <a href="/regio" className="rp-link">regionale vestigingsinformatie</a>.
+        </p>
+      </div>
+
+      {showQualityModal && <ScreenQualityModal onClose={() => setShowQualityModal(false)} />}
     </div>
   )
 }
 
-// ─── Step 4: Booking ─────────────────────────────────────────────────────────
+// ─── Step 4: Complete Appointment ───────────────────────────────────────────
 
 function Step4({ form, onChange, onConfirm, onBack }: {
   form: FormState; onChange: (p: Partial<FormState>) => void; onConfirm: () => void; onBack: () => void
@@ -473,11 +697,16 @@ function Step4({ form, onChange, onConfirm, onBack }: {
   const model = MODELS[form.brandId]?.find(m => m.id === form.modelId)
   const selectedOpt = REPAIR_CATS.flatMap(c => c.options).find(o => o.id === form.repairOptId)
   const color = model?.colors.find(c => c.id === form.colorId)
-  const canSubmit = form.naam.trim() && form.telefoon.trim() && form.email.trim() && form.agree && form.datum && form.tijd
+
+  // Validation: Enabled only when required fields completed
+  const isPost = form.serviceMethod === 'post'
+  const canSubmit = form.naam.trim() && form.telefoon.trim() && form.email.trim() && form.agree && form.datum && form.tijd &&
+    (!isPost || (form.straat.trim() && form.huisnummer.trim() && form.postcode.trim() && form.plaats.trim()))
 
   return (
     <div className="rp-booking-wrap">
       <div className="rp-booking-form">
+        {/* Contact Details */}
         <div className="rp-booking-section">
           <div className="rp-booking-section-header">
             <Icon.Shield width={20} height={20} />
@@ -503,11 +732,13 @@ function Step4({ form, onChange, onConfirm, onBack }: {
           </label>
         </div>
 
+        {/* Service Method Section */}
         <div className="rp-booking-section">
           <div className="rp-booking-section-header">
             <Icon.Cart width={20} height={20} />
             <h3 className="rp-booking-section-title">{t('reparatie.s4ServiceTitle')}</h3>
           </div>
+
           <div className="rp-service-methods">
             <label className={`rp-service-card${form.serviceMethod === 'store' ? ' rp-service-card--selected' : ''}`}>
               <input type="radio" name="service" value="store" checked={form.serviceMethod === 'store'} onChange={() => onChange({ serviceMethod: 'store' })} />
@@ -515,28 +746,66 @@ function Step4({ form, onChange, onConfirm, onBack }: {
                 <div className="rp-service-card-row">
                   <Icon.Cart width={18} height={18} />
                   <div>
-                    <p className="rp-service-title">{t('reparatie.storeMethodTitle')}</p>
-                    <p className="rp-service-sub">{t('reparatie.storeMethodSub')}</p>
+                    <p className="rp-service-title">Langskomen in de winkel (Walk-in)</p>
+                    <p className="rp-service-sub">Loop zonder afspraak of op tijdstip binnen bij onze winkel.</p>
                   </div>
                 </div>
                 <p className="rp-service-address">
-                  <Icon.Pin width={13} height={13} /> {t('reparatie.storeAddress')}
+                  <Icon.Pin width={13} height={13} /> 4Mobiles Winkel
                 </p>
               </div>
             </label>
+
             <label className={`rp-service-card${form.serviceMethod === 'post' ? ' rp-service-card--selected' : ''}`}>
               <input type="radio" name="service" value="post" checked={form.serviceMethod === 'post'} onChange={() => onChange({ serviceMethod: 'post' })} />
               <div className="rp-service-card-inner">
-                <Icon.Truck width={18} height={18} />
-                <div>
-                  <p className="rp-service-title">{t('reparatie.postMethodTitle')}</p>
-                  <p className="rp-service-sub">{t('reparatie.postMethodSub')}</p>
+                <div className="rp-service-card-row">
+                  <Icon.Truck width={18} height={18} />
+                  <div>
+                    <p className="rp-service-title">Versturen per post</p>
+                    <p className="rp-service-sub">Stuur je toestel gratis & verzekerd naar 4Mobiles.</p>
+                  </div>
                 </div>
               </div>
             </label>
           </div>
+
+          {/* Postal Dropdown Form Container */}
+          {form.serviceMethod === 'post' && (
+            <div className="rp-post-dropdown-container">
+              <h4 className="rp-post-dropdown-title">Adresgegevens voor retourzending</h4>
+              <div className="rp-form-grid">
+                <div className="rp-field">
+                  <label className="rp-label">Straatnaam <span className="rp-required">*</span></label>
+                  <input className="rp-input" type="text" placeholder="bijv. Molenstraat" value={form.straat} onChange={e => onChange({ straat: e.target.value })} />
+                </div>
+                <div className="rp-field">
+                  <label className="rp-label">Huisnummer & Toevoeging <span className="rp-required">*</span></label>
+                  <input className="rp-input" type="text" placeholder="bijv. 12B" value={form.huisnummer} onChange={e => onChange({ huisnummer: e.target.value })} />
+                </div>
+                <div className="rp-field">
+                  <label className="rp-label">Postcode <span className="rp-required">*</span></label>
+                  <input className="rp-input" type="text" placeholder="bijv. 2671 BW" value={form.postcode} onChange={e => onChange({ postcode: e.target.value })} />
+                </div>
+                <div className="rp-field">
+                  <label className="rp-label">Plaats <span className="rp-required">*</span></label>
+                  <input className="rp-input" type="text" placeholder="bijv. Naaldwijk" value={form.plaats} onChange={e => onChange({ plaats: e.target.value })} />
+                </div>
+              </div>
+
+              <div className="rp-post-instructions">
+                <p className="rp-post-inst-title"><Icon.Info width={15} height={15} /> Opstuurinstructies:</p>
+                <ul>
+                  <li>Pak je toestel stevig in met bubbeltjesplastic.</li>
+                  <li>Stuur je telefoon op zonder SIM-kaart, hoesje of accessoires.</li>
+                  <li>Na bevestiging ontvang je direct een gratis verzendlabel per e-mail.</li>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
 
+        {/* Appointment Date & Time Section */}
         <div className="rp-booking-section">
           <div className="rp-booking-section-header">
             <Icon.Calendar width={20} height={20} />
@@ -560,15 +829,6 @@ function Step4({ form, onChange, onConfirm, onBack }: {
               <button key={slot} className={`rp-time-btn${form.tijd === slot ? ' rp-time-btn--selected' : ''}`} onClick={() => onChange({ tijd: slot })}>{slot}</button>
             ))}
           </div>
-          <p className="rp-booking-note">
-            <Icon.Check width={13} height={13} /> {t('reparatie.bookingNote')}
-          </p>
-        </div>
-
-        <div className="rp-booking-trust-strip">
-          <span><Icon.Shield width={14} height={14} /> {t('reparatie.trust6mnd')}</span>
-          <span><Icon.Clock width={14} height={14} /> {t('reparatie.trustTime')}</span>
-          <span><Icon.Check width={14} height={14} /> {t('reparatie.trustNoCost')}</span>
         </div>
 
         <div className="rp-actions rp-actions--spread">
@@ -576,15 +836,18 @@ function Step4({ form, onChange, onConfirm, onBack }: {
         </div>
       </div>
 
+      {/* Appointment Summary Sidebar */}
       <aside className="rp-booking-sidebar">
         <div className="rp-sidebar-card">
           {model && (
-            <div className="rp-sidebar-device">
-              <div className="rp-sidebar-device-img" style={{ background: `linear-gradient(150deg, ${model.imgColor}cc, ${model.imgColor}44)` }}>
-                <Icon.Phone width={20} height={20} style={{ color: '#fff', opacity: 0.9 }} />
+            <div className="rp-sidebar-device-frameless">
+              {/* Larger device image without frame */}
+              <div className="rp-sidebar-large-img" style={{ background: `linear-gradient(150deg, ${model.imgColor}dd, ${model.imgColor}55)` }}>
+                <Icon.Phone width={36} height={36} style={{ color: '#fff', opacity: 0.95 }} />
               </div>
               <div>
                 <p className="rp-sidebar-device-name">{model.name}</p>
+                <p className="rp-sidebar-device-code">{model.code}</p>
                 {color && (
                   <p className="rp-sidebar-device-color">
                     <span className="rp-sidebar-color-dot" style={{ background: color.hex }} />{color.name}
@@ -593,68 +856,64 @@ function Step4({ form, onChange, onConfirm, onBack }: {
               </div>
             </div>
           )}
+
           <div className="rp-sidebar-rows">
             {selectedOpt && (
               <>
                 <div className="rp-sidebar-row">
-                  <Icon.Wrench width={13} height={13} />
-                  <span className="rp-sidebar-label">{t('reparatie.sidebarRepairLabel')}</span>
+                  <Icon.Wrench width={14} height={14} />
+                  <span className="rp-sidebar-label">Reparatie</span>
                   <span className="rp-sidebar-value">{selectedOpt.name}</span>
                 </div>
                 <div className="rp-sidebar-row">
-                  <Icon.Clock width={13} height={13} />
-                  <span className="rp-sidebar-label">{t('reparatie.sidebarDurationLabel')}</span>
+                  <Icon.Clock width={14} height={14} />
+                  <span className="rp-sidebar-label">Duur</span>
                   <span className="rp-sidebar-value">{selectedOpt.repairTime}</span>
                 </div>
               </>
             )}
             <div className="rp-sidebar-row">
-              <Icon.Cart width={13} height={13} />
-              <span className="rp-sidebar-label">{t('reparatie.sidebarServiceLabel')}</span>
-              <span className="rp-sidebar-value">{form.serviceMethod === 'store' ? t('reparatie.storeMethodValue') : t('reparatie.postMethodValue')}</span>
+              <Icon.Cart width={14} height={14} />
+              <span className="rp-sidebar-label">Service</span>
+              <span className="rp-sidebar-value">
+                {form.serviceMethod === 'store' ? 'Walk-in' : 'Versturen per post'}
+              </span>
             </div>
             {form.serviceMethod === 'store' && (
               <div className="rp-sidebar-row">
-                <Icon.Pin width={13} height={13} />
-                <span className="rp-sidebar-label">{t('reparatie.sidebarShopLabel')}</span>
-                <span className="rp-sidebar-value">{t('reparatie.shopName')}</span>
+                <Icon.Pin width={14} height={14} />
+                <span className="rp-sidebar-label">Locatie</span>
+                <span className="rp-sidebar-value">4Mobiles</span>
               </div>
             )}
             {form.datum && (
               <div className="rp-sidebar-row">
-                <Icon.Calendar width={13} height={13} />
-                <span className="rp-sidebar-label">{t('reparatie.sidebarAppointmentLabel')}</span>
+                <Icon.Calendar width={14} height={14} />
+                <span className="rp-sidebar-label">Tijdstip</span>
                 <span className="rp-sidebar-value">{formatLongDate(form.datum, dayLongArr, monthLongArr)}{form.tijd && `, ${form.tijd} uur`}</span>
               </div>
             )}
           </div>
+
           {selectedOpt && (
             <div className="rp-sidebar-total">
-              <span>{t('reparatie.totalInclVat')}</span>
+              <span>Totaal (incl. BTW)</span>
               <span className="rp-sidebar-total-price">€{selectedOpt.price.toFixed(2).replace('.', ',')}</span>
             </div>
           )}
+
+          {/* CTA: Bevestig afspraak */}
           <button className="rp-btn rp-btn--primary rp-sidebar-btn" onClick={onConfirm} disabled={!canSubmit}>
-            {t('reparatie.submitBtn')} <Icon.ArrowRight width={16} height={16} />
+            Bevestig afspraak <Icon.ArrowRight width={16} height={16} />
           </button>
-          <p className="rp-sidebar-pay-note">{t('reparatie.payAfter')}</p>
-          <div className="rp-sidebar-google">
-            <svg width={16} height={16} viewBox="0 0 24 24">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-            <span><b>4,8/5</b> {t('reparatie.googleReviews')}</span>
-          </div>
+          <p className="rp-sidebar-pay-note">Betaling pas achteraf in de winkel of na herstel.</p>
         </div>
-        <p className="rp-sidebar-safe"><Icon.Shield width={13} height={13} /> {t('reparatie.sidebarSafe')}</p>
       </aside>
     </div>
   )
 }
 
-// ─── Confirmation modal ──────────────────────────────────────────────────────
+// ─── Confirmation Modal ──────────────────────────────────────────────────────
 
 function ConfirmationModal({ form, onClose }: { form: FormState; onClose: () => void }) {
   const { t } = useTranslation()
@@ -668,60 +927,40 @@ function ConfirmationModal({ form, onClose }: { form: FormState; onClose: () => 
       <div className="rp-modal" onClick={e => e.stopPropagation()}>
         <button className="rp-modal-close" onClick={onClose}>✕</button>
         <div className="rp-modal-check"><Icon.Check width={30} height={30} /></div>
-        <h2 className="rp-modal-title">{t('reparatie.confirmTitle')}</h2>
-        <p className="rp-modal-sub">{t('reparatie.confirmSub')}</p>
-
-        <div className="rp-modal-mail-note">
-          <Icon.Shield width={16} height={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
-          <div>
-            <p className="rp-modal-mail-title">{t('reparatie.confirmMailTitle')}</p>
-            <p className="rp-modal-mail-sub">{t('reparatie.confirmMailSub')}</p>
-          </div>
-          <Icon.Check width={16} height={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
-        </div>
+        <h2 className="rp-modal-title">Afspraak Bevestigd!</h2>
+        <p className="rp-modal-sub">Bedankt voor je aanvraag bij 4Mobiles. Wij gaan direct voor je aan de slag.</p>
 
         <div className="rp-modal-summary">
-          <h3 className="rp-modal-summary-title">{t('reparatie.confirmSummaryTitle')}</h3>
+          <h3 className="rp-modal-summary-title">Afspraakoverzicht</h3>
           {model && (
             <div className="rp-modal-row">
-              <Icon.Phone width={15} height={15} /><span className="rp-modal-label">{t('reparatie.confirmDeviceLabel')}</span><span className="rp-modal-value">{model.name}</span>
+              <Icon.Phone width={15} height={15} /><span className="rp-modal-label">Toestel:</span><span className="rp-modal-value">{model.name} ({model.code})</span>
             </div>
           )}
           {selectedOpt && (
             <div className="rp-modal-row">
-              <Icon.Wrench width={15} height={15} /><span className="rp-modal-label">{t('reparatie.confirmRepairLabel')}</span><span className="rp-modal-value">{selectedOpt.name}</span>
+              <Icon.Wrench width={15} height={15} /><span className="rp-modal-label">Reparatie:</span><span className="rp-modal-value">{selectedOpt.name}</span>
             </div>
           )}
           {form.datum && (
             <div className="rp-modal-row">
-              <Icon.Calendar width={15} height={15} /><span className="rp-modal-label">{t('reparatie.confirmDateLabel')}</span><span className="rp-modal-value">{formatLongDate(form.datum, dayLongArr, monthLongArr)}, {form.tijd} uur</span>
+              <Icon.Calendar width={15} height={15} /><span className="rp-modal-label">Tijdstip:</span><span className="rp-modal-value">{formatLongDate(form.datum, dayLongArr, monthLongArr)}{form.tijd && `, ${form.tijd} uur`}</span>
             </div>
           )}
           <div className="rp-modal-row">
-            <Icon.Cart width={15} height={15} /><span className="rp-modal-label">{t('reparatie.confirmServiceLabel')}</span><span className="rp-modal-value">{form.serviceMethod === 'store' ? t('reparatie.storeMethodValue') : t('reparatie.postMethodValue')}</span>
+            <Icon.Cart width={15} height={15} /><span className="rp-modal-label">Service:</span><span className="rp-modal-value">{form.serviceMethod === 'store' ? 'Walk-in' : 'Versturen per post'}</span>
           </div>
-          {form.serviceMethod === 'store' && (
-            <div className="rp-modal-row">
-              <Icon.Pin width={15} height={15} /><span className="rp-modal-label">{t('reparatie.confirmLocationLabel')}</span><span className="rp-modal-value">{t('reparatie.shopName')}</span>
-            </div>
-          )}
-        </div>
-
-        <div className="rp-modal-trust">
-          <span><Icon.Shield width={13} height={13} /> {t('reparatie.confirmTrust1')}</span>
-          <span><Icon.Star width={13} height={13} style={{ color: '#f59e0b' }} /> {t('reparatie.confirmTrust2')}</span>
         </div>
 
         <a href="/" className="rp-btn rp-btn--primary rp-modal-home-btn">
-          <Icon.Check width={16} height={16} /> {t('reparatie.confirmHomeBtn')}
+          <Icon.Check width={16} height={16} /> Terug naar home
         </a>
-        <p className="rp-modal-contact-note">{t('reparatie.confirmContactNote')} <a href="/contact" className="rp-link">{t('reparatie.confirmContactLink')}</a>.</p>
       </div>
     </div>
   )
 }
 
-// ─── Main ────────────────────────────────────────────────────────────────────
+// ─── Main Component ──────────────────────────────────────────────────────────
 
 const BRAND_FROM_SLUG: Record<string, string> = {
   iphone: 'apple', ipad: 'apple', galaxy: 'samsung', samsung: 'samsung',

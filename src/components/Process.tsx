@@ -1,93 +1,156 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Icon } from './Icons'
 
-const STEP_META = [
-  { num: '01', color: '#22c55e', bgColor: '#dcfce7', icon: Icon.Calendar },
-  { num: '02', color: '#3b82f6', bgColor: '#dbeafe', icon: Icon.Search },
-  { num: '03', color: '#f59e0b', bgColor: '#fef3c7', icon: Icon.Wrench },
-  { num: '04', color: '#a855f7', bgColor: '#f3e8ff', icon: Icon.Shield },
+import card1 from '../assets/card 1.png'
+import card2 from '../assets/card 2.png'
+import card3 from '../assets/card 3.png'
+import card4 from '../assets/card 4.png'
+
+const CARDS = [
+  { id: 1, img: card1, alt: 'Step 1: Afspraak', cls: 'peel-card-item--card1' },
+  { id: 2, img: card2, alt: 'Step 2: Diagnose', cls: '' },
+  { id: 3, img: card3, alt: 'Step 3: Reparatie', cls: 'peel-card-item--card3' },
+  { id: 4, img: card4, alt: 'Step 4: Resultaat', cls: '' },
 ]
 
 export function Process() {
   const { t } = useTranslation()
-  const [active, setActive] = useState(0)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const [progress, setProgress] = useState(0)
 
-  const steps = STEP_META.map((meta, i) => ({
-    ...meta,
-    title:  t(`process.steps.${i}.title`),
-    desc:   t(`process.steps.${i}.desc`),
-    detail: t(`process.steps.${i}.detail`),
-  }))
+  const targetProgress = useRef(0)
+  const currentProgress = useRef(0)
+  const rafId = useRef<number | null>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return
+      const rect = sectionRef.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      const totalScroll = rect.height - windowHeight
+
+      if (totalScroll <= 0) return
+
+      const current = -rect.top
+      const raw = current / totalScroll
+      targetProgress.current = Math.max(0, Math.min(1, raw))
+    }
+
+    const updateLoop = () => {
+      const diff = targetProgress.current - currentProgress.current
+      if (Math.abs(diff) > 0.0001) {
+        currentProgress.current += diff * 0.08
+        setProgress(currentProgress.current)
+      } else if (currentProgress.current !== targetProgress.current) {
+        currentProgress.current = targetProgress.current
+        setProgress(targetProgress.current)
+      }
+      rafId.current = requestAnimationFrame(updateLoop)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    rafId.current = requestAnimationFrame(updateLoop)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafId.current) cancelAnimationFrame(rafId.current)
+    }
+  }, [])
+
+  const numCards = CARDS.length
+  const totalSegments = numCards - 1 // 3 peel segments
+
+  // Calculate active segment and segment progress
+  const activeSegment = Math.min(totalSegments - 1, Math.floor(progress * totalSegments))
+  const segmentStart = activeSegment / totalSegments
+  const segmentEnd = (activeSegment + 1) / totalSegments
+  const segmentProgress = Math.max(0, Math.min(1, (progress - segmentStart) / (segmentEnd - segmentStart)))
 
   return (
-    <section className="section process-new">
-      <div className="container">
-        <div className="process-head">
-          <div className="section-eyebrow">
-            {t('process.eyebrow')}
+    <section ref={sectionRef} className="process-peel-section">
+      <div className="process-sticky-container">
+        <div className="container">
+          <div className="process-head">
+            <div className="section-eyebrow">{t('process.eyebrow')}</div>
+            <h2 className="section-title">
+              {t('process.title')} <span style={{ color: 'var(--accent)' }}>{t('process.titleAccent')}</span>
+            </h2>
+            <p className="section-sub">{t('process.sub')}</p>
           </div>
-          <h2 className="section-title">
-            {t('process.title')} <span style={{ color: 'var(--accent)' }}>{t('process.titleAccent')}</span>
-          </h2>
-          <p className="section-sub">{t('process.sub')}</p>
-        </div>
 
-        <div className="process-stack">
-          {[...steps].reverse().map((step, ri) => {
-            const i = steps.length - 1 - ri
-            const isActive = i === active
-            return (
-              <div
-                key={step.num}
-                className={`stack-card${isActive ? ' stack-card-active' : ''}`}
-                style={{
-                  '--card-color': step.color,
-                  '--card-bg': step.bgColor,
-                } as React.CSSProperties}
-                onClick={() => setActive(i)}
-              >
-                <div className="stack-card-header">
-                  <div className="stack-badge" style={{ background: step.color }}>
-                    {step.num}
+          <div className="peel-stack-wrapper">
+            {CARDS.map((card, idx) => {
+              // Strict Z-Index: Card 0 is 100, Card 1 is 90, Card 2 is 80, Card 3 is 70
+              const zIndex = 100 - idx * 10
+              const isPeeled = idx < activeSegment
+              const isActive = idx === activeSegment
+
+              if (isPeeled) {
+                // Completely peeled off -> hidden above stack
+                return (
+                  <div
+                    key={card.id}
+                    className={`peel-card-item ${card.cls}`}
+                    style={{
+                      zIndex,
+                      opacity: 0,
+                      visibility: 'hidden',
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    <img src={card.img} alt={card.alt} className="peel-card-img" />
                   </div>
-                  <div className="stack-icon" style={{ color: step.color, background: step.bgColor }}>
-                    <step.icon width="18" height="18" />
+                )
+              }
+
+              if (isActive) {
+                // Active card peeling off upwards
+                const p = segmentProgress
+                const ease = p * p * (3 - 2 * p)
+                const translateY = -ease * 125
+                const rotateDeg = -ease * 3
+                const scale = 1 - ease * 0.04
+                const opacity = Math.max(0, 1 - ease * 1.15)
+
+                return (
+                  <div
+                    key={card.id}
+                    className={`peel-card-item ${card.cls}`}
+                    style={{
+                      zIndex,
+                      opacity,
+                      visibility: opacity <= 0.01 ? 'hidden' : 'visible',
+                      transform: `translate3d(0, ${translateY.toFixed(2)}%, 0) rotate(${rotateDeg.toFixed(2)}deg) scale(${scale.toFixed(4)})`,
+                    }}
+                  >
+                    <img src={card.img} alt={card.alt} className="peel-card-img" />
                   </div>
-                  <div className="stack-title">{step.title}</div>
-                  <div className="stack-arrow">
-                    <Icon.ArrowRight width="16" height="16" />
-                  </div>
+                )
+              }
+
+              // Waiting cards in stack below
+              const stackIndex = idx - activeSegment
+              const effectivePos = stackIndex - segmentProgress
+              const translateY = effectivePos * 20
+              const scale = 1 - effectivePos * 0.025
+
+              return (
+                <div
+                  key={card.id}
+                  className={`peel-card-item ${card.cls}`}
+                  style={{
+                    zIndex,
+                    opacity: 1,
+                    visibility: 'visible',
+                    transform: `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`,
+                  }}
+                >
+                  <img src={card.img} alt={card.alt} className="peel-card-img" />
                 </div>
-
-                {isActive && (
-                  <div className="stack-card-body">
-                    <div className="stack-divider" style={{ background: step.color }} />
-                    <div className="stack-content">
-                      <div className="stack-text">
-                        <p className="stack-desc">{step.desc}</p>
-                        <div className="stack-detail">
-                          <Icon.Check width="14" height="14" style={{ color: step.color }} />
-                          {step.detail}
-                        </div>
-                      </div>
-                      <div
-                        className="stack-image"
-                        style={{ background: `linear-gradient(135deg, ${step.bgColor}, ${step.color}33)` }}
-                      >
-                        <div className="stack-image-placeholder">
-                          <step.icon width="40" height="40" style={{ color: step.color, opacity: 0.5 }} />
-                          <span style={{ color: step.color, fontSize: 12, opacity: 0.7, marginTop: 8 }}>
-                            4MOBILES
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>

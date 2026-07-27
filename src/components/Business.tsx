@@ -35,7 +35,7 @@ export function Business() {
     return () => io.disconnect()
   }, [])
 
-  const repairs = useCountUp(10000, visible)
+  const repairs = useCountUp(150, visible)
 
   const features = [
     { icon: Icon.Wrench, title: t('business.features.0.title'), sub: t('business.features.0.sub') },
@@ -102,7 +102,7 @@ export function Business() {
                 </div>
                 <div>
                   <div className="biz-counter-num">
-                    {repairs >= 10000 ? '10.000+' : repairs.toLocaleString(locale)}
+                    {repairs >= 150 ? '150+' : repairs.toLocaleString(locale)}
                   </div>
                   <div className="biz-counter-label">{t('business.counterLabel')}</div>
                   <div className="biz-counter-sub">{t('business.counterSub')}</div>

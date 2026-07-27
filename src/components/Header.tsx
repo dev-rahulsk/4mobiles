@@ -12,7 +12,7 @@ export function TopBar() {
           <span>{t('topbar.address')}</span>
         </a>
         <a href="#" className="topbar-item topbar-rating">
-          <span className="g-mark">G</span>
+          <Icon.Google width="18" height="18" />
           <span className="stars">
             {[0,1,2,3,4].map(i => <Icon.Star key={i} width="11" height="11" />)}
           </span>
@@ -81,14 +81,14 @@ export function Nav() {
   const navItems = [
     {
       label: t('nav.repairs'),
-      href: '/',
+      href: '/reparatie',
       sub: [
-        { label: 'iPhone', icon: '📱', href: '/' },
-        { label: 'Samsung', icon: '📱', href: '/' },
-        { label: 'iPad', icon: '📟', href: '/' },
-        { label: 'OnePlus', icon: '📱', href: '/' },
-        { label: 'Xiaomi', icon: '📱', href: '/' },
-        { label: t('nav.otherBrands'), icon: '🔧', href: '/' },
+        { label: 'iPhone', icon: '📱', href: '/reparatie/iphone' },
+        { label: 'Samsung', icon: '📱', href: '/reparatie/samsung' },
+        { label: 'iPad', icon: '📟', href: '/reparatie/ipad' },
+        { label: 'OnePlus', icon: '📱', href: '/reparatie/oneplus' },
+        { label: 'Xiaomi', icon: '📱', href: '/reparatie/xiaomi' },
+        { label: t('nav.otherBrands'), icon: '🔧', href: '/reparatie' },
       ],
     },
     { label: t('nav.products'), href: '/producten' },
@@ -206,7 +206,7 @@ export function Nav() {
             {t('topbar.phone')}
           </a>
           <div className="nav-overlay-rating">
-            <span className="g-mark">G</span>
+            <Icon.Google width="18" height="18" />
             <div className="stars" style={{ display: 'inline-flex', gap: 2, color: '#fbbf24' }}>
               {[0,1,2,3,4].map(i => <Icon.Star key={i} width="13" height="13" />)}
             </div>

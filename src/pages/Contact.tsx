@@ -43,22 +43,20 @@ export function Contact() {
 
   const CONTACT_METHODS = [
     {
-      icon: <Icon.WhatsApp width="24" height="24" />,
+      icon: <Icon.WhatsApp width="22" height="22" />,
       label: 'WhatsApp',
       value: '+31 6 12 34 56 78',
       href: 'https://wa.me/31612345678',
-      color: '#25D366',
     },
     {
-      icon: <Icon.Phone width="24" height="24" />,
+      icon: <Icon.Phone width="22" height="22" />,
       label: t('contact.callUs'),
       value: '+31 174 123 456',
       href: 'tel:+31174123456',
-      color: 'var(--accent)',
     },
     {
       icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
           <polyline points="22,6 12,13 2,6"/>
         </svg>
@@ -66,17 +64,16 @@ export function Contact() {
       label: t('contact.email'),
       value: 'info@4mobiles.nl',
       href: 'mailto:info@4mobiles.nl',
-      color: 'var(--accent)',
     },
   ]
 
   const ACCESSORIES = [
-    { icon: <Icon.Shield width="16" height="16" />, label: t('contact.accItem1') },
-    { icon: <Icon.Phone width="16" height="16" />, label: t('contact.accItem2') },
-    { icon: <Icon.Battery width="16" height="16" />, label: t('contact.accItem3') },
-    { icon: <Icon.Euro width="16" height="16" />, label: t('contact.accItem4') },
-    { icon: <Icon.Battery width="16" height="16" />, label: t('contact.accItem5') },
-    { icon: <Icon.Park width="16" height="16" />, label: t('contact.accItem6') },
+    { icon: <Icon.Shield width="18" height="18" />, label: 'Hoesjes' },
+    { icon: <Icon.Phone width="18" height="18" />, label: 'Screenprotectors' },
+    { icon: <Icon.Battery width="18" height="18" />, label: 'Opladers' },
+    { icon: <Icon.Zap width="18" height="18" />, label: 'Kabels' },
+    { icon: <Icon.Battery width="18" height="18" />, label: 'Powerbanks' },
+    { icon: <Icon.Park width="18" height="18" />, label: 'Autohouders' },
   ]
 
   function copyAddress() {
@@ -90,10 +87,15 @@ export function Contact() {
     <Layout>
       {/* Hero */}
       <section className="ct-hero">
-        <div className="ct-hero-media" aria-hidden="true" />
+        <div className="ct-hero-bg" aria-hidden="true" />
         <div className="container ct-hero-inner">
-          <span className="ct-eyebrow">{t('contact.eyebrow')}</span>
-          <h1 className="ct-hero-title">{t('contact.title')} <span className="ct-green">4MOBILES</span></h1>
+          <span className="ct-eyebrow">CONTACT</span>
+          <h1 className="ct-hero-title">
+            <span className="ct-title-line1">Contact met</span>
+            <span className="ct-title-line2">
+              <span className="ct-green-4">4</span>MOBILES
+            </span>
+          </h1>
           <div className="ct-hero-chips">
             <span className={`ct-open-badge${openStatus.open ? ' ct-open-badge--open' : ' ct-open-badge--closed'}`}>
               <span className="ct-open-dot" />
@@ -107,17 +109,17 @@ export function Contact() {
       <section className="ct-methods-section">
         <div className="container">
           <h2 className="ct-section-title">{t('contact.methodsTitle')}</h2>
-          <div className="ct-methods">
+          <div className="ct-methods-stack">
             {CONTACT_METHODS.map(m => (
-              <a key={m.label} href={m.href} className="ct-method" target={m.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
-                <span className="ct-method-icon" style={{ color: m.color }}>{m.icon}</span>
+              <a key={m.label} href={m.href} className="ct-method-card" target={m.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+                <div className="ct-method-icon-box">
+                  {m.icon}
+                </div>
                 <div className="ct-method-info">
                   <span className="ct-method-label">{m.label}</span>
                   <span className="ct-method-value">{m.value}</span>
                 </div>
-                <svg className="ct-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="9 18 15 12 9 6"/>
-                </svg>
+                <Icon.ChevronRight width="20" height="20" className="ct-chevron" />
               </a>
             ))}
           </div>
@@ -128,7 +130,7 @@ export function Contact() {
       <section className="ct-info-section">
         <div className="container">
           <div className="ct-info-grid">
-            {/* Hours */}
+            {/* Hours Card */}
             <div className="ct-hours-card">
               <div className="ct-card-header">
                 <Icon.Clock width="20" height="20" />
@@ -143,34 +145,40 @@ export function Contact() {
                     <li key={i} className={`ct-hour-row${isToday ? ' ct-today' : ''}`}>
                       <span className="ct-day">
                         {day}
-                        {isToday && <span className="ct-today-tag">{t('contact.today')}</span>}
                       </span>
-                      <span className={`ct-time${time === t('contact.closed') ? ' ct-closed' : ''}`}>{time}</span>
+                      <div className="ct-time-box">
+                        {isToday && <span className="ct-today-tag">{t('contact.today')}</span>}
+                        <span className={`ct-time${time === t('contact.closed') ? ' ct-closed' : ''}`}>{time}</span>
+                      </div>
                     </li>
                   )
                 })}
               </ul>
 
-              <p className="ct-hours-note">{t('contact.lastSunday')}</p>
+              <p className="ct-hours-note">Elke laatste zondag van de maand geopend</p>
 
-              {/* Parking card */}
+              {/* Parking Card (Light Blue Styling) */}
               <div className="ct-parking-card">
-                <span className="ct-parking-icon"><Icon.Park width="20" height="20" /></span>
+                <span className="ct-parking-icon">
+                  <Icon.Park width="20" height="20" />
+                </span>
                 <div>
-                  <p className="ct-parking-title">{t('contact.parkingTitle')}</p>
-                  <p className="ct-parking-sub">{t('contact.parkingSub')}</p>
+                  <p className="ct-parking-title">Gratis parkeren</p>
+                  <p className="ct-parking-sub">U kunt gratis voor de deur parkeren.</p>
                 </div>
               </div>
             </div>
 
-            {/* Map */}
+            {/* Location / Map Card */}
             <div className="ct-map-card">
               <div className="ct-card-header">
                 <Icon.Pin width="20" height="20" />
                 <h3>{t('contact.mapTitle')}</h3>
               </div>
               <div className="ct-address-row">
-                <p className="ct-address">Molenstraat 2<br />2671 BE Naaldwijk</p>
+                <div>
+                  <p className="ct-address">Molenstraat 2<br />2671 BE Naaldwijk</p>
+                </div>
                 <button className="ct-copy-btn" onClick={copyAddress} title="Adres kopiëren">
                   {copied ? <Icon.Check width="16" height="16" /> : (
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -180,6 +188,7 @@ export function Contact() {
                   {copied ? t('contact.copied') : t('contact.copyAddress')}
                 </button>
               </div>
+
               <div className="ct-map-embed">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458.0!2d4.2!3d51.99!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b1!2sMolenstraat%202%2C%20Naaldwijk!5e0!3m2!1snl!2snl!4v1"
@@ -192,32 +201,38 @@ export function Contact() {
                   title={t('contact.mapIframeTitle')}
                 />
               </div>
+
               <div className="ct-map-ctas">
-                <a href="https://maps.google.com/?q=Molenstraat+2+Naaldwijk" target="_blank" rel="noopener noreferrer" className="btn-accent ct-btn">
-                  <Icon.MapLink width="16" height="16" />{t('contact.getDirections')}
+                <a href="https://maps.google.com/?q=Molenstraat+2+Naaldwijk" target="_blank" rel="noopener noreferrer" className="ct-btn-primary">
+                  <Icon.MapLink width="18" height="18" /> Route krijgen
                 </a>
-                <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="ct-btn ct-btn-wa">
-                  <Icon.WhatsApp width="16" height="16" />{t('contact.whatsappUs')}
+                <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="ct-btn-dark">
+                  <Icon.WhatsApp width="18" height="18" /> WhatsApp ons
                 </a>
               </div>
-              <p className="ct-map-note">{t('contact.noAppointment')}</p>
+              <p className="ct-map-note">Geen afspraak nodig — loop gewoon binnen!</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Accessories / shop CTA */}
-      <section className="ct-accessories">
+      {/* Accessories / Visit Store Section */}
+      <section className="ct-accessories-section">
         <div className="container">
-          <div className="ct-acc-inner">
-            <div className="ct-acc-text">
-              <h2 className="ct-acc-title">{t('contact.accTitle')}</h2>
-              <p className="ct-acc-sub">{t('contact.accSub')}</p>
-              <div className="ct-acc-items">
-                {ACCESSORIES.map(item => (
-                  <span key={item.label}>{item.icon} {item.label}</span>
-                ))}
-              </div>
+          <div className="ct-acc-card">
+            <div className="ct-acc-header">
+              <h2 className="ct-acc-title">Bezoek onze winkel voor accessoires</h2>
+              <p className="ct-acc-sub">
+                Naast reparaties vindt u bij 4MOBILES ook telefoonhoesjes, screenprotectors, kabels en meer. Kom gerust even langs!
+              </p>
+            </div>
+            <div className="ct-acc-grid">
+              {ACCESSORIES.map((item, idx) => (
+                <div key={idx} className="ct-acc-chip">
+                  <span className="ct-acc-chip-icon">{item.icon}</span>
+                  <span className="ct-acc-chip-label">{item.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

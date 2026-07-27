@@ -39,9 +39,14 @@ export function Reviews() {
   const [slide, setSlide] = useState(0)
   const [visible, setVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
-  const startX = useRef(0)
-  const count = useCountUp(10000, visible)
 
+  const [dragOffset, setDragOffset] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const startX = useRef(0)
+  const startY = useRef(0)
+  const isHorizontalSwipe = useRef<boolean | null>(null)
+
+  const count = useCountUp(10000, visible)
   const locale = i18n.language === 'nl' ? 'nl-NL' : 'en-US'
 
   useEffect(() => {
@@ -55,11 +60,81 @@ export function Reviews() {
   const prev = () => setSlide(s => Math.max(0, s - 1))
   const next = () => setSlide(s => Math.min(REVIEW_META.length - 1, s + 1))
 
-  const onPointerDown = (e: React.PointerEvent) => { startX.current = e.clientX }
-  const onPointerUp = (e: React.PointerEvent) => {
+  // Touch Handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startX.current = e.touches[0].clientX
+    startY.current = e.touches[0].clientY
+    isHorizontalSwipe.current = null
+    setIsDragging(true)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return
+    const dx = e.touches[0].clientX - startX.current
+    const dy = e.touches[0].clientY - startY.current
+
+    if (isHorizontalSwipe.current === null) {
+      isHorizontalSwipe.current = Math.abs(dx) > Math.abs(dy)
+    }
+
+    if (isHorizontalSwipe.current) {
+      setDragOffset(dx)
+    }
+  }
+
+  const handleTouchEnd = () => {
+    if (isDragging && isHorizontalSwipe.current) {
+      if (dragOffset < -40) {
+        next()
+      } else if (dragOffset > 40) {
+        prev()
+      }
+    }
+    setDragOffset(0)
+    setIsDragging(false)
+    isHorizontalSwipe.current = null
+  }
+
+  // Mouse Handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    startX.current = e.clientX
+    setIsDragging(true)
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return
     const dx = e.clientX - startX.current
-    if (dx > 40) prev()
-    else if (dx < -40) next()
+    setDragOffset(dx)
+  }
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isDragging) return
+    const dx = e.clientX - startX.current
+    if (Math.abs(dx) < 5) {
+      // Direct click on left/right side of review
+      const rect = e.currentTarget.getBoundingClientRect()
+      const clickX = e.clientX - rect.left
+      if (clickX < rect.width * 0.45) {
+        prev()
+      } else {
+        next()
+      }
+    } else if (dx < -40) {
+      next()
+    } else if (dx > 40) {
+      prev()
+    }
+    setDragOffset(0)
+    setIsDragging(false)
+  }
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      if (dragOffset < -40) next()
+      else if (dragOffset > 40) prev()
+    }
+    setDragOffset(0)
+    setIsDragging(false)
   }
 
   return (
@@ -73,7 +148,7 @@ export function Reviews() {
           </h2>
           <p className="rv-sub">{t('reviews.sub')}</p>
           <div className="rv-rating-badge">
-            <span className="g-mark">G</span>
+            <Icon.Google width="18" height="18" />
             <div className="rv-stars">
               {[0,1,2,3,4].map(i => <Icon.Star key={i} width="16" height="16" />)}
             </div>
@@ -83,35 +158,63 @@ export function Reviews() {
           </div>
         </div>
 
-        <div
-          className="rv-slider"
-          onPointerDown={onPointerDown}
-          onPointerUp={onPointerUp}
-        >
-          <div
-            className="rv-track"
-            style={{ transform: `translateX(calc(-${slide * 100}% - ${slide * 16}px))` }}
+        <div className="rv-slider-wrapper">
+          <button
+            className="rv-nav-btn rv-nav-prev"
+            onClick={prev}
+            disabled={slide === 0}
+            aria-label="Previous review"
           >
-            {REVIEW_META.map((r, i) => (
-              <article key={i} className="rv-card">
-                <div className="rv-card-stars">
-                  {[0,1,2,3,4].map(j => <Icon.Star key={j} width="14" height="14" />)}
-                </div>
-                <p className="rv-card-text">{t(`reviews.items.${i}.text`)}</p>
-                <div className="rv-card-foot">
-                  <div className="rv-avatar" style={{ background: r.color }}>{r.initial}</div>
-                  <div>
-                    <div className="rv-name">{r.name}</div>
-                    <div className="rv-city">{r.city}</div>
+            <Icon.ChevronLeft width="20" height="20" />
+          </button>
+
+          <div
+            className="rv-slider"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div
+              className="rv-track"
+              style={{
+                transform: `translateX(calc(-${slide} * (100% + var(--slide-gap)) + ${dragOffset}px))`,
+                transition: isDragging ? 'none' : 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              {REVIEW_META.map((r, i) => (
+                <article key={i} className="rv-card">
+                  <div className="rv-card-stars">
+                    {[0,1,2,3,4].map(j => <Icon.Star key={j} width="14" height="14" />)}
                   </div>
-                  <div className="rv-verified">
-                    <span className="g-mark sm">G</span>
-                    <span>{t('reviews.verified')}</span>
+                  <p className="rv-card-text">{t(`reviews.items.${i}.text`)}</p>
+                  <div className="rv-card-foot">
+                    <div className="rv-avatar" style={{ background: r.color }}>{r.initial}</div>
+                    <div>
+                      <div className="rv-name">{r.name}</div>
+                      <div className="rv-city">{r.city}</div>
+                    </div>
+                    <div className="rv-verified">
+                      <Icon.Google width="14" height="14" />
+                      <span>{t('reviews.verified')}</span>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
+
+          <button
+            className="rv-nav-btn rv-nav-next"
+            onClick={next}
+            disabled={slide === REVIEW_META.length - 1}
+            aria-label="Next review"
+          >
+            <Icon.ChevronRight width="20" height="20" />
+          </button>
         </div>
 
         <div className="rv-dots">
@@ -127,7 +230,7 @@ export function Reviews() {
 
         <div className="rv-cta-row">
           <a href="/reviews" className="btn btn-outline">
-            <span className="g-mark">G</span>
+            <Icon.Google width="18" height="18" />
             {t('reviews.viewAll')}
             <Icon.ArrowRight width="14" height="14" />
           </a>

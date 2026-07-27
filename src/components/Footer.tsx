@@ -30,7 +30,7 @@ export function Footer() {
           <Logo />
           <p className="footer-new-tag">{t('footer.logoTag')}</p>
           <div className="footer-new-rating">
-            <span className="g-mark">G</span>
+            <Icon.Google width="18" height="18" />
             <div className="footer-stars">
               {[0,1,2,3,4].map(i => <Icon.Star key={i} width="12" height="12" />)}
             </div>

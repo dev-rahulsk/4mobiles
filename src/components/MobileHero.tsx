@@ -14,9 +14,9 @@ const ease = (t: number) => t * t * (3 - 2 * t)
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v))
 const mapRange = (p: number, a: number, b: number) => clamp01((p - a) / (b - a))
 
-interface MobileHeroProps { accent: string }
+interface MobileHeroProps { accent?: string }
 
-export function MobileHero({ accent }: MobileHeroProps) {
+export function MobileHero({ accent: _accent }: MobileHeroProps) {
   const { t } = useTranslation()
   const wrapRef = useRef<HTMLElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
@@ -104,9 +104,6 @@ export function MobileHero({ accent }: MobileHeroProps) {
   const labelsFade = 1 - ease(mapRange(progress, 0.42, 0.54))
   const labelsOpacity = Math.min(label1, labelsFade)
 
-  const badge1 = ease(mapRange(progress, 0.56, 0.70))
-  const badge2 = ease(mapRange(progress, 0.62, 0.76))
-
   const dismissAnnouncement = () => {
     try { sessionStorage.setItem('ann-v1', '1') } catch { /* ignore */ }
     setAnnouncementVisible(false)
@@ -162,27 +159,6 @@ export function MobileHero({ accent }: MobileHeroProps) {
                 </div>
               )}
 
-              {badge1 > 0.01 && (
-                <div className="mhero-badges">
-                  <div
-                    className="mhero-badge mhero-badge-stars"
-                    style={{ opacity: badge1, transform: `translateY(${(1 - badge1) * 16}px) scale(${0.9 + badge1 * 0.1})` }}
-                  >
-                    <Icon.Star width="16" height="16" style={{ color: '#fbbf24' }} />
-                    <span><b>4.8</b> {t('mhero.badge1', { count: '/ 5' })}</span>
-                  </div>
-                  <div
-                    className="mhero-badge mhero-badge-count"
-                    style={{ opacity: badge2, transform: `translateY(${(1 - badge2) * 16}px) scale(${0.9 + badge2 * 0.1})` }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="9" cy="8" r="3.5" /><circle cx="17" cy="9" r="2.5" />
-                      <path d="M3 19c0-3 2.5-5 6-5s6 2 6 5M15 18c0-2 1.5-4 4-4s3 1.5 3 3.5" />
-                    </svg>
-                    <span><b>10.000+</b> {t('mhero.badge2', { count: '' }).replace('+ ', '')}</span>
-                  </div>
-                </div>
-              )}
             </div>
 
             <div ref={ctaRef} className="mhero-cta-wrap">
@@ -195,20 +171,6 @@ export function MobileHero({ accent }: MobileHeroProps) {
                 <span><Icon.Check width="14" height="14" /> {t('mhero.pill1')}</span>
                 <span><Icon.Check width="14" height="14" /> {t('mhero.pill2')}</span>
                 <span><Icon.Check width="14" height="14" /> {t('mhero.pill3')}</span>
-              </div>
-              <div className="mhero-reviews">
-                <div className="mhero-review">
-                  <Icon.Star width="18" height="18" style={{ color: '#fbbf24' }} />
-                  <span>{t('mhero.review1', { rating: '4.8', count: 200 })}</span>
-                </div>
-                <div className="mhero-divider" />
-                <div className="mhero-review">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="9" cy="8" r="3.5" /><circle cx="17" cy="9" r="2.5" />
-                    <path d="M3 19c0-3 2.5-5 6-5s6 2 6 5M15 18c0-2 1.5-4 4-4s3 1.5 3 3.5" />
-                  </svg>
-                  <span>{t('mhero.review2', { count: '10.000' })}</span>
-                </div>
               </div>
             </div>
 
