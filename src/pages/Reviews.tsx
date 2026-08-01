@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 
-const FEATURED_INITIALS = ['H', 'S', 'D']
+const FEATURED_INITIALS = ['H', 'S']
 const ALL_INITIALS = ['J', 'L', 'R', 'E', 'T', 'M', 'K', 'A', 'P', 'V']
+const TRUST_ICONS = [Icon.Shield, Icon.Users, Icon.Wrench, Icon.User]
 
 function Stars({ n }: { n: number }) {
   return (
@@ -27,64 +28,43 @@ const GoogleLogo = ({ size = 32 }: { size?: number }) => (
 
 export function Reviews() {
   const { t } = useTranslation()
-  const [slide, setSlide] = useState(0)
-  const [filter, setFilter] = useState(t('reviewsPage.filterAll'))
+  const [filterKey, setFilterKey] = useState<'all' | 'repairs' | 'accessories'>('all')
   const [visibleReviews, setVisibleReviews] = useState(4)
-  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [stickyCtaVisible, setStickyCtaVisible] = useState(false)
 
   const filterAll = t('reviewsPage.filterAll')
   const filterRepairs = t('reviewsPage.filterRepairs')
   const filterAccessoires = t('reviewsPage.filterAccessoires')
-  const FILTERS = [filterAll, filterRepairs, filterAccessoires]
+  const FILTERS: { key: 'all' | 'repairs' | 'accessories'; label: string }[] = [
+    { key: 'all', label: filterAll },
+    { key: 'repairs', label: filterRepairs },
+    { key: 'accessories', label: filterAccessoires },
+  ]
 
   const featured = t('reviewsPage.featured', { returnObjects: true }) as { name: string; date: string; text: string }[]
   const allReviews = t('reviewsPage.allReviews', { returnObjects: true }) as { name: string; age: string; tag: string; text: string }[]
+  const trustItems = t('reviewsPage.trust', { returnObjects: true }) as { val: string; title: string; sub: string }[]
+  const whyChooseSections = t('reviewsPage.whyChooseSections', { returnObjects: true }) as { h3: string; body: string }[]
 
-  const TRUST_ITEMS = [
-    {
-      icon: Icon.Shield,
-      val: "12+",
-      label: "jaar ervaring",
-      sub: "Meer dan 150.000 klanten geholpen"
-    },
-    {
-      icon: Icon.Wrench,
-      val: "10.000+",
-      label: "reparaties",
-      sub: "Snel en vakkundig uitgevoerd"
-    },
-    {
-      icon: Icon.Clock,
-      val: "60",
-      label: "minuten klaar",
-      sub: "Vaak gerepareerd terwijl je wacht"
-    },
-    {
-      icon: Icon.Star,
-      val: "4.8/5",
-      label: "Google reviews",
-      sub: "Gebaseerd op 487 reviews"
-    }
-  ]
-
-  const shown = filter === filterAll ? allReviews : allReviews.filter(r => r.tag === filter)
+  const activeTagLabel = filterKey === 'repairs' ? filterRepairs : filterKey === 'accessories' ? filterAccessoires : null
+  const shown = activeTagLabel === null ? allReviews : allReviews.filter(r => r.tag === activeTagLabel)
   const visibleShown = shown.slice(0, visibleReviews)
 
-  const setActiveFilter = (nextFilter: string) => {
-    setFilter(nextFilter)
+  const setActiveFilter = (nextKey: 'all' | 'repairs' | 'accessories') => {
+    setFilterKey(nextKey)
     setVisibleReviews(4)
   }
 
-  const prevFeatured = () => setSlide(s => (s === 0 ? featured.length - 1 : s - 1))
-  const nextFeatured = () => setSlide(s => (s === featured.length - 1 ? 0 : s + 1))
-
-  const onFeaturedTouchEnd = (clientX: number) => {
-    if (touchStart === null) return
-    const dx = clientX - touchStart
-    if (dx > 36) prevFeatured()
-    if (dx < -36) nextFeatured()
-    setTouchStart(null)
-  }
+  useEffect(() => {
+    function onScroll() {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = docHeight > 0 ? window.scrollY / docHeight : 0
+      setStickyCtaVisible(progress > 0.3)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <Layout>
@@ -94,33 +74,32 @@ export function Reviews() {
           <div className="rv2-hero-grid">
             {/* Left Column: Eyebrow, Title, Subtitle, Dual Glass CTAs */}
             <div className="rv2-hero-left">
-              <span className="rv2-eyebrow">GOOGLE REVIEWS</span>
-              
+              <span className="rv2-eyebrow">{t('reviewsPage.eyebrow')}</span>
+
               <h1 className="rv2-hero-title">
-                Wat klanten <br />
-                zeggen over <br />
-                <span className="rv2-green">4Mobiles</span>
+                {t('reviewsPage.heroTitle')} <br />
+                <span className="rv2-green">{t('reviewsPage.heroTitleAccent')}</span>
               </h1>
-              
+
               <p className="rv2-hero-sub">
-                Echte ervaringen van klanten die hun telefoon, tablet of accessoire bij ons hebben laten repareren of gekocht.
+                {t('reviewsPage.heroSub')}
               </p>
 
               {/* Dual Glass CTAs */}
               <div className="rv2-hero-ctas">
                 <a href="/reparatie" className="rv2-btn rv2-btn-primary">
                   <Icon.Calendar width="18" height="18" />
-                  <span>Plan je reparatie</span>
+                  <span>{t('reviewsPage.planRepair')}</span>
                   <Icon.ArrowRight width="16" height="16" className="rv2-arrow-icon" />
                 </a>
-                <a 
-                  href="https://g.page/4mobiles/review" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://g.page/4mobiles/review"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="rv2-btn rv2-btn-secondary"
                 >
                   <Icon.Star width="18" height="18" />
-                  <span>Schrijf review</span>
+                  <span>{t('reviewsPage.writeReview')}</span>
                   <Icon.ArrowRight width="16" height="16" className="rv2-arrow-icon" />
                 </a>
               </div>
@@ -140,20 +119,20 @@ export function Reviews() {
                 <div className="rv2-rating-stars-line">
                   <Stars n={5} />
                 </div>
-                <p className="rv2-rating-subtext">Gebaseerd op 487 reviews</p>
+                <p className="rv2-rating-subtext">{t('reviewsPage.heroRatingCount')}</p>
               </div>
 
               {/* Featured Quote Glass Card */}
               <div className="rv2-glass-card rv2-quote-card-hero">
                 <div className="rv2-quote-mark">“</div>
                 <p className="rv2-quote-text">
-                  "Snel geholpen en mijn scherm was dezelfde dag nog gerepareerd."
+                  "{t('reviewsPage.heroQuoteText')}"
                 </p>
                 <div className="rv2-quote-author">
                   <div className="rv2-quote-avatar">H</div>
                   <div>
                     <strong className="rv2-author-name">Hilde de Jong</strong>
-                    <span className="rv2-author-sub">10 april 2024</span>
+                    <span className="rv2-author-sub">{t('reviewsPage.heroQuoteDate')}</span>
                   </div>
                 </div>
               </div>
@@ -162,8 +141,8 @@ export function Reviews() {
 
           {/* Hero Bottom Trust Cards Grid (Matching hero_render_1.png) */}
           <div className="rv2-hero-trust-row">
-            {TRUST_ITEMS.map((item, index) => {
-              const Ic = item.icon
+            {trustItems.map((item, index) => {
+              const Ic = TRUST_ICONS[index] || Icon.Star
               return (
                 <div key={index} className="rv2-trust-glass-card">
                   <div className="rv2-trust-icon-circle">
@@ -171,8 +150,8 @@ export function Reviews() {
                   </div>
                   <div className="rv2-trust-content">
                     <div className="rv2-trust-headline">
-                      <strong className="rv2-trust-val">{item.val}</strong>
-                      <span className="rv2-trust-label">{item.label}</span>
+                      {item.val && <strong className="rv2-trust-val">{item.val}</strong>}
+                      <span className="rv2-trust-label">{item.title}</span>
                     </div>
                     <p className="rv2-trust-subtext">{item.sub}</p>
                   </div>
@@ -187,39 +166,27 @@ export function Reviews() {
       <section className="rv2-body">
         <div className="container">
           <div className="rv2-body-grid">
-            {/* Featured Review Carousel */}
+            {/* Featured Reviews — static, highlighted set */}
             <div className="rv2-featured">
               <div className="rv2-featured-header">
                 <h2 className="rv2-section-title">{t('reviewsPage.featuredTitle')}</h2>
               </div>
-              <div
-                className="rv2-featured-card"
-                onPointerDown={e => setTouchStart(e.clientX)}
-                onPointerUp={e => onFeaturedTouchEnd(e.clientX)}
-                onTouchStart={e => setTouchStart(e.touches[0].clientX)}
-                onTouchEnd={e => onFeaturedTouchEnd(e.changedTouches[0].clientX)}
-              >
-                <div className="rv2-card-head">
-                  <Stars n={5} />
-                  <GoogleLogo size={22} />
-                </div>
-                <p className="rv2-card-text">"{featured[slide]?.text}"</p>
-                <div className="rv2-card-author">
-                  <span className="rv2-avatar">{FEATURED_INITIALS[slide]}</span>
-                  <div>
-                    <p className="rv2-author-name">{featured[slide]?.name}</p>
-                    <p className="rv2-author-date">{featured[slide]?.date}</p>
+              <div className="rv2-featured-list">
+                {featured.map((r, i) => (
+                  <div key={i} className="rv2-featured-card">
+                    <div className="rv2-card-head">
+                      <Stars n={5} />
+                      <GoogleLogo size={22} />
+                    </div>
+                    <p className="rv2-card-text">"{r.text}"</p>
+                    <div className="rv2-card-author">
+                      <span className="rv2-avatar">{FEATURED_INITIALS[i]}</span>
+                      <div>
+                        <p className="rv2-author-name">{r.name}</p>
+                        <p className="rv2-author-date">{r.date}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="rv2-dots">
-                {featured.map((_, i) => (
-                  <button 
-                    key={i} 
-                    className={`rv2-dot${i === slide ? ' active' : ''}`} 
-                    onClick={() => setSlide(i)} 
-                    aria-label={`Review slide ${i + 1}`} 
-                  />
                 ))}
               </div>
             </div>
@@ -228,17 +195,18 @@ export function Reviews() {
             <div className="rv2-all" id="alle">
               <div className="rv2-all-header">
                 <h2 className="rv2-section-title">{t('reviewsPage.allTitle')}</h2>
-                <div className="rv2-filters">
-                  {FILTERS.map(f => (
-                    <button 
-                      key={f} 
-                      className={`rv2-filter${filter === f ? ' active' : ''}`} 
-                      onClick={() => setActiveFilter(f)}
-                    >
-                      {f}
-                    </button>
-                  ))}
-                </div>
+              </div>
+
+              <div className="rv2-filters">
+                {FILTERS.map(f => (
+                  <button
+                    key={f.key}
+                    className={`rv2-filter${filterKey === f.key ? ' active' : ''}`}
+                    onClick={() => setActiveFilter(f.key)}
+                  >
+                    {f.label}
+                  </button>
+                ))}
               </div>
 
               <div className="rv2-all-list">
@@ -274,43 +242,31 @@ export function Reviews() {
         </div>
       </section>
 
-      {/* Bottom Light-Green Conversion CTA Section */}
-      <section className="rv2-cta-section">
+      {/* Why choose 4Mobiles — long-form SEO content */}
+      <section className="rv2-why-section">
         <div className="container">
-          <div className="rv2-cta-card">
-            <div className="rv2-cta-head">
-              <h2 className="rv2-cta-title">{t('reviewsPage.ctaTitle')}</h2>
-              <p className="rv2-cta-sub">{t('reviewsPage.ctaSub')}</p>
-            </div>
-            
-            <div className="rv2-cta-action">
-              <a href="/reparatie" className="rv2-btn rv2-btn-primary rv2-btn-lg">
-                <Icon.Wrench width="18" height="18" />
-                {t('reviewsPage.planRepair')}
-              </a>
-            </div>
+          <h2 className="rv2-why-title">{t('reviewsPage.whyChooseTitle')}</h2>
+          <p className="rv2-why-intro">{t('reviewsPage.whyChooseIntro')}</p>
 
-            <div className="rv2-cta-trust-bar">
-              <div className="rv2-cta-trust-item">
-                <Icon.Clock width="16" height="16" />
-                <span>Binnen 60 min klaar</span>
-              </div>
-              <div className="rv2-cta-trust-item">
-                <Icon.Shield width="16" height="16" />
-                <span>90 dagen garantie</span>
-              </div>
-              <div className="rv2-cta-trust-item">
-                <Icon.Check width="16" height="16" />
-                <span>Originele kwaliteit</span>
-              </div>
-              <div className="rv2-cta-trust-item">
-                <Icon.Euro width="16" height="16" />
-                <span>Persoonlijke service</span>
-              </div>
+          {whyChooseSections.map((s, i) => (
+            <div key={i} className="rv2-why-block">
+              <h3 className="rv2-why-h3">{s.h3}</h3>
+              <p className="rv2-why-body">{s.body}</p>
             </div>
-          </div>
+          ))}
+
+          <p className="rv2-why-closing">{t('reviewsPage.whyChooseClosing')}</p>
         </div>
       </section>
+
+      {/* Mobile-only sticky repair CTA, shown after 30% page scroll */}
+      <div className={`rv2-sticky-cta${stickyCtaVisible ? ' rv2-sticky-cta-visible' : ''}`}>
+        <a href="/reparatie" className="rv2-sticky-cta-btn">
+          <Icon.Wrench width="16" height="16" />
+          {t('reviewsPage.stickyCtaButton')}
+        </a>
+        <span className="rv2-sticky-cta-sub">{t('reviewsPage.stickyCtaSub')}</span>
+      </div>
     </Layout>
   )
 }

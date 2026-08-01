@@ -24,6 +24,7 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
   const loadedImages = useRef<(HTMLImageElement | null)[]>(new Array(FRAME_COUNT).fill(null))
 
   const [progress, setProgress] = useState(0)
+  const [stickyCtaVisible, setStickyCtaVisible] = useState(false)
   const progressRef = useRef(0)
   const [announcementVisible, setAnnouncementVisible] = useState(() => {
     try { return !sessionStorage.getItem('ann-v1') } catch { return true }
@@ -51,6 +52,10 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
         const p = total > 0 ? scrolled / total : 0
         progressRef.current = p
         setProgress(p)
+        // Only show the floating CTA once the whole pinned section (including
+        // its release runway) has scrolled fully out of view — not the moment
+        // the scroll-driven animation itself reaches 100%.
+        setStickyCtaVisible(rect.bottom <= 0)
       })
     }
     onScroll()
@@ -207,6 +212,14 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
           <div className="mf-sub">{t('mhero.feat3Sub')}</div>
         </div>
       </section>
+
+      <div className={`mhero-sticky-cta${stickyCtaVisible ? ' visible' : ''}`}>
+        <button className="mhero-cta" aria-label={t('mhero.stickyAriaLabel')}>
+          <Icon.Calendar width="20" height="20" />
+          <span>{t('mhero.cta')}</span>
+          <Icon.ArrowRight width="18" height="18" />
+        </button>
+      </div>
     </>
   )
 }

@@ -82,7 +82,7 @@
   },
   "search": {
     "title": "Wat mogen wij voor u repareren?",
-    "placeholder": "Zoek uw model (bijv. iPhone 15 Pro, Samsung S24, iPad Air…)",
+    "placeholder": "Zoek je toestel (merk of model)…",
     "button": "Zoeken"
   },
   "popular": {
@@ -210,7 +210,7 @@
     "eyebrow": "Accessoires",
     "title": "Accessoires die wij op voorraad hebben",
     "viewShop": "Bezoek onze winkel",
-    "viewMore": "Bekijk meer",
+    "viewMore": "Meer accessoires",
     "items": [
       {
         "name": "Hoesjes",
@@ -428,6 +428,7 @@
     "eyebrow": "CONTACT",
     "title": "Contact met",
     "sub": "Heb je een vraag, wil je een reparatie inplannen of gewoon even langskomen? Wij helpen je graag snel verder.",
+    "heroSubtext": "Binnenlopen met een probleem. Weggaan met duidelijkheid.",
     "ctaMessage": "Stuur een bericht",
     "methodsTitle": "Hoe kunt u contact met ons opnemen?",
     "callUs": "Bel ons",
@@ -436,8 +437,8 @@
     "mapTitle": "Bezoek onze winkel",
     "today": "Vandaag",
     "closed": "Gesloten",
-    "getDirections": "Route krijgen",
-    "whatsappUs": "WhatsApp ons",
+    "getDirections": "Route",
+    "whatsappUs": "WhatsApp",
     "noAppointment": "Geen afspraak nodig — loop gewoon binnen!",
     "days": [
       "Maandag",
@@ -449,34 +450,72 @@
       "Zondag"
     ],
     "mapIframeTitle": "4Mobiles locatie",
-    "openLabel": "Nu open — sluit om {{hour}}:00 uur",
+    "openLabel": "Nu open — sluit om {{hour}}:{{mins}} uur",
     "openSoon": "Open — sluit over {{mins}} minuten",
-    "opensAt": "Opent om 09:00 uur",
-    "opensTomorrow": "Gesloten — opent morgen 09:00",
+    "opensAt": "Opent om {{hour}}:{{mins}} uur",
+    "opensTomorrow": "Gesloten — opent morgen om {{hour}}:{{mins}} uur",
+    "opensOn": "Gesloten — opent {{day}} om {{hour}}:{{mins}} uur",
     "callDirect": "Bel direct",
     "parkingTitle": "Gratis parkeren",
-    "parkingSub": "U kunt gratis voor de deur parkeren.",
+    "parkingSub": "Gratis parkeren is mogelijk rondom het winkelcentrum.",
     "lastSunday": "Elke laatste zondag van de maand geopend",
     "copyAddress": "Kopieer",
     "copied": "Gekopieerd!",
-    "accTitle": "Bezoek onze winkel voor accessoires",
-    "accSub": "Naast reparaties vindt u bij 4MOBILES ook telefoonhoesjes, screenprotectors, kabels en meer. Kom gerust even langs!",
-    "accItem1": "Hoesjes",
-    "accItem2": "Screenprotectors",
-    "accItem3": "Opladers",
-    "accItem4": "Kabels",
-    "accItem5": "Powerbanks",
-    "accItem6": "Autohouders",
-    "accCta1": "Bekijk assortiment",
-    "accCta2": "Vraag beschikbaarheid"
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Veelgestelde vragen",
+    "visitHeading": "Alles voor uw smartphone, op één plek",
+    "visitBody": "Op zoek naar een nieuw telefoonhoesje, een stevige screenprotector, een snellader of handige accessoires voor dagelijks gebruik? 4Mobiles biedt een zorgvuldig samengesteld assortiment van hoogwaardige producten. Kom langs in onze winkel en ons team helpt u graag met het kiezen van het juiste accessoire.",
+    "visitPills": [
+      "Telefoonhoesjes",
+      "Screenprotectors",
+      "Opladers",
+      "Kabels",
+      "Powerbanks",
+      "Telefoonkoordjes",
+      "Selfiesticks",
+      "Autohouders",
+      "Draadloze opladers",
+      "AirTag-accessoires",
+      "MagSafe-accessoires",
+      "Audio",
+      "Tablet-accessoires",
+      "Smartwatch-accessoires"
+    ],
+    "visitFaqItems": [
+      {
+        "q": "Moet ik een afspraak maken?",
+        "a": "Nee, u kunt gewoon binnenlopen tijdens onze openingstijden. Voor grotere reparaties raden we aan om even te bellen of te appen, zodat we de juiste onderdelen op voorraad hebben."
+      },
+      {
+        "q": "Hoe lang duurt een reparatie?",
+        "a": "De meeste reparaties, zoals een schermvervanging of batterij, zijn binnen 30 tot 60 minuten klaar terwijl u wacht."
+      },
+      {
+        "q": "Gebruiken jullie originele onderdelen?",
+        "a": "Wij werken met hoogwaardige originele en OEM-onderdelen, afhankelijk van uw voorkeur en het toestel. We bespreken de opties altijd vooraf met u."
+      },
+      {
+        "q": "Is parkeren gratis?",
+        "a": "Ja, gratis parkeren is mogelijk rondom het winkelcentrum, vlak bij onze winkel."
+      },
+      {
+        "q": "Krijg ik garantie na de reparatie?",
+        "a": "Ja, op al onze reparaties krijgt u standaard 6 maanden garantie op onderdelen en vakmanschap."
+      }
+    ],
+    "visitFaqMore": "Bekijk meer vragen →"
   },
   "reviewsPage": {
     "eyebrow": "GOOGLE REVIEWS",
-    "heroTitle": "Wat klanten zeggen over",
+    "heroTitle": "Vertrouwen bouw je samen met je",
+    "heroTitleAccent": "klanten.",
     "heroSub": "Echte ervaringen van klanten die hun telefoon, tablet of accessoire bij ons hebben laten repareren of gekocht.",
     "viewOnGoogle": "Bekijk op Google",
     "writeReview": "Schrijf review",
     "ratingNote": "Gebaseerd op 200+ reviews",
+    "heroRatingCount": "Gebaseerd op 487 reviews",
+    "heroQuoteText": "Snel geholpen en mijn scherm was dezelfde dag nog gerepareerd.",
+    "heroQuoteDate": "10 april 2024",
     "ratingRows": [
       {
         "label": "Service",
@@ -497,20 +536,24 @@
     ],
     "trust": [
       {
-        "title": "Over 12 jaar ervaring",
-        "sub": "Meer dan 150.000 klanten geholpen"
+        "val": "12+",
+        "title": "jaar ervaring",
+        "sub": "Specialist in smartphone reparaties"
       },
       {
-        "title": "10.000+ reparaties",
-        "sub": "Ervaren specialisten"
+        "val": "150.000+",
+        "title": "klanten geholpen",
+        "sub": "Door heel het Westland"
       },
       {
+        "val": "10.000+",
+        "title": "reparaties",
+        "sub": "Snel en vakkundig uitgevoerd"
+      },
+      {
+        "val": "",
         "title": "Persoonlijke service",
         "sub": "Altijd eerlijk advies"
-      },
-      {
-        "title": "Google beoordeling",
-        "sub": "4.8 / 5 op reviews"
       }
     ],
     "featured": [
@@ -523,11 +566,6 @@
         "name": "Sanne Vermeer",
         "date": "15 april 2024",
         "text": "Goede service, duidelijke uitleg en een vriendelijk personeel. Snel aan de beurt!"
-      },
-      {
-        "name": "Daan Verhoven",
-        "date": "15 april 2024",
-        "text": "Mijn batterij was niet duurder vervangen en toch perfect. Binnen 60 minuten klaar, zeker aanrader!"
       }
     ],
     "allReviews": [
@@ -577,7 +615,26 @@
     "trust1": "Binnen 60 minuten klaar",
     "trust2": "90 dagen garantie",
     "trust3": "Geen verborgen kosten",
-    "trust4": "4.8/5 op Google"
+    "trust4": "4.8/5 op Google",
+    "stickyCtaButton": "Plan reparatie",
+    "stickyCtaSub": "10.000+ gingen je voor",
+    "whyChooseTitle": "Waarom kiezen zoveel klanten voor 4Mobiles?",
+    "whyChooseIntro": "Een smartphone is tegenwoordig onmisbaar. Daarom wilt u zeker weten dat uw toestel in goede handen is wanneer er iets misgaat. Bij 4Mobiles combineren we al meer dan 14 jaar vakmanschap, eerlijk advies en persoonlijke service. Dat ziet u niet alleen terug in onze reparaties, maar vooral in de ervaringen van de klanten die u voorgingen.",
+    "whyChooseSections": [
+      {
+        "h3": "Eerlijke service staat bij ons voorop",
+        "body": "Iedere reparatie begint met een eerlijk advies. We kijken altijd eerst naar de beste oplossing voor uw toestel en niet naar de duurste reparatie. Soms is een eenvoudige oplossing voldoende, soms adviseren wij juist om niet te repareren. Die transparantie waarderen onze klanten en dat leest u terug in de vele positieve Google Reviews."
+      },
+      {
+        "h3": "Specialist in smartphone reparaties in Naaldwijk en het Westland",
+        "body": "Van een gebarsten scherm en een versleten batterij tot laadproblemen of waterschade: dagelijks helpen wij klanten uit Naaldwijk, 's-Gravenzande, Monster, De Lier, Wateringen, Kwintsheul, Honselersdijk en de rest van het Westland met professionele smartphone- en tabletreparaties. Dankzij onze ervaring kunnen veel reparaties al binnen 30 tot 60 minuten worden uitgevoerd."
+      },
+      {
+        "h3": "Uw ervaring helpt ook andere klanten",
+        "body": "Wij vinden het belangrijk dat iedere review een eerlijk beeld geeft van onze dienstverlening. Daarom waarderen wij iedere beoordeling, of deze nu gaat over een iPhone reparatie, Samsung reparatie, scherm vervangen, batterij vervangen of de service in onze winkel. Uw ervaringen helpen nieuwe klanten bij het maken van een betrouwbare keuze én helpen ons om onze dienstverlening iedere dag verder te verbeteren."
+      }
+    ],
+    "whyChooseClosing": "Bent u benieuwd waarom zoveel klanten voor 4Mobiles kiezen? Kom gerust langs in onze winkel in Naaldwijk of plan eenvoudig online uw reparatie. Wij helpen u graag verder met eerlijk advies, persoonlijke service en een reparatie waar u op kunt vertrouwen."
   },
   "regio": {
     "breadcrumbHome": "Home",
@@ -679,10 +736,9 @@
   },
   "zakelijk": {
     "eyebrow": "ZAKELIJK",
-    "heroTitle1": "Zakelijke service,",
-    "heroTitle2": "professioneel",
-    "heroTitle3": "geregeld.",
-    "heroSub": "Van reparatie tot preventie van beschadigingen, accessoires op maat en het persoonlijk beheren van grote aantallen smartphones en tablets. 4Mobiles ontzorgt bedrijven zodat jullie team kan doorwerken.",
+    "heroTitle1": "Een betrouwbare reparatiepartner voor",
+    "heroTitleAccent": "uw bedrijf.",
+    "heroSub": "Minder stilstand. Snellere oplossingen. Persoonlijke service voor bedrijven die afhankelijk zijn van volledig functionerende smartphones en tablets.",
     "contactUs": "Neem contact op",
     "viewOptions": "Bekijk mogelijkheden →",
     "trustRow": [
@@ -700,6 +756,12 @@
       }
     ],
     "heroImgPlaceholder": "Zakelijk repair foto",
+    "heroImgMobileAlt": "Zakelijke service mobile",
+    "badgeTitle": "Zakelijke service",
+    "badgeSub": "Snel, betrouwbaar\nen persoonlijk.",
+    "servicesImgAlt": "Wat wij doen - Zakelijke service 4Mobiles",
+    "sec5ImgAlt": "Bescherming & Preventie",
+    "sec5ImgMobileAlt": "Bescherming & Preventie mobile",
     "stats": [
       {
         "num": "4,8/5",
@@ -720,6 +782,9 @@
     ],
     "partnersLabel": "Bedrijven die op 4Mobiles vertrouwen",
     "testimonialsTitle": "Wat zakelijke klanten zeggen",
+    "reviewsEyebrow": "KLANTERVARINGEN",
+    "reviewsTitle": "Wat bedrijven zeggen over 4Mobiles.",
+    "reviewsSub": "Van lokale ondernemers tot organisaties in de hele Westland-regio. Onze klanten waarderen onze snelheid, transparantie en persoonlijke aanpak.",
     "testimonials": [
       {
         "initial": "R",
@@ -739,7 +804,8 @@
     "servicesEyebrow": "WAT WIJ DOEN",
     "servicesTitle1": "Hoe wij bedrijven",
     "servicesTitle2": "ontzorgen",
-    "servicesSub": "Van reparaties tot preventie: wij bieden slimme oplossingen zodat jouw team altijd verbonden blijft.",
+    "servicesSub": "Elke organisatie is anders. Daarom bieden wij flexibele oplossingen die aansluiten op de manier waarop uw bedrijf werkt. Of u nu een eenmalige reparatie nodig heeft of doorlopende ondersteuning voor meerdere toestellen, wij helpen u graag aan de juiste oplossing.",
+    "orgPills": ["MKB", "Gemeenten", "Zorg", "Onderwijs", "Retail", "Horeca"],
     "services": [
       {
         "title": "Snelle reparaties",
@@ -770,6 +836,11 @@
     "preventTitle2": "slimmer",
     "preventTitle3": "dan repareren",
     "preventSub": "4Mobiles helpt bedrijven om de kosten van beschadigingen en uitval tot een minimum te beperken. Zo blijft jouw organisatie productief aangehecht.",
+    "sec5Eyebrow": "VOOR UW BEDRIJF",
+    "sec5Title1": "Minder stilstand.",
+    "sec5TitleAccent": "Meer",
+    "sec5Title2": "continuïteit.",
+    "sec5Sub": "Wanneer smartphones een essentieel onderdeel zijn van uw dagelijkse bedrijfsvoering, heeft u een partner nodig die snel reageert en uw bedrijf draaiend houdt.",
     "preventBullets": [
       "Bescherming op maat voor elk toestel",
       "Minder uitval en stilstand",
@@ -791,15 +862,52 @@
     "whatsappUs": "WhatsApp ons",
     "callDirect": "Bel direct",
     "statOnSite": "Service op locatie mogelijk",
-    "contactEyebrow": "ZAKELIJK CONTACT",
-    "contactTitle": "Interesse in zakelijke mogelijkheden?",
-    "contactSub": "Neem contact op voor een vrijblijvend gesprek over onze zakelijke diensten. Wij stellen een plan op maat voor uw organisatie samen.",
+    "contactEyebrow": "NEEM CONTACT OP",
+    "contactTitle": "Interesse in samenwerken?",
+    "contactSub": "Wij bespreken graag een oplossing die past bij uw organisatie.",
+    "contactBody": "Wilt u meer weten over onze zakelijke dienstverlening of ontdekken hoe wij uw organisatie kunnen ondersteunen? Neem gerust vrijblijvend contact met ons op. Samen vinden we de oplossing die het beste bij uw bedrijf past.",
     "contactBullet1": "Vaste contactpersoon voor uw bedrijf",
     "contactBullet2": "Maandelijkse factuur & rapportage",
     "contactBullet3": "Servicelevel agreements (SLA)",
     "contactBullet4": "Service op locatie mogelijk",
     "contactEmailCta": "Stuur zakelijke aanvraag",
-    "contactPhone": "+31 174 123 456"
+    "contactPhone": "+31 174 123 456",
+    "faqEyebrow": "ZAKELIJKE VEELGESTELDE VRAGEN",
+    "faqTitle": "Veelgestelde vragen",
+    "faq": [
+      {
+        "q": "Hoe snel kunnen jullie bedrijfstoestellen repareren?",
+        "a": "De meeste reparaties — schermen, batterijen, laadpoorten — zijn binnen 30 tot 60 minuten klaar. Bij meerdere toestellen plannen we dit vooraf in, zodat uw team minimale stilstand ervaart."
+      },
+      {
+        "q": "Kunnen jullie reparaties voor meerdere toestellen tegelijk verzorgen?",
+        "a": "Ja. Of het nu vijf of vijftig telefoons zijn, wij bieden gebundelde aanlevering, voorrang in de planning en één duidelijk overzicht van alle lopende reparaties."
+      },
+      {
+        "q": "Bieden jullie service op locatie aan?",
+        "a": "Voor grotere organisaties kunnen wij toestellen ophalen en terugbrengen, of langskomen wanneer dat praktischer is. Geef aan wat het beste bij uw team past."
+      },
+      {
+        "q": "Hoe werkt de facturatie voor zakelijke klanten?",
+        "a": "Zakelijke klanten ontvangen een maandelijkse factuur met een duidelijk overzicht van alle reparaties, zodat u niet per reparatie hoeft af te rekenen."
+      },
+      {
+        "q": "Krijgen wij garantie op zakelijke reparaties?",
+        "a": "Ja, op elke reparatie geldt onze standaard garantie van 90 dagen, voor zowel particuliere als zakelijke toestellen."
+      },
+      {
+        "q": "Hebben wij een vast aanspreekpunt?",
+        "a": "Ja. Elk zakelijk account krijgt één vast contactpersoon die uw organisatie kent en rechtstreeks bereikbaar is voor vragen of spoedreparaties."
+      }
+    ],
+    "seoTitle": "Zakelijke smartphonereparaties voor bedrijven in de regio Westland",
+    "seoParagraphs": [
+      "Een volledig functionerende smartphone of tablet is voor veel bedrijven essentieel. Medewerkers moeten bereikbaar blijven, afspraken moeten zonder onderbreking doorgaan en de dagelijkse bedrijfsvoering mag nooit vertraging oplopen door defecte toestellen. 4Mobiles ondersteunt al meer dan 14 jaar bedrijven in Naaldwijk en de Westland-regio met professionele smartphone- en tabletreparaties, zakelijke diensten en persoonlijk advies.",
+      "Dagelijks helpen wij ondernemers, retailers, zorgorganisaties, scholen en vele andere bedrijven met een breed scala aan reparaties. Van gebarsten iPhone-schermen en Samsung-batterijvervangingen tot laadproblemen, camerareparaties en dagelijkse accessoires. Dankzij onze ruime ervaring zijn veel reparaties binnen 30 tot 60 minuten klaar, zodat medewerkers snel weer aan het werk kunnen.",
+      "Ook helpen wij bedrijven toekomstige stilstand te beperken. Hoogwaardige screenprotectors, duurzame telefoonhoesjes, betrouwbare opladers en zorgvuldig geselecteerde accessoires helpen onnodige schade te voorkomen en verlengen de levensduur van zakelijke toestellen. Heldere communicatie, transparante prijzen en persoonlijke service staan centraal in alles wat wij doen.",
+      "Of u nu één bedrijfstelefoon beheert of een volledige vloot smartphones en tablets, wij bieden een praktische oplossing op maat voor uw bedrijf. Met één vast aanspreekpunt, korte communicatielijnen en snelle doorlooptijden kunt u zich richten op uw organisatie, terwijl wij ervoor zorgen dat uw toestellen betrouwbaar blijven functioneren.",
+      "Bent u op zoek naar een betrouwbare partner voor zakelijke smartphonereparaties, iPhone-reparaties, Samsung-reparaties of professioneel advies in Naaldwijk of de Westland-regio? Dan staat 4Mobiles voor u klaar. Wij bieden praktische oplossingen die uw medewerkers verbonden houden en uw bedrijf laten draaien zonder onnodige onderbrekingen."
+    ]
   },
   "producten": {
     "heroEyebrow": "ACCESSOIRES",
@@ -807,8 +915,14 @@
     "heroSub": "Van stevige hoesjes en screenprotectors tot opladers en autohouders. Wij hebben een ruim aanbod accessoires op voorraad en helpen je graag de juiste keuze voor jouw toestel.",
     "viewAssortment": "Bekijk ons aanbod",
     "askProduct": "Vraag naar product",
+    "heroLink": "stuur ons een bericht →",
+    "heroBgAlt": "Accessoires in de winkel",
+    "heroMobileCta": "Kom langs in de winkel",
     "heroTrust1": "4.8/5 op Google",
     "heroTrust2": "1000den artikelen op voorraad",
+    "heroTrustGoogleLabel": "op Google",
+    "heroTrustCount": "1000den",
+    "heroTrustCountSub": "artikelen op voorraad",
     "uspPillars": [
       {
         "title": "Vandaag nog in bezit",
@@ -829,47 +943,49 @@
     ],
     "assortmentEyebrow": "ASSORTIMENT",
     "assortmentTitle": "Accessoires die passen bij jouw toestel en jouw gebruik",
-    "assortmentSub": "Elk toestel en elke gebruiker is anders. In onze winkel kun je accessoires bekijken, passen en meteen direct uitproberen. Zoek je iets dat 100% bevalt.",
+    "assortmentSub": "Elk toestel en iedere gebruiker is anders. Daarom kun je onze accessoires in de winkel bekijken, vergelijken en direct uitproberen. Van hoesjes en screenprotectors tot opladers en autohouders: we helpen je graag met een accessoire die écht bij jouw toestel én gebruik past.",
+    "assortmentSubMobile": "Elk toestel en elke gebruiker is anders. Daarom bieden we een zorgvuldig samengesteld assortiment accessoires voor vrijwel elk merk en model. Van stevige hoesjes en screenprotectors tot opladers, kabels en autohouders: je kunt producten in de winkel vergelijken en direct persoonlijk advies krijgen. Met ervaring uit duizenden reparaties helpen we je een accessoire kiezen die perfect past bij zowel je toestel als je dagelijks gebruik.",
     "filterAll": "Alle",
     "catsEyebrow": "CATEGORIEËN",
     "catsTitle": "Onze populaire categorieën",
     "categories": [
       {
+        "id": "cases",
         "title": "Hoesjes",
+        "price": "Hoesjes vanaf €9,95",
         "bullets": [
-          "Hoesjes vanaf €9,99",
-          "Bescherming op maat",
-          "Superstijlvol en zoveel keuze"
+          "Transparant, siliconen, MagSafe en robuust",
+          "Verkrijgbaar voor vrijwel elk merk en model"
         ],
         "cta": "Kom naar de winkel"
       },
       {
+        "id": "screenprotectors",
         "title": "Screenprotectors",
+        "price": "Screenprotectors vanaf €10,00",
         "bullets": [
-          "Premium kwaliteit",
-          "Gehard glas / Tempered glass",
-          "Folie op maat gesneden",
-          "Helpen en omgaan geplaatst"
+          "Clear, privacy en matte afwerkingen",
+          "Vakkundig geplaatst terwijl je wacht"
         ],
         "cta": "Laat je screenprotector plaatsen"
       },
       {
+        "id": "chargers",
         "title": "Opladers & kabels",
+        "price": "Vanaf €9,95",
         "bullets": [
-          "Wij groeien razend snel in kabels",
-          "Origineel Apple & Samsung",
-          "2M op voorraad",
-          "Meerdere soorten wattage"
+          "USB-C, Lightning en MagSafe",
+          "Snelladers en kabels direct uit voorraad leverbaar"
         ],
         "cta": "Kom naar adres"
       },
       {
+        "id": "carholders",
         "title": "Autohouders",
+        "price": "Vanaf €12,95",
         "bullets": [
-          "Voor stam of dashboard",
-          "Voor MagSafe & telefoons",
-          "Veilige bevestiging",
-          "Brede prijs en keuze"
+          "MagSafe en universele modellen",
+          "Geschikt voor dashboard, voorruit en ventilatierooster"
         ],
         "cta": "Kom naar de juiste autohouder"
       }
@@ -885,13 +1001,23 @@
     "upsellBullet1": "Geplaatst in de winkel — gratis",
     "upsellBullet2": "Grote keuze merken & modellen",
     "upsellBullet3": "Persoonlijk advies van onze experts",
+    "upsellBullet4": "Applicatie service in de winkel",
     "upsellCta1": "Kom langs in de winkel",
     "upsellCta2": "Vraag beschikbaarheid",
+    "upsellMobileCardText": "Neem je nieuwe toestel mee naar onze winkel zodat wij deze meteen van de nodige bescherming kunnen voorzien en je makkelijk alles meteen kunt proberen.",
     "citiesLabel": "Wij helpen klanten uit heel Westland & omgeving",
     "noResults": "Geen producten gevonden voor",
     "showAll": "Toon alles",
     "faqEyebrow": "FAQ",
     "faqTitle": "Veelgestelde vragen over onze producten",
+    "faqSub": "Heb je nog een vraag over een lader, hoesje of screenprotector? Bekijk de antwoorden of neem contact op.",
+    "faqCtaChat": "Stuur ons een bericht",
+    "faqCtaWhatsapp": "WhatsApp met ons",
+    "storeInteriorAlt": "Bekijk het assortiment in de winkel",
+    "storeInteriorWideAlt": "Interieur van de 4Mobiles winkel",
+    "openInMaps": "Openen in Maps",
+    "newPhoneAlt": "Nieuw toestel",
+    "newPhoneProtectionAlt": "Nieuw toestel bescherming",
     "faq": [
       {
         "q": "Welke merken accessoires verkopen jullie?",
@@ -909,7 +1035,27 @@
         "q": "Kan ik een hoesje laten aanpassen of op maat bestellen?",
         "a": "Neem contact op voor de mogelijkheden. Wij denken graag met u mee en kunnen in sommige gevallen iets speciaals regelen."
       }
-    ]
+    ],
+    "faqMobileExtra": [
+      {
+        "q": "Hoe lang duurt de plaatsing van een screenprotector?",
+        "a": "De plaatsing duurt meestal maar een paar minuten. U kunt gewoon even wachten terwijl wij het voor u regelen."
+      },
+      {
+        "q": "Bieden jullie garantie op accessoires?",
+        "a": "Ja, op de meeste accessoires bieden wij garantie. Vraag in de winkel naar de voorwaarden voor uw specifieke product."
+      }
+    ],
+    "storeVisitTitle": "Bezoek onze winkel",
+    "storeVisitCopyBtn": "Kopieer",
+    "storeVisitRoute": "Route krijgen",
+    "storeVisitWhatsapp": "WhatsApp ons",
+    "storeVisitNoAppt": "Geen afspraak nodig — loop gewoon binnen!",
+    "promoTitle": "Kom langs en ervaar het verschil.",
+    "promoBullet1": "Bekijk honderden accessoires",
+    "promoBullet2": "Vergelijk verschillende modellen",
+    "promoBullet3": "Persoonlijk advies van onze specialisten",
+    "promoBullet4": "Geen afspraak nodig, loop gewoon binnen"
   },
   "reparatie": {
     "heroBadge": "Reparatie boeken",

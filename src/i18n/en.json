@@ -81,7 +81,7 @@
   },
   "search": {
     "title": "What can we repair for you?",
-    "placeholder": "Search your model (e.g. iPhone 15 Pro, Samsung S24, iPad Air…)",
+    "placeholder": "Search for your device (brand or model)…",
     "button": "Search"
   },
   "popular": {
@@ -209,7 +209,7 @@
     "eyebrow": "Accessories",
     "title": "Accessories we have in stock",
     "viewShop": "Visit our shop",
-    "viewMore": "Read more",
+    "viewMore": "More accessories",
     "items": [
       {
         "name": "Cases",
@@ -427,6 +427,7 @@
     "eyebrow": "CONTACT",
     "title": "Contact with",
     "sub": "Have a question, want to book a repair or just stop by? We're happy to help you quickly.",
+    "heroSubtext": "Walk in with a problem. Walk out with clarity.",
     "ctaMessage": "Send a message",
     "methodsTitle": "How can you contact us?",
     "callUs": "Call us",
@@ -435,8 +436,8 @@
     "mapTitle": "Visit our shop",
     "today": "Today",
     "closed": "Closed",
-    "getDirections": "Get directions",
-    "whatsappUs": "WhatsApp us",
+    "getDirections": "Route",
+    "whatsappUs": "WhatsApp",
     "noAppointment": "No appointment needed — just walk in!",
     "days": [
       "Monday",
@@ -448,34 +449,72 @@
       "Sunday"
     ],
     "mapIframeTitle": "4Mobiles location",
-    "openLabel": "Open — closes at {{hour}}:00",
+    "openLabel": "Open now — closes at {{hour}}:{{mins}}",
     "openSoon": "Open — closes in {{mins}} minutes",
-    "opensAt": "Opens at 09:00",
-    "opensTomorrow": "Closed — opens tomorrow at 09:00",
+    "opensAt": "Opens at {{hour}}:{{mins}}",
+    "opensTomorrow": "Closed — opens tomorrow at {{hour}}:{{mins}}",
+    "opensOn": "Closed — opens {{day}} at {{hour}}:{{mins}}",
     "callDirect": "Call us",
     "parkingTitle": "Free parking",
-    "parkingSub": "You can park for free right in front of the shop.",
+    "parkingSub": "Free parking is available around the shopping centre.",
     "lastSunday": "Open every last Sunday of the month",
     "copyAddress": "Copy",
     "copied": "Copied!",
-    "accTitle": "Visit our shop for accessories",
-    "accSub": "Besides repairs, 4MOBILES also stocks phone cases, screen protectors, cables and more. Feel free to stop by!",
-    "accItem1": "Cases",
-    "accItem2": "Screen protectors",
-    "accItem3": "Chargers",
-    "accItem4": "Cables",
-    "accItem5": "Power banks",
-    "accItem6": "Car holders",
-    "accCta1": "View assortment",
-    "accCta2": "Check availability"
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Frequently asked questions",
+    "visitHeading": "Everything for your smartphone, all in one place",
+    "visitBody": "Whether you're looking for a new phone case, a durable screen protector, a fast charger or useful accessories for everyday use, 4Mobiles offers a carefully selected range of high-quality products. Visit our store and our team will be happy to help you choose the right accessory.",
+    "visitPills": [
+      "Phone Cases",
+      "Screen Protectors",
+      "Chargers",
+      "Cables",
+      "Power Banks",
+      "Phone Lanyards",
+      "Selfie Sticks",
+      "Car Mounts",
+      "Wireless Chargers",
+      "AirTag Accessories",
+      "MagSafe Accessories",
+      "Audio",
+      "Tablet Accessories",
+      "Smartwatch Accessories"
+    ],
+    "visitFaqItems": [
+      {
+        "q": "Do I need to make an appointment?",
+        "a": "No, you can simply walk in during our opening hours. For larger repairs we recommend calling or messaging ahead so we have the right parts in stock."
+      },
+      {
+        "q": "How long does a repair take?",
+        "a": "Most repairs, such as a screen or battery replacement, are done within 30 to 60 minutes while you wait."
+      },
+      {
+        "q": "Do you use original parts?",
+        "a": "We work with high-quality original and OEM parts depending on your preference and device. We always discuss the options with you beforehand."
+      },
+      {
+        "q": "Is parking free?",
+        "a": "Yes, free parking is available around the shopping centre, right near our store."
+      },
+      {
+        "q": "Do I receive a warranty after the repair?",
+        "a": "Yes, all our repairs come with a standard 6-month warranty on parts and workmanship."
+      }
+    ],
+    "visitFaqMore": "View more questions →"
   },
   "reviewsPage": {
     "eyebrow": "GOOGLE REVIEWS",
-    "heroTitle": "What customers say about",
+    "heroTitle": "Trust is something you build together with your",
+    "heroTitleAccent": "customers.",
     "heroSub": "Real experiences from customers who had their phone, tablet or accessory repaired or purchased at our shop.",
     "viewOnGoogle": "View on Google",
     "writeReview": "Write a review",
     "ratingNote": "Based on 200+ reviews",
+    "heroRatingCount": "Based on 487 reviews",
+    "heroQuoteText": "Helped quickly, and my screen was repaired the very same day.",
+    "heroQuoteDate": "10 April 2024",
     "ratingRows": [
       {
         "label": "Service",
@@ -496,20 +535,24 @@
     ],
     "trust": [
       {
-        "title": "Over 12 years experience",
-        "sub": "More than 150,000 people helped"
+        "val": "12+",
+        "title": "years experience",
+        "sub": "Specialists in smartphone repairs"
       },
       {
-        "title": "10,000+ repairs",
-        "sub": "Experienced specialists"
+        "val": "150,000+",
+        "title": "customers helped",
+        "sub": "Across the whole Westland region"
       },
       {
+        "val": "10,000+",
+        "title": "repairs",
+        "sub": "Fast and skilled work"
+      },
+      {
+        "val": "",
         "title": "Personal service",
         "sub": "Always honest advice"
-      },
-      {
-        "title": "Google rating",
-        "sub": "4.8 / 5 on reviews"
       }
     ],
     "featured": [
@@ -522,11 +565,6 @@
         "name": "Sanne Vermeer",
         "date": "15 April 2024",
         "text": "Good service, clear explanation and friendly staff. Seen quickly!"
-      },
-      {
-        "name": "Daan Verhoven",
-        "date": "15 April 2024",
-        "text": "My battery was replaced without extra cost and works perfectly. Done in 30 minutes, definitely recommended!"
       }
     ],
     "allReviews": [
@@ -576,7 +614,26 @@
     "trust1": "Ready in 30 minutes",
     "trust2": "90-day warranty",
     "trust3": "No hidden costs",
-    "trust4": "4.8/5 on Google"
+    "trust4": "4.8/5 on Google",
+    "stickyCtaButton": "Book repair",
+    "stickyCtaSub": "10,000+ went before you",
+    "whyChooseTitle": "Why do so many customers choose 4Mobiles?",
+    "whyChooseIntro": "A smartphone is essential these days. That's why you want to be sure your device is in good hands when something goes wrong. At 4Mobiles we've combined craftsmanship, honest advice and personal service for more than 14 years. You see that not only in our repairs, but above all in the experiences of the customers who came before you.",
+    "whyChooseSections": [
+      {
+        "h3": "Honest service comes first",
+        "body": "Every repair starts with honest advice. We always look for the best solution for your device first, not the most expensive repair. Sometimes a simple fix is enough, and sometimes we advise against repairing at all. Our customers value that transparency, and you can see it reflected in our many positive Google Reviews."
+      },
+      {
+        "h3": "Smartphone repair specialists in Naaldwijk and Westland",
+        "body": "From a cracked screen and a worn-out battery to charging issues or water damage: every day we help customers from Naaldwijk, 's-Gravenzande, Monster, De Lier, Wateringen, Kwintsheul, Honselersdijk and the rest of Westland with professional smartphone and tablet repairs. Thanks to our experience, many repairs can already be completed within 30 to 60 minutes."
+      },
+      {
+        "h3": "Your experience helps other customers too",
+        "body": "We think it's important that every review gives an honest picture of our service. That's why we value every rating, whether it's about an iPhone repair, Samsung repair, screen replacement, battery replacement or the service in our shop. Your experiences help new customers make a reliable choice, and help us keep improving our service every day."
+      }
+    ],
+    "whyChooseClosing": "Curious why so many customers choose 4Mobiles? Feel free to stop by our shop in Naaldwijk or simply book your repair online. We're happy to help with honest advice, personal service and a repair you can rely on."
   },
   "regio": {
     "breadcrumbHome": "Home",
@@ -678,10 +735,9 @@
   },
   "zakelijk": {
     "eyebrow": "BUSINESS",
-    "heroTitle1": "Business service,",
-    "heroTitle2": "professionally",
-    "heroTitle3": "handled.",
-    "heroSub": "From repairs to damage prevention, custom accessories and personal management of large numbers of smartphones and tablets. 4Mobiles takes care of businesses so your team can keep working.",
+    "heroTitle1": "A reliable repair partner for",
+    "heroTitleAccent": "your business.",
+    "heroSub": "Less downtime. Faster solutions. Personal service for businesses that rely on fully functional smartphones and tablets.",
     "contactUs": "Get in touch",
     "viewOptions": "View options →",
     "trustRow": [
@@ -699,6 +755,12 @@
       }
     ],
     "heroImgPlaceholder": "Business repair photo",
+    "heroImgMobileAlt": "Business service mobile",
+    "badgeTitle": "Business service",
+    "badgeSub": "Fast, reliable\nand personal.",
+    "servicesImgAlt": "What we do - Business service 4Mobiles",
+    "sec5ImgAlt": "Protection & Prevention",
+    "sec5ImgMobileAlt": "Protection & Prevention mobile",
     "stats": [
       {
         "num": "4.8/5",
@@ -719,6 +781,9 @@
     ],
     "partnersLabel": "Businesses that trust 4Mobiles",
     "testimonialsTitle": "What business clients say",
+    "reviewsEyebrow": "CLIENT EXPERIENCES",
+    "reviewsTitle": "What businesses say about 4Mobiles.",
+    "reviewsSub": "From local entrepreneurs to organizations throughout the Westland region. Our clients value our speed, transparency and personal approach.",
     "testimonials": [
       {
         "initial": "R",
@@ -738,7 +803,8 @@
     "servicesEyebrow": "WHAT WE DO",
     "servicesTitle1": "How we support",
     "servicesTitle2": "businesses",
-    "servicesSub": "From repairs to prevention: we offer smart solutions so your team stays connected at all times.",
+    "servicesSub": "Every organization is different. That is why we provide flexible solutions tailored to the way your business operates. Whether you need a single repair or ongoing support for multiple devices, we are happy to help you find the right solution.",
+    "orgPills": ["SMB", "Municipalities", "Healthcare", "Education", "Retail", "Hospitality"],
     "services": [
       {
         "title": "Fast repairs",
@@ -769,6 +835,11 @@
     "preventTitle2": "smarter",
     "preventTitle3": "than repair",
     "preventSub": "4Mobiles helps businesses minimise the cost of damage and downtime. Keeping your organisation productive.",
+    "sec5Eyebrow": "FOR YOUR BUSINESS",
+    "sec5Title1": "Less downtime.",
+    "sec5TitleAccent": "More",
+    "sec5Title2": "continuity.",
+    "sec5Sub": "When smartphones are an essential part of your daily operations, you need a partner who responds quickly and keeps your business moving.",
     "preventBullets": [
       "Custom protection for every device",
       "Less downtime and interruption",
@@ -790,15 +861,52 @@
     "whatsappUs": "WhatsApp us",
     "callDirect": "Call us",
     "statOnSite": "On-site service available",
-    "contactEyebrow": "BUSINESS ENQUIRIES",
-    "contactTitle": "Interested in our business services?",
-    "contactSub": "Get in touch for a no-obligation conversation about our business services. We will put together a tailored plan for your organisation.",
+    "contactEyebrow": "GET IN TOUCH",
+    "contactTitle": "Interested in working together?",
+    "contactSub": "We would be happy to discuss a solution that fits your organization.",
+    "contactBody": "Would you like to learn more about our business services or discover how we can support your organization? Feel free to contact us without obligation. Together we will find the solution that best suits your business.",
     "contactBullet1": "Dedicated account manager for your business",
     "contactBullet2": "Monthly invoice & reporting",
     "contactBullet3": "Service level agreements (SLA)",
     "contactBullet4": "On-site service available",
     "contactEmailCta": "Send business enquiry",
-    "contactPhone": "+31 174 123 456"
+    "contactPhone": "+31 174 123 456",
+    "faqEyebrow": "BUSINESS FAQ",
+    "faqTitle": "Frequently asked questions",
+    "faq": [
+      {
+        "q": "How quickly can you repair company devices?",
+        "a": "Most repairs — screens, batteries, charging ports — are completed within 30 to 60 minutes. For fleets of multiple devices we plan ahead so your team has minimal downtime."
+      },
+      {
+        "q": "Can you manage repairs for multiple devices at once?",
+        "a": "Yes. Whether it's five phones or fifty, we offer bulk intake, prioritized turnaround and one clear overview of every repair in progress."
+      },
+      {
+        "q": "Do you offer on-site service?",
+        "a": "For larger organizations we can collect and deliver devices, or visit your location when that's more practical. Just let us know what works best for your team."
+      },
+      {
+        "q": "How does invoicing work for business customers?",
+        "a": "Business clients receive monthly invoices with a clear overview of all repairs, so you don't need to settle each repair separately."
+      },
+      {
+        "q": "Do you offer a warranty on business repairs?",
+        "a": "Yes, every repair comes with our standard 90-day warranty, for personal and business devices alike."
+      },
+      {
+        "q": "Will we have a fixed point of contact?",
+        "a": "Yes. Every business account gets one dedicated contact person who knows your organization and can be reached directly for questions or urgent repairs."
+      }
+    ],
+    "seoTitle": "Business smartphone repairs for companies in the Westland region",
+    "seoParagraphs": [
+      "A fully functioning smartphone or tablet is essential for many businesses. Employees need to stay connected, appointments need to continue without interruption, and daily operations should never be delayed because of faulty devices. For more than 14 years, 4Mobiles has supported businesses throughout Naaldwijk and the Westland region with professional smartphone and tablet repairs, business services and personal advice.",
+      "Every day we help entrepreneurs, retailers, healthcare organizations, schools and many other businesses with a wide variety of repairs. From cracked iPhone displays and Samsung battery replacements to charging issues, camera repairs and everyday accessories. Thanks to our extensive experience, many repairs can be completed within 30–60 minutes, allowing employees to get back to work quickly.",
+      "We also help businesses reduce future downtime. High-quality screen protectors, durable phone cases, reliable chargers and carefully selected accessories help prevent unnecessary damage and extend the lifespan of business devices. Clear communication, transparent pricing and personal service are at the core of everything we do.",
+      "Whether you manage a single company phone or an entire fleet of smartphones and tablets, we offer a practical solution tailored to your business. With one dedicated point of contact, short communication lines and fast turnaround times, you can focus on running your organization while we keep your devices performing reliably.",
+      "If you are looking for a trusted partner for business smartphone repairs, iPhone repairs, Samsung repairs or professional advice in Naaldwijk or the Westland region, 4Mobiles is ready to help. We provide practical solutions that keep your employees connected and your business running without unnecessary interruptions."
+    ]
   },
   "producten": {
     "heroEyebrow": "ACCESSORIES",
@@ -806,8 +914,14 @@
     "heroSub": "From sturdy cases and screen protectors to chargers and car holders. We have a wide range of accessories in stock and are happy to help you make the right choice for your device.",
     "viewAssortment": "View our range",
     "askProduct": "Ask about a product",
+    "heroLink": "send us a message →",
+    "heroBgAlt": "Accessories in the shop",
+    "heroMobileCta": "Visit the shop",
     "heroTrust1": "4.8/5 on Google",
     "heroTrust2": "Thousands of items in stock",
+    "heroTrustGoogleLabel": "on Google",
+    "heroTrustCount": "Thousands",
+    "heroTrustCountSub": "of items in stock",
     "uspPillars": [
       {
         "title": "Yours today",
@@ -828,47 +942,49 @@
     ],
     "assortmentEyebrow": "ASSORTMENT",
     "assortmentTitle": "Accessories that fit your device and your usage",
-    "assortmentSub": "Every device and every user is different. In our shop you can view, try on and immediately test accessories. Find something you're 100% happy with.",
+    "assortmentSub": "Every device and every user is different. That's why you can view, compare and try our accessories directly in the shop. From phone cases and screen protectors to chargers and car holders: we're happy to help you find an accessory that truly fits your device and how you use it.",
+    "assortmentSubMobile": "Every device and every user is different. That's why we offer a carefully selected range of accessories for almost every brand and model. From durable phone cases and screen protectors to chargers, cables and car mounts, you can compare products in-store and receive expert advice immediately. With experience from thousands of repairs, we help you choose accessories that perfectly match both your device and everyday use.",
     "filterAll": "All",
     "catsEyebrow": "CATEGORIES",
     "catsTitle": "Our popular categories",
     "categories": [
       {
+        "id": "cases",
         "title": "Cases",
+        "price": "Cases from €9.95",
         "bullets": [
-          "Cases from €9.99",
-          "Custom protection",
-          "Super stylish and so much choice"
+          "Transparent, silicone, MagSafe and rugged",
+          "Available for almost every brand and model"
         ],
         "cta": "Visit the shop"
       },
       {
+        "id": "screenprotectors",
         "title": "Screen protectors",
+        "price": "Screen protectors from €10.00",
         "bullets": [
-          "Premium quality",
-          "Tempered glass",
-          "Custom-cut film",
-          "Fitted while you wait"
+          "Clear, privacy and matte finishes",
+          "Professionally installed while you wait"
         ],
         "cta": "Have your screen protector fitted"
       },
       {
+        "id": "chargers",
         "title": "Chargers & cables",
+        "price": "From €9.95",
         "bullets": [
-          "Wide range of cables",
-          "Original Apple & Samsung",
-          "2M in stock",
-          "Multiple wattage options"
+          "USB-C, Lightning and MagSafe",
+          "Fast chargers and cables available directly from stock"
         ],
         "cta": "Visit us"
       },
       {
+        "id": "carholders",
         "title": "Car holders",
+        "price": "From €12.95",
         "bullets": [
-          "For vent or dashboard",
-          "For MagSafe & phones",
-          "Secure mounting",
-          "Wide price range and choice"
+          "MagSafe and universal models",
+          "Suitable for dashboard, windshield and air vent"
         ],
         "cta": "Find the right car holder"
       }
@@ -884,13 +1000,23 @@
     "upsellBullet1": "Fitted in the shop — free",
     "upsellBullet2": "Wide choice of brands & models",
     "upsellBullet3": "Personal advice from our experts",
+    "upsellBullet4": "In-store application service",
     "upsellCta1": "Visit the shop",
     "upsellCta2": "Check availability",
+    "upsellMobileCardText": "Bring your new device to our shop so we can immediately fit it with the protection it needs, making it easy to try everything on the spot.",
     "citiesLabel": "We help customers from all over Westland & surroundings",
     "noResults": "No products found for",
     "showAll": "Show all",
     "faqEyebrow": "FAQ",
     "faqTitle": "Frequently asked questions about our products",
+    "faqSub": "Still have a question about a charger, case or screen protector? Check the answers below or get in touch.",
+    "faqCtaChat": "Send us a message",
+    "faqCtaWhatsapp": "WhatsApp with us",
+    "storeInteriorAlt": "View our range in the shop",
+    "storeInteriorWideAlt": "Interior of the 4Mobiles store",
+    "openInMaps": "Open in Maps",
+    "newPhoneAlt": "New device",
+    "newPhoneProtectionAlt": "New device protection",
     "faq": [
       {
         "q": "Which accessory brands do you sell?",
@@ -908,7 +1034,27 @@
         "q": "Can I have a case customised or made to order?",
         "a": "Contact us to discuss the options. We are happy to help and can sometimes arrange something special."
       }
-    ]
+    ],
+    "faqMobileExtra": [
+      {
+        "q": "How long does it take to fit a screen protector?",
+        "a": "Fitting usually only takes a few minutes. You can simply wait while we take care of it for you."
+      },
+      {
+        "q": "Do you offer warranty on accessories?",
+        "a": "Yes, we offer warranty on most accessories. Ask in the shop about the terms for your specific product."
+      }
+    ],
+    "storeVisitTitle": "Visit our shop",
+    "storeVisitCopyBtn": "Copy",
+    "storeVisitRoute": "Get directions",
+    "storeVisitWhatsapp": "WhatsApp us",
+    "storeVisitNoAppt": "No appointment needed — just walk in!",
+    "promoTitle": "Come by and experience the difference.",
+    "promoBullet1": "Browse hundreds of accessories",
+    "promoBullet2": "Compare different models",
+    "promoBullet3": "Personal advice from our specialists",
+    "promoBullet4": "No appointment needed, just walk in"
   },
   "reparatie": {
     "heroBadge": "Book repair",

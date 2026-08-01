@@ -307,11 +307,36 @@ const ShieldCheck = (p: IconProps) => (
   </svg>
 )
 
+const Rocket = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M12 2.5c3 1 5.5 4 5.5 8.5 0 2-.6 3.6-1.4 5l-4.1 4-4.1-4c-.8-1.4-1.4-3-1.4-5 0-4.5 2.5-7.5 5.5-8.5Z" />
+    <circle cx="12" cy="10.5" r="2" />
+    <path d="M8 16.5 5.5 19M16 16.5 18.5 19M9.5 20.5l1-2M14.5 20.5l-1-2" />
+  </svg>
+)
+
+const ClipboardCheck = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <rect x="5" y="4" width="14" height="17" rx="2" />
+    <path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" />
+    <path d="m9 13 2 2 4-4" />
+  </svg>
+)
+
+const Store = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M3 9.5 4.5 4h15L21 9.5" />
+    <path d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0" />
+    <path d="M5 10v9.5a.5.5 0 0 0 .5.5H10v-6h4v6h4.5a.5.5 0 0 0 .5-.5V10" />
+  </svg>
+)
+
 export const Icon = {
   Search, Phone, Tablet, Laptop, Watch, Battery, Drop, Crack, Speaker,
   Camera, Wrench, Check, Pin, Clock, Shield, Euro, Park, Calendar, Truck,
   Star, ArrowRight, Chat, Plus, Menu, Cart, WhatsApp, X, Quote, MapLink,
-  ChevronDown, ChevronLeft, ChevronRight, Zap, Google, Apple, Users, Headset, Devices, Accessory, Info, HelpCircle, User, Scale, ShieldCheck,
+  ChevronDown, ChevronLeft, ChevronRight, Zap, Google, Apple, Users, Headset, Devices, Accessory, Info, HelpCircle, User, Scale, ShieldCheck, Store,
+  Rocket, ClipboardCheck,
 }
 
 

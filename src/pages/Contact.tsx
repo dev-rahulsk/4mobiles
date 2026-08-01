@@ -2,42 +2,31 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
+import { getOpenStatus } from '../lib/openStatus'
 
-const NOW    = new Date()
-const TODAY  = NOW.getDay()
-const HOUR   = NOW.getHours() + NOW.getMinutes() / 60
-
-function getOpenStatus(): { open: boolean; type: string; hour?: number; mins?: number } {
-  if (TODAY === 0) return { open: false, type: 'opensTomorrow' }
-  const closeHour = TODAY === 6 ? 17 : 18
-  if (HOUR >= 9 && HOUR < closeHour) {
-    const remaining = closeHour - HOUR
-    const hrs = Math.floor(remaining)
-    const mins = Math.round((remaining - hrs) * 60)
-    if (hrs > 0) return { open: true, type: 'openLabel', hour: closeHour }
-    return { open: true, type: 'openSoon', mins }
-  }
-  if (HOUR < 9) return { open: false, type: 'opensAt' }
-  return { open: false, type: 'opensTomorrow' }
-}
-
+const TODAY = new Date().getDay()
 const OPEN_STATUS = getOpenStatus()
 
 export function Contact() {
   const { t } = useTranslation()
   const [copied, setCopied] = useState(false)
+  const [openVisitFaq, setOpenVisitFaq] = useState(0)
   const openStatus = OPEN_STATUS
-  const openLabel = t(`contact.${openStatus.type}`, { hour: openStatus.hour, mins: openStatus.mins })
 
   const days = t('contact.days', { returnObjects: true }) as string[]
+  const openLabel = t(`contact.${openStatus.type}`, {
+    hour: openStatus.hour,
+    mins: openStatus.mins,
+    day: openStatus.dayIndex !== undefined ? days[openStatus.dayIndex] : undefined,
+  })
 
   const HOURS = [
-    '09:00 – 18:00',
-    '09:00 – 18:00',
-    '09:00 – 18:00',
-    '09:00 – 18:00',
-    '09:00 – 18:00',
-    '09:00 – 17:00',
+    '13:00 – 17:30',
+    '09:30 – 17:30',
+    '09:30 – 17:30',
+    '09:30 – 17:30',
+    '09:30 – 20:00',
+    '09:30 – 17:00',
     t('contact.closed'),
   ]
 
@@ -67,14 +56,8 @@ export function Contact() {
     },
   ]
 
-  const ACCESSORIES = [
-    { icon: <Icon.Shield width="18" height="18" />, label: 'Hoesjes' },
-    { icon: <Icon.Phone width="18" height="18" />, label: 'Screenprotectors' },
-    { icon: <Icon.Battery width="18" height="18" />, label: 'Opladers' },
-    { icon: <Icon.Zap width="18" height="18" />, label: 'Kabels' },
-    { icon: <Icon.Battery width="18" height="18" />, label: 'Powerbanks' },
-    { icon: <Icon.Park width="18" height="18" />, label: 'Autohouders' },
-  ]
+  const visitPills = t('contact.visitPills', { returnObjects: true }) as string[]
+  const visitFaqItems = t('contact.visitFaqItems', { returnObjects: true }) as { q: string; a: string }[]
 
   function copyAddress() {
     navigator.clipboard.writeText('Molenstraat 2, 2671 BE Naaldwijk').then(() => {
@@ -90,12 +73,8 @@ export function Contact() {
         <div className="ct-hero-bg" aria-hidden="true" />
         <div className="container ct-hero-inner">
           <span className="ct-eyebrow">CONTACT</span>
-          <h1 className="ct-hero-title">
-            <span className="ct-title-line1">Contact met</span>
-            <span className="ct-title-line2">
-              <span className="ct-green-4">4</span>MOBILES
-            </span>
-          </h1>
+          <h1 className="ct-hero-title">4Mobiles</h1>
+          <p className="ct-hero-subtext">{t('contact.heroSubtext')}</p>
           <div className="ct-hero-chips">
             <span className={`ct-open-badge${openStatus.open ? ' ct-open-badge--open' : ' ct-open-badge--closed'}`}>
               <span className="ct-open-dot" />
@@ -155,7 +134,7 @@ export function Contact() {
                 })}
               </ul>
 
-              <p className="ct-hours-note">Elke laatste zondag van de maand geopend</p>
+              <p className="ct-hours-note">{t('contact.lastSunday')}</p>
 
               {/* Parking Card (Light Blue Styling) */}
               <div className="ct-parking-card">
@@ -163,8 +142,8 @@ export function Contact() {
                   <Icon.Park width="20" height="20" />
                 </span>
                 <div>
-                  <p className="ct-parking-title">Gratis parkeren</p>
-                  <p className="ct-parking-sub">U kunt gratis voor de deur parkeren.</p>
+                  <p className="ct-parking-title">{t('contact.parkingTitle')}</p>
+                  <p className="ct-parking-sub">{t('contact.parkingSub')}</p>
                 </div>
               </div>
             </div>
@@ -204,36 +183,46 @@ export function Contact() {
 
               <div className="ct-map-ctas">
                 <a href="https://maps.google.com/?q=Molenstraat+2+Naaldwijk" target="_blank" rel="noopener noreferrer" className="ct-btn-primary">
-                  <Icon.MapLink width="18" height="18" /> Route krijgen
+                  <Icon.MapLink width="18" height="18" /> {t('contact.getDirections')}
                 </a>
                 <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="ct-btn-dark">
-                  <Icon.WhatsApp width="18" height="18" /> WhatsApp ons
+                  <Icon.WhatsApp width="18" height="18" /> {t('contact.whatsappUs')}
                 </a>
               </div>
-              <p className="ct-map-note">Geen afspraak nodig — loop gewoon binnen!</p>
+              <p className="ct-map-note">{t('contact.noAppointment')}</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Accessories / Visit Store Section */}
-      <section className="ct-accessories-section">
-        <div className="container">
-          <div className="ct-acc-card">
-            <div className="ct-acc-header">
-              <h2 className="ct-acc-title">Bezoek onze winkel voor accessoires</h2>
-              <p className="ct-acc-sub">
-                Naast reparaties vindt u bij 4MOBILES ook telefoonhoesjes, screenprotectors, kabels en meer. Kom gerust even langs!
-              </p>
+      {/* Accessories + FAQ — balanced 50/50 section */}
+      <section className="ct-visit-section">
+        <div className="container ct-visit-grid">
+          <div className="ct-visit-acc">
+            <h2 className="section-title">{t('contact.visitHeading')}</h2>
+            <p className="section-sub">{t('contact.visitBody')}</p>
+            <div className="locations-tags ct-visit-pills">
+              {visitPills.map(p => <span key={p} className="location-tag">{p}</span>)}
             </div>
-            <div className="ct-acc-grid">
-              {ACCESSORIES.map((item, idx) => (
-                <div key={idx} className="ct-acc-chip">
-                  <span className="ct-acc-chip-icon">{item.icon}</span>
-                  <span className="ct-acc-chip-label">{item.label}</span>
+          </div>
+
+          <div className="ct-visit-faq">
+            <div className="section-eyebrow">{t('contact.faqEyebrow')}</div>
+            <h2 className="section-title">{t('contact.faqTitle')}</h2>
+            <div className="faq-list">
+              {visitFaqItems.map((item, i) => (
+                <div key={i} className={`faq-item${openVisitFaq === i ? ' faq-open' : ''}`}>
+                  <button className="faq-q" onClick={() => setOpenVisitFaq(openVisitFaq === i ? -1 : i)}>
+                    <span>{item.q}</span>
+                    <span className="faq-icon"><Icon.Plus width="18" height="18" /></span>
+                  </button>
+                  {openVisitFaq === i && <div className="faq-a">{item.a}</div>}
                 </div>
               ))}
             </div>
+            <a href="/#faq" className="ct-visit-faq-more">
+              {t('contact.visitFaqMore')} <Icon.ArrowRight width="16" height="16" />
+            </a>
           </div>
         </div>
       </section>

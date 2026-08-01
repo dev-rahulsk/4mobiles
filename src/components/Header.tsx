@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 
@@ -77,6 +77,30 @@ export function Nav() {
   const { t } = useTranslation()
   const [open, setOpen] = useState<number | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
+
+  // The mobile nav is position:fixed and its height varies across breakpoints
+  // (padding/wrapping changes). Publish its real bottom edge as a CSS var so
+  // anything pinned below it (e.g. the mobile hero) can space off the actual
+  // height instead of a hardcoded guess.
+  useLayoutEffect(() => {
+    const el = navRef.current
+    if (!el) return
+
+    const update = () => {
+      const rect = el.getBoundingClientRect()
+      document.documentElement.style.setProperty('--nav-fixed-bottom', `${rect.bottom}px`)
+    }
+
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    window.addEventListener('resize', update)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', update)
+    }
+  }, [])
 
   const navItems = [
     {
@@ -106,7 +130,7 @@ export function Nav() {
 
   return (
     <>
-      <nav className="nav">
+      <nav className="nav" ref={navRef}>
         <div className="container nav-inner">
           {/* Mobile: hamburger left */}
           <button

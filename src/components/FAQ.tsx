@@ -12,7 +12,7 @@ export function FAQ() {
   }))
 
   return (
-    <section className="section faq">
+    <section className="section faq" id="faq">
       <div className="container faq-inner">
         <div className="faq-side">
           <div className="section-eyebrow">{t('faq.eyebrow')}</div>

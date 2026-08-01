@@ -1,26 +1,42 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Icon } from './Icons'
 
-import card1 from '../assets/card 1.png'
-import card2 from '../assets/card 2.png'
-import card3 from '../assets/card 3.png'
-import card4 from '../assets/card 4.png'
+import newcard1 from '../assets/newcard1.png'
+import newcard2 from '../assets/newcard2.png'
+import newcard3 from '../assets/newcard3.png'
+import newcard4 from '../assets/newcard4.png'
 
 const CARDS = [
-  { id: 1, img: card1, alt: 'Step 1: Afspraak', cls: 'peel-card-item--card1' },
-  { id: 2, img: card2, alt: 'Step 2: Diagnose', cls: '' },
-  { id: 3, img: card3, alt: 'Step 3: Reparatie', cls: 'peel-card-item--card3' },
-  { id: 4, img: card4, alt: 'Step 4: Resultaat', cls: '' },
+  { id: 1, img: newcard1, colorKey: 'c1', StepIcon: Icon.Calendar, FooterIcon: Icon.Pin },
+  { id: 2, img: newcard2, colorKey: 'c2', StepIcon: Icon.Search, FooterIcon: Icon.ClipboardCheck },
+  { id: 3, img: newcard3, colorKey: 'c3', StepIcon: Icon.Wrench, FooterIcon: Icon.Clock },
+  { id: 4, img: newcard4, colorKey: 'c4', StepIcon: Icon.Rocket, FooterIcon: Icon.ShieldCheck },
 ]
+
+const REVEAL_DELAY_STEP = 120 // ms between each card's reveal
+const REVEAL_DURATION = 560 // ms
+const REVEAL_TRAVEL = 20 // px — ~10% more than the 18px reference value
+
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3)
+}
 
 export function Process() {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const [progress, setProgress] = useState(0)
+  const [revealMs, setRevealMs] = useState<number | null>(null)
 
   const targetProgress = useRef(0)
   const currentProgress = useRef(0)
   const rafId = useRef<number | null>(null)
+  const revealStart = useRef<number | null>(null)
+  const revealRafId = useRef<number | null>(null)
+  const hasRevealed = useRef(false)
+
+  const steps = t('process.steps', { returnObjects: true }) as { title: string; desc: string; detail: string }[]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,6 +74,39 @@ export function Process() {
     }
   }, [])
 
+  // One-time staggered reveal animation when the stack first scrolls into view
+  useEffect(() => {
+    const el = wrapperRef.current
+    if (!el) return
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasRevealed.current) {
+          hasRevealed.current = true
+          revealStart.current = performance.now()
+
+          const tick = (now: number) => {
+            const elapsed = now - (revealStart.current ?? now)
+            setRevealMs(elapsed)
+            const totalDuration = REVEAL_DELAY_STEP * (CARDS.length - 1) + REVEAL_DURATION
+            if (elapsed < totalDuration) {
+              revealRafId.current = requestAnimationFrame(tick)
+            }
+          }
+          revealRafId.current = requestAnimationFrame(tick)
+          io.disconnect()
+        }
+      },
+      { threshold: 0.15 }
+    )
+
+    io.observe(el)
+    return () => {
+      io.disconnect()
+      if (revealRafId.current) cancelAnimationFrame(revealRafId.current)
+    }
+  }, [])
+
   const numCards = CARDS.length
   const totalSegments = numCards - 1 // 3 peel segments
 
@@ -79,19 +128,56 @@ export function Process() {
             <p className="section-sub">{t('process.sub')}</p>
           </div>
 
-          <div className="peel-stack-wrapper">
+          <div className="peel-stack-wrapper" ref={wrapperRef}>
             {CARDS.map((card, idx) => {
+              const step = steps[idx]
+              const [detailStrong, detailRest] = (step?.detail || '').split(' · ')
+
+              // Staggered mount-reveal factor for this card
+              let revealEase = 0
+              if (revealMs !== null) {
+                const delay = idx * REVEAL_DELAY_STEP
+                const local = Math.max(0, Math.min(REVEAL_DURATION, revealMs - delay))
+                revealEase = easeOutCubic(local / REVEAL_DURATION)
+              }
+              const revealTranslate = (1 - revealEase) * REVEAL_TRAVEL
+
               // Strict Z-Index: Card 0 is 100, Card 1 is 90, Card 2 is 80, Card 3 is 70
               const zIndex = 100 - idx * 10
               const isPeeled = idx < activeSegment
               const isActive = idx === activeSegment
+
+              const cardContent = (
+                <>
+                  <img src={card.img} alt={step?.title} className="peel-card-photo" />
+                  <div className="peel-card-overlay" />
+                  <div className="peel-card-content">
+                    <div className="peel-card-badges">
+                      <div className="peel-card-num">{String(card.id).padStart(2, '0')}</div>
+                      <div className="peel-card-icon">
+                        <card.StepIcon />
+                      </div>
+                    </div>
+                    <h3 className="peel-card-title">{step?.title}</h3>
+                    <div className="peel-card-divider" />
+                    <p className="peel-card-desc">{step?.desc}</p>
+                    <div className="peel-card-footer">
+                      <card.FooterIcon className="peel-card-footer-icon" />
+                      <span className="peel-card-footer-text">
+                        <strong>{detailStrong}</strong>
+                        {detailRest ? <> · {detailRest}</> : null}
+                      </span>
+                    </div>
+                  </div>
+                </>
+              )
 
               if (isPeeled) {
                 // Completely peeled off -> hidden above stack
                 return (
                   <div
                     key={card.id}
-                    className={`peel-card-item ${card.cls}`}
+                    className={`peel-card-item peel-card-item--${card.colorKey} is-peeled`}
                     style={{
                       zIndex,
                       opacity: 0,
@@ -99,7 +185,7 @@ export function Process() {
                       pointerEvents: 'none',
                     }}
                   >
-                    <img src={card.img} alt={card.alt} className="peel-card-img" />
+                    {cardContent}
                   </div>
                 )
               }
@@ -108,23 +194,23 @@ export function Process() {
                 // Active card peeling off upwards
                 const p = segmentProgress
                 const ease = p * p * (3 - 2 * p)
-                const translateY = -ease * 125
-                const rotateDeg = -ease * 3
-                const scale = 1 - ease * 0.04
-                const opacity = Math.max(0, 1 - ease * 1.15)
+                const translateYPct = -ease * 137.5
+                const rotateDeg = -ease * 3.3
+                const scale = 1 - ease * 0.044
+                const opacity = Math.max(0, 1 - ease * 1.15) * revealEase
 
                 return (
                   <div
                     key={card.id}
-                    className={`peel-card-item ${card.cls}`}
+                    className={`peel-card-item peel-card-item--${card.colorKey} is-active`}
                     style={{
                       zIndex,
                       opacity,
                       visibility: opacity <= 0.01 ? 'hidden' : 'visible',
-                      transform: `translate3d(0, ${translateY.toFixed(2)}%, 0) rotate(${rotateDeg.toFixed(2)}deg) scale(${scale.toFixed(4)})`,
+                      transform: `translate3d(0, calc(${translateYPct.toFixed(2)}% + ${revealTranslate.toFixed(2)}px), 0) rotate(${rotateDeg.toFixed(2)}deg) scale(${scale.toFixed(4)})`,
                     }}
                   >
-                    <img src={card.img} alt={card.alt} className="peel-card-img" />
+                    {cardContent}
                   </div>
                 )
               }
@@ -132,21 +218,21 @@ export function Process() {
               // Waiting cards in stack below
               const stackIndex = idx - activeSegment
               const effectivePos = stackIndex - segmentProgress
-              const translateY = effectivePos * 20
-              const scale = 1 - effectivePos * 0.025
+              const translateY = effectivePos * 22 + revealTranslate
+              const scale = 1 - effectivePos * 0.0275
 
               return (
                 <div
                   key={card.id}
-                  className={`peel-card-item ${card.cls}`}
+                  className={`peel-card-item peel-card-item--${card.colorKey} is-waiting`}
                   style={{
                     zIndex,
-                    opacity: 1,
+                    opacity: revealEase,
                     visibility: 'visible',
                     transform: `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`,
                   }}
                 >
-                  <img src={card.img} alt={card.alt} className="peel-card-img" />
+                  {cardContent}
                 </div>
               )
             })}
