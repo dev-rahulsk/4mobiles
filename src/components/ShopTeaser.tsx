@@ -78,9 +78,6 @@ export function ShopTeaser() {
             <div className="section-eyebrow">{t('shop.eyebrow')}</div>
             <h2 className="section-title">{t('shop.title')}</h2>
           </div>
-          <a href="/producten" className="link-arrow">
-            {t('shop.viewShop')} <Icon.ArrowRight width="16" height="16" />
-          </a>
         </div>
         <div className="shop-grid">
           {items.map((it, i) => (

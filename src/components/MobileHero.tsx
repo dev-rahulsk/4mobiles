@@ -14,6 +14,9 @@ const ease = (t: number) => t * t * (3 - 2 * t)
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v))
 const mapRange = (p: number, a: number, b: number) => clamp01((p - a) / (b - a))
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 interface MobileHeroProps { accent?: string }
 
 export function MobileHero({ accent: _accent }: MobileHeroProps) {
@@ -25,10 +28,13 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
 
   const [progress, setProgress] = useState(0)
   const [stickyCtaVisible, setStickyCtaVisible] = useState(false)
+  const [wordIndex, setWordIndex] = useState(0)
   const progressRef = useRef(0)
   const [announcementVisible, setAnnouncementVisible] = useState(() => {
     try { return !sessionStorage.getItem('ann-v1') } catch { return true }
   })
+
+  const dynamicWords = t('mhero.dynamicWords', { returnObjects: true }) as string[]
 
   useEffect(() => {
     FRAME_SRCS.forEach((src, i) => {
@@ -37,6 +43,14 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
       img.onload = () => { loadedImages.current[i] = img }
     })
   }, [])
+
+  useEffect(() => {
+    if (prefersReducedMotion() || dynamicWords.length <= 1) return
+    const id = setInterval(() => {
+      setWordIndex(i => (i + 1) % dynamicWords.length)
+    }, 2400)
+    return () => clearInterval(id)
+  }, [dynamicWords.length])
 
   useEffect(() => {
     let rafId: number | null = null
@@ -52,9 +66,6 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
         const p = total > 0 ? scrolled / total : 0
         progressRef.current = p
         setProgress(p)
-        // Only show the floating CTA once the whole pinned section (including
-        // its release runway) has scrolled fully out of view — not the moment
-        // the scroll-driven animation itself reaches 100%.
         setStickyCtaVisible(rect.bottom <= 0)
       })
     }
@@ -78,8 +89,6 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
         const repair = ease(mapRange(progressRef.current, 0.25, 0.80))
         const targetFrame = repair * (FRAME_COUNT - 1)
 
-        // Lerp toward target — limits max advance per tick so fast scrolling
-        // doesn't blast through all frames at once.
         smoothFrame.current += (targetFrame - smoothFrame.current) * 0.04
 
         const frameIndex = Math.min(Math.round(smoothFrame.current), FRAME_COUNT - 1)
@@ -98,21 +107,24 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
     return () => cancelAnimationFrame(animId)
   }, [])
 
-  const textFade   = 1 - ease(mapRange(progress, 0.05, 0.55))
-  const phoneScale = 1 + ease(mapRange(progress, 0.10, 0.85)) * 0.55
-  const phoneY     = -ease(mapRange(progress, 0.10, 0.95)) * 140
-  const phoneRot   = (ease(mapRange(progress, 0.10, 0.95)) - 0.5) * 8
+  const textFade = 1 - ease(mapRange(progress, 0.05, 0.55))
+  const phoneScale = 1 + ease(mapRange(progress, 0.10, 0.85)) * 0.40
+  const phoneY = -ease(mapRange(progress, 0.10, 0.85)) * 70
+  const phoneRot = (ease(mapRange(progress, 0.10, 0.85)) - 0.5) * 8
 
-  const label1 = ease(mapRange(progress, 0.02, 0.18))
-  const label2 = ease(mapRange(progress, 0.08, 0.24))
-  const label3 = ease(mapRange(progress, 0.14, 0.30))
-  const labelsFade = 1 - ease(mapRange(progress, 0.42, 0.54))
-  const labelsOpacity = Math.min(label1, labelsFade)
+  const repairBadgesOpacity = 1 - ease(mapRange(progress, 0.42, 0.54))
+  const doneProgress = ease(mapRange(progress, 0.60, 0.78))
 
   const dismissAnnouncement = () => {
     try { sessionStorage.setItem('ann-v1', '1') } catch { /* ignore */ }
     setAnnouncementVisible(false)
   }
+
+  const repairBadges = [
+    { icon: Icon.Crack, label: t('mhero.repairBadgeAccident') },
+    { icon: Icon.Drop, label: t('mhero.repairBadgeWater') },
+    { icon: Icon.Battery, label: t('mhero.repairBadgeBattery') },
+  ]
 
   return (
     <>
@@ -120,28 +132,71 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
         <div className="mhero-sticky">
           <div className="mhero-inner">
 
-            <div
-              className="mhero-text"
-              style={{ opacity: textFade, transform: `translateY(${(1 - textFade) * -16}px)` }}
-            >
+            <div className="mhero-text">
               {announcementVisible && (
-                <div className="mhero-announcement" role="banner">
+                <div
+                  className="mhero-announcement"
+                  role="banner"
+                  style={{ opacity: textFade, transform: `translateY(${(1 - textFade) * -16}px)` }}
+                >
                   <span className="mhero-announcement-text">{t('ann.text')}</span>
                   <button className="mhero-announcement-close" onClick={dismissAnnouncement} aria-label={t('ann.dismiss')}>
                     <Icon.X width="16" height="16" />
                   </button>
                 </div>
               )}
-              <h1 className="mhero-title">
-                {t('mhero.title1')}<br />
-                {t('mhero.title2')} <span className="mhero-accent">{t('mhero.titleAccent')}</span><br />
-                {t('mhero.title3')}
-              </h1>
-              <p className="mhero-sub">
-                {t('mhero.sub1')}<br />
-                {t('mhero.sub2')}<br />
-                {t('mhero.sub3')}
-              </p>
+
+              <div className={`mhero-title-stack${!announcementVisible ? ' mhero-title-stack--no-announcement' : ''}`}>
+                <h1 className="mhero-title mhero-title-dynamic-heading" style={{ opacity: 1 - doneProgress }}>
+                  <span className="mhero-word-cycle">
+                    {dynamicWords.map((word, i) => (
+                      <span key={word} className={`mhero-word${i === wordIndex ? ' active' : ''}`}>
+                        {word}
+                      </span>
+                    ))}
+                  </span>{' '}
+                  {t('mhero.titleSuffix')}
+                </h1>
+                <h1
+                  className="mhero-title mhero-title-done"
+                  style={{ opacity: doneProgress, transform: `translateY(${(1 - doneProgress) * 12}px)` }}
+                  aria-hidden={doneProgress < 0.5}
+                >
+                  {t('mhero.doneTitle')}
+                </h1>
+              </div>
+
+              <div className="mhero-secondary-stack">
+                <div className="mhero-fade-block" style={{ opacity: textFade, transform: `translateY(${(1 - textFade) * -10}px)` }}>
+                  <p className="mhero-title-secondary">
+                    {t('mhero.title2')} <span className="mhero-accent">{t('mhero.titleAccent')}</span> {t('mhero.title3')}
+                  </p>
+                  <p className="mhero-sub">
+                    {t('mhero.sub1')}<br />
+                    {t('mhero.sub2')}<br />
+                    {t('mhero.sub3')}
+                  </p>
+                </div>
+
+                <div
+                  className="mhero-done-badges"
+                  style={{ opacity: doneProgress, transform: `translateY(${(1 - doneProgress) * 16}px)` }}
+                  aria-hidden={doneProgress < 0.5}
+                >
+                  <span className="mhero-glass-pill mhero-done-badge">
+                    <Icon.Check width="14" height="14" />
+                    {t('mhero.doneBadge1')}
+                  </span>
+                  <span className="mhero-glass-pill mhero-done-badge">
+                    <span className="mhero-done-badge-stars">
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <Icon.Star key={i} width="12" height="12" style={{ color: '#fbbf24' }} />
+                      ))}
+                    </span>
+                    {t('mhero.doneBadge2')}
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div
@@ -150,19 +205,14 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
             >
               <canvas ref={canvasRef} width={1440} height={960} />
 
-              {label1 > 0.01 && (
-                <div className="mhero-labels" style={{ opacity: labelsOpacity }}>
-                  <div className="mhero-label mhero-label-1" style={{ opacity: label1, transform: `translateY(${(1 - label1) * 20}px)` }}>
-                    {t('mhero.label1')}
-                  </div>
-                  <div className="mhero-label mhero-label-2" style={{ opacity: label2, transform: `translateY(${(1 - label2) * 20}px)` }}>
-                    {t('mhero.label2')}
-                  </div>
-                  <div className="mhero-label mhero-label-3" style={{ opacity: label3, transform: `translateY(${(1 - label3) * 20}px)` }}>
-                    {t('mhero.label3')}
-                  </div>
-                </div>
-              )}
+              <div className="mhero-repair-badges" style={{ opacity: repairBadgesOpacity }}>
+                {repairBadges.map((b, i) => (
+                  <span key={i} className="mhero-glass-pill mhero-repair-badge">
+                    <b.icon width="12" height="12" />
+                    {b.label}
+                  </span>
+                ))}
+              </div>
 
             </div>
 

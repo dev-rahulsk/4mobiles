@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
+import { FaqAccordion } from './FaqAccordion'
 
 export function FAQ() {
   const { t } = useTranslation()
-  const [open, setOpen] = useState(0)
 
   const faqs = [0, 1, 2, 3, 4, 5].map(i => ({
     q: t(`faq.items.${i}.q`),
@@ -28,17 +27,7 @@ export function FAQ() {
           </div>
         </div>
 
-        <div className="faq-list">
-          {faqs.map((f, i) => (
-            <div key={i} className={`faq-item${open === i ? ' faq-open' : ''}`}>
-              <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)}>
-                <span>{f.q}</span>
-                <span className="faq-icon"><Icon.Plus width="18" height="18" /></span>
-              </button>
-              {open === i && <div className="faq-a">{f.a}</div>}
-            </div>
-          ))}
-        </div>
+        <FaqAccordion items={faqs} />
       </div>
     </section>
   )

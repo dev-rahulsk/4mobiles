@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
+import { Pill } from '../components/global'
 import desktopHeroImg from '../assets/business_desktop_hero.png'
 import mobileHeroImg from '../assets/business_mobile_hero.png'
 import section4Img from '../assets/section_4_image.png'
@@ -46,12 +47,14 @@ export function Zakelijk() {
   const { t } = useTranslation()
   const [openFaq, setOpenFaq] = useState(0)
   const [sec5BulletsVisible, setSec5BulletsVisible] = useState(false)
+  const [sec5GlassCardVisible, setSec5GlassCardVisible] = useState(false)
   const [servicesProgress, setServicesProgress] = useState(0)
 
   const sec5ContainerRef = useRef<HTMLDivElement>(null)
   const sec5BgRef = useRef<HTMLImageElement>(null)
   const sec5VignetteRef = useRef<HTMLDivElement>(null)
   const sec5ListRef = useRef<HTMLUListElement>(null)
+  const sec5GlassCardRef = useRef<HTMLDivElement>(null)
   const servicesPinRef = useRef<HTMLDivElement>(null)
 
   const stats = t('zakelijk.stats', { returnObjects: true }) as { num: string; label: string }[]
@@ -102,6 +105,14 @@ export function Zakelijk() {
     const el = sec5ListRef.current
     if (!el) return
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) setSec5BulletsVisible(true) }, { threshold: 0.3 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const el = sec5GlassCardRef.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) setSec5GlassCardVisible(true) }, { threshold: 0.4 })
     io.observe(el)
     return () => io.disconnect()
   }, [])
@@ -360,7 +371,7 @@ export function Zakelijk() {
                 <p className="zk-services-sub" style={servicesHeaderStyle(0.24)}>{t('zakelijk.servicesSub')}</p>
                 <div className="zk-org-pills" style={servicesHeaderStyle(0.26)}>
                   {orgPills.map((pill, i) => (
-                    <span key={i} className="zk-org-pill">{pill}</span>
+                    <Pill key={i}>{pill}</Pill>
                   ))}
                 </div>
               </div>
@@ -440,7 +451,10 @@ export function Zakelijk() {
 
             {/* Glassmorphism Floating Card Overlay */}
             <div className="zk-sec5-mobile-card-wrap">
-              <div className="zk-sec5-glass-card">
+              <div
+                ref={sec5GlassCardRef}
+                className={`zk-sec5-glass-card${sec5GlassCardVisible ? ' zk-sec5-glass-revealed' : ''}`}
+              >
                 <ul className="zk-sec5-glass-list">
                   {preventBullets.map((bullet, i) => (
                     <li key={i} className="zk-sec5-glass-item">
@@ -474,7 +488,7 @@ export function Zakelijk() {
                 <li><Icon.Check width="15" height="15" /> {t('zakelijk.contactBullet4')}</li>
               </ul>
               <div className="zk-contact-ctas">
-                <a href="mailto:zakelijk@4mobiles.nl" className="btn-accent zk-btn zk-contact-email-btn">
+                <a href="mailto:zakelijk@4mobiles.nl" className="zk-btn zk-btn-primary">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
@@ -484,7 +498,7 @@ export function Zakelijk() {
                 <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="zk-btn zk-btn-wa">
                   <Icon.WhatsApp width="16" height="16" /> {t('zakelijk.whatsappUs')}
                 </a>
-                <a href="tel:+31174123456" className="zk-btn zk-btn-outline-dark">
+                <a href="tel:+31174123456" className="zk-btn zk-btn-outline">
                   <Icon.Phone width="16" height="16" /> {t('zakelijk.contactPhone')}
                 </a>
               </div>

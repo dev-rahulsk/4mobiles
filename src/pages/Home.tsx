@@ -4,6 +4,7 @@ import { MobileHero } from '../components/MobileHero'
 import { SearchModule } from '../components/SearchModule'
 import { PopularModels } from '../components/PopularModels'
 import { Process } from '../components/Process'
+import { ReviewsHero } from '../components/ReviewsHero'
 import { Reviews } from '../components/Reviews'
 import { Business } from '../components/Business'
 import { ShopTeaser } from '../components/ShopTeaser'
@@ -18,9 +19,10 @@ export function Home() {
       <SearchModule />
       <PopularModels />
       <Process />
+      <ReviewsHero />
       <Reviews />
-      <Business />
       <ShopTeaser />
+      <Business />
       <FAQ />
       <Locations />
     </Layout>

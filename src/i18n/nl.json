@@ -54,9 +54,14 @@
   },
   "mhero": {
     "title1": "Telefoon kapot?",
+    "dynamicWords": ["Telefoon", "Tablet", "Device"],
+    "titleSuffix": "kapot?",
     "title2": "Binnen",
     "titleAccent": "60 minuten",
     "title3": "weer in gebruik.",
+    "doneTitle": "Klaar voor gebruik.",
+    "doneBadge1": "10.000+ gerepareerd",
+    "doneBadge2": "4.8 Google Reviews",
     "sub": "Scherm stuk, batterij leeg of waterschade?\nWij repareren je toestel snel en vakkundig.\nOften ready while you wait.",
     "sub1": "Scherm stuk, batterij leeg of waterschade?",
     "sub2": "Wij repareren je toestel snel en vakkundig.",
@@ -64,6 +69,9 @@
     "label1": "💥 Ongelukje",
     "label2": "💧 Waterschade",
     "label3": "🔋 Batterij",
+    "repairBadgeAccident": "Ongelukje",
+    "repairBadgeWater": "Waterschade",
+    "repairBadgeBattery": "Batterij",
     "badge1": "{{count}} Google",
     "badge2": "{{count}}+ reparaties",
     "cta": "Boek reparatie",
@@ -77,7 +85,7 @@
     "feat2Title": "90 dagen\ngarantie",
     "feat2Sub": "Op alle reparaties",
     "feat3Title": "No cure,\nno pay",
-    "feat3Sub": "Niet gerepareerd? Dan betaal je niet",
+    "feat3Sub": "Kost u niets",
     "stickyAriaLabel": "Boek reparatie"
   },
   "search": {
@@ -93,7 +101,7 @@
     "screen": "Scherm",
     "battery": "Accu",
     "viewRepair": "Bekijk reparatie",
-    "viewAll": "Bekijk alle reparaties"
+    "viewAll": "Bekijk alle prijzen"
   },
   "process": {
     "eyebrow": "⚡ Eenvoudig & snel",
@@ -123,9 +131,15 @@
       }
     ]
   },
+  "reviewsHero": {
+    "imageAlt": "Klant die rondkijkt in de 4Mobiles winkel"
+  },
   "reviews": {
     "title": "klanten gingen u voor.",
-    "sub": "Lees waarom klanten uit Naaldwijk en Westland ons beoordelen met 4.8 uit 5 sterren.",
+    "eyebrow": "ERVARINGEN VAN KLANTEN",
+    "headingPre": "Lees waarom klanten uit Naaldwijk en Westland ons beoordelen met",
+    "headingHighlight": "4.8 uit 5",
+    "headingPost": "sterren.",
     "ratingCount": "200+ reviews",
     "verified": "Geverifieerd",
     "viewAll": "Bekijk alle reviews",
@@ -463,6 +477,7 @@
     "copied": "Gekopieerd!",
     "faqEyebrow": "FAQ",
     "faqTitle": "Veelgestelde vragen",
+    "visitEyebrow": "ACCESSOIRES",
     "visitHeading": "Alles voor uw smartphone, op één plek",
     "visitBody": "Op zoek naar een nieuw telefoonhoesje, een stevige screenprotector, een snellader of handige accessoires voor dagelijks gebruik? 4Mobiles biedt een zorgvuldig samengesteld assortiment van hoogwaardige producten. Kom langs in onze winkel en ons team helpt u graag met het kiezen van het juiste accessoire.",
     "visitPills": [
@@ -538,22 +553,22 @@
       {
         "val": "12+",
         "title": "jaar ervaring",
-        "sub": "Specialist in smartphone reparaties"
-      },
-      {
-        "val": "150.000+",
-        "title": "klanten geholpen",
-        "sub": "Door heel het Westland"
+        "sub": "Meer dan 150.000 klanten geholpen"
       },
       {
         "val": "10.000+",
         "title": "reparaties",
-        "sub": "Snel en vakkundig uitgevoerd"
+        "sub": "Snel en professioneel uitgevoerd"
       },
       {
-        "val": "",
-        "title": "Persoonlijke service",
-        "sub": "Altijd eerlijk advies"
+        "val": "60",
+        "title": "minuten klaar",
+        "sub": "Vaak gerepareerd terwijl u wacht"
+      },
+      {
+        "val": "4.8/5",
+        "title": "Google reviews",
+        "sub": "Gebaseerd op 487 reviews"
       }
     ],
     "featured": [
@@ -608,14 +623,14 @@
     "viewAllLink": "Bekijk alle reviews →",
     "viewMoreLink": "Bekijk meer reviews",
     "ctaTitle": "Ook snel geholpen worden?",
-    "ctaSub": "Plan je reparatie of neem direct contact op met 4Mobiles.",
+    "ctaSub": "Plan eenvoudig online uw reparatie en profiteer van eerlijk advies en persoonlijke service.",
     "planRepair": "Plan je reparatie",
     "whatsappUs": "WhatsApp ons",
     "callDirect": "Bel direct",
-    "trust1": "Binnen 60 minuten klaar",
+    "trust1": "Binnen 60 min klaar",
     "trust2": "90 dagen garantie",
-    "trust3": "Geen verborgen kosten",
-    "trust4": "4.8/5 op Google",
+    "trust3": "Originele kwaliteit",
+    "trust4": "Persoonlijke service",
     "stickyCtaButton": "Plan reparatie",
     "stickyCtaSub": "10.000+ gingen je voor",
     "whyChooseTitle": "Waarom kiezen zoveel klanten voor 4Mobiles?",
@@ -954,41 +969,50 @@
         "title": "Hoesjes",
         "price": "Hoesjes vanaf €9,95",
         "bullets": [
-          "Transparant, siliconen, MagSafe en robuust",
-          "Verkrijgbaar voor vrijwel elk merk en model"
+          "Transparant, siliconen, MagSafe en extra stevig",
+          "Voor vrijwel ieder merk en model"
         ],
-        "cta": "Kom naar de winkel"
+        "cta": "Meer over hoesjes"
       },
       {
         "id": "screenprotectors",
         "title": "Screenprotectors",
         "price": "Screenprotectors vanaf €10,00",
         "bullets": [
-          "Clear, privacy en matte afwerkingen",
-          "Vakkundig geplaatst terwijl je wacht"
+          "Glas, privacy en folie op maat",
+          "Professioneel aangebracht in de winkel"
         ],
-        "cta": "Laat je screenprotector plaatsen"
+        "cta": "Welke screenprotector past bij mij?"
       },
       {
         "id": "chargers",
         "title": "Opladers & kabels",
-        "price": "Vanaf €9,95",
+        "price": "Opladers vanaf €12,95",
         "bullets": [
-          "USB-C, Lightning en MagSafe",
-          "Snelladers en kabels direct uit voorraad leverbaar"
+          "USB-C, snelladers en kabels voor ieder toestel",
+          "Voor thuis, onderweg en in de auto"
         ],
-        "cta": "Kom naar adres"
+        "cta": "Bekijk de soorten opladers"
       },
       {
         "id": "carholders",
         "title": "Autohouders",
-        "price": "Vanaf €12,95",
+        "price": "Autohouders vanaf €12,95",
         "bullets": [
-          "MagSafe en universele modellen",
-          "Geschikt voor dashboard, voorruit en ventilatierooster"
+          "Voor dashboard, ventilatierooster of voorruit",
+          "Verkrijgbaar met klem, magneet en MagSafe"
         ],
-        "cta": "Kom naar de juiste autohouder"
+        "cta": "Welke autohouder past bij mij?"
       }
+    ],
+    "catsMoreEyebrow": "NOG VEEL MEER",
+    "catsMoreTitle": "Alles voor uw smartphone, op één plek",
+    "catsMoreBody": "Op zoek naar een nieuw telefoonhoesje, een stevige screenprotector, een snellader of handige accessoires voor dagelijks gebruik? 4Mobiles biedt een zorgvuldig samengesteld assortiment van hoogwaardige producten. Kom langs in onze winkel en ons team helpt u graag met het kiezen van het juiste accessoire.",
+    "catsMorePills": [
+      "Telefoonhoesjes", "Screenprotectors", "Opladers", "Kabels",
+      "Powerbanks", "Telefoonkoordjes", "Selfiesticks", "Autohouders",
+      "Draadloze opladers", "AirTag-accessoires", "MagSafe-accessoires", "Audio",
+      "Tablet-accessoires", "Smartwatch-accessoires"
     ],
     "brandsLabel": "Merken die wij verkopen",
     "ctaTitle": "Kom langs en bekijk alles zelf",
@@ -1018,6 +1042,12 @@
     "openInMaps": "Openen in Maps",
     "newPhoneAlt": "Nieuw toestel",
     "newPhoneProtectionAlt": "Nieuw toestel bescherming",
+    "newDeviceEyebrow": "Nieuw toestel?",
+    "newDeviceTitle": "Bescherm uw nieuwe toestel meteen",
+    "newDeviceCardLead": "Voorkom krassen en schade vanaf dag één.",
+    "newDeviceCardBody": "Neem uw nieuwe toestel mee, dan plaatsen wij direct een screenprotector en helpen we u meteen met een passend hoesje.",
+    "newDeviceBullet1": "Screenprotector direct vakkundig geplaatst",
+    "newDeviceBullet2": "Hoesje meteen passen en vergelijken in de winkel",
     "faq": [
       {
         "q": "Welke merken accessoires verkopen jullie?",
@@ -1052,6 +1082,7 @@
     "storeVisitWhatsapp": "WhatsApp ons",
     "storeVisitNoAppt": "Geen afspraak nodig — loop gewoon binnen!",
     "promoTitle": "Kom langs en ervaar het verschil.",
+    "storeImageHeadingMobile": "Kom langs en bekijk alles zelf",
     "promoBullet1": "Bekijk honderden accessoires",
     "promoBullet2": "Vergelijk verschillende modellen",
     "promoBullet3": "Persoonlijk advies van onze specialisten",

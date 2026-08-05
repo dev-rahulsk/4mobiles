@@ -331,12 +331,50 @@ const Store = (p: IconProps) => (
   </svg>
 )
 
+const Cable = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M7 3v4a3 3 0 0 0 3 3h4a3 3 0 0 1 3 3v4" />
+    <circle cx="6" cy="4" r="2" />
+    <circle cx="18" cy="19" r="2" />
+  </svg>
+)
+
+const Lanyard = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <circle cx="12" cy="6" r="3" />
+    <path d="M10 8.5 7 21h10l-3-12.5" />
+  </svg>
+)
+
+const Wand = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <circle cx="12" cy="4.5" r="2.5" />
+    <path d="M12 7v13" />
+    <path d="M9 20h6" />
+  </svg>
+)
+
+const Wireless = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M6 13.5a8.5 8.5 0 0 1 12 0" />
+    <path d="M9 16.5a4.3 4.3 0 0 1 6 0" />
+    <circle cx="12" cy="19.5" r="1.4" fill="currentColor" stroke="none" />
+  </svg>
+)
+
+const Target = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <circle cx="12" cy="12" r="3.2" />
+  </svg>
+)
+
 export const Icon = {
   Search, Phone, Tablet, Laptop, Watch, Battery, Drop, Crack, Speaker,
   Camera, Wrench, Check, Pin, Clock, Shield, Euro, Park, Calendar, Truck,
   Star, ArrowRight, Chat, Plus, Menu, Cart, WhatsApp, X, Quote, MapLink,
   ChevronDown, ChevronLeft, ChevronRight, Zap, Google, Apple, Users, Headset, Devices, Accessory, Info, HelpCircle, User, Scale, ShieldCheck, Store,
-  Rocket, ClipboardCheck,
+  Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target,
 }
 
 

@@ -54,15 +54,23 @@
   },
   "mhero": {
     "title1": "Phone broken?",
+    "dynamicWords": ["Phone", "Tablet", "Device"],
+    "titleSuffix": "broken?",
     "title2": "Fixed in",
     "titleAccent": "60 minutes",
     "title3": "and back in use.",
+    "doneTitle": "Back in business.",
+    "doneBadge1": "10,000+ repaired",
+    "doneBadge2": "4.8 Google Reviews",
     "sub1": "Cracked screen, dead battery or water damage?",
     "sub2": "We repair your device quickly and professionally.",
     "sub3": "Often ready while you wait.",
     "label1": "💥 Accident",
     "label2": "💧 Water damage",
     "label3": "🔋 Battery",
+    "repairBadgeAccident": "Accident",
+    "repairBadgeWater": "Water damage",
+    "repairBadgeBattery": "Battery",
     "badge1": "{{count}} Google",
     "badge2": "{{count}}+ repairs",
     "cta": "Book repair",
@@ -76,7 +84,7 @@
     "feat2Title": "90-day\nwarranty",
     "feat2Sub": "On all repairs",
     "feat3Title": "No cure,\nno pay",
-    "feat3Sub": "Not fixed? You don't pay",
+    "feat3Sub": "You don't pay",
     "stickyAriaLabel": "Book repair"
   },
   "search": {
@@ -92,7 +100,7 @@
     "screen": "Screen",
     "battery": "Battery",
     "viewRepair": "View repair",
-    "viewAll": "View all repairs"
+    "viewAll": "View all prices"
   },
   "process": {
     "eyebrow": "⚡ Simple & fast",
@@ -122,9 +130,15 @@
       }
     ]
   },
+  "reviewsHero": {
+    "imageAlt": "Customer browsing in the 4Mobiles store"
+  },
   "reviews": {
     "title": "customers went before you.",
-    "sub": "Read why customers from Naaldwijk and Westland rate us 4.8 out of 5 stars.",
+    "eyebrow": "CUSTOMER EXPERIENCES",
+    "headingPre": "Read why customers from Naaldwijk and Westland rate us",
+    "headingHighlight": "4.8 out of 5",
+    "headingPost": "stars.",
     "ratingCount": "200+ reviews",
     "verified": "Verified",
     "viewAll": "View all reviews",
@@ -462,6 +476,7 @@
     "copied": "Copied!",
     "faqEyebrow": "FAQ",
     "faqTitle": "Frequently asked questions",
+    "visitEyebrow": "ACCESSORIES",
     "visitHeading": "Everything for your smartphone, all in one place",
     "visitBody": "Whether you're looking for a new phone case, a durable screen protector, a fast charger or useful accessories for everyday use, 4Mobiles offers a carefully selected range of high-quality products. Visit our store and our team will be happy to help you choose the right accessory.",
     "visitPills": [
@@ -537,22 +552,22 @@
       {
         "val": "12+",
         "title": "years experience",
-        "sub": "Specialists in smartphone repairs"
-      },
-      {
-        "val": "150,000+",
-        "title": "customers helped",
-        "sub": "Across the whole Westland region"
+        "sub": "More than 150,000 customers helped"
       },
       {
         "val": "10,000+",
         "title": "repairs",
-        "sub": "Fast and skilled work"
+        "sub": "Fast and professionally handled"
       },
       {
-        "val": "",
-        "title": "Personal service",
-        "sub": "Always honest advice"
+        "val": "60",
+        "title": "minutes ready",
+        "sub": "Often repaired while you wait"
+      },
+      {
+        "val": "4.8/5",
+        "title": "Google reviews",
+        "sub": "Based on 487 reviews"
       }
     ],
     "featured": [
@@ -607,14 +622,14 @@
     "viewAllLink": "View all reviews →",
     "viewMoreLink": "View more reviews",
     "ctaTitle": "Want to be helped quickly too?",
-    "ctaSub": "Book your repair or contact 4Mobiles directly.",
+    "ctaSub": "Book your repair online in a few clicks and enjoy honest advice and personal service.",
     "planRepair": "Book your repair",
     "whatsappUs": "WhatsApp us",
     "callDirect": "Call us",
-    "trust1": "Ready in 30 minutes",
+    "trust1": "Ready in 60 min",
     "trust2": "90-day warranty",
-    "trust3": "No hidden costs",
-    "trust4": "4.8/5 on Google",
+    "trust3": "Original quality",
+    "trust4": "Personal service",
     "stickyCtaButton": "Book repair",
     "stickyCtaSub": "10,000+ went before you",
     "whyChooseTitle": "Why do so many customers choose 4Mobiles?",
@@ -953,41 +968,50 @@
         "title": "Cases",
         "price": "Cases from €9.95",
         "bullets": [
-          "Transparent, silicone, MagSafe and rugged",
+          "Transparent, silicone, MagSafe and extra protective",
           "Available for almost every brand and model"
         ],
-        "cta": "Visit the shop"
+        "cta": "More about cases"
       },
       {
         "id": "screenprotectors",
         "title": "Screen protectors",
         "price": "Screen protectors from €10.00",
         "bullets": [
-          "Clear, privacy and matte finishes",
-          "Professionally installed while you wait"
+          "Glass, privacy and custom-cut film",
+          "Professionally applied in-store"
         ],
-        "cta": "Have your screen protector fitted"
+        "cta": "Which screen protector suits me?"
       },
       {
         "id": "chargers",
         "title": "Chargers & cables",
-        "price": "From €9.95",
+        "price": "Chargers from €12.95",
         "bullets": [
-          "USB-C, Lightning and MagSafe",
-          "Fast chargers and cables available directly from stock"
+          "USB-C, fast chargers and cables for every device",
+          "For home, travel and in the car"
         ],
-        "cta": "Visit us"
+        "cta": "View charger types"
       },
       {
         "id": "carholders",
         "title": "Car holders",
-        "price": "From €12.95",
+        "price": "Car holders from €12.95",
         "bullets": [
-          "MagSafe and universal models",
-          "Suitable for dashboard, windshield and air vent"
+          "For dashboard, air vent or windscreen",
+          "Available with clamp, magnet and MagSafe"
         ],
-        "cta": "Find the right car holder"
+        "cta": "Which car holder suits me?"
       }
+    ],
+    "catsMoreEyebrow": "EVEN MORE",
+    "catsMoreTitle": "Everything for your smartphone, in one place",
+    "catsMoreBody": "Looking for a new phone case, a sturdy screen protector, a fast charger or handy accessories for everyday use? 4Mobiles offers a carefully curated range of high-quality products. Come by our shop and our team will gladly help you choose the right accessory.",
+    "catsMorePills": [
+      "Phone cases", "Screen protectors", "Chargers", "Cables",
+      "Power banks", "Phone straps", "Selfie sticks", "Car holders",
+      "Wireless chargers", "AirTag accessories", "MagSafe accessories", "Audio",
+      "Tablet accessories", "Smartwatch accessories"
     ],
     "brandsLabel": "Brands we sell",
     "ctaTitle": "Come and see everything for yourself",
@@ -1017,6 +1041,12 @@
     "openInMaps": "Open in Maps",
     "newPhoneAlt": "New device",
     "newPhoneProtectionAlt": "New device protection",
+    "newDeviceEyebrow": "New device?",
+    "newDeviceTitle": "Protect your new device right away",
+    "newDeviceCardLead": "Prevent scratches and damage from day one.",
+    "newDeviceCardBody": "Bring your new device with you and we'll fit a screen protector on the spot, plus help you find a case that fits perfectly.",
+    "newDeviceBullet1": "Screen protector professionally applied on the spot",
+    "newDeviceBullet2": "Try and compare cases right there in the shop",
     "faq": [
       {
         "q": "Which accessory brands do you sell?",
@@ -1051,6 +1081,7 @@
     "storeVisitWhatsapp": "WhatsApp us",
     "storeVisitNoAppt": "No appointment needed — just walk in!",
     "promoTitle": "Come by and experience the difference.",
+    "storeImageHeadingMobile": "Come by and see it all for yourself",
     "promoBullet1": "Browse hundreds of accessories",
     "promoBullet2": "Compare different models",
     "promoBullet3": "Personal advice from our specialists",

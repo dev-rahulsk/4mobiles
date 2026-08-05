@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
+import { PageHero, CtaButton, GlassBadge, Pill } from '../components/global'
+import reviewsHeroImg from '../assets/store_hero_bg.png'
 
 const FEATURED_INITIALS = ['H', 'S']
 const ALL_INITIALS = ['J', 'L', 'R', 'E', 'T', 'M', 'K', 'A', 'P', 'V']
-const TRUST_ICONS = [Icon.Shield, Icon.Users, Icon.Wrench, Icon.User]
+const TRUST_ICONS = [Icon.Shield, Icon.Wrench, Icon.Clock, Icon.Google]
 
 function Stars({ n }: { n: number }) {
   return (
@@ -68,99 +70,82 @@ export function Reviews() {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="rv2-hero">
-        <div className="container">
-          <div className="rv2-hero-grid">
-            {/* Left Column: Eyebrow, Title, Subtitle, Dual Glass CTAs */}
-            <div className="rv2-hero-left">
-              <span className="rv2-eyebrow">{t('reviewsPage.eyebrow')}</span>
+      {/* Hero Section — shared global PageHero (light photography, 4-badge layout) */}
+      <PageHero
+        tone="light"
+        badgeCount={4}
+        image={{ src: reviewsHeroImg, alt: t('reviewsPage.eyebrow') }}
+        eyebrow={t('reviewsPage.eyebrow')}
+        title={
+          <>
+            {t('reviewsPage.heroTitle')}{' '}
+            <span style={{ color: 'var(--green-light)' }}>{t('reviewsPage.heroTitleAccent')}</span>
+          </>
+        }
+        subtext={t('reviewsPage.heroSub')}
+        cta={
+          <>
+            <CtaButton variant="primary" href="/reparatie">
+              <Icon.Calendar width="18" height="18" />
+              <span>{t('reviewsPage.planRepair')}</span>
+              <Icon.ArrowRight width="16" height="16" />
+            </CtaButton>
+            <CtaButton
+              variant="outline"
+              href="https://g.page/4mobiles/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rv2-hero-outline-on-dark"
+            >
+              <Icon.Star width="18" height="18" />
+              <span>{t('reviewsPage.writeReview')}</span>
+              <Icon.ArrowRight width="16" height="16" />
+            </CtaButton>
+          </>
+        }
+        aside={
+          <>
+            {/* Google Rating Glass Card */}
+            <div className="rv2-glass-card rv2-rating-card-hero">
+              <div className="rv2-rating-header">
+                <GoogleLogo size={36} />
+                <div className="rv2-rating-score-box">
+                  <span className="rv2-big-score">4.8</span>
+                  <span className="rv2-max-score">/5</span>
+                </div>
+              </div>
+              <div className="rv2-rating-stars-line">
+                <Stars n={5} />
+              </div>
+              <p className="rv2-rating-subtext">{t('reviewsPage.heroRatingCount')}</p>
+            </div>
 
-              <h1 className="rv2-hero-title">
-                {t('reviewsPage.heroTitle')} <br />
-                <span className="rv2-green">{t('reviewsPage.heroTitleAccent')}</span>
-              </h1>
-
-              <p className="rv2-hero-sub">
-                {t('reviewsPage.heroSub')}
+            {/* Featured Quote Glass Card */}
+            <div className="rv2-glass-card rv2-quote-card-hero">
+              <div className="rv2-quote-mark">“</div>
+              <p className="rv2-quote-text">
+                "{t('reviewsPage.heroQuoteText')}"
               </p>
-
-              {/* Dual Glass CTAs */}
-              <div className="rv2-hero-ctas">
-                <a href="/reparatie" className="rv2-btn rv2-btn-primary">
-                  <Icon.Calendar width="18" height="18" />
-                  <span>{t('reviewsPage.planRepair')}</span>
-                  <Icon.ArrowRight width="16" height="16" className="rv2-arrow-icon" />
-                </a>
-                <a
-                  href="https://g.page/4mobiles/review"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rv2-btn rv2-btn-secondary"
-                >
-                  <Icon.Star width="18" height="18" />
-                  <span>{t('reviewsPage.writeReview')}</span>
-                  <Icon.ArrowRight width="16" height="16" className="rv2-arrow-icon" />
-                </a>
-              </div>
-            </div>
-
-            {/* Right Column: Stacked Glass Cards (Rating + Featured Review) */}
-            <div className="rv2-hero-right">
-              {/* Google Rating Glass Card */}
-              <div className="rv2-glass-card rv2-rating-card-hero">
-                <div className="rv2-rating-header">
-                  <GoogleLogo size={36} />
-                  <div className="rv2-rating-score-box">
-                    <span className="rv2-big-score">4.8</span>
-                    <span className="rv2-max-score">/5</span>
-                  </div>
-                </div>
-                <div className="rv2-rating-stars-line">
-                  <Stars n={5} />
-                </div>
-                <p className="rv2-rating-subtext">{t('reviewsPage.heroRatingCount')}</p>
-              </div>
-
-              {/* Featured Quote Glass Card */}
-              <div className="rv2-glass-card rv2-quote-card-hero">
-                <div className="rv2-quote-mark">“</div>
-                <p className="rv2-quote-text">
-                  "{t('reviewsPage.heroQuoteText')}"
-                </p>
-                <div className="rv2-quote-author">
-                  <div className="rv2-quote-avatar">H</div>
-                  <div>
-                    <strong className="rv2-author-name">Hilde de Jong</strong>
-                    <span className="rv2-author-sub">{t('reviewsPage.heroQuoteDate')}</span>
-                  </div>
+              <div className="rv2-quote-author">
+                <div className="rv2-quote-avatar">H</div>
+                <div>
+                  <strong className="rv2-author-name">Hilde de Jong</strong>
+                  <span className="rv2-author-sub">{t('reviewsPage.heroQuoteDate')}</span>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Hero Bottom Trust Cards Grid (Matching hero_render_1.png) */}
-          <div className="rv2-hero-trust-row">
-            {trustItems.map((item, index) => {
-              const Ic = TRUST_ICONS[index] || Icon.Star
-              return (
-                <div key={index} className="rv2-trust-glass-card">
-                  <div className="rv2-trust-icon-circle">
-                    <Ic width="20" height="20" />
-                  </div>
-                  <div className="rv2-trust-content">
-                    <div className="rv2-trust-headline">
-                      {item.val && <strong className="rv2-trust-val">{item.val}</strong>}
-                      <span className="rv2-trust-label">{item.title}</span>
-                    </div>
-                    <p className="rv2-trust-subtext">{item.sub}</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
+          </>
+        }
+        badges={trustItems.map((item, index) => (
+          <GlassBadge
+            key={index}
+            icon={TRUST_ICONS[index] || Icon.Star}
+            value={item.val}
+            title={item.title}
+            text={item.sub}
+          />
+        ))}
+      />
 
       {/* Main Reviews Content */}
       <section className="rv2-body">
@@ -199,13 +184,9 @@ export function Reviews() {
 
               <div className="rv2-filters">
                 {FILTERS.map(f => (
-                  <button
-                    key={f.key}
-                    className={`rv2-filter${filterKey === f.key ? ' active' : ''}`}
-                    onClick={() => setActiveFilter(f.key)}
-                  >
+                  <Pill key={f.key} selected={filterKey === f.key} onClick={() => setActiveFilter(f.key)}>
                     {f.label}
-                  </button>
+                  </Pill>
                 ))}
               </div>
 
@@ -256,6 +237,29 @@ export function Reviews() {
           ))}
 
           <p className="rv2-why-closing">{t('reviewsPage.whyChooseClosing')}</p>
+        </div>
+      </section>
+
+      {/* Bottom conversion block — single CTA, no competing buttons */}
+      <section className="rv2-bottom-cta">
+        <div className="container">
+          <div className="rv2-bottom-cta-card">
+            <h2 className="rv2-bottom-cta-title">{t('reviewsPage.ctaTitle')}</h2>
+            <p className="rv2-bottom-cta-sub">{t('reviewsPage.ctaSub')}</p>
+            <CtaButton variant="primary" href="/reparatie">
+              <Icon.Calendar width="18" height="18" />
+              <span>{t('reviewsPage.planRepair')}</span>
+              <Icon.ArrowRight width="16" height="16" />
+            </CtaButton>
+            <div className="rv2-bottom-cta-badges">
+              {[t('reviewsPage.trust1'), t('reviewsPage.trust2'), t('reviewsPage.trust3'), t('reviewsPage.trust4')].map((label, i) => (
+                <div key={i} className="rv2-bottom-cta-badge">
+                  <Icon.Check width="14" height="14" />
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

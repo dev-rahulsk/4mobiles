@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 
-// ─── Interfaces ──────────────────────────────────────────────────────────────
-
 interface Brand { id: string; name: string; wordmark: string; bg: string; fg: string }
 interface DeviceColor { id: string; name: string; hex: string }
 interface DeviceModel { id: string; name: string; code: string; imgColor: string; colors: DeviceColor[] }
@@ -15,89 +13,115 @@ interface RepairOption {
 }
 interface RepairCategory { id: string; name: string; fromPrice: number; options: RepairOption[] }
 
-// ─── Brands Data ─────────────────────────────────────────────────────────────
-
 const BRANDS: Brand[] = [
-  { id: 'apple',    name: 'Apple',    wordmark: 'Apple',    bg: '#111',    fg: '#fff' },
-  { id: 'samsung',  name: 'Samsung',  wordmark: 'SAMSUNG',  bg: '#1428A0', fg: '#fff' },
+  { id: 'apple', name: 'Apple', wordmark: 'Apple', bg: '#111', fg: '#fff' },
+  { id: 'samsung', name: 'Samsung', wordmark: 'SAMSUNG', bg: '#1428A0', fg: '#fff' },
   { id: 'motorola', name: 'Motorola', wordmark: 'motorola', bg: '#E1172F', fg: '#fff' },
-  { id: 'xiaomi',   name: 'Xiaomi',   wordmark: 'xiaomi',   bg: '#FF6900', fg: '#fff' },
-  { id: 'oppo',     name: 'Oppo',     wordmark: 'OPPO',     bg: '#1D8348', fg: '#fff' },
-  { id: 'huawei',   name: 'Huawei',   wordmark: 'HUAWEI',   bg: '#CF0A2C', fg: '#fff' },
-  { id: 'oneplus',  name: 'OnePlus',  wordmark: '1+',       bg: '#EB0029', fg: '#fff' },
-  { id: 'sony',     name: 'Sony',     wordmark: 'SONY',     bg: '#000',    fg: '#fff' },
-  { id: 'google',   name: 'Google',   wordmark: 'Google',   bg: '#4285F4', fg: '#fff' },
+  { id: 'xiaomi', name: 'Xiaomi', wordmark: 'xiaomi', bg: '#FF6900', fg: '#fff' },
+  { id: 'oppo', name: 'Oppo', wordmark: 'OPPO', bg: '#1D8348', fg: '#fff' },
+  { id: 'huawei', name: 'Huawei', wordmark: 'HUAWEI', bg: '#CF0A2C', fg: '#fff' },
+  { id: 'oneplus', name: 'OnePlus', wordmark: '1+', bg: '#EB0029', fg: '#fff' },
+  { id: 'sony', name: 'Sony', wordmark: 'SONY', bg: '#000', fg: '#fff' },
+  { id: 'google', name: 'Google', wordmark: 'Google', bg: '#4285F4', fg: '#fff' },
 ]
-
-// ─── Models Data ─────────────────────────────────────────────────────────────
 
 const MODELS: Record<string, DeviceModel[]> = {
   apple: [
-    { id: 'iphone-16-pro',  name: 'iPhone 16 Pro',   code: 'A3106', imgColor: '#4a4a45',
-      colors: [{ id: 'natural', name: 'Natural Titanium', hex: '#c0b99e' }, { id: 'white', name: 'White Titanium', hex: '#e8e3d8' }, { id: 'black', name: 'Black Titanium', hex: '#3d3b37' }, { id: 'desert', name: 'Desert Titanium', hex: '#c9a97d' }] },
-    { id: 'iphone-16',      name: 'iPhone 16',        code: 'A3287', imgColor: '#5d7d9e',
-      colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }, { id: 'pink', name: 'Roze', hex: '#f1a7b4' }, { id: 'teal', name: 'Teal', hex: '#4a9d8e' }, { id: 'ultra', name: 'Ultramarine', hex: '#3d5fa0' }] },
-    { id: 'iphone-15-pro',  name: 'iPhone 15 Pro',   code: 'A2848', imgColor: '#6e6e6e',
-      colors: [{ id: 'natural', name: 'Natural Titanium', hex: '#c0b99e' }, { id: 'blue', name: 'Blue Titanium', hex: '#4a6b8a' }, { id: 'white', name: 'White Titanium', hex: '#e8e3d8' }, { id: 'black', name: 'Black Titanium', hex: '#3d3b37' }] },
-    { id: 'iphone-15',      name: 'iPhone 15',        code: 'A2846', imgColor: '#4a7f9e',
-      colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'green', name: 'Groen', hex: '#4a8a5e' }, { id: 'yellow', name: 'Geel', hex: '#e8d44d' }, { id: 'pink', name: 'Roze', hex: '#f1a7b4' }] },
-    { id: 'iphone-14-pro',  name: 'iPhone 14 Pro',   code: 'A2890', imgColor: '#5a5a52',
-      colors: [{ id: 'graphite', name: 'Grafiet', hex: '#4a4a45' }, { id: 'silver', name: 'Zilver', hex: '#c0bdb5' }, { id: 'gold', name: 'Goud', hex: '#c9a97d' }, { id: 'sierra', name: 'Sierra Blue', hex: '#8aadcc' }, { id: 'alpine', name: 'Alpine Green', hex: '#4a6b55' }] },
-    { id: 'iphone-14',      name: 'iPhone 14',        code: 'A2882', imgColor: '#6a8ca0',
-      colors: [{ id: 'midnight', name: 'Midnight', hex: '#1c1c1e' }, { id: 'starlight', name: 'Starlight', hex: '#e8e3d8' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'purple', name: 'Paars', hex: '#7a5a8a' }, { id: 'yellow', name: 'Geel', hex: '#fcd34d' }, { id: 'red', name: 'Rood', hex: '#e02020' }] },
-    { id: 'iphone-13-pro',  name: 'iPhone 13 Pro',   code: 'A2638', imgColor: '#5a6e7a',
-      colors: [{ id: 'graphite', name: 'Grafiet', hex: '#4a4a45' }, { id: 'gold', name: 'Goud', hex: '#c9a97d' }, { id: 'silver', name: 'Zilver', hex: '#c0bdb5' }, { id: 'sierra', name: 'Sierra Blue', hex: '#8aadcc' }, { id: 'alpine', name: 'Alpine Green', hex: '#4a6b55' }] },
-    { id: 'iphone-13',      name: 'iPhone 13',        code: 'A2633', imgColor: '#6a7a8a',
-      colors: [{ id: 'midnight', name: 'Midnight', hex: '#1c1c1e' }, { id: 'starlight', name: 'Starlight', hex: '#e8e3d8' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'pink', name: 'Roze', hex: '#f1a7b4' }, { id: 'red', name: 'Rood', hex: '#e02020' }, { id: 'green', name: 'Groen', hex: '#4a8a5e' }] },
-    { id: 'iphone-12',      name: 'iPhone 12',        code: 'A2403', imgColor: '#7a8a9a',
-      colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }, { id: 'red', name: 'Rood', hex: '#e02020' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'green', name: 'Groen', hex: '#4a8a5e' }, { id: 'purple', name: 'Paars', hex: '#7a5a8a' }] },
-    { id: 'iphone-se-2022', name: 'iPhone SE (2022)', code: 'A2783', imgColor: '#8a8a8a',
-      colors: [{ id: 'midnight', name: 'Midnight', hex: '#1c1c1e' }, { id: 'starlight', name: 'Starlight', hex: '#e8e3d8' }, { id: 'red', name: 'Rood', hex: '#e02020' }] },
+    {
+      id: 'iphone-16-pro', name: 'iPhone 16 Pro', code: 'A3106', imgColor: '#4a4a45',
+      colors: [{ id: 'natural', name: 'Natural Titanium', hex: '#c0b99e' }, { id: 'white', name: 'White Titanium', hex: '#e8e3d8' }, { id: 'black', name: 'Black Titanium', hex: '#3d3b37' }, { id: 'desert', name: 'Desert Titanium', hex: '#c9a97d' }]
+    },
+    {
+      id: 'iphone-16', name: 'iPhone 16', code: 'A3287', imgColor: '#5d7d9e',
+      colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }, { id: 'pink', name: 'Roze', hex: '#f1a7b4' }, { id: 'teal', name: 'Teal', hex: '#4a9d8e' }, { id: 'ultra', name: 'Ultramarine', hex: '#3d5fa0' }]
+    },
+    {
+      id: 'iphone-15-pro', name: 'iPhone 15 Pro', code: 'A2848', imgColor: '#6e6e6e',
+      colors: [{ id: 'natural', name: 'Natural Titanium', hex: '#c0b99e' }, { id: 'blue', name: 'Blue Titanium', hex: '#4a6b8a' }, { id: 'white', name: 'White Titanium', hex: '#e8e3d8' }, { id: 'black', name: 'Black Titanium', hex: '#3d3b37' }]
+    },
+    {
+      id: 'iphone-15', name: 'iPhone 15', code: 'A2846', imgColor: '#4a7f9e',
+      colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'green', name: 'Groen', hex: '#4a8a5e' }, { id: 'yellow', name: 'Geel', hex: '#e8d44d' }, { id: 'pink', name: 'Roze', hex: '#f1a7b4' }]
+    },
+    {
+      id: 'iphone-14-pro', name: 'iPhone 14 Pro', code: 'A2890', imgColor: '#5a5a52',
+      colors: [{ id: 'graphite', name: 'Grafiet', hex: '#4a4a45' }, { id: 'silver', name: 'Zilver', hex: '#c0bdb5' }, { id: 'gold', name: 'Goud', hex: '#c9a97d' }, { id: 'sierra', name: 'Sierra Blue', hex: '#8aadcc' }, { id: 'alpine', name: 'Alpine Green', hex: '#4a6b55' }]
+    },
+    {
+      id: 'iphone-14', name: 'iPhone 14', code: 'A2882', imgColor: '#6a8ca0',
+      colors: [{ id: 'midnight', name: 'Midnight', hex: '#1c1c1e' }, { id: 'starlight', name: 'Starlight', hex: '#e8e3d8' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'purple', name: 'Paars', hex: '#7a5a8a' }, { id: 'yellow', name: 'Geel', hex: '#fcd34d' }, { id: 'red', name: 'Rood', hex: '#e02020' }]
+    },
+    {
+      id: 'iphone-13-pro', name: 'iPhone 13 Pro', code: 'A2638', imgColor: '#5a6e7a',
+      colors: [{ id: 'graphite', name: 'Grafiet', hex: '#4a4a45' }, { id: 'gold', name: 'Goud', hex: '#c9a97d' }, { id: 'silver', name: 'Zilver', hex: '#c0bdb5' }, { id: 'sierra', name: 'Sierra Blue', hex: '#8aadcc' }, { id: 'alpine', name: 'Alpine Green', hex: '#4a6b55' }]
+    },
+    {
+      id: 'iphone-13', name: 'iPhone 13', code: 'A2633', imgColor: '#6a7a8a',
+      colors: [{ id: 'midnight', name: 'Midnight', hex: '#1c1c1e' }, { id: 'starlight', name: 'Starlight', hex: '#e8e3d8' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'pink', name: 'Roze', hex: '#f1a7b4' }, { id: 'red', name: 'Rood', hex: '#e02020' }, { id: 'green', name: 'Groen', hex: '#4a8a5e' }]
+    },
+    {
+      id: 'iphone-12', name: 'iPhone 12', code: 'A2403', imgColor: '#7a8a9a',
+      colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }, { id: 'red', name: 'Rood', hex: '#e02020' }, { id: 'blue', name: 'Blauw', hex: '#3d6b9e' }, { id: 'green', name: 'Groen', hex: '#4a8a5e' }, { id: 'purple', name: 'Paars', hex: '#7a5a8a' }]
+    },
+    {
+      id: 'iphone-se-2022', name: 'iPhone SE (2022)', code: 'A2783', imgColor: '#8a8a8a',
+      colors: [{ id: 'midnight', name: 'Midnight', hex: '#1c1c1e' }, { id: 'starlight', name: 'Starlight', hex: '#e8e3d8' }, { id: 'red', name: 'Rood', hex: '#e02020' }]
+    },
   ],
   samsung: [
-    { id: 's24-ultra', name: 'Galaxy S24 Ultra', code: 'SM-S928B', imgColor: '#2d2d2d',
-      colors: [{ id: 'black', name: 'Titanium Black', hex: '#2d2d2d' }, { id: 'gray', name: 'Titanium Gray', hex: '#8a8a8a' }, { id: 'violet', name: 'Titanium Violet', hex: '#6a4a8a' }, { id: 'yellow', name: 'Titanium Yellow', hex: '#e8c84d' }] },
-    { id: 's24-plus',  name: 'Galaxy S24+',      code: 'SM-S926B', imgColor: '#1a3a5e',
-      colors: [{ id: 'black', name: 'Onyx Black', hex: '#1c1c1e' }, { id: 'gray', name: 'Marble Gray', hex: '#8a8a8a' }, { id: 'violet', name: 'Cobalt Violet', hex: '#4a3a7a' }] },
-    { id: 's24',       name: 'Galaxy S24',        code: 'SM-S921B', imgColor: '#2a4a6a',
-      colors: [{ id: 'black', name: 'Onyx Black', hex: '#1c1c1e' }, { id: 'gray', name: 'Marble Gray', hex: '#8a8a8a' }, { id: 'violet', name: 'Cobalt Violet', hex: '#4a3a7a' }] },
-    { id: 's23',       name: 'Galaxy S23',        code: 'SM-S911B', imgColor: '#3a3a3a',
-      colors: [{ id: 'black', name: 'Phantom Black', hex: '#1a1a1a' }, { id: 'cream', name: 'Cream', hex: '#f0ebe0' }, { id: 'green', name: 'Green', hex: '#4a8a6a' }, { id: 'lavender', name: 'Lavender', hex: '#c4b8d0' }] },
-    { id: 'a55', name: 'Galaxy A55', code: 'SM-A556B', imgColor: '#4a6a8a',
-      colors: [{ id: 'black', name: 'Awesome Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Awesome Iceblue', hex: '#7ab3d0' }, { id: 'lilac', name: 'Awesome Lilac', hex: '#b8a0d0' }] },
-    { id: 'a35', name: 'Galaxy A35', code: 'SM-A356B', imgColor: '#5a7a9a',
-      colors: [{ id: 'black', name: 'Awesome Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Awesome Iceblue', hex: '#7ab3d0' }] },
+    {
+      id: 's24-ultra', name: 'Galaxy S24 Ultra', code: 'SM-S928B', imgColor: '#2d2d2d',
+      colors: [{ id: 'black', name: 'Titanium Black', hex: '#2d2d2d' }, { id: 'gray', name: 'Titanium Gray', hex: '#8a8a8a' }, { id: 'violet', name: 'Titanium Violet', hex: '#6a4a8a' }, { id: 'yellow', name: 'Titanium Yellow', hex: '#e8c84d' }]
+    },
+    {
+      id: 's24-plus', name: 'Galaxy S24+', code: 'SM-S926B', imgColor: '#1a3a5e',
+      colors: [{ id: 'black', name: 'Onyx Black', hex: '#1c1c1e' }, { id: 'gray', name: 'Marble Gray', hex: '#8a8a8a' }, { id: 'violet', name: 'Cobalt Violet', hex: '#4a3a7a' }]
+    },
+    {
+      id: 's24', name: 'Galaxy S24', code: 'SM-S921B', imgColor: '#2a4a6a',
+      colors: [{ id: 'black', name: 'Onyx Black', hex: '#1c1c1e' }, { id: 'gray', name: 'Marble Gray', hex: '#8a8a8a' }, { id: 'violet', name: 'Cobalt Violet', hex: '#4a3a7a' }]
+    },
+    {
+      id: 's23', name: 'Galaxy S23', code: 'SM-S911B', imgColor: '#3a3a3a',
+      colors: [{ id: 'black', name: 'Phantom Black', hex: '#1a1a1a' }, { id: 'cream', name: 'Cream', hex: '#f0ebe0' }, { id: 'green', name: 'Green', hex: '#4a8a6a' }, { id: 'lavender', name: 'Lavender', hex: '#c4b8d0' }]
+    },
+    {
+      id: 'a55', name: 'Galaxy A55', code: 'SM-A556B', imgColor: '#4a6a8a',
+      colors: [{ id: 'black', name: 'Awesome Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Awesome Iceblue', hex: '#7ab3d0' }, { id: 'lilac', name: 'Awesome Lilac', hex: '#b8a0d0' }]
+    },
+    {
+      id: 'a35', name: 'Galaxy A35', code: 'SM-A356B', imgColor: '#5a7a9a',
+      colors: [{ id: 'black', name: 'Awesome Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Awesome Iceblue', hex: '#7ab3d0' }]
+    },
   ],
   motorola: [
-    { id: 'edge-50-pro', name: 'Edge 50 Pro',  code: 'XT2403-2', imgColor: '#4a2a6a', colors: [{ id: 'black', name: 'Black Beauty', hex: '#1c1c1e' }, { id: 'purple', name: 'Luxe Lavender', hex: '#8a6aa0' }] },
-    { id: 'edge-40',     name: 'Edge 40',       code: 'XT2303-2', imgColor: '#3a4a5a', colors: [{ id: 'black', name: 'Eclipse Black', hex: '#1c1c1e' }, { id: 'green', name: 'Nebula Green', hex: '#3a7a5a' }] },
-    { id: 'moto-g84',   name: 'Moto G84',      code: 'XT2343-1', imgColor: '#2a3a4a', colors: [{ id: 'blue', name: 'Midnight Blue', hex: '#1c2a3e' }, { id: 'magenta', name: 'Viva Magenta', hex: '#c03060' }] },
+    { id: 'edge-50-pro', name: 'Edge 50 Pro', code: 'XT2403-2', imgColor: '#4a2a6a', colors: [{ id: 'black', name: 'Black Beauty', hex: '#1c1c1e' }, { id: 'purple', name: 'Luxe Lavender', hex: '#8a6aa0' }] },
+    { id: 'edge-40', name: 'Edge 40', code: 'XT2303-2', imgColor: '#3a4a5a', colors: [{ id: 'black', name: 'Eclipse Black', hex: '#1c1c1e' }, { id: 'green', name: 'Nebula Green', hex: '#3a7a5a' }] },
+    { id: 'moto-g84', name: 'Moto G84', code: 'XT2343-1', imgColor: '#2a3a4a', colors: [{ id: 'blue', name: 'Midnight Blue', hex: '#1c2a3e' }, { id: 'magenta', name: 'Viva Magenta', hex: '#c03060' }] },
   ],
   xiaomi: [
-    { id: 'xiaomi-14',     name: 'Xiaomi 14',      code: '23127PN0CG', imgColor: '#1a1a1a', colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }] },
-    { id: 'xiaomi-13t',    name: 'Xiaomi 13T',     code: '2306EPN60G', imgColor: '#2a3a4a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Alpine Blue', hex: '#4a6a9a' }] },
-    { id: 'redmi-note-13', name: 'Redmi Note 13',  code: '23129RAA4G', imgColor: '#4a6a9a', colors: [{ id: 'black', name: 'Graphite Black', hex: '#2a2a2a' }] },
+    { id: 'xiaomi-14', name: 'Xiaomi 14', code: '23127PN0CG', imgColor: '#1a1a1a', colors: [{ id: 'black', name: 'Zwart', hex: '#1c1c1e' }, { id: 'white', name: 'Wit', hex: '#f5f5f0' }] },
+    { id: 'xiaomi-13t', name: 'Xiaomi 13T', code: '2306EPN60G', imgColor: '#2a3a4a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }, { id: 'blue', name: 'Alpine Blue', hex: '#4a6a9a' }] },
+    { id: 'redmi-note-13', name: 'Redmi Note 13', code: '23129RAA4G', imgColor: '#4a6a9a', colors: [{ id: 'black', name: 'Graphite Black', hex: '#2a2a2a' }] },
   ],
   oppo: [
     { id: 'reno11', name: 'Reno11', code: 'CPH2599', imgColor: '#4a6a8a', colors: [{ id: 'black', name: 'Dark Matter', hex: '#1c1c1e' }] },
     { id: 'reno10', name: 'Reno10', code: 'CPH2531', imgColor: '#5a7a9a', colors: [{ id: 'purple', name: 'Glossy Purple', hex: '#7a5a9a' }] },
   ],
   huawei: [
-    { id: 'p60-pro', name: 'P60 Pro',  code: 'MNA-LX9', imgColor: '#2a4a6a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }] },
+    { id: 'p60-pro', name: 'P60 Pro', code: 'MNA-LX9', imgColor: '#2a4a6a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }] },
   ],
   oneplus: [
-    { id: 'op12',   name: 'OnePlus 12', code: 'CPH2581', imgColor: '#1a1a1a', colors: [{ id: 'black', name: 'Silky Black', hex: '#1c1c1e' }] },
+    { id: 'op12', name: 'OnePlus 12', code: 'CPH2581', imgColor: '#1a1a1a', colors: [{ id: 'black', name: 'Silky Black', hex: '#1c1c1e' }] },
   ],
   sony: [
     { id: 'xperia-1-vi', name: 'Xperia 1 VI', code: 'XQ-EC54', imgColor: '#1a2a3a', colors: [{ id: 'black', name: 'Black', hex: '#1c1c1e' }] },
   ],
   google: [
     { id: 'pixel-9-pro', name: 'Pixel 9 Pro', code: 'G4SKM', imgColor: '#2a2a2a', colors: [{ id: 'obsidian', name: 'Obsidian', hex: '#1c1c1e' }] },
-    { id: 'pixel-9',     name: 'Pixel 9',     code: 'GUR23', imgColor: '#3a3a3a', colors: [{ id: 'obsidian', name: 'Obsidian', hex: '#1c1c1e' }] },
+    { id: 'pixel-9', name: 'Pixel 9', code: 'GUR23', imgColor: '#3a3a3a', colors: [{ id: 'obsidian', name: 'Obsidian', hex: '#1c1c1e' }] },
   ],
 }
-
-// ─── Repair Categories ───────────────────────────────────────────────────────
 
 const REPAIR_CATS: RepairCategory[] = [
   {
@@ -143,9 +167,7 @@ const REPAIR_CATS: RepairCategory[] = [
   },
 ]
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
-const TIME_SLOTS = ['09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30']
+const TIME_SLOTS = ['09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30']
 
 function getNext7Days(dayShort: string[], monthShort: string[]) {
   const result: { dayShort: string; dateNum: number; monthShort: string; value: string }[] = []
@@ -165,8 +187,6 @@ function formatLongDate(iso: string, dayLong: string[], monthLong: string[]) {
   return `${dayLong[d.getDay()]} ${d.getDate()} ${monthLong[d.getMonth()]} ${d.getFullYear()}`
 }
 
-// ─── Form State ──────────────────────────────────────────────────────────────
-
 interface FormState {
   brandId: string; modelId: string; colorId: string
   repairCatId: string; repairOptId: string
@@ -185,8 +205,6 @@ const INITIAL: FormState = {
   shippingOption: 'standard',
   datum: '', tijd: '',
 }
-
-// ─── Step Indicator ──────────────────────────────────────────────────────────
 
 function StepIndicator({ step }: { step: number }) {
   const { t } = useTranslation()
@@ -208,8 +226,6 @@ function StepIndicator({ step }: { step: number }) {
     </div>
   )
 }
-
-// ─── Step 1: Brand Selection ─────────────────────────────────────────────────
 
 function Step1({ form, onChange, onNext }: { form: FormState; onChange: (p: Partial<FormState>) => void; onNext: () => void }) {
   const { t } = useTranslation()
@@ -278,8 +294,6 @@ function Step1({ form, onChange, onNext }: { form: FormState; onChange: (p: Part
     </div>
   )
 }
-
-// ─── Find My Model Modal ──────────────────────────────────────────────────────
 
 function FindMyModelModal({ onClose }: { onClose: () => void }) {
   const [tab, setTab] = useState<'ios' | 'android'>('ios')
@@ -380,8 +394,6 @@ function FindMyModelModal({ onClose }: { onClose: () => void }) {
   )
 }
 
-// ─── Step 2: Choose Model ────────────────────────────────────────────────────
-
 function Step2({ form, onChange, onNext, onBack }: { form: FormState; onChange: (p: Partial<FormState>) => void; onNext: () => void; onBack: () => void }) {
   const { t } = useTranslation()
   const [search, setSearch] = useState('')
@@ -390,7 +402,7 @@ function Step2({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
   const models = MODELS[form.brandId] ?? []
   const filtered = useMemo(() =>
     search.trim() ? models.filter(m => m.name.toLowerCase().includes(search.toLowerCase()) || m.code.toLowerCase().includes(search.toLowerCase())) : models
-  , [search, models])
+    , [search, models])
 
   return (
     <div className="rp-step-content">
@@ -461,8 +473,6 @@ function Step2({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
   )
 }
 
-// ─── Screen Quality Modal ────────────────────────────────────────────────────
-
 function ScreenQualityModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="rp-modal-overlay" onClick={onClose}>
@@ -507,8 +517,6 @@ function ScreenQualityModal({ onClose }: { onClose: () => void }) {
   )
 }
 
-// ─── Step 3: Choose Repair ───────────────────────────────────────────────────
-
 const CAT_ICONS: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
   screen: Icon.Crack, battery: Icon.Battery, housing: Icon.Phone,
   camera: Icon.Camera, water: Icon.Drop, other: Icon.Search,
@@ -516,13 +524,12 @@ const CAT_ICONS: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
 
 function Step3({ form, onChange, onNext, onBack }: { form: FormState; onChange: (p: Partial<FormState>) => void; onNext: () => void; onBack: () => void }) {
   const { t } = useTranslation()
-  // All repair categories collapsed by default
   const [openCat, setOpenCat] = useState<string>('')
   const [showQualityModal, setShowQualityModal] = useState(false)
 
   const model = MODELS[form.brandId]?.find(m => m.id === form.modelId)
   const selectedOpt = REPAIR_CATS.flatMap(c => c.options).find(o => o.id === form.repairOptId)
-  const isLight = (hex: string) => ['#f5f5f0','#e8e3d8','#e8e0d0','#e8e8e8','#f0ebe0','#c0bdb5','#c0b99e','#e8d44d','#e8c84d'].includes(hex)
+  const isLight = (hex: string) => ['#f5f5f0', '#e8e3d8', '#e8e0d0', '#e8e8e8', '#f0ebe0', '#c0bdb5', '#c0b99e', '#e8d44d', '#e8c84d'].includes(hex)
   const catNames = t('reparatie.repairCats', { returnObjects: true }) as { id: string; name: string }[]
   const getCatName = (id: string) => catNames.find(c => c.id === id)?.name ?? id
 
@@ -683,8 +690,6 @@ function Step3({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
   )
 }
 
-// ─── Step 4: Complete Appointment ───────────────────────────────────────────
-
 function Step4({ form, onChange, onConfirm, onBack }: {
   form: FormState; onChange: (p: Partial<FormState>) => void; onConfirm: () => void; onBack: () => void
 }) {
@@ -698,7 +703,6 @@ function Step4({ form, onChange, onConfirm, onBack }: {
   const selectedOpt = REPAIR_CATS.flatMap(c => c.options).find(o => o.id === form.repairOptId)
   const color = model?.colors.find(c => c.id === form.colorId)
 
-  // Validation: Enabled only when required fields completed
   const isPost = form.serviceMethod === 'post'
   const canSubmit = form.naam.trim() && form.telefoon.trim() && form.email.trim() && form.agree && form.datum && form.tijd &&
     (!isPost || (form.straat.trim() && form.huisnummer.trim() && form.postcode.trim() && form.plaats.trim()))
@@ -913,8 +917,6 @@ function Step4({ form, onChange, onConfirm, onBack }: {
   )
 }
 
-// ─── Confirmation Modal ──────────────────────────────────────────────────────
-
 function ConfirmationModal({ form, onClose }: { form: FormState; onClose: () => void }) {
   const { t } = useTranslation()
   const dayLongArr = t('reparatie.longDays', { returnObjects: true }) as string[]
@@ -959,8 +961,6 @@ function ConfirmationModal({ form, onClose }: { form: FormState; onClose: () => 
     </div>
   )
 }
-
-// ─── Main Component ──────────────────────────────────────────────────────────
 
 const BRAND_FROM_SLUG: Record<string, string> = {
   iphone: 'apple', ipad: 'apple', galaxy: 'samsung', samsung: 'samsung',

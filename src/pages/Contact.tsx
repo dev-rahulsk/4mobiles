@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
+import { FaqAccordion } from '../components/FaqAccordion'
 import { getOpenStatus } from '../lib/openStatus'
 
 const TODAY = new Date().getDay()
@@ -10,7 +11,6 @@ const OPEN_STATUS = getOpenStatus()
 export function Contact() {
   const { t } = useTranslation()
   const [copied, setCopied] = useState(false)
-  const [openVisitFaq, setOpenVisitFaq] = useState(0)
   const openStatus = OPEN_STATUS
 
   const days = t('contact.days', { returnObjects: true }) as string[]
@@ -199,6 +199,7 @@ export function Contact() {
       <section className="ct-visit-section">
         <div className="container ct-visit-grid">
           <div className="ct-visit-acc">
+            <div className="section-eyebrow">{t('contact.visitEyebrow')}</div>
             <h2 className="section-title">{t('contact.visitHeading')}</h2>
             <p className="section-sub">{t('contact.visitBody')}</p>
             <div className="locations-tags ct-visit-pills">
@@ -209,20 +210,7 @@ export function Contact() {
           <div className="ct-visit-faq">
             <div className="section-eyebrow">{t('contact.faqEyebrow')}</div>
             <h2 className="section-title">{t('contact.faqTitle')}</h2>
-            <div className="faq-list">
-              {visitFaqItems.map((item, i) => (
-                <div key={i} className={`faq-item${openVisitFaq === i ? ' faq-open' : ''}`}>
-                  <button className="faq-q" onClick={() => setOpenVisitFaq(openVisitFaq === i ? -1 : i)}>
-                    <span>{item.q}</span>
-                    <span className="faq-icon"><Icon.Plus width="18" height="18" /></span>
-                  </button>
-                  {openVisitFaq === i && <div className="faq-a">{item.a}</div>}
-                </div>
-              ))}
-            </div>
-            <a href="/#faq" className="ct-visit-faq-more">
-              {t('contact.visitFaqMore')} <Icon.ArrowRight width="16" height="16" />
-            </a>
+            <FaqAccordion items={visitFaqItems} moreLink={{ href: '/#faq', label: t('contact.visitFaqMore') }} />
           </div>
         </div>
       </section>

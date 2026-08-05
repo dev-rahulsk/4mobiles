@@ -14,15 +14,15 @@ const CARDS = [
   { id: 4, img: newcard4, colorKey: 'c4', StepIcon: Icon.Rocket, FooterIcon: Icon.ShieldCheck },
 ]
 
-const REVEAL_DELAY_STEP = 120 // ms between each card's reveal
-const REVEAL_DURATION = 560 // ms
-const REVEAL_TRAVEL = 20 // px — ~10% more than the 18px reference value
+const REVEAL_DELAY_STEP = 120
+const REVEAL_DURATION = 560
+const REVEAL_TRAVEL = 20
 
 function easeOutCubic(t: number) {
   return 1 - Math.pow(1 - t, 3)
 }
 
-export function Process() {
+function ProcessDesktopPeel() {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -74,7 +74,6 @@ export function Process() {
     }
   }, [])
 
-  // One-time staggered reveal animation when the stack first scrolls into view
   useEffect(() => {
     const el = wrapperRef.current
     if (!el) return
@@ -108,16 +107,15 @@ export function Process() {
   }, [])
 
   const numCards = CARDS.length
-  const totalSegments = numCards - 1 // 3 peel segments
+  const totalSegments = numCards - 1
 
-  // Calculate active segment and segment progress
   const activeSegment = Math.min(totalSegments - 1, Math.floor(progress * totalSegments))
   const segmentStart = activeSegment / totalSegments
   const segmentEnd = (activeSegment + 1) / totalSegments
   const segmentProgress = Math.max(0, Math.min(1, (progress - segmentStart) / (segmentEnd - segmentStart)))
 
   return (
-    <section ref={sectionRef} className="process-peel-section">
+    <section ref={sectionRef} className="process-peel-section process-desktop-only">
       <div className="process-sticky-container">
         <div className="container">
           <div className="process-head">
@@ -133,7 +131,6 @@ export function Process() {
               const step = steps[idx]
               const [detailStrong, detailRest] = (step?.detail || '').split(' · ')
 
-              // Staggered mount-reveal factor for this card
               let revealEase = 0
               if (revealMs !== null) {
                 const delay = idx * REVEAL_DELAY_STEP
@@ -142,7 +139,6 @@ export function Process() {
               }
               const revealTranslate = (1 - revealEase) * REVEAL_TRAVEL
 
-              // Strict Z-Index: Card 0 is 100, Card 1 is 90, Card 2 is 80, Card 3 is 70
               const zIndex = 100 - idx * 10
               const isPeeled = idx < activeSegment
               const isActive = idx === activeSegment
@@ -173,7 +169,6 @@ export function Process() {
               )
 
               if (isPeeled) {
-                // Completely peeled off -> hidden above stack
                 return (
                   <div
                     key={card.id}
@@ -191,7 +186,6 @@ export function Process() {
               }
 
               if (isActive) {
-                // Active card peeling off upwards
                 const p = segmentProgress
                 const ease = p * p * (3 - 2 * p)
                 const translateYPct = -ease * 137.5
@@ -215,7 +209,6 @@ export function Process() {
                 )
               }
 
-              // Waiting cards in stack below
               const stackIndex = idx - activeSegment
               const effectivePos = stackIndex - segmentProgress
               const translateY = effectivePos * 22 + revealTranslate
@@ -240,5 +233,87 @@ export function Process() {
         </div>
       </div>
     </section>
+  )
+}
+
+function ProcessMobileSticky() {
+  const { t } = useTranslation()
+  const listRef = useRef<HTMLDivElement>(null)
+  const [revealed, setRevealed] = useState(false)
+
+  const steps = t('process.steps', { returnObjects: true }) as { title: string; desc: string; detail: string }[]
+
+  useEffect(() => {
+    const el = listRef.current
+    if (!el) return
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setRevealed(true)
+          io.disconnect()
+        }
+      },
+      { threshold: 0.15 }
+    )
+
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <section className="process-peel-section process-mobile-only">
+      <div className="container">
+        <div className="process-head process-head-sticky">
+          <div className="section-eyebrow">{t('process.eyebrow')}</div>
+          <h2 className="section-title">
+            {t('process.title')} <span style={{ color: 'var(--accent)' }}>{t('process.titleAccent')}</span>
+          </h2>
+          <p className="section-sub">{t('process.sub')}</p>
+        </div>
+
+        <div className={`process-cards-list${revealed ? ' is-revealed' : ''}`} ref={listRef}>
+          {CARDS.map((card) => {
+            const idx = card.id - 1
+            const step = steps[idx]
+            const [detailStrong, detailRest] = (step?.detail || '').split(' · ')
+
+            return (
+              <div key={card.id} className={`peel-card-item peel-card-item--${card.colorKey}`}>
+                <img src={card.img} alt={step?.title} className="peel-card-photo" />
+                <div className="peel-card-overlay" />
+                <div className="peel-card-content">
+                  <div className="peel-card-badges">
+                    <div className="peel-card-num">{String(card.id).padStart(2, '0')}</div>
+                    <div className="peel-card-icon">
+                      <card.StepIcon />
+                    </div>
+                  </div>
+                  <h3 className="peel-card-title">{step?.title}</h3>
+                  <div className="peel-card-divider" />
+                  <p className="peel-card-desc">{step?.desc}</p>
+                  <div className="peel-card-footer">
+                    <card.FooterIcon className="peel-card-footer-icon" />
+                    <span className="peel-card-footer-text">
+                      <strong>{detailStrong}</strong>
+                      {detailRest ? <> · {detailRest}</> : null}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function Process() {
+  return (
+    <>
+      <ProcessDesktopPeel />
+      <ProcessMobileSticky />
+    </>
   )
 }
