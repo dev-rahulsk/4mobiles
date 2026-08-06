@@ -8500,8 +8500,8 @@ input {
 }
 
 .cat-grid-card {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  height: 560px;
   border-radius: var(--glass-radius);
   overflow: hidden;
   background: #050806;
@@ -8515,20 +8515,15 @@ input {
   transform: translateY(0);
 }
 
-.cat-grid-img-box {
-  position: relative;
-  height: 340px;
+@media (min-width: 1100px) {
+  .cat-grid-card {
+    height: clamp(520px, 32vw, 560px);
+  }
 }
 
-@media (min-width: 1100px) {
-  .cat-grid-img-box {
-    height: min(70%, 440px);
-    flex: 1 1 auto;
-  }
-
-  .cat-grid-card {
-    height: clamp(520px, 40vw, 620px);
-  }
+.cat-grid-img-box {
+  position: absolute;
+  inset: 0;
 }
 
 .cat-grid-img {
@@ -8542,14 +8537,14 @@ input {
 .cat-grid-img-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 45%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 55%);
 }
 
 .cat-grid-title {
   position: absolute;
   left: 20px;
   right: 20px;
-  top: 58%;
+  top: 40%;
   margin: 0;
   font-family: var(--font-heading, "Satoshi", sans-serif);
   font-weight: 700;
@@ -8557,11 +8552,14 @@ input {
   letter-spacing: -0.03em;
   color: #ffffff;
   font-size: clamp(28px, 2.2vw, 42px);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
 }
 
 .cat-grid-glass {
-  position: relative;
-  margin: calc(-1 * var(--glass-overlap)) 12px 12px;
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
   padding: 18px 20px;
   background: rgba(255, 255, 255, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.24);
