@@ -96,12 +96,14 @@ export function ReviewsHero() {
   }, [])
 
   const centered = ease(progress) - 0.5
-  const imageRange = isDesktop ? -84 : -40
+  const imageRange = isDesktop ? -84 : -90
+  const contentRange = isDesktop ? -64 : -110
+  const imageScale = reduced.current || isDesktop ? 1 : 1 + Math.abs(centered) * 0.14
   const imageStyle = reduced.current ? undefined : {
-    transform: `translate3d(0, ${centered * imageRange}px, 0)`,
+    transform: `translate3d(0, ${centered * imageRange}px, 0) scale(${imageScale})`,
   }
   const contentStyle = reduced.current ? undefined : {
-    transform: `translate3d(0, ${centered * -64}px, 0)`,
+    transform: `translate3d(0, ${centered * contentRange}px, 0)`,
   }
 
   return (

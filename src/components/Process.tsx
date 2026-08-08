@@ -22,9 +22,10 @@ function easeOutCubic(t: number) {
   return 1 - Math.pow(1 - t, 3)
 }
 
-function ProcessDesktopPeel() {
+function ProcessPeelStack({ variant }: { variant: 'desktop' | 'mobile' }) {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLDivElement>(null)
+  const stickyRef = useRef<HTMLDivElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [progress, setProgress] = useState(0)
   const [revealMs, setRevealMs] = useState<number | null>(null)
@@ -42,8 +43,11 @@ function ProcessDesktopPeel() {
     const handleScroll = () => {
       if (!sectionRef.current) return
       const rect = sectionRef.current.getBoundingClientRect()
-      const windowHeight = window.innerHeight
-      const totalScroll = rect.height - windowHeight
+      // Use the sticky container's real height (not the viewport) so progress
+      // hits 1 exactly when the browser actually releases the pin — otherwise
+      // a content-fit sticky box leaves a dead scroll zone after it unpins.
+      const pinnedHeight = stickyRef.current?.offsetHeight ?? window.innerHeight
+      const totalScroll = rect.height - pinnedHeight
 
       if (totalScroll <= 0) return
 
@@ -115,8 +119,11 @@ function ProcessDesktopPeel() {
   const segmentProgress = Math.max(0, Math.min(1, (progress - segmentStart) / (segmentEnd - segmentStart)))
 
   return (
-    <section ref={sectionRef} className="process-peel-section process-desktop-only">
-      <div className="process-sticky-container">
+    <section
+      ref={sectionRef}
+      className={`process-peel-section ${variant === 'desktop' ? 'process-desktop-only' : 'process-mobile-only'}`}
+    >
+      <div className="process-sticky-container" ref={stickyRef}>
         <div className="container">
           <div className="process-head">
             <div className="section-eyebrow">{t('process.eyebrow')}</div>
@@ -200,7 +207,10 @@ function ProcessDesktopPeel() {
                     style={{
                       zIndex,
                       opacity,
-                      visibility: opacity <= 0.01 ? 'hidden' : 'visible',
+                      // Hidden well before opacity hits 0 so the fading outgoing card
+                      // doesn't linger semi-transparent and blend/muddy with the card
+                      // underneath — the transform/opacity trajectory itself is unchanged.
+                      visibility: opacity <= 0.4 ? 'hidden' : 'visible',
                       transform: `translate3d(0, calc(${translateYPct.toFixed(2)}% + ${revealTranslate.toFixed(2)}px), 0) rotate(${rotateDeg.toFixed(2)}deg) scale(${scale.toFixed(4)})`,
                     }}
                   >
@@ -236,84 +246,11 @@ function ProcessDesktopPeel() {
   )
 }
 
-function ProcessMobileSticky() {
-  const { t } = useTranslation()
-  const listRef = useRef<HTMLDivElement>(null)
-  const [revealed, setRevealed] = useState(false)
-
-  const steps = t('process.steps', { returnObjects: true }) as { title: string; desc: string; detail: string }[]
-
-  useEffect(() => {
-    const el = listRef.current
-    if (!el) return
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setRevealed(true)
-          io.disconnect()
-        }
-      },
-      { threshold: 0.15 }
-    )
-
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-
-  return (
-    <section className="process-peel-section process-mobile-only">
-      <div className="container">
-        <div className="process-head process-head-sticky">
-          <div className="section-eyebrow">{t('process.eyebrow')}</div>
-          <h2 className="section-title">
-            {t('process.title')} <span style={{ color: 'var(--accent)' }}>{t('process.titleAccent')}</span>
-          </h2>
-          <p className="section-sub">{t('process.sub')}</p>
-        </div>
-
-        <div className={`process-cards-list${revealed ? ' is-revealed' : ''}`} ref={listRef}>
-          {CARDS.map((card) => {
-            const idx = card.id - 1
-            const step = steps[idx]
-            const [detailStrong, detailRest] = (step?.detail || '').split(' · ')
-
-            return (
-              <div key={card.id} className={`peel-card-item peel-card-item--${card.colorKey}`}>
-                <img src={card.img} alt={step?.title} className="peel-card-photo" />
-                <div className="peel-card-overlay" />
-                <div className="peel-card-content">
-                  <div className="peel-card-badges">
-                    <div className="peel-card-num">{String(card.id).padStart(2, '0')}</div>
-                    <div className="peel-card-icon">
-                      <card.StepIcon />
-                    </div>
-                  </div>
-                  <h3 className="peel-card-title">{step?.title}</h3>
-                  <div className="peel-card-divider" />
-                  <p className="peel-card-desc">{step?.desc}</p>
-                  <div className="peel-card-footer">
-                    <card.FooterIcon className="peel-card-footer-icon" />
-                    <span className="peel-card-footer-text">
-                      <strong>{detailStrong}</strong>
-                      {detailRest ? <> · {detailRest}</> : null}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export function Process() {
   return (
     <>
-      <ProcessDesktopPeel />
-      <ProcessMobileSticky />
+      <ProcessPeelStack variant="desktop" />
+      <ProcessPeelStack variant="mobile" />
     </>
   )
 }

@@ -38,8 +38,6 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="footer-new-divider" />
-
         <div className="footer-new-cols">
           <div className="footer-new-block">
             <div className="footer-new-col">
@@ -90,8 +88,6 @@ export function Footer() {
             </div>
           </div>
         </div>
-
-        <div className="footer-new-divider" />
 
         <div className="footer-new-bottom">
           <div className="footer-new-social">

@@ -178,32 +178,16 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
                   </p>
                 </div>
 
-                <div
-                  className="mhero-done-badges"
-                  style={{ opacity: doneProgress, transform: `translateY(${(1 - doneProgress) * 16}px)` }}
-                  aria-hidden={doneProgress < 0.5}
-                >
-                  <span className="mhero-glass-pill mhero-done-badge">
-                    <Icon.Check width="14" height="14" />
-                    {t('mhero.doneBadge1')}
-                  </span>
-                  <span className="mhero-glass-pill mhero-done-badge">
-                    <span className="mhero-done-badge-stars">
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <Icon.Star key={i} width="12" height="12" style={{ color: '#fbbf24' }} />
-                      ))}
-                    </span>
-                    {t('mhero.doneBadge2')}
-                  </span>
-                </div>
               </div>
             </div>
 
-            <div
-              className="mhero-visual"
-              style={{ transform: `translateY(${phoneY}px) scale(${phoneScale}) rotate(${phoneRot}deg)` }}
-            >
-              <canvas ref={canvasRef} width={1440} height={960} />
+            <div className="mhero-visual">
+              <div
+                className="mhero-visual-phone"
+                style={{ transform: `translateY(${phoneY}px) scale(${phoneScale}) rotate(${phoneRot}deg)` }}
+              >
+                <canvas ref={canvasRef} width={1440} height={960} />
+              </div>
 
               <div className="mhero-repair-badges" style={{ opacity: repairBadgesOpacity }}>
                 {repairBadges.map((b, i) => (
@@ -212,6 +196,25 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
                     {b.label}
                   </span>
                 ))}
+              </div>
+
+              <div
+                className="mhero-done-badges"
+                style={{ opacity: doneProgress, transform: `translateY(calc(-50% + ${(1 - doneProgress) * 16}px))` }}
+                aria-hidden={doneProgress < 0.5}
+              >
+                <span className="mhero-glass-pill mhero-done-badge">
+                  <Icon.Check width="14" height="14" />
+                  {t('mhero.doneBadge1')}
+                </span>
+                <span className="mhero-glass-pill mhero-done-badge">
+                  <span className="mhero-done-badge-stars">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <Icon.Star key={i} width="12" height="12" style={{ color: '#fbbf24' }} />
+                    ))}
+                  </span>
+                  {t('mhero.doneBadge2')}
+                </span>
               </div>
 
             </div>
