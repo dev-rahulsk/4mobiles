@@ -4313,7 +4313,7 @@ input {
 
 @media (max-width: 720px) {
   .process-sticky-container {
-    top: calc(var(--nav-fixed-bottom, 60px) + 56px);
+    top: calc(var(--nav-fixed-bottom, 60px) + 24px);
     height: auto;
     min-height: auto;
     padding-top: 0;
@@ -17617,7 +17617,11 @@ input {
     linear-gradient(180deg, #10210f 0%, #07130a 52%, #020704 100%),
     var(--g-surface-dark);
   --hero-curve-size: max(210vw, 760px);
-  --hero-photo-height: var(--hero-curve-bottom);
+  /* photo-height/media-top are anchored to the curve-to-bottom gap rather
+     than a fixed distance from the top, so the gap between the curve and
+     the badges stays constant however tall 100svh actually resolves on a
+     given device (e.g. Safari's real toolbar-inclusive svh vs a simulator's) */
+  --hero-photo-height: calc(100svh - var(--hero-curve-gap));
 }
 
 @media (min-width: 992px) {
@@ -17626,15 +17630,15 @@ input {
   }
 }
 
-/* Curve height follows badge count: 2 badges (1 row) leave more room for
-   photo, so the curve sits lower; 4 badges (2 rows) need more room for
-   content, so the curve sits higher. */
+/* Curve gap follows badge count: 2 badges (1 row) need less clearance above
+   them, so the curve can sit lower/bigger; 4 badges (2 rows) need more
+   clearance, so the curve sits higher/smaller. */
 .mobile-hero--2-badges {
-  --hero-curve-bottom: 580px;
+  --hero-curve-gap: 190px;
 }
 
 .mobile-hero--4-badges {
-  --hero-curve-bottom: 540px;
+  --hero-curve-gap: 285px;
 }
 
 .mobile-hero--light {
@@ -17645,14 +17649,13 @@ input {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  border-radius: 0 0 28px 28px;
   background: linear-gradient(180deg, #10210f 0%, #07130a 52%, #020704 100%);
 }
 
 .mobile-hero__media {
   position: absolute;
   left: 50%;
-  top: calc(var(--hero-curve-bottom) - var(--hero-curve-size));
+  top: calc(100svh - var(--hero-curve-gap) - var(--hero-curve-size));
   width: var(--hero-curve-size);
   aspect-ratio: 1;
   overflow: hidden;
@@ -17685,7 +17688,7 @@ input {
   z-index: 3;
   display: flex;
   flex-direction: column;
-  padding: max(78px, calc(env(safe-area-inset-top) + 68px)) 20px 0;
+  padding: max(78px, calc(env(safe-area-inset-top) + 20px)) 20px 0;
 }
 
 .mobile-hero--readable .mobile-hero__content {
@@ -17770,6 +17773,14 @@ input {
   margin-top: 20px;
 }
 
+.mobile-hero__cta .g-button {
+  min-height: 48px;
+  padding: 0 20px;
+  gap: 10px;
+  border-radius: 15px;
+  font-size: 15px;
+}
+
 .mobile-hero__cta .g-button>svg:last-child {
   flex: 0 0 auto;
 }
@@ -17792,7 +17803,7 @@ input {
 }
 
 .pd-mobile-hero .mobile-hero__badges {
-  margin-bottom: 64px;
+  margin-bottom: 20px;
 }
 
 .rv-mobile-hero .mobile-hero__media::after {

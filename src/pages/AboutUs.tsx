@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { MobileHero, GlassBadge, CtaButton } from '../components/global'
+import { MobileHero, GlassBadge } from '../components/global'
 import aboutMobileHeroImg from '../assets/ChatGPT_Image_10_jul_2026_11_20_55.png'
 
 export function AboutUs() {
@@ -76,13 +76,6 @@ export function AboutUs() {
               </>
             }
             subtext={t('aboutUs.hero.subMobile')}
-            cta={
-              <CtaButton variant="light" href="/contact">
-                <Icon.Phone width="18" height="18" />
-                <span>{t('aboutUs.hero.cta')}</span>
-                <Icon.ArrowRight width="16" height="16" />
-              </CtaButton>
-            }
             badges={[
               <GlassBadge
                 key="years"
