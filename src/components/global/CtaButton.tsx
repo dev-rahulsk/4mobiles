@@ -1,6 +1,6 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
 
-export type CtaButtonVariant = 'primary' | 'dark' | 'outline'
+export type CtaButtonVariant = 'primary' | 'dark' | 'outline' | 'light'
 
 interface CtaButtonSharedProps {
   variant?: CtaButtonVariant

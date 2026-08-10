@@ -16,11 +16,33 @@ const CARDS = [
 
 const REVEAL_DELAY_STEP = 120
 const REVEAL_DURATION = 560
-const REVEAL_TRAVEL = 20
+const REVEAL_TRAVEL_DESKTOP = 22
+const REVEAL_TRAVEL_MOBILE = 20
+const REVEAL_TILT_DESKTOP = 0
+const REVEAL_TILT_MOBILE = 0
 
-function easeOutCubic(t: number) {
-  return 1 - Math.pow(1 - t, 3)
+function makeCubicBezier(x1: number, y1: number, x2: number, y2: number) {
+  const A = (a1: number, a2: number) => 1 - 3 * a2 + 3 * a1
+  const B = (a1: number, a2: number) => 3 * a2 - 6 * a1
+  const C = (a1: number) => 3 * a1
+
+  const calcBezier = (t: number, a1: number, a2: number) => ((A(a1, a2) * t + B(a1, a2)) * t + C(a1)) * t
+  const getSlope = (t: number, a1: number, a2: number) => 3 * A(a1, a2) * t * t + 2 * B(a1, a2) * t + C(a1)
+
+  function getTForX(x: number) {
+    let t = x
+    for (let i = 0; i < 8; i++) {
+      const slope = getSlope(t, x1, x2)
+      if (slope === 0) break
+      t -= (calcBezier(t, x1, x2) - x) / slope
+    }
+    return t
+  }
+
+  return (x: number) => calcBezier(getTForX(x), y1, y2)
 }
+
+const easeOutPremium = makeCubicBezier(0.22, 1, 0.36, 1)
 
 function ProcessPeelStack({ variant }: { variant: 'desktop' | 'mobile' }) {
   const { t } = useTranslation()
@@ -38,14 +60,13 @@ function ProcessPeelStack({ variant }: { variant: 'desktop' | 'mobile' }) {
   const hasRevealed = useRef(false)
 
   const steps = t('process.steps', { returnObjects: true }) as { title: string; desc: string; detail: string }[]
+  const revealTravel = variant === 'desktop' ? REVEAL_TRAVEL_DESKTOP : REVEAL_TRAVEL_MOBILE
+  const revealTilt = variant === 'desktop' ? REVEAL_TILT_DESKTOP : REVEAL_TILT_MOBILE
 
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return
       const rect = sectionRef.current.getBoundingClientRect()
-      // Use the sticky container's real height (not the viewport) so progress
-      // hits 1 exactly when the browser actually releases the pin — otherwise
-      // a content-fit sticky box leaves a dead scroll zone after it unpins.
       const pinnedHeight = stickyRef.current?.offsetHeight ?? window.innerHeight
       const totalScroll = rect.height - pinnedHeight
 
@@ -142,9 +163,11 @@ function ProcessPeelStack({ variant }: { variant: 'desktop' | 'mobile' }) {
               if (revealMs !== null) {
                 const delay = idx * REVEAL_DELAY_STEP
                 const local = Math.max(0, Math.min(REVEAL_DURATION, revealMs - delay))
-                revealEase = easeOutCubic(local / REVEAL_DURATION)
+                revealEase = easeOutPremium(local / REVEAL_DURATION)
               }
-              const revealTranslate = (1 - revealEase) * REVEAL_TRAVEL
+              const revealTranslate = (1 - revealEase) * revealTravel
+              // Right side lifts more than left as the card settles in
+              const revealRotate = -(1 - revealEase) * revealTilt
 
               const zIndex = 100 - idx * 10
               const isPeeled = idx < activeSegment
@@ -196,7 +219,7 @@ function ProcessPeelStack({ variant }: { variant: 'desktop' | 'mobile' }) {
                 const p = segmentProgress
                 const ease = p * p * (3 - 2 * p)
                 const translateYPct = -ease * 137.5
-                const rotateDeg = -ease * 3.3
+                const rotateDeg = -ease * 10 + revealRotate
                 const scale = 1 - ease * 0.044
                 const opacity = Math.max(0, 1 - ease * 1.15) * revealEase
 
@@ -232,7 +255,7 @@ function ProcessPeelStack({ variant }: { variant: 'desktop' | 'mobile' }) {
                     zIndex,
                     opacity: revealEase,
                     visibility: 'visible',
-                    transform: `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`,
+                    transform: `translate3d(0, ${translateY.toFixed(2)}px, 0) rotate(${revealRotate.toFixed(2)}deg) scale(${scale.toFixed(4)})`,
                   }}
                 >
                   {cardContent}

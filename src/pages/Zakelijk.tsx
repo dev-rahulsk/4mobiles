@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { Pill } from '../components/global'
+import { Pill, MobileHero, GlassBadge, CtaButton } from '../components/global'
 import desktopHeroImg from '../assets/business_desktop_hero.png'
 import mobileHeroImg from '../assets/business_mobile_hero.png'
 import section4Img from '../assets/section_4_image.png'
@@ -49,6 +49,7 @@ export function Zakelijk() {
   const [sec5BulletsVisible, setSec5BulletsVisible] = useState(false)
   const [sec5GlassCardVisible, setSec5GlassCardVisible] = useState(false)
   const [servicesProgress, setServicesProgress] = useState(0)
+  const [servicesGridRevealed, setServicesGridRevealed] = useState(false)
 
   const sec5ContainerRef = useRef<HTMLDivElement>(null)
   const sec5BgRef = useRef<HTMLImageElement>(null)
@@ -56,6 +57,7 @@ export function Zakelijk() {
   const sec5ListRef = useRef<HTMLUListElement>(null)
   const sec5GlassCardRef = useRef<HTMLDivElement>(null)
   const servicesPinRef = useRef<HTMLDivElement>(null)
+  const servicesGridRef = useRef<HTMLDivElement>(null)
 
   const stats = t('zakelijk.stats', { returnObjects: true }) as { num: string; label: string }[]
   const testimonials = t('zakelijk.testimonials', { returnObjects: true }) as { initial: string; name: string; role: string; stars: number; text: string }[]
@@ -110,6 +112,14 @@ export function Zakelijk() {
   }, [])
 
   useEffect(() => {
+    const el = servicesGridRef.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) setServicesGridRevealed(true) }, { threshold: 0.2 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
     const el = sec5GlassCardRef.current
     if (!el) return
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) setSec5GlassCardVisible(true) }, { threshold: 0.4 })
@@ -157,6 +167,9 @@ export function Zakelijk() {
   }
 
   const serviceCardStyle = (i: number) => {
+    // Below the pin breakpoint, the grid isn't sticky-scrolled — reveal is
+    // handled by the .zk-services-grid.in-view CSS stagger instead.
+    if (window.innerWidth <= 900) return {}
     const start = i < 3 ? 0.35 + i * 0.03 : 0.55 + (i - 3) * 0.03
     const end = i < 3 ? 0.60 : 0.80
     const p = rangeProgress(servicesProgress, start, end)
@@ -224,55 +237,40 @@ export function Zakelijk() {
           </div>
         </div>
 
-        {/* MOBILE HERO VIEW */}
-        <div className="zk-hero-mobile-wrapper">
-          <div className="zk-mobile-hero-container">
-            {/* Mobile Hero Top Card with Background Overlay */}
-            <div className="zk-mobile-hero-top-card">
-              <img src={mobileHeroImg} alt={t('zakelijk.heroImgMobileAlt')} className="zk-mobile-bg-img" />
-              <div className="zk-mobile-bg-overlay" />
-
-              <div className="zk-mobile-content-overlay">
-                <span className="zk-eyebrow-mobile">{t('zakelijk.eyebrow')}</span>
-                <h1 className="zk-mobile-h1">
-                  {t('zakelijk.heroTitle1')}<br />
-                  <span className="zk-green-text-mobile">{t('zakelijk.heroTitleAccent')}</span>
-                </h1>
-                <p className="zk-mobile-body">{t('zakelijk.heroSub')}</p>
-                <div className="zk-mobile-cta-wrap">
-                  <a href="/contact" className="zk-btn-white-pill">
-                    <Icon.Phone width="18" height="18" />
-                    {t('zakelijk.contactUs')}
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* 2x2 Dark Glass Stat Grid */}
-            <div className="zk-mobile-stats-grid">
-              {stats.map((s, i) => {
-                const Ic = MOBILE_STAT_ICONS[i] || Icon.Star
-                return (
-                  <div key={i} className="zk-mobile-stat-card">
-                    <div className="zk-mobile-stat-icon-tile">
-                      <Ic width="24" height="24" />
-                    </div>
-                    <div className="zk-mobile-stat-content">
-                      <span className="zk-mobile-stat-num">{s.num}</span>
-                      <span className="zk-mobile-stat-label">{s.label}</span>
-                      {i === 0 && (
-                        <div className="zk-mobile-stat-stars">
-                          {Array.from({ length: 5 }, (_, k) => (
-                            <Icon.Star key={k} width="12" height="12" style={{ color: '#f59e0b' }} />
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+        {/* MOBILE HERO VIEW — shared global MobileHero component */}
+        <div className="g-mobile-only">
+          <MobileHero
+            className="zk-mobile-hero"
+            image={{ src: mobileHeroImg, alt: t('zakelijk.heroImgMobileAlt') }}
+            imagePositionY="38%"
+            eyebrow={t('zakelijk.eyebrow')}
+            title={
+              <>
+                {t('zakelijk.heroTitle1')}{' '}
+                <span style={{ color: 'var(--green-hero)' }}>{t('zakelijk.heroTitleAccent')}</span>
+              </>
+            }
+            subtext={t('zakelijk.heroSub')}
+            cta={
+              <CtaButton variant="light" href="/contact">
+                <Icon.Phone width="18" height="18" />
+                <span>{t('zakelijk.contactUs')}</span>
+                <Icon.ArrowRight width="16" height="16" />
+              </CtaButton>
+            }
+            badges={stats.map((s, i) => {
+              const Ic = MOBILE_STAT_ICONS[i] || Icon.Star
+              return (
+                <GlassBadge
+                  key={i}
+                  icon={Ic}
+                  value={s.num}
+                  title={s.label}
+                  text={i === 0 ? '★★★★★' : undefined}
+                />
+              )
+            })}
+          />
         </div>
       </section>
 
@@ -371,12 +369,12 @@ export function Zakelijk() {
                 <p className="zk-services-sub" style={servicesHeaderStyle(0.24)}>{t('zakelijk.servicesSub')}</p>
                 <div className="zk-org-pills" style={servicesHeaderStyle(0.26)}>
                   {orgPills.map((pill, i) => (
-                    <Pill key={i}>{pill}</Pill>
+                    <Pill key={i} className="section-pill">{pill}</Pill>
                   ))}
                 </div>
               </div>
 
-              <div className="zk-services-grid">
+              <div className={`zk-services-grid${servicesGridRevealed ? ' in-view' : ''}`} ref={servicesGridRef}>
                 {services.map((s, i) => {
                   const Ic = SERVICE_ICONS[i] || Icon.Wrench
                   return (

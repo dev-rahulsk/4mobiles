@@ -43,7 +43,7 @@ export function Locations() {
           </h2>
           <p className="section-sub">{t('locations.sub')}</p>
           <div className="locations-tags">
-            {CITIES.map(c => <span key={c} className="location-tag">{c}</span>)}
+            {CITIES.map(c => <span key={c} className="section-pill location-tag">{c}</span>)}
           </div>
         </div>
 
@@ -52,14 +52,12 @@ export function Locations() {
             <div className="map-pin loc-desktop-only"><Icon.Pin width="20" height="20" /></div>
             <div className="map-pulse loc-desktop-only" />
             <div className="map-info">
-              <div className="ct-card-header loc-mobile-only">
+              <div className="ct-card-header">
                 <Icon.Pin width="20" height="20" />
                 <h3>4Mobiles</h3>
               </div>
 
-              <div className="map-title loc-desktop-only">4Mobiles</div>
-
-              <div className="ct-address-row loc-mobile-only">
+              <div className="ct-address-row">
                 <p className="ct-address">Molenstraat 2<br />2671 EX Naaldwijk</p>
                 <button className="ct-copy-btn" onClick={copyAddress} type="button">
                   {copied ? <Icon.Check width="14" height="14" /> : (
@@ -70,20 +68,8 @@ export function Locations() {
                   {copied ? t('contact.copied') : t('contact.copyAddress')}
                 </button>
               </div>
-              <div className="map-addr loc-desktop-only">Molenstraat 2<br />2671 EX Naaldwijk</div>
 
-              <a
-                href="https://maps.google.com/?q=Molenstraat+2+2671+EX+Naaldwijk"
-                target="_blank"
-                rel="noopener"
-                className="btn btn-primary btn-sm map-nav-btn loc-desktop-only"
-                style={{ marginBottom: 14 }}
-              >
-                <Icon.MapLink width="14" height="14" />
-                {t('locations.directions')}
-              </a>
-
-              <div className="ct-map-ctas loc-mobile-only">
+              <div className="ct-map-ctas">
                 <a
                   href="https://maps.google.com/?q=Molenstraat+2+2671+EX+Naaldwijk"
                   target="_blank"
@@ -102,14 +88,7 @@ export function Locations() {
                 </a>
               </div>
 
-              <div className="map-hours loc-desktop-only">
-                <div><b>{t('locations.hours.mon')}</b> 13:00 – 17:30</div>
-                <div><b>{t('locations.hours.tueThu')}</b> 09:30 – 17:30</div>
-                <div><b>{t('locations.hours.fri')}</b> 09:30 – 20:00</div>
-                <div><b>{t('locations.hours.sat')}</b> 09:30 – 17:00</div>
-              </div>
-
-              <ul className="ct-hours-list loc-mobile-only">
+              <ul className="ct-hours-list">
                 {days.map((day, i) => {
                   const dayIndex = i === 6 ? 0 : i + 1
                   const isToday = dayIndex === TODAY
@@ -127,17 +106,6 @@ export function Locations() {
               </ul>
             </div>
           </div>
-          <svg className="map-bg" viewBox="0 0 400 400" preserveAspectRatio="none">
-            <defs>
-              <pattern id="mapDots" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.15" />
-              </pattern>
-            </defs>
-            <rect width="400" height="400" fill="url(#mapDots)" />
-            <path d="M0 200 Q100 150 200 220 T400 180" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.2" />
-            <path d="M0 250 Q120 320 240 270 T400 300" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.15" />
-            <path d="M50 50 L70 60 L90 55 L120 70" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.2" />
-          </svg>
         </div>
       </div>
     </section>

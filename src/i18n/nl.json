@@ -369,74 +369,74 @@
     }
   },
   "aboutUs": {
-    "heroEyebrow": "OVER ONS",
-    "heroTitle": "Dé mobiele specialist in Naaldwijk en regio Westland",
-    "heroSub": "Al meer dan 15 jaar helpen wij klanten met smartphone- en tabletproblemen, accessoires en eerlijk advies. Betrouwbaar, vakkundig, en altijd klaar voor service.",
-    "heroWa": "WhatsApp ons",
-    "heroCall": "Bel direct",
-    "heroTrust1": "4.8/5 · 900+ reviews",
-    "heroTrust2": "10.000+ reparaties",
-    "heroTrust3": "Binnen 60 min klaar",
-    "heroImgPlaceholder": "Winkelexterieur foto",
-    "pillars": [
-      {
-        "title": "Persoonlijke service",
-        "desc": "Geen callcenter, maar een echt gesprek. Wij nemen de tijd voor uw vraag en bieden maatwerkadvies voor uw situatie."
-      },
-      {
-        "title": "Eerlijk & transparant",
-        "desc": "Vaste prijzen zonder verborgen kosten. U weet vooraf wat de reparatie kost — geen verrassingen achteraf."
-      },
-      {
-        "title": "Vakmanschap",
-        "desc": "Meer dan 15 jaar ervaring met smartphones, tablets en accessoires. Kwaliteitsonderdelen, 90 dagen garantie."
-      }
-    ],
-    "storyEyebrow": "ONS VERHAAL",
-    "storyTitle": "Van passie naar een betrouwbare service",
-    "storyBody1": "4Mobiles begon als een kleine reparatiewinkel met grote ambities. Wat als passie voor technologie startte, groeide uit tot het vertrouwde adres voor iedereen in Naaldwijk en de Westland-regio die hulp nodig heeft met zijn of haar smartphone of tablet.",
-    "storyBody2": "Wij geloven dat technologie mensen verbindt — en dat een kapot scherm of lege batterij daar niet tussen mag komen. Daarom repareren wij snel, eerlijk en vakkundig. Niet voor de winst, maar voor de klant.",
-    "storyImgPlaceholder": "Teamfoto",
-    "statYears": "jaar ervaring",
-    "statClients": "tevreden klanten",
-    "statDeadline": "klaar op deadline",
-    "servicesEyebrow": "WAT WE VOOR JE DOEN",
-    "servicesTitle": "Ons volledige dienstenaanbod",
-    "services": [
-      {
-        "title": "Reparaties",
-        "body": "Scherm, batterij, camera, lader-poort, speaker — wij repareren vrijwel alles, vaak binnen 60 minuten."
-      },
-      {
-        "title": "Accessoires",
-        "body": "Hoesjes, screenprotectors, kabels, opladers en meer. Altijd een ruim assortiment in de winkel."
-      },
-      {
-        "title": "Zakelijk",
-        "body": "Contractbeheer, bulkreparaties en apparatuuradvies voor ondernemers in de regio Westland."
-      },
-      {
-        "title": "Advies & Help",
-        "body": "Nieuwe telefoon, data-overzetting of gewoon een vraag? We helpen u graag, ook zonder aankoop."
-      }
-    ],
-    "reasonsEyebrow": "WAAROM KLANTEN VOOR 4MOBILES KIEZEN",
-    "reasons": [
-      "Meeste reparaties binnen 60 minuten",
-      "90 dagen garantie op elk onderdeel",
-      "Geen verborgen kosten, vaste prijzen",
-      "4.8/5 op Google · 900+ beoordelingen"
-    ],
-    "callDirect": "Bel direct",
-    "whatsappUs": "WhatsApp ons",
-    "locationEyebrow": "BEZOEK ONS",
-    "locationTitle": "Kom je langs in onze winkel?",
-    "locationSub": "We staan voor je klaar in het hart van Naaldwijk. Loop gerust binnen — geen afspraak nodig.",
-    "locationHours1": "Ma – Vr: 09:00 – 18:00",
-    "locationHours2": "Zaterdag: 09:00 – 17:00",
-    "locationHours3": "Zondag: Gesloten",
-    "getDirections": "Route krijgen",
-    "locationImgPlaceholder": "Winkelexterieur"
+    "hero": {
+      "eyebrow": "OVER ONS",
+      "titleLine1": "Begonnen als jeugdvrienden.",
+      "titleLine2Pre": "Gegroeid door ",
+      "titleAccent": "vertrouwen",
+      "titleLine2Post": ".",
+      "sub": "Al meer dan 12 jaar een vertrouwd adres in Naaldwijk en het Westland. Voor reparaties, accessoires en eerlijk advies waar u echt verder mee komt.",
+      "subMobile": "Al meer dan 12 jaar een vertrouwd adres in Naaldwijk en het Westland.",
+      "imageAlt": "Team van 4Mobiles in de winkel",
+      "badge1Value": "12+ jaar",
+      "badge1Label": "ervaring",
+      "badge2Value": "4,8/5",
+      "badge2Label": "op Google",
+      "badge3Value": "10.000+",
+      "badge3Label": "reparaties",
+      "badge4Value": "90 dagen",
+      "badge4Label": "garantie",
+      "cta": "Neem contact op"
+    },
+    "way": {
+      "watermark": "SINDS 2012",
+      "tag": "ONZE MANIER VAN WERKEN",
+      "title1": "Binnenlopen met een probleem.",
+      "title2": "Weggaan met duidelijkheid.",
+      "highlight": "Eerst begrijpen. Dan adviseren. En pas repareren als het zin heeft.",
+      "body": "Wij luisteren naar uw verhaal, stellen de juiste vragen en leggen alles duidelijk uit. Zo weet u altijd waar u aan toe bent — zonder verrassingen. Eerlijk advies staat bij ons altijd op nummer één."
+    },
+    "story": {
+      "tag": "ONS VERHAAL",
+      "imgPlaceholder": "FOTO WINKEL / TEAM OMGEVING",
+      "title": "Van telecom collega's tot een vertrouwd adres in het hart van het Westland.",
+      "text1": "We leerden elkaar kennen in de telecomwereld en ontdekten onze gedeelde passie voor techniek en service. Wat begon met helpen in onze vrije tijd, gegroeid uit tot 4Mobiles: een winkel waar kwaliteit, eerlijkheid en persoonlijk contact centraal staan.",
+      "text2": "Door de jaren heen bouwden we aan sterke relaties met onze klanten. Velen van bezoekers zijn vaste gezichten geworden.",
+      "quote": "Van bezoekers vaste gezichten maken."
+    },
+    "team": {
+      "tag": "ONS TEAM",
+      "title": "De gezichten achter 4Mobiles.",
+      "members": [
+        { "name": "Kevin", "role": "Eigenaar / Techniek" },
+        { "name": "Dylan", "role": "Technicus" },
+        { "name": "Milan", "role": "Technicus" },
+        { "name": "Ruben", "role": "Eigenaar / Advies" }
+      ]
+    },
+    "more": {
+      "tag": "MEER DAN REPARATIES",
+      "title1": "Niet alleen herstellen.",
+      "title2": "Ook helpen voorkomen.",
+      "sub": "Met persoonlijk advies, passende accessoires en service helpen wij u om langer en zorgeloos gebruik te maken van uw toestel.",
+      "props": ["Persoonlijk advies", "Passende accessoires", "Service na aankoop", "Eerlijk & transparant"],
+      "trust1": "Vertrouwen van duizenden klanten.",
+      "trust2": "90 dagen garantie op uw reparatie.",
+      "imgPlaceholder": "FOTO WINKEL & OMGEVING"
+    },
+    "visit": {
+      "tag": "BEZOEK ONS",
+      "title": "Loop gerust binnen.",
+      "addrName": "4Mobiles Naaldwijk",
+      "addrLine": "Kerkstraat 54, 2671 CG Naaldwijk",
+      "hoursLabel": "Openingstijden",
+      "hoursLine": "Maandag t/m Zaterdag: 09:30 - 18:00",
+      "contactLabel": "Contact",
+      "contactLine": "0174 - 62 42 42 | WhatsApp: 06 - 12 34 56 78",
+      "routeBtn": "Route bekijken",
+      "whatsappBtn": "WhatsApp ons",
+      "imgPlaceholder": "FOTO TEAM IN DE WINKEL"
+    }
   },
   "contact": {
     "eyebrow": "CONTACT",
@@ -553,22 +553,22 @@
       {
         "val": "12+",
         "title": "jaar ervaring",
-        "sub": "Meer dan 150.000 klanten geholpen"
+        "sub": "150.000+ klanten"
       },
       {
         "val": "10.000+",
         "title": "reparaties",
-        "sub": "Snel en professioneel uitgevoerd"
+        "sub": "Snel & professioneel"
       },
       {
         "val": "60",
         "title": "minuten klaar",
-        "sub": "Vaak gerepareerd terwijl u wacht"
+        "sub": "Terwijl u wacht"
       },
       {
         "val": "4.8/5",
         "title": "Google reviews",
-        "sub": "Gebaseerd op 487 reviews"
+        "sub": "487 reviews"
       }
     ],
     "featured": [
@@ -928,16 +928,22 @@
     "heroEyebrow": "ACCESSOIRES",
     "heroTitle": "Alles voor je telefoon en tablet, gewoon bij ons in de winkel",
     "heroSub": "Van stevige hoesjes en screenprotectors tot opladers en autohouders. Wij hebben een ruim aanbod accessoires op voorraad en helpen je graag de juiste keuze voor jouw toestel.",
+    "heroTitleMobileLine1": "Alles voor",
+    "heroTitleMobileLine2Pre": "je ",
+    "heroTitleMobileAccent": "telefoon",
+    "heroTitleMobileLine2Post": " en",
+    "heroTitleMobileLine3": "tablet.",
+    "heroSubMobile": "Hoesjes, opladers, screenprotectors en meer, verkrijgbaar in onze winkel.",
     "viewAssortment": "Bekijk ons aanbod",
     "askProduct": "Vraag naar product",
     "heroLink": "stuur ons een bericht →",
     "heroBgAlt": "Accessoires in de winkel",
-    "heroMobileCta": "Kom langs in de winkel",
+    "heroMobileCta": "Bezoek onze winkel",
     "heroTrust1": "4.8/5 op Google",
     "heroTrust2": "1000den artikelen op voorraad",
-    "heroTrustGoogleLabel": "op Google",
-    "heroTrustCount": "1000den",
-    "heroTrustCountSub": "artikelen op voorraad",
+    "heroTrustGoogleLabel": "Google reviews",
+    "heroTrustCount": "1000+",
+    "heroTrustCountSub": "producten op voorraad",
     "uspPillars": [
       {
         "title": "Vandaag nog in bezit",
@@ -982,7 +988,7 @@
           "Glas, privacy en folie op maat",
           "Professioneel aangebracht in de winkel"
         ],
-        "cta": "Welke screenprotector past bij mij?"
+        "cta": "Welke protector past bij mij?"
       },
       {
         "id": "chargers",
@@ -1002,7 +1008,7 @@
           "Voor dashboard, ventilatierooster of voorruit",
           "Verkrijgbaar met klem, magneet en MagSafe"
         ],
-        "cta": "Welke autohouder past bij mij?"
+        "cta": "Welke houder past bij mij?"
       }
     ],
     "catsMoreEyebrow": "NOG VEEL MEER",

@@ -115,26 +115,28 @@ export function Contact() {
                 <Icon.Clock width="20" height="20" />
                 <h3>{t('contact.hoursTitle')}</h3>
               </div>
-              <ul className="ct-hours-list">
-                {days.map((day, i) => {
-                  const dayIndex = i === 6 ? 0 : i + 1
-                  const isToday = dayIndex === TODAY
-                  const time = HOURS[i]
-                  return (
-                    <li key={i} className={`ct-hour-row${isToday ? ' ct-today' : ''}`}>
-                      <span className="ct-day">
-                        {day}
-                      </span>
-                      <div className="ct-time-box">
-                        {isToday && <span className="ct-today-tag">{t('contact.today')}</span>}
-                        <span className={`ct-time${time === t('contact.closed') ? ' ct-closed' : ''}`}>{time}</span>
-                      </div>
-                    </li>
-                  )
-                })}
-              </ul>
+              <div className="ct-hours-content">
+                <ul className="ct-hours-list">
+                  {days.map((day, i) => {
+                    const dayIndex = i === 6 ? 0 : i + 1
+                    const isToday = dayIndex === TODAY
+                    const time = HOURS[i]
+                    return (
+                      <li key={i} className={`ct-hour-row${isToday ? ' ct-today' : ''}`}>
+                        <span className="ct-day">
+                          {day}
+                        </span>
+                        <div className="ct-time-box">
+                          {isToday && <span className="ct-today-tag">{t('contact.today')}</span>}
+                          <span className={`ct-time${time === t('contact.closed') ? ' ct-closed' : ''}`}>{time}</span>
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
 
-              <p className="ct-hours-note">{t('contact.lastSunday')}</p>
+                <p className="ct-hours-note">{t('contact.lastSunday')}</p>
+              </div>
 
               {/* Parking Card (Light Blue Styling) */}
               <div className="ct-parking-card">
@@ -154,42 +156,46 @@ export function Contact() {
                 <Icon.Pin width="20" height="20" />
                 <h3>{t('contact.mapTitle')}</h3>
               </div>
-              <div className="ct-address-row">
-                <div>
-                  <p className="ct-address">Molenstraat 2<br />2671 BE Naaldwijk</p>
+              <div className="ct-map-content">
+                <div className="ct-address-row">
+                  <div>
+                    <p className="ct-address">Molenstraat 2<br />2671 BE Naaldwijk</p>
+                  </div>
+                  <button className="ct-copy-btn" onClick={copyAddress} title="Adres kopiëren">
+                    {copied ? <Icon.Check width="16" height="16" /> : (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                      </svg>
+                    )}
+                    {copied ? t('contact.copied') : t('contact.copyAddress')}
+                  </button>
                 </div>
-                <button className="ct-copy-btn" onClick={copyAddress} title="Adres kopiëren">
-                  {copied ? <Icon.Check width="16" height="16" /> : (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
-                    </svg>
-                  )}
-                  {copied ? t('contact.copied') : t('contact.copyAddress')}
-                </button>
+
+                <div className="ct-map-embed">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458.0!2d4.2!3d51.99!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b1!2sMolenstraat%202%2C%20Naaldwijk!5e0!3m2!1snl!2snl!4v1"
+                    width="100%"
+                    height="220"
+                    style={{ border: 0, borderRadius: '12px' }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={t('contact.mapIframeTitle')}
+                  />
+                </div>
               </div>
 
-              <div className="ct-map-embed">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458.0!2d4.2!3d51.99!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b1!2sMolenstraat%202%2C%20Naaldwijk!5e0!3m2!1snl!2snl!4v1"
-                  width="100%"
-                  height="220"
-                  style={{ border: 0, borderRadius: '12px' }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={t('contact.mapIframeTitle')}
-                />
+              <div className="ct-map-bottom">
+                <div className="ct-map-ctas">
+                  <a href="https://maps.google.com/?q=Molenstraat+2+Naaldwijk" target="_blank" rel="noopener noreferrer" className="ct-btn-primary">
+                    <Icon.MapLink width="18" height="18" /> {t('contact.getDirections')}
+                  </a>
+                  <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="ct-btn-dark">
+                    <Icon.WhatsApp width="18" height="18" /> {t('contact.whatsappUs')}
+                  </a>
+                </div>
+                <p className="ct-map-note">{t('contact.noAppointment')}</p>
               </div>
-
-              <div className="ct-map-ctas">
-                <a href="https://maps.google.com/?q=Molenstraat+2+Naaldwijk" target="_blank" rel="noopener noreferrer" className="ct-btn-primary">
-                  <Icon.MapLink width="18" height="18" /> {t('contact.getDirections')}
-                </a>
-                <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="ct-btn-dark">
-                  <Icon.WhatsApp width="18" height="18" /> {t('contact.whatsappUs')}
-                </a>
-              </div>
-              <p className="ct-map-note">{t('contact.noAppointment')}</p>
             </div>
           </div>
         </div>
@@ -203,7 +209,7 @@ export function Contact() {
             <h2 className="section-title">{t('contact.visitHeading')}</h2>
             <p className="section-sub">{t('contact.visitBody')}</p>
             <div className="locations-tags ct-visit-pills">
-              {visitPills.map(p => <span key={p} className="location-tag">{p}</span>)}
+              {visitPills.map(p => <span key={p} className="section-pill location-tag">{p}</span>)}
             </div>
           </div>
 

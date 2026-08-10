@@ -2,9 +2,9 @@ import { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { Pill } from '../components/global'
+import { Pill, MobileHero, GlassBadge, CtaButton } from '../components/global'
 
-import storeMobileHeroImg from '../assets/ChatGPT_Image_10_jul_2026_11_20_55.png'
+import storeMobileHeroImg from '../assets/product_new_mobile_hero.png'
 import desktopNewPhoneApprovedImg from '../assets/ChatGPT_Image_9_jul_2026%2C_19_57_39.png'
 import storeInteriorWideImg from '../assets/ChatGPT_Image_30_jul_2026_20_05_04.png'
 import newDeviceLayer1Img from '../assets/layer1.png'
@@ -72,62 +72,6 @@ function ParallaxHero() {
   )
 }
 
-function MobileHero() {
-  const { t } = useTranslation()
-  return (
-    <section className="pd-mobile-hero">
-      {/* Background Image filling entire mobile hero */}
-      <img src={storeMobileHeroImg} alt={t('producten.heroBgAlt')} className="pd-mobile-hero-bg-img" />
-      <div className="pd-mobile-hero-scrim" />
-
-      <div className="pd-mobile-hero-inner">
-        {/* Top Text Content overlaid on top left wall */}
-        <div className="pd-mobile-hero-top">
-          <span className="pd-mobile-hero-eyebrow">{t('producten.heroEyebrow')}</span>
-          <h1 className="pd-mobile-hero-title">
-            {t('producten.heroTitle')}
-          </h1>
-        </div>
-
-        {/* Bottom Content overlaid on lower gradient area */}
-        <div className="pd-mobile-hero-bottom">
-          <div className="pd-mobile-hero-ctas">
-            <a href="/contact" className="btn-accent pd-mobile-btn-primary">
-              <div className="pd-mobile-btn-left">
-                <Icon.Pin width="18" height="18" />
-                <span>{t('producten.heroMobileCta')}</span>
-              </div>
-              <span className="pd-btn-arrow">→</span>
-            </a>
-          </div>
-
-          <div className="pd-mobile-trust-grid">
-            <div className="pd-mobile-trust-card">
-              <Icon.Google width="24" height="24" />
-              <div>
-                <div className="pd-mobile-trust-head">
-                  <span className="pd-mobile-trust-rating">4.8/5</span>
-                  <span className="pd-mobile-trust-label">{t('producten.heroTrustGoogleLabel')}</span>
-                </div>
-                <div className="pd-mobile-trust-stars">★★★★★</div>
-              </div>
-            </div>
-            <div className="pd-mobile-trust-card">
-              <div className="pd-mobile-box-icon">
-                <Icon.Cart width="20" height="20" />
-              </div>
-              <div>
-                <div className="pd-mobile-trust-val">{t('producten.heroTrustCount')}</div>
-                <div className="pd-mobile-trust-sub">{t('producten.heroTrustCountSub')}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function BrandsSlider() {
   return (
     <div className="pd-brands-marquee-wrap">
@@ -157,7 +101,8 @@ function MobileNewPhoneSection() {
     }
 
     const HAND_BASE_SCALE = 0.94
-    const HAND_BASE_X = -48
+    const IMAGE_SHIFT_X = -24
+    const HAND_BASE_X = -48 + IMAGE_SHIFT_X
     const HAND_BASE_Y = 34
     const HAND_ZOOM = 0.012
 
@@ -636,7 +581,7 @@ function CategoryMoreSection() {
         <p className="cat-more-body">{t('producten.catsMoreBody')}</p>
         <div className="cat-more-pills-mobile">
           {pills.map((p, i) => (
-            <Pill key={p} selected={i === 0}>{p}</Pill>
+            <Pill key={p} className="section-pill" selected={i === 0}>{p}</Pill>
           ))}
         </div>
       </div>
@@ -651,7 +596,7 @@ function CategoryMoreSection() {
               {pills.map((p, i) => {
                 const Ic = CAT_PILL_ICONS[i] ?? Icon.Accessory
                 return (
-                  <span key={p} className={`cat-more-pill-desktop${i === 0 ? ' is-accent' : ''}`}>
+                  <span key={p} className={`section-pill cat-more-pill-desktop${i === 0 ? ' is-accent' : ''}`}>
                     <Ic width="16" height="16" /> {p}
                   </span>
                 )
@@ -709,7 +654,47 @@ export function Producten() {
       </div>
 
       <div className="pd-mobile-only">
-        <MobileHero />
+        <MobileHero
+          className="pd-mobile-hero"
+          tone="light"
+          image={{ src: storeMobileHeroImg, alt: t('producten.heroBgAlt') }}
+          imagePositionX="0%"
+          imagePositionY="0%"
+          imageZoom={1.45}
+          eyebrow={t('producten.heroEyebrow')}
+          title={
+            <>
+              {t('producten.heroTitleMobileLine1')}<br />
+              {t('producten.heroTitleMobileLine2Pre')}
+              <span style={{ color: 'var(--green-hero)' }}>{t('producten.heroTitleMobileAccent')}</span>
+              {t('producten.heroTitleMobileLine2Post')}<br />
+              {t('producten.heroTitleMobileLine3')}
+            </>
+          }
+          subtext={t('producten.heroSubMobile')}
+          cta={
+            <CtaButton variant="primary" href="/contact">
+              <Icon.Pin width="18" height="18" />
+              <span>{t('producten.heroMobileCta')}</span>
+              <Icon.ArrowRight width="16" height="16" />
+            </CtaButton>
+          }
+          badges={[
+            <GlassBadge
+              key="google"
+              icon={Icon.Google}
+              value="4.8/5"
+              title={t('producten.heroTrustGoogleLabel')}
+              text="★★★★★"
+            />,
+            <GlassBadge
+              key="stock"
+              icon={Icon.Cart}
+              value={t('producten.heroTrustCount')}
+              title={t('producten.heroTrustCountSub')}
+            />,
+          ]}
+        />
       </div>
 
       <section className="pd-mobile-only pd-brands-section">
@@ -754,7 +739,7 @@ export function Producten() {
         </div>
 
         <CategoryMobileShowcase categories={categories} />
-        <div className="container">
+        <div className="container cat-grid-container">
           <CategoryGrid categories={categories} />
         </div>
       </section>
@@ -777,7 +762,7 @@ export function Producten() {
 
           <div className="pd-cities-row pd-store-faq-cities">
             {CITY_PILLS.map(c => (
-              <Pill key={c} href={`/regio/${c.toLowerCase().replace(/['\s]/g, '-')}`}>
+              <Pill key={c} className="section-pill" href={`/regio/${c.toLowerCase().replace(/['\s]/g, '-')}`}>
                 {c}
               </Pill>
             ))}
@@ -875,7 +860,7 @@ export function Producten() {
             <p className="pd-cities-label">{t('producten.citiesLabel')}</p>
             <div className="pd-cities-row">
               {CITY_PILLS.map(c => (
-                <a key={c} href={`/regio/${c.toLowerCase().replace(/['\s]/g, '-')}`} className="pd-city-pill">
+                <a key={c} href={`/regio/${c.toLowerCase().replace(/['\s]/g, '-')}`} className="section-pill pd-city-pill">
                   <Icon.Pin width="12" height="12" /> {c}
                 </a>
               ))}

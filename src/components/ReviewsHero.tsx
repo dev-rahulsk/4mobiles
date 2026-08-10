@@ -10,23 +10,23 @@ const clamp01 = (v: number) => Math.max(0, Math.min(1, v))
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-function useCountUp(target: number, isVisible: boolean) {
-  const [count, setCount] = useState(0)
+function useCountUp(target: number, isVisible: boolean, from = 8) {
+  const [count, setCount] = useState(from)
   const started = useRef(false)
   useEffect(() => {
     if (!isVisible || started.current) return
     started.current = true
     if (prefersReducedMotion()) { setCount(target); return }
-    const start = performance.now()
+    const startTime = performance.now()
     const duration = 1400
     const tick = (now: number) => {
-      const t = Math.min((now - start) / duration, 1)
+      const t = Math.min((now - startTime) / duration, 1)
       const eased = 1 - Math.pow(1 - t, 4)
-      setCount(Math.round(eased * target))
+      setCount(Math.round(from + eased * (target - from)))
       if (t < 1) requestAnimationFrame(tick)
     }
     requestAnimationFrame(tick)
-  }, [isVisible, target])
+  }, [isVisible, target, from])
   return count
 }
 

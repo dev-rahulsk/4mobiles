@@ -368,74 +368,74 @@
     }
   },
   "aboutUs": {
-    "heroEyebrow": "ABOUT US",
-    "heroTitle": "The mobile specialist in Naaldwijk and the Westland region",
-    "heroSub": "For over 15 years we have been helping customers with smartphone and tablet issues, accessories and honest advice. Reliable, skilled, and always ready to serve.",
-    "heroWa": "WhatsApp us",
-    "heroCall": "Call us",
-    "heroTrust1": "4.8/5 · 900+ reviews",
-    "heroTrust2": "10,000+ repairs",
-    "heroTrust3": "Ready in 30 min",
-    "heroImgPlaceholder": "Shop exterior photo",
-    "pillars": [
-      {
-        "title": "Personal service",
-        "desc": "No call centre, but a real conversation. We take the time for your question and offer tailored advice for your situation."
-      },
-      {
-        "title": "Honest & transparent",
-        "desc": "Fixed prices with no hidden costs. You know upfront what the repair costs — no surprises afterwards."
-      },
-      {
-        "title": "Craftsmanship",
-        "desc": "More than 15 years of experience with smartphones, tablets and accessories. Quality parts, 90-day warranty."
-      }
-    ],
-    "storyEyebrow": "OUR STORY",
-    "storyTitle": "From passion to a reliable service",
-    "storyBody1": "4Mobiles started as a small repair shop with big ambitions. What began as a passion for technology grew into the trusted address for everyone in Naaldwijk and the Westland region who needs help with their smartphone or tablet.",
-    "storyBody2": "We believe technology connects people — and that a broken screen or dead battery should not get in the way. That's why we repair quickly, honestly and professionally. Not for profit, but for the customer.",
-    "storyImgPlaceholder": "Team photo",
-    "statYears": "years of experience",
-    "statClients": "satisfied customers",
-    "statDeadline": "on-time delivery",
-    "servicesEyebrow": "WHAT WE DO FOR YOU",
-    "servicesTitle": "Our full range of services",
-    "services": [
-      {
-        "title": "Repairs",
-        "body": "Screen, battery, camera, charging port, speaker — we repair almost everything, often within 30 minutes."
-      },
-      {
-        "title": "Accessories",
-        "body": "Cases, screen protectors, cables, chargers and more. Always a wide range in stock."
-      },
-      {
-        "title": "Business",
-        "body": "Contract management, bulk repairs and device advice for businesses in the Westland region."
-      },
-      {
-        "title": "Advice & Help",
-        "body": "New phone, data transfer or just a question? We're happy to help, even without a purchase."
-      }
-    ],
-    "reasonsEyebrow": "WHY CUSTOMERS CHOOSE 4MOBILES",
-    "reasons": [
-      "Most repairs within 30 minutes",
-      "90-day warranty on every part",
-      "No hidden costs, fixed prices",
-      "4.8/5 on Google · 900+ ratings"
-    ],
-    "callDirect": "Call us",
-    "whatsappUs": "WhatsApp us",
-    "locationEyebrow": "VISIT US",
-    "locationTitle": "Want to visit our shop?",
-    "locationSub": "We're ready for you in the heart of Naaldwijk. Feel free to walk in — no appointment needed.",
-    "locationHours1": "Mon – Fri: 09:00 – 18:00",
-    "locationHours2": "Saturday: 09:00 – 17:00",
-    "locationHours3": "Sunday: Closed",
-    "getDirections": "Get directions",
-    "locationImgPlaceholder": "Shop exterior"
+    "hero": {
+      "eyebrow": "ABOUT US",
+      "titleLine1": "Started as childhood friends.",
+      "titleLine2Pre": "Grown through ",
+      "titleAccent": "trust",
+      "titleLine2Post": ".",
+      "sub": "For more than 12 years a trusted address in Naaldwijk and the Westland region. For repairs, accessories and honest advice that actually helps you.",
+      "subMobile": "For more than 12 years a trusted address in Naaldwijk and the Westland.",
+      "imageAlt": "4Mobiles team in the shop",
+      "badge1Value": "12+ years",
+      "badge1Label": "experience",
+      "badge2Value": "4.8/5",
+      "badge2Label": "on Google",
+      "badge3Value": "10,000+",
+      "badge3Label": "repairs",
+      "badge4Value": "90-day",
+      "badge4Label": "warranty",
+      "cta": "Get in touch"
+    },
+    "way": {
+      "watermark": "SINCE 2012",
+      "tag": "OUR WAY OF WORKING",
+      "title1": "Walk in with a problem.",
+      "title2": "Walk out with clarity.",
+      "highlight": "First understand. Then advise. And only repair when it makes sense.",
+      "body": "We listen to your story, ask the right questions and explain everything clearly. So you always know where you stand — no surprises. Honest advice always comes first with us."
+    },
+    "story": {
+      "tag": "OUR STORY",
+      "imgPlaceholder": "SHOP / TEAM PHOTO",
+      "title": "From telecom colleagues to a trusted address in the heart of the Westland.",
+      "text1": "We got to know each other in the telecom industry and discovered our shared passion for technology and service. What started as helping out in our spare time grew into 4Mobiles: a shop where quality, honesty and personal contact come first.",
+      "text2": "Over the years we've built strong relationships with our customers. Many visitors have become familiar faces.",
+      "quote": "Turning visitors into familiar faces."
+    },
+    "team": {
+      "tag": "OUR TEAM",
+      "title": "The faces behind 4Mobiles.",
+      "members": [
+        { "name": "Kevin", "role": "Owner / Technician" },
+        { "name": "Dylan", "role": "Technician" },
+        { "name": "Milan", "role": "Technician" },
+        { "name": "Ruben", "role": "Owner / Advice" }
+      ]
+    },
+    "more": {
+      "tag": "MORE THAN REPAIRS",
+      "title1": "Not just fixing.",
+      "title2": "Also helping prevent.",
+      "sub": "With personal advice, suitable accessories and service, we help you use your device longer and worry-free.",
+      "props": ["Personal advice", "Suitable accessories", "Service after purchase", "Honest & transparent"],
+      "trust1": "Trusted by thousands of customers.",
+      "trust2": "90-day warranty on your repair.",
+      "imgPlaceholder": "SHOP & SURROUNDINGS PHOTO"
+    },
+    "visit": {
+      "tag": "VISIT US",
+      "title": "Feel free to walk in.",
+      "addrName": "4Mobiles Naaldwijk",
+      "addrLine": "Kerkstraat 54, 2671 CG Naaldwijk",
+      "hoursLabel": "Opening hours",
+      "hoursLine": "Monday to Saturday: 09:30 - 18:00",
+      "contactLabel": "Contact",
+      "contactLine": "0174 - 62 42 42 | WhatsApp: 06 - 12 34 56 78",
+      "routeBtn": "View route",
+      "whatsappBtn": "WhatsApp us",
+      "imgPlaceholder": "TEAM IN SHOP PHOTO"
+    }
   },
   "contact": {
     "eyebrow": "CONTACT",
@@ -551,23 +551,23 @@
     "trust": [
       {
         "val": "12+",
-        "title": "years experience",
-        "sub": "More than 150,000 customers helped"
+        "title": "yrs experience",
+        "sub": "150,000+ customers"
       },
       {
         "val": "10,000+",
-        "title": "repairs",
-        "sub": "Fast and professionally handled"
+        "title": "repairs done",
+        "sub": "Fast & professional"
       },
       {
         "val": "60",
         "title": "minutes ready",
-        "sub": "Often repaired while you wait"
+        "sub": "While you wait"
       },
       {
         "val": "4.8/5",
         "title": "Google reviews",
-        "sub": "Based on 487 reviews"
+        "sub": "487 reviews"
       }
     ],
     "featured": [
@@ -927,16 +927,22 @@
     "heroEyebrow": "ACCESSORIES",
     "heroTitle": "Everything for your phone and tablet, right here in our shop",
     "heroSub": "From sturdy cases and screen protectors to chargers and car holders. We have a wide range of accessories in stock and are happy to help you make the right choice for your device.",
+    "heroTitleMobileLine1": "Everything for",
+    "heroTitleMobileLine2Pre": "your ",
+    "heroTitleMobileAccent": "phone",
+    "heroTitleMobileLine2Post": " and",
+    "heroTitleMobileLine3": "tablet.",
+    "heroSubMobile": "Cases, chargers, screen protectors and more, available in our store.",
     "viewAssortment": "View our range",
     "askProduct": "Ask about a product",
     "heroLink": "send us a message →",
     "heroBgAlt": "Accessories in the shop",
-    "heroMobileCta": "Visit the shop",
+    "heroMobileCta": "Visit our store",
     "heroTrust1": "4.8/5 on Google",
     "heroTrust2": "Thousands of items in stock",
-    "heroTrustGoogleLabel": "on Google",
-    "heroTrustCount": "Thousands",
-    "heroTrustCountSub": "of items in stock",
+    "heroTrustGoogleLabel": "Google reviews",
+    "heroTrustCount": "1000+",
+    "heroTrustCountSub": "products in stock",
     "uspPillars": [
       {
         "title": "Yours today",

@@ -41,23 +41,25 @@ export function PageHero({
 
   return (
     <section className={classes}>
-      <div className="g-hero__media" aria-hidden="true">
-        <img src={image.src} alt={image.alt} />
-      </div>
-      <div className="g-hero__scrim" aria-hidden="true" />
-      <div className="g-hero__photo-glow" aria-hidden="true" />
-      {visual && <div className="g-hero__visual" aria-hidden="true">{visual}</div>}
-      <div className="g-hero__curve" aria-hidden="true" />
+      <div className="g-hero__card">
+        <div className="g-hero__media" aria-hidden="true">
+          <img src={image.src} alt={image.alt} />
+        </div>
+        <div className="g-hero__scrim" aria-hidden="true" />
+        <div className="g-hero__photo-glow" aria-hidden="true" />
+        {visual && <div className="g-hero__visual" aria-hidden="true">{visual}</div>}
+        <div className="g-hero__curve" aria-hidden="true" />
 
-      <div className="g-container g-hero__content">
-        <div className={aside ? 'g-hero__grid' : undefined}>
-          <div className="g-hero__text">
-            <p className="g-eyebrow">{eyebrow}</p>
-            <h1 className="g-title">{title}</h1>
-            {subtext && <p className="g-body">{subtext}</p>}
-            {cta && <div className="g-hero__cta">{cta}</div>}
+        <div className="g-container g-hero__content">
+          <div className={aside ? 'g-hero__grid' : undefined}>
+            <div className="g-hero__text">
+              <p className="g-eyebrow">{eyebrow}</p>
+              <h1 className="g-title">{title}</h1>
+              {subtext && <p className="g-body">{subtext}</p>}
+              {cta && <div className="g-hero__cta">{cta}</div>}
+            </div>
+            {aside && <div className="g-hero__aside">{aside}</div>}
           </div>
-          {aside && <div className="g-hero__aside">{aside}</div>}
         </div>
       </div>
 

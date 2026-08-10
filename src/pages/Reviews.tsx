@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { PageHero, CtaButton, GlassBadge, Pill } from '../components/global'
+import { PageHero, MobileHero, CtaButton, GlassBadge, Pill } from '../components/global'
 import reviewsHeroImg from '../assets/store_hero_bg.png'
 
 const FEATURED_INITIALS = ['H', 'S']
@@ -70,82 +70,118 @@ export function Reviews() {
 
   return (
     <Layout>
-      {/* Hero Section — shared global PageHero (light photography, 4-badge layout) */}
-      <PageHero
-        tone="light"
-        badgeCount={4}
-        image={{ src: reviewsHeroImg, alt: t('reviewsPage.eyebrow') }}
-        eyebrow={t('reviewsPage.eyebrow')}
-        title={
-          <>
-            {t('reviewsPage.heroTitle')}{' '}
-            <span style={{ color: 'var(--green-light)' }}>{t('reviewsPage.heroTitleAccent')}</span>
-          </>
-        }
-        subtext={t('reviewsPage.heroSub')}
-        cta={
-          <>
-            <CtaButton variant="primary" href="/reparatie">
+      {/* Hero Section — shared global PageHero (desktop) / MobileHero (mobile) */}
+      <div className="g-desktop-only">
+        <PageHero
+          tone="light"
+          badgeCount={4}
+          image={{ src: reviewsHeroImg, alt: t('reviewsPage.eyebrow') }}
+          eyebrow={t('reviewsPage.eyebrow')}
+          title={
+            <>
+              {t('reviewsPage.heroTitle')}{' '}
+              <span style={{ color: 'var(--green-light)' }}>{t('reviewsPage.heroTitleAccent')}</span>
+            </>
+          }
+          subtext={t('reviewsPage.heroSub')}
+          cta={
+            <>
+              <CtaButton variant="primary" href="/reparatie">
+                <Icon.Calendar width="18" height="18" />
+                <span>{t('reviewsPage.planRepair')}</span>
+                <Icon.ArrowRight width="16" height="16" />
+              </CtaButton>
+              <CtaButton
+                variant="outline"
+                href="https://g.page/4mobiles/review"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rv2-hero-outline-on-dark"
+              >
+                <Icon.Star width="18" height="18" />
+                <span>{t('reviewsPage.writeReview')}</span>
+                <Icon.ArrowRight width="16" height="16" />
+              </CtaButton>
+            </>
+          }
+          aside={
+            <>
+              {/* Google Rating Glass Card */}
+              <div className="rv2-glass-card rv2-rating-card-hero">
+                <div className="rv2-rating-header">
+                  <GoogleLogo size={36} />
+                  <div className="rv2-rating-score-box">
+                    <span className="rv2-big-score">4.8</span>
+                    <span className="rv2-max-score">/5</span>
+                  </div>
+                </div>
+                <div className="rv2-rating-stars-line">
+                  <Stars n={5} />
+                </div>
+                <p className="rv2-rating-subtext">{t('reviewsPage.heroRatingCount')}</p>
+              </div>
+
+              {/* Featured Quote Glass Card */}
+              <div className="rv2-glass-card rv2-quote-card-hero">
+                <div className="rv2-quote-mark">“</div>
+                <p className="rv2-quote-text">
+                  "{t('reviewsPage.heroQuoteText')}"
+                </p>
+                <div className="rv2-quote-author">
+                  <div className="rv2-quote-avatar">H</div>
+                  <div>
+                    <strong className="rv2-author-name">Hilde de Jong</strong>
+                    <span className="rv2-author-sub">{t('reviewsPage.heroQuoteDate')}</span>
+                  </div>
+                </div>
+              </div>
+            </>
+          }
+          badges={trustItems.map((item, index) => (
+            <GlassBadge
+              key={index}
+              icon={TRUST_ICONS[index] || Icon.Star}
+              value={item.val}
+              title={item.title}
+              text={item.sub}
+            />
+          ))}
+        />
+      </div>
+
+      <div className="g-mobile-only">
+        <MobileHero
+          tone="dark"
+          readabilityLayer
+          image={{ src: reviewsHeroImg, alt: t('reviewsPage.eyebrow') }}
+          imagePositionY="40%"
+          eyebrow={t('reviewsPage.eyebrow')}
+          title={
+            <>
+              {t('reviewsPage.heroTitle')}{' '}
+              <span style={{ color: 'var(--green-hero)' }}>{t('reviewsPage.heroTitleAccent')}</span>
+            </>
+          }
+          subtext={t('reviewsPage.heroSub')}
+          cta={
+            <CtaButton variant="light" href="/reparatie">
               <Icon.Calendar width="18" height="18" />
               <span>{t('reviewsPage.planRepair')}</span>
               <Icon.ArrowRight width="16" height="16" />
             </CtaButton>
-            <CtaButton
-              variant="outline"
-              href="https://g.page/4mobiles/review"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rv2-hero-outline-on-dark"
-            >
-              <Icon.Star width="18" height="18" />
-              <span>{t('reviewsPage.writeReview')}</span>
-              <Icon.ArrowRight width="16" height="16" />
-            </CtaButton>
-          </>
-        }
-        aside={
-          <>
-            {/* Google Rating Glass Card */}
-            <div className="rv2-glass-card rv2-rating-card-hero">
-              <div className="rv2-rating-header">
-                <GoogleLogo size={36} />
-                <div className="rv2-rating-score-box">
-                  <span className="rv2-big-score">4.8</span>
-                  <span className="rv2-max-score">/5</span>
-                </div>
-              </div>
-              <div className="rv2-rating-stars-line">
-                <Stars n={5} />
-              </div>
-              <p className="rv2-rating-subtext">{t('reviewsPage.heroRatingCount')}</p>
-            </div>
-
-            {/* Featured Quote Glass Card */}
-            <div className="rv2-glass-card rv2-quote-card-hero">
-              <div className="rv2-quote-mark">“</div>
-              <p className="rv2-quote-text">
-                "{t('reviewsPage.heroQuoteText')}"
-              </p>
-              <div className="rv2-quote-author">
-                <div className="rv2-quote-avatar">H</div>
-                <div>
-                  <strong className="rv2-author-name">Hilde de Jong</strong>
-                  <span className="rv2-author-sub">{t('reviewsPage.heroQuoteDate')}</span>
-                </div>
-              </div>
-            </div>
-          </>
-        }
-        badges={trustItems.map((item, index) => (
-          <GlassBadge
-            key={index}
-            icon={TRUST_ICONS[index] || Icon.Star}
-            value={item.val}
-            title={item.title}
-            text={item.sub}
-          />
-        ))}
-      />
+          }
+          className="rv-mobile-hero"
+          badges={trustItems.map((item, index) => (
+            <GlassBadge
+              key={index}
+              icon={TRUST_ICONS[index] || Icon.Star}
+              value={item.val}
+              title={item.title}
+              text={item.sub}
+            />
+          ))}
+        />
+      </div>
 
       {/* Main Reviews Content */}
       <section className="rv2-body">
