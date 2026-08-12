@@ -15,6 +15,8 @@ import chargers2Img from '../assets/chargers2.png'
 import carholders2Img from '../assets/carholders2.png'
 import catsMoreBgImg from '../assets/background.png'
 
+const PRODUCTEN_HERO_GRADIENT = 'linear-gradient(180deg, #060804 0%, #060804 32%, #5e9020 44%, #3d6414 64%, #12190a 84%, #040503 100%)'
+
 const BRANDS = ['XS5/VE', 'Spigen', 'OtterBox', 'Belkin', 'Samsung', 'Apple', 'Xiaomi', 'Hama']
 
 const CAT_IMAGE_MAP: Record<string, string> = {
@@ -158,15 +160,14 @@ function MobileNewPhoneSection() {
 
       if (active || !settled) {
         rafId = requestAnimationFrame(render)
+      } else {
+        rafId = 0
       }
     }
 
     const kick = () => {
       if (rafId) return
-      rafId = requestAnimationFrame(() => {
-        rafId = 0
-        render()
-      })
+      rafId = requestAnimationFrame(render)
     }
 
     const observer = new IntersectionObserver(
@@ -529,6 +530,7 @@ function CategoryMobileShowcase({ categories }: { categories: CategoryItem[] }) 
           ))}
         </div>
       </div>
+
     </div>
   )
 }
@@ -661,12 +663,13 @@ export function Producten() {
           imagePositionX="0%"
           imagePositionY="0%"
           imageZoom={1.45}
+          bgGradient={PRODUCTEN_HERO_GRADIENT}
           eyebrow={t('producten.heroEyebrow')}
           title={
             <>
               {t('producten.heroTitleMobileLine1')}<br />
               {t('producten.heroTitleMobileLine2Pre')}
-              <span style={{ color: 'var(--green-hero)' }}>{t('producten.heroTitleMobileAccent')}</span>
+              <span style={{ color: 'var(--accent)' }}>{t('producten.heroTitleMobileAccent')}</span>
               {t('producten.heroTitleMobileLine2Post')}<br />
               {t('producten.heroTitleMobileLine3')}
             </>

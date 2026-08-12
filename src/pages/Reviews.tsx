@@ -5,6 +5,8 @@ import { Icon } from '../components/Icons'
 import { PageHero, MobileHero, CtaButton, GlassBadge, Pill } from '../components/global'
 import reviewsHeroImg from '../assets/store_hero_bg.png'
 
+const REVIEWS_HERO_GRADIENT = 'linear-gradient(180deg, #080604 0%, #080604 36%, #b8b1a9 44%, #6b635a 55%, #332f2a 68%, #141311 84%, #050403 100%)'
+
 const FEATURED_INITIALS = ['H', 'S']
 const ALL_INITIALS = ['J', 'L', 'R', 'E', 'T', 'M', 'K', 'A', 'P', 'V']
 const TRUST_ICONS = [Icon.Shield, Icon.Wrench, Icon.Clock, Icon.Google]
@@ -21,10 +23,10 @@ function Stars({ n }: { n: number }) {
 
 const GoogleLogo = ({ size = 32 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24">
-    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
   </svg>
 )
 
@@ -155,11 +157,12 @@ export function Reviews() {
           readabilityLayer
           image={{ src: reviewsHeroImg, alt: t('reviewsPage.eyebrow') }}
           imagePositionY="40%"
+          bgGradient={REVIEWS_HERO_GRADIENT}
           eyebrow={t('reviewsPage.eyebrow')}
           title={
             <>
               {t('reviewsPage.heroTitle')}{' '}
-              <span style={{ color: 'var(--green-hero)' }}>{t('reviewsPage.heroTitleAccent')}</span>
+              <span style={{ color: 'var(--accent)' }}>{t('reviewsPage.heroTitleAccent')}</span>
             </>
           }
           subtext={t('reviewsPage.heroSub')}
@@ -245,8 +248,8 @@ export function Reviews() {
 
               {visibleReviews < shown.length && (
                 <div className="rv2-more-wrap">
-                  <button 
-                    className="rv2-btn-more" 
+                  <button
+                    className="rv2-btn-more"
                     onClick={() => setVisibleReviews(count => count + 4)}
                   >
                     <span>{t('reviewsPage.viewMoreLink')}</span>
@@ -255,6 +258,28 @@ export function Reviews() {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="rv2-prompt-section">
+        <div className="container">
+          <div className="rv2-prompt-card">
+            <div className="rv2-prompt-icon">
+              <Icon.Chat width="22" height="22" />
+            </div>
+            <span className="rv2-prompt-eyebrow">{t('reviewsPage.reviewPromptEyebrow')}</span>
+            <h2 className="rv2-prompt-title">{t('reviewsPage.reviewPromptTitle')}</h2>
+            <p className="rv2-prompt-sub">{t('reviewsPage.reviewPromptSub')}</p>
+            <a
+              href="https://g.page/4mobiles/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rv2-prompt-btn"
+            >
+              <span>{t('reviewsPage.reviewPromptCta')}</span>
+              <Icon.Edit width="16" height="16" />
+            </a>
           </div>
         </div>
       </section>

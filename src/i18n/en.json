@@ -54,7 +54,11 @@
   },
   "mhero": {
     "title1": "Phone broken?",
-    "dynamicWords": ["Phone", "Tablet", "Device"],
+    "dynamicWords": [
+      "Phone",
+      "Tablet",
+      "Device"
+    ],
     "titleSuffix": "broken?",
     "title2": "Fixed in",
     "titleAccent": "60 minutes",
@@ -407,10 +411,22 @@
       "tag": "OUR TEAM",
       "title": "The faces behind 4Mobiles.",
       "members": [
-        { "name": "Kevin", "role": "Owner / Technician" },
-        { "name": "Dylan", "role": "Technician" },
-        { "name": "Milan", "role": "Technician" },
-        { "name": "Ruben", "role": "Owner / Advice" }
+        {
+          "name": "Kevin",
+          "role": "Owner / Technician"
+        },
+        {
+          "name": "Dylan",
+          "role": "Technician"
+        },
+        {
+          "name": "Milan",
+          "role": "Technician"
+        },
+        {
+          "name": "Ruben",
+          "role": "Owner / Advice"
+        }
       ]
     },
     "more": {
@@ -418,7 +434,12 @@
       "title1": "Not just fixing.",
       "title2": "Also helping prevent.",
       "sub": "With personal advice, suitable accessories and service, we help you use your device longer and worry-free.",
-      "props": ["Personal advice", "Suitable accessories", "Service after purchase", "Honest & transparent"],
+      "props": [
+        "Personal advice",
+        "Suitable accessories",
+        "Service after purchase",
+        "Honest & transparent"
+      ],
       "trust1": "Trusted by thousands of customers.",
       "trust2": "90-day warranty on your repair.",
       "imgPlaceholder": "SHOP & SURROUNDINGS PHOTO"
@@ -445,7 +466,7 @@
     "ctaMessage": "Send a message",
     "methodsTitle": "How can you contact us?",
     "callUs": "Call us",
-    "email": "Email",
+    "email": "Mail us",
     "hoursTitle": "Opening hours",
     "mapTitle": "Visit our shop",
     "today": "Today",
@@ -530,6 +551,10 @@
     "heroRatingCount": "Based on 487 reviews",
     "heroQuoteText": "Helped quickly, and my screen was repaired the very same day.",
     "heroQuoteDate": "10 April 2024",
+    "reviewPromptEyebrow": "REVIEWS",
+    "reviewPromptTitle": "Leaving a review too?",
+    "reviewPromptSub": "We appreciate your opinion enormously. Your review helps us and other customers keep getting better.",
+    "reviewPromptCta": "Write a review",
     "ratingRows": [
       {
         "label": "Service",
@@ -819,7 +844,14 @@
     "servicesTitle1": "How we support",
     "servicesTitle2": "businesses",
     "servicesSub": "Every organization is different. That is why we provide flexible solutions tailored to the way your business operates. Whether you need a single repair or ongoing support for multiple devices, we are happy to help you find the right solution.",
-    "orgPills": ["SMB", "Municipalities", "Healthcare", "Education", "Retail", "Hospitality"],
+    "orgPills": [
+      "SMB",
+      "Municipalities",
+      "Healthcare",
+      "Education",
+      "Retail",
+      "Hospitality"
+    ],
     "services": [
       {
         "title": "Fast repairs",
@@ -878,8 +910,7 @@
     "statOnSite": "On-site service available",
     "contactEyebrow": "GET IN TOUCH",
     "contactTitle": "Interested in working together?",
-    "contactSub": "We would be happy to discuss a solution that fits your organization.",
-    "contactBody": "Would you like to learn more about our business services or discover how we can support your organization? Feel free to contact us without obligation. Together we will find the solution that best suits your business.",
+    "contactSub": "Discuss, without obligation, what 4Mobiles can mean for your organization.",
     "contactBullet1": "Dedicated account manager for your business",
     "contactBullet2": "Monthly invoice & reporting",
     "contactBullet3": "Service level agreements (SLA)",
@@ -1014,10 +1045,20 @@
     "catsMoreTitle": "Everything for your smartphone, in one place",
     "catsMoreBody": "Looking for a new phone case, a sturdy screen protector, a fast charger or handy accessories for everyday use? 4Mobiles offers a carefully curated range of high-quality products. Come by our shop and our team will gladly help you choose the right accessory.",
     "catsMorePills": [
-      "Phone cases", "Screen protectors", "Chargers", "Cables",
-      "Power banks", "Phone straps", "Selfie sticks", "Car holders",
-      "Wireless chargers", "AirTag accessories", "MagSafe accessories", "Audio",
-      "Tablet accessories", "Smartwatch accessories"
+      "Phone cases",
+      "Screen protectors",
+      "Chargers",
+      "Cables",
+      "Power banks",
+      "Phone straps",
+      "Selfie sticks",
+      "Car holders",
+      "Wireless chargers",
+      "AirTag accessories",
+      "MagSafe accessories",
+      "Audio",
+      "Tablet accessories",
+      "Smartwatch accessories"
     ],
     "brandsLabel": "Brands we sell",
     "ctaTitle": "Come and see everything for yourself",

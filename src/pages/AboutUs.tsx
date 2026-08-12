@@ -4,6 +4,8 @@ import { Icon } from '../components/Icons'
 import { MobileHero, GlassBadge } from '../components/global'
 import aboutMobileHeroImg from '../assets/ChatGPT_Image_10_jul_2026_11_20_55.png'
 
+const ABOUTUS_HERO_GRADIENT = 'linear-gradient(180deg, #050804 0%, #050804 36%, #2c6b18 44%, #1a3311 62%, #0c1409 82%, #030503 100%)'
+
 export function AboutUs() {
   const { t } = useTranslation()
   const teamMembers = t('aboutUs.team.members', { returnObjects: true }) as { name: string; role: string }[]
@@ -66,12 +68,13 @@ export function AboutUs() {
             readabilityLayer
             image={{ src: aboutMobileHeroImg, alt: t('aboutUs.hero.imageAlt') }}
             imagePositionY="10%"
+            bgGradient={ABOUTUS_HERO_GRADIENT}
             eyebrow={t('aboutUs.hero.eyebrow')}
             title={
               <>
                 {t('aboutUs.hero.titleLine1')}<br />
                 {t('aboutUs.hero.titleLine2Pre')}
-                <span style={{ color: 'var(--green-hero)' }}>{t('aboutUs.hero.titleAccent')}</span>
+                <span style={{ color: 'var(--accent)' }}>{t('aboutUs.hero.titleAccent')}</span>
                 {t('aboutUs.hero.titleLine2Post')}
               </>
             }

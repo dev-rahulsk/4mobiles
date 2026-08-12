@@ -125,7 +125,7 @@ export function Blog() {
                 >
                   <span className="bl-cat-icon"><Ic width="20" height="20" /></span>
                   <span>{c.label}</span>
-                  <Icon.ArrowRight width="14" height="14" className="bl-cat-arrow" />
+                  <Icon.ChevronRight width="14" height="14" className="bl-cat-arrow" />
                 </button>
               )
             })}
@@ -144,7 +144,7 @@ export function Blog() {
                 <a key={topic.label} href={topic.href} className="bl-topic-card">
                   <span className="bl-topic-icon"><Ic width="24" height="24" /></span>
                   <span className="bl-topic-label">{topic.label}</span>
-                  <Icon.ArrowRight width="14" height="14" className="bl-topic-arrow" />
+                  <Icon.ChevronRight width="14" height="14" className="bl-topic-arrow" />
                 </a>
               )
             })}

@@ -1,4 +1,4 @@
-import { type CSSProperties, type ReactNode } from 'react'
+import { useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 
 export interface MobileHeroImage {
   src: string
@@ -10,7 +10,6 @@ interface MobileHeroProps {
   imagePositionX?: string
   imagePositionY?: string
   imageZoom?: number
-  /** Shifts the (zoomed) image up/down after scaling, e.g. '-40px' to reveal lower content. */
   imageOffsetY?: string
   eyebrow?: ReactNode
   title: ReactNode
@@ -21,6 +20,7 @@ interface MobileHeroProps {
   gradientStrength?: number
   glowStrength?: number
   readabilityLayer?: boolean
+  bgGradient?: string
   className?: string
 }
 
@@ -39,12 +39,41 @@ export function MobileHero({
   gradientStrength = 1,
   glowStrength = 1,
   readabilityLayer = false,
+  bgGradient,
   className = '',
 }: MobileHeroProps) {
-  const badgeCount = badges.length === 4 ? 4 : 2
+  const sectionRef = useRef<HTMLElement>(null)
 
-  if (import.meta.env.DEV && badges.length !== 2 && badges.length !== 4) {
-    console.warn(`MobileHero: expected 2 or 4 badges, got ${badges.length}. Layout is only defined for those two counts.`)
+  // The circle/curve and image-fill math inside the hero used to trust
+  // `100svh` as a stand-in for the section's real rendered height. Real iOS
+  // Safari's viewport (dynamic toolbar) frequently doesn't match `100svh`,
+  // which left gaps/black bands that never showed up in devtools. Measuring
+  // the actual height and publishing it as a CSS var (same pattern as
+  // Header.tsx's --nav-fixed-bottom) makes the CSS immune to that mismatch.
+  useLayoutEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+
+    const update = () => {
+      el.style.setProperty('--hero-vh', `${el.getBoundingClientRect().height}px`)
+    }
+
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    window.visualViewport?.addEventListener('resize', update)
+    window.addEventListener('resize', update)
+    return () => {
+      ro.disconnect()
+      window.visualViewport?.removeEventListener('resize', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [])
+
+  const badgeCount = badges.length === 4 ? 4 : badges.length === 3 ? 3 : 2
+
+  if (import.meta.env.DEV && badges.length !== 2 && badges.length !== 3 && badges.length !== 4) {
+    console.warn(`MobileHero: expected 2, 3 or 4 badges, got ${badges.length}. Layout is only defined for those counts.`)
   }
 
   const classes = [
@@ -62,13 +91,12 @@ export function MobileHero({
     '--hero-image-offset-y': imageOffsetY,
     '--hero-gradient-strength': gradientStrength,
     '--hero-glow-strength': glowStrength,
+    ...(bgGradient ? { '--hero-bg-gradient': bgGradient } : {}),
   } as CSSProperties
 
   return (
-    <section className={classes} style={style}>
+    <section className={classes} style={style} ref={sectionRef}>
       <div className="mobile-hero__photo-zone">
-        {/* The image sits inside one oversized circle; its clipped lower edge
-            creates the curve, and the circle's own shadow creates the glow. */}
         <div className="mobile-hero__media" aria-hidden="true">
           <img src={image.src} alt={image.alt} loading="eager" />
         </div>

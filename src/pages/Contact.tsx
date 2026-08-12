@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { FaqAccordion } from '../components/FaqAccordion'
+import { MobileHero } from '../components/global'
 import { getOpenStatus } from '../lib/openStatus'
+import contactHeroImg from '../assets/chatgpt_store_hero.png'
+
+const CONTACT_HERO_GRADIENT = 'linear-gradient(180deg, #080504 0%, #080504 36%, #804726 44%, #382519 62%, #140e0b 82%, #050303 100%)'
 
 const TODAY = new Date().getDay()
 const OPEN_STATUS = getOpenStatus()
@@ -32,22 +36,22 @@ export function Contact() {
 
   const CONTACT_METHODS = [
     {
-      icon: <Icon.WhatsApp width="22" height="22" />,
-      label: 'WhatsApp',
-      value: '+31 6 12 34 56 78',
-      href: 'https://wa.me/31612345678',
-    },
-    {
       icon: <Icon.Phone width="22" height="22" />,
       label: t('contact.callUs'),
       value: '+31 174 123 456',
       href: 'tel:+31174123456',
     },
     {
+      icon: <Icon.WhatsApp width="22" height="22" />,
+      label: t('nav.whatsappUs'),
+      value: '+31 6 12 34 56 78',
+      href: 'https://wa.me/31612345678',
+    },
+    {
       icon: (
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-          <polyline points="22,6 12,13 2,6"/>
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
         </svg>
       ),
       label: t('contact.email'),
@@ -68,8 +72,8 @@ export function Contact() {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="ct-hero">
+      {/* Hero — DESKTOP VIEW (unchanged flat hero) */}
+      <section className="ct-hero g-desktop-only">
         <div className="ct-hero-bg" aria-hidden="true" />
         <div className="container ct-hero-inner">
           <span className="ct-eyebrow">CONTACT</span>
@@ -84,8 +88,38 @@ export function Contact() {
         </div>
       </section>
 
-      {/* Contact methods */}
-      <section className="ct-methods-section">
+      <div className="g-mobile-only">
+        <MobileHero
+          className="ct-mobile-hero"
+          image={{ src: contactHeroImg, alt: t('contact.eyebrow') }}
+          imagePositionX="65%"
+          bgGradient={CONTACT_HERO_GRADIENT}
+          eyebrow={t('contact.eyebrow')}
+          title="4Mobiles"
+          subtext={t('contact.heroSubtext')}
+          cta={
+            <span className={`ct-open-badge${openStatus.open ? ' ct-open-badge--open' : ' ct-open-badge--closed'}`}>
+              <span className="ct-open-dot" />
+              {openLabel}
+            </span>
+          }
+          badges={CONTACT_METHODS.map(m => (
+            <a key={m.label} href={m.href} className="ct-method-card" target={m.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+              <div className="ct-method-icon-box">
+                {m.icon}
+              </div>
+              <div className="ct-method-info">
+                <span className="ct-method-label">{m.label}</span>
+                <span className="ct-method-value">{m.value}</span>
+              </div>
+              <Icon.ChevronRight width="20" height="20" className="ct-chevron" />
+            </a>
+          ))}
+        />
+      </div>
+
+      {/* Contact methods — DESKTOP VIEW (mobile shows these inside the hero above) */}
+      <section className="ct-methods-section g-desktop-only">
         <div className="container">
           <h2 className="ct-section-title">{t('contact.methodsTitle')}</h2>
           <div className="ct-methods-stack">
@@ -164,7 +198,7 @@ export function Contact() {
                   <button className="ct-copy-btn" onClick={copyAddress} title="Adres kopiëren">
                     {copied ? <Icon.Check width="16" height="16" /> : (
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                        <rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
                       </svg>
                     )}
                     {copied ? t('contact.copied') : t('contact.copyAddress')}

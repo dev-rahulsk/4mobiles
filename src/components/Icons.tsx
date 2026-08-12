@@ -153,6 +153,12 @@ const Chat = (p: IconProps) => (
   </svg>
 )
 
+const Edit = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19 3 20l1-4Z" />
+  </svg>
+)
+
 const Plus = (p: IconProps) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" {...p}>
     <path d="M12 5v14M5 12h14" />
@@ -374,7 +380,7 @@ export const Icon = {
   Camera, Wrench, Check, Pin, Clock, Shield, Euro, Park, Calendar, Truck,
   Star, ArrowRight, Chat, Plus, Menu, Cart, WhatsApp, X, Quote, MapLink,
   ChevronDown, ChevronLeft, ChevronRight, Zap, Google, Apple, Users, Headset, Devices, Accessory, Info, HelpCircle, User, Scale, ShieldCheck, Store,
-  Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target,
+  Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target, Edit,
 }
 
 

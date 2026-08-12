@@ -6,12 +6,15 @@ import { Pill, MobileHero, GlassBadge, CtaButton } from '../components/global'
 import desktopHeroImg from '../assets/business_desktop_hero.png'
 import mobileHeroImg from '../assets/business_mobile_hero.png'
 import section4Img from '../assets/section_4_image.png'
+import section4MobileImg from '../assets/ChatGPT_Image_10_aug_2026_19_39_28.png'
 import sec5DesktopImg from '../assets/section_5_image1.png'
 import sec5MobileImg from '../assets/section_5_mobilei_image.png'
 
 const DESKTOP_STAT_ICONS = [Icon.Apple, Icon.Calendar, Icon.Wrench, Icon.Users]
 const MOBILE_STAT_ICONS = [Icon.Star, Icon.Calendar, Icon.Wrench, Icon.Users]
 const SERVICE_ICONS = [Icon.Wrench, Icon.Shield, Icon.Accessory, Icon.Devices, Icon.Pin, Icon.Headset]
+
+const ZAKELIJK_HERO_GRADIENT = 'linear-gradient(180deg, #050804 0%, #050804 36%, #366b18 44%, #1e3311 62%, #0d1409 82%, #030503 100%)'
 
 const SEC5_SCALE_STOPS = [1.02, 1.04, 1.01, 1.0, 0.99]
 
@@ -243,11 +246,12 @@ export function Zakelijk() {
             className="zk-mobile-hero"
             image={{ src: mobileHeroImg, alt: t('zakelijk.heroImgMobileAlt') }}
             imagePositionY="38%"
+            bgGradient={ZAKELIJK_HERO_GRADIENT}
             eyebrow={t('zakelijk.eyebrow')}
             title={
               <>
                 {t('zakelijk.heroTitle1')}{' '}
-                <span style={{ color: 'var(--green-hero)' }}>{t('zakelijk.heroTitleAccent')}</span>
+                <span style={{ color: 'var(--accent)' }}>{t('zakelijk.heroTitleAccent')}</span>
               </>
             }
             subtext={t('zakelijk.heroSub')}
@@ -340,32 +344,27 @@ export function Zakelijk() {
                 </div>
               </div>
 
-              {/* Mobile Top Hero Image Wrapper */}
-              <div className="zk-services-mobile-img-wrap">
-                <img src={section4Img} alt={t('zakelijk.servicesImgAlt')} className="zk-services-mobile-img" />
+              {/* Mobile: eyebrow + H1 overlaid on the image itself (same
+                  seamless block) — on desktop the wrapper below is
+                  display:none, so this header-top renders in normal flow
+                  right before zk-services-header-bottom as before */}
+              <div className="zk-services-mobile-hero">
+                <div className="zk-services-header-top">
+                  <span className="zk-eyebrow-tag" style={servicesHeaderStyle(0.20)}>{t('zakelijk.servicesEyebrow')}</span>
+                  <h2 className="zk-services-h2" style={servicesHeaderStyle(0.22)}>
+                    {t('zakelijk.servicesTitle1')}<br />
+                    <span className="zk-green-text">{t('zakelijk.servicesTitle2')}</span>
+                  </h2>
+                </div>
 
-                {/* Mobile Top-Right Floating Glass Card */}
-                <div className="zk-services-mobile-floating-badge">
-                  <div className="zk-badge-check-icon">
-                    <Icon.Check width="14" height="14" />
-                  </div>
-                  <div className="zk-badge-content">
-                    <p className="zk-badge-title">{t('zakelijk.badgeTitle')}</p>
-                    <p className="zk-badge-sub">
-                      {t('zakelijk.badgeSub').split('\n').map((line, i, arr) => (
-                        <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
-                      ))}
-                    </p>
-                  </div>
+                {/* Mobile Top Hero Image Wrapper — decorative composition only,
+                    no floating badge/CTA over it per the new mobile design */}
+                <div className="zk-services-mobile-img-wrap">
+                  <img src={section4MobileImg} alt={t('zakelijk.servicesImgAlt')} className="zk-services-mobile-img" />
                 </div>
               </div>
 
-              <div className="zk-services-header">
-                <span className="zk-eyebrow-tag" style={servicesHeaderStyle(0.20)}>{t('zakelijk.servicesEyebrow')}</span>
-                <h2 className="zk-services-h2" style={servicesHeaderStyle(0.22)}>
-                  {t('zakelijk.servicesTitle1')}<br />
-                  <span className="zk-green-text">{t('zakelijk.servicesTitle2')}</span>
-                </h2>
+              <div className="zk-services-header-bottom">
                 <p className="zk-services-sub" style={servicesHeaderStyle(0.24)}>{t('zakelijk.servicesSub')}</p>
                 <div className="zk-org-pills" style={servicesHeaderStyle(0.26)}>
                   {orgPills.map((pill, i) => (
@@ -436,7 +435,6 @@ export function Zakelijk() {
 
             {/* Mobile Top Text Header */}
             <div className="zk-sec5-mobile-header">
-              <div className="zk-sec5-accent-bar" />
               <span className="zk-sec5-eyebrow">{t('zakelijk.sec5Eyebrow')}</span>
               <h2 className="zk-sec5-mobile-h2">
                 {t('zakelijk.sec5Title1')}<br />
@@ -475,30 +473,45 @@ export function Zakelijk() {
         <div className="container">
           <div className="zk-contact-inner">
             <div className="zk-contact-left">
-              <span className="zk-eyebrow">{t('zakelijk.contactEyebrow')}</span>
-              <h2 className="zk-contact-title">{t('zakelijk.contactTitle')}</h2>
-              <p className="zk-contact-sub">{t('zakelijk.contactSub')}</p>
-              <p className="zk-contact-body">{t('zakelijk.contactBody')}</p>
-              <ul className="zk-contact-list">
-                <li><Icon.Check width="15" height="15" /> {t('zakelijk.contactBullet1')}</li>
-                <li><Icon.Check width="15" height="15" /> {t('zakelijk.contactBullet2')}</li>
-                <li><Icon.Check width="15" height="15" /> {t('zakelijk.contactBullet3')}</li>
-                <li><Icon.Check width="15" height="15" /> {t('zakelijk.contactBullet4')}</li>
-              </ul>
-              <div className="zk-contact-ctas">
-                <a href="mailto:zakelijk@4mobiles.nl" className="zk-btn zk-btn-primary">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                  {t('zakelijk.contactEmailCta')}
-                </a>
-                <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="zk-btn zk-btn-wa">
-                  <Icon.WhatsApp width="16" height="16" /> {t('zakelijk.whatsappUs')}
-                </a>
-                <a href="tel:+31174123456" className="zk-btn zk-btn-outline">
-                  <Icon.Phone width="16" height="16" /> {t('zakelijk.contactPhone')}
-                </a>
+              <div className="zk-contact-card">
+                <span className="zk-eyebrow">{t('zakelijk.contactEyebrow')}</span>
+                <h2 className="zk-contact-title">{t('zakelijk.contactTitle')}</h2>
+                <p className="zk-contact-sub">{t('zakelijk.contactSub')}</p>
+                <ul className="zk-contact-list">
+                  <li>
+                    <span className="zk-contact-list-check"><Icon.Check width="13" height="13" /></span>
+                    {t('zakelijk.contactBullet1')}
+                  </li>
+                  <li>
+                    <span className="zk-contact-list-check"><Icon.Check width="13" height="13" /></span>
+                    {t('zakelijk.contactBullet2')}
+                  </li>
+                  <li>
+                    <span className="zk-contact-list-check"><Icon.Check width="13" height="13" /></span>
+                    {t('zakelijk.contactBullet3')}
+                  </li>
+                  <li>
+                    <span className="zk-contact-list-check"><Icon.Check width="13" height="13" /></span>
+                    {t('zakelijk.contactBullet4')}
+                  </li>
+                </ul>
+                <div className="zk-contact-ctas">
+                  <a href="mailto:zakelijk@4mobiles.nl" className="zk-btn zk-btn-primary zk-contact-email-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    {t('zakelijk.contactEmailCta')}
+                  </a>
+                  <div className="zk-contact-ctas-secondary">
+                    <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="zk-btn zk-btn-wa">
+                      <Icon.WhatsApp width="16" height="16" /> {t('zakelijk.whatsappUs')}
+                    </a>
+                    <a href="tel:+31174123456" className="zk-btn zk-btn-outline">
+                      <Icon.Phone width="16" height="16" /> {t('zakelijk.contactPhone')}
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
