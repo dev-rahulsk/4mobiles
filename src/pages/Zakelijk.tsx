@@ -384,7 +384,6 @@ export function Zakelijk() {
                       <div className="zk-service-content">
                         <h3 className="zk-service-title">{s.title}</h3>
                         <p className="zk-service-desc">{s.desc}</p>
-                        <div className="zk-service-green-line" />
                       </div>
                     </div>
                   )
@@ -404,7 +403,6 @@ export function Zakelijk() {
             <div className="zk-sec5-vignette" ref={sec5VignetteRef} />
             <div className="container zk-sec5-desktop-content-wrap">
               <div className="zk-sec5-content">
-                <div className="zk-sec5-accent-bar" />
                 <span className="zk-sec5-eyebrow">{t('zakelijk.sec5Eyebrow')}</span>
                 <h2 className="zk-sec5-h2">
                   {t('zakelijk.sec5Title1')}<br />

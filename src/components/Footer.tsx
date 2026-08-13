@@ -16,6 +16,9 @@ function Logo() {
   )
 }
 
+// footer.col3Items order: Over ons, Onze dienstverlening, Zakelijk, Blog, Veelgestelde vragen, Regio
+const COL3_HREFS = ['/over-ons', undefined, '/zakelijk', '/blog', '/veelgestelde-vragen', '/regio']
+
 export function Footer() {
   const { t } = useTranslation()
 
@@ -58,7 +61,7 @@ export function Footer() {
             <div className="footer-new-col">
               <h4>{t('footer.col3Title')}</h4>
               <ul>
-                {col3Items.map(it => <li key={it}><a href="#">{it}</a></li>)}
+                {col3Items.map((it, i) => <li key={it}><a href={COL3_HREFS[i] ?? '#'}>{it}</a></li>)}
               </ul>
             </div>
             <div className="footer-new-col">

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { PageHero, MobileHero, CtaButton, GlassBadge, Pill } from '../components/global'
+import { PageHero, MobileHero, GlassBadge, Pill } from '../components/global'
 import reviewsHeroImg from '../assets/store_hero_bg.png'
 
 const REVIEWS_HERO_GRADIENT = 'linear-gradient(180deg, #080604 0%, #080604 36%, #b8b1a9 44%, #6b635a 55%, #332f2a 68%, #141311 84%, #050403 100%)'
@@ -77,6 +77,7 @@ export function Reviews() {
         <PageHero
           tone="light"
           badgeCount={4}
+          className="rv2-page-hero"
           image={{ src: reviewsHeroImg, alt: t('reviewsPage.eyebrow') }}
           eyebrow={t('reviewsPage.eyebrow')}
           title={
@@ -86,26 +87,6 @@ export function Reviews() {
             </>
           }
           subtext={t('reviewsPage.heroSub')}
-          cta={
-            <>
-              <CtaButton variant="primary" href="/reparatie">
-                <Icon.Calendar width="18" height="18" />
-                <span>{t('reviewsPage.planRepair')}</span>
-                <Icon.ArrowRight width="16" height="16" />
-              </CtaButton>
-              <CtaButton
-                variant="outline"
-                href="https://g.page/4mobiles/review"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rv2-hero-outline-on-dark"
-              >
-                <Icon.Star width="18" height="18" />
-                <span>{t('reviewsPage.writeReview')}</span>
-                <Icon.ArrowRight width="16" height="16" />
-              </CtaButton>
-            </>
-          }
           aside={
             <>
               {/* Google Rating Glass Card */}
@@ -166,13 +147,6 @@ export function Reviews() {
             </>
           }
           subtext={t('reviewsPage.heroSub')}
-          cta={
-            <CtaButton variant="light" href="/reparatie">
-              <Icon.Calendar width="18" height="18" />
-              <span>{t('reviewsPage.planRepair')}</span>
-              <Icon.ArrowRight width="16" height="16" />
-            </CtaButton>
-          }
           className="rv-mobile-hero"
           badges={trustItems.map((item, index) => (
             <GlassBadge
@@ -301,36 +275,13 @@ export function Reviews() {
         </div>
       </section>
 
-      {/* Bottom conversion block — single CTA, no competing buttons */}
-      <section className="rv2-bottom-cta">
-        <div className="container">
-          <div className="rv2-bottom-cta-card">
-            <h2 className="rv2-bottom-cta-title">{t('reviewsPage.ctaTitle')}</h2>
-            <p className="rv2-bottom-cta-sub">{t('reviewsPage.ctaSub')}</p>
-            <CtaButton variant="primary" href="/reparatie">
-              <Icon.Calendar width="18" height="18" />
-              <span>{t('reviewsPage.planRepair')}</span>
-              <Icon.ArrowRight width="16" height="16" />
-            </CtaButton>
-            <div className="rv2-bottom-cta-badges">
-              {[t('reviewsPage.trust1'), t('reviewsPage.trust2'), t('reviewsPage.trust3'), t('reviewsPage.trust4')].map((label, i) => (
-                <div key={i} className="rv2-bottom-cta-badge">
-                  <Icon.Check width="14" height="14" />
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mobile-only sticky repair CTA, shown after 30% page scroll */}
-      <div className={`rv2-sticky-cta${stickyCtaVisible ? ' rv2-sticky-cta-visible' : ''}`}>
-        <a href="/reparatie" className="rv2-sticky-cta-btn">
-          <Icon.Wrench width="16" height="16" />
-          {t('reviewsPage.stickyCtaButton')}
+      {/* Mobile-only floating sticky CTA, shown after 30% page scroll — reuses Home page's floating CTA */}
+      <div className={`mhero-sticky-cta${stickyCtaVisible ? ' visible' : ''}`}>
+        <a href="/reparatie" className="mhero-cta" aria-label={t('reviewsPage.stickyCtaButton')}>
+          <Icon.Calendar width="20" height="20" />
+          <span>{t('reviewsPage.stickyCtaButton')}</span>
+          <Icon.ArrowRight width="18" height="18" />
         </a>
-        <span className="rv2-sticky-cta-sub">{t('reviewsPage.stickyCtaSub')}</span>
       </div>
     </Layout>
   )

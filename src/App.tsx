@@ -10,6 +10,7 @@ import { Zakelijk } from './pages/Zakelijk'
 import { Blog } from './pages/Blog'
 import { BlogPost } from './pages/BlogPost'
 import { Reparatie } from './pages/Reparatie'
+import { Faq } from './pages/Faq'
 
 function ScrollToHash() {
   const location = useLocation()
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/reparatie" element={<Reparatie />} />
         <Route path="/reparatie/:slug" element={<Reparatie />} />
+        <Route path="/veelgestelde-vragen" element={<Faq />} />
       </Routes>
     </BrowserRouter>
   )

@@ -277,6 +277,152 @@
       }
     ]
   },
+  "faqPage": {
+    "eyebrow": "Veelgestelde vragen",
+    "title": "Snel antwoord op je vraag.",
+    "sub": "Alles over reparaties, opsturen, garantie en onze winkel. Staat je vraag er niet tussen? We helpen je graag verder.",
+    "searchPlaceholder": "Waar kunnen we je mee helpen?",
+    "filtersHeading": "Filters",
+    "allLabel": "Alles",
+    "questionsCount": "{{count}} vragen",
+    "noResultsTitle": "Geen vragen gevonden",
+    "noResultsSub": "Probeer een andere zoekterm of een ander filter, of stel je vraag direct aan ons team.",
+    "clearFilters": "Wis filters",
+    "categories": [
+      { "key": "reparatie", "label": "Reparatie" },
+      { "key": "batterij", "label": "Batterij & opladen" },
+      { "key": "opsturen", "label": "Opsturen" },
+      { "key": "garantie", "label": "Garantie & kosten" },
+      { "key": "gegevens", "label": "Gegevens" },
+      { "key": "winkel", "label": "Winkel & afspraak" }
+    ],
+    "items": [
+      {
+        "category": "reparatie",
+        "q": "Hoe lang duurt een telefoonreparatie?",
+        "a": "De meeste reparaties — zoals een schermreparatie of batterijvervanging — zijn binnen 30 tot 60 minuten klaar, terwijl u wacht in de winkel."
+      },
+      {
+        "category": "reparatie",
+        "q": "Welke merken en toestellen repareren jullie?",
+        "a": "We repareren Apple, Samsung, Xiaomi, OnePlus, Oppo, Motorola, Sony en de meeste andere merken smartphones en tablets."
+      },
+      {
+        "category": "reparatie",
+        "q": "Kan mijn toestel altijd gerepareerd worden?",
+        "a": "In verreweg de meeste gevallen wel. Is een reparatie niet mogelijk of niet rendabel, dan adviseren we u eerlijk en kosteloos over de beste vervolgstap."
+      },
+      {
+        "category": "reparatie",
+        "q": "Kan ik wachten terwijl mijn toestel wordt gerepareerd?",
+        "a": "Ja, de meeste reparaties voeren we ter plaatse uit terwijl u wacht. Voor uitgebreidere reparaties spreken we samen een ophaalmoment af."
+      },
+      {
+        "category": "reparatie",
+        "q": "Repareren jullie ook oudere of niet meer verkrijgbare modellen?",
+        "a": "Ja, ook voor oudere modellen hebben we vaak nog onderdelen op voorraad. Neem contact op om te checken of uw model beschikbaar is."
+      },
+      {
+        "category": "batterij",
+        "q": "Wanneer moet ik mijn batterij laten vervangen?",
+        "a": "Merkt u dat uw toestel snel leegloopt, onverwacht uitschakelt of warm wordt tijdens het opladen? Dan is een batterijvervanging vaak de oplossing."
+      },
+      {
+        "category": "batterij",
+        "q": "Hoe lang duurt een batterijvervanging?",
+        "a": "Een batterijvervanging duurt gemiddeld 30 tot 45 minuten, afhankelijk van het model."
+      },
+      {
+        "category": "batterij",
+        "q": "Kan ik met een andere oplader mijn toestel beschadigen?",
+        "a": "Een niet-originele of beschadigde oplader kan de batterij en laadpoort op termijn beschadigen. Wij adviseren en verkopen gecertificeerde opladers."
+      },
+      {
+        "category": "batterij",
+        "q": "Krijg ik garantie op een nieuwe batterij?",
+        "a": "Ja, op elke batterijvervanging krijgt u standaard 90 dagen garantie."
+      },
+      {
+        "category": "opsturen",
+        "q": "Kan ik mijn telefoon opsturen voor reparatie?",
+        "a": "Ja. Kunt u niet naar onze winkel in Naaldwijk komen, dan kunt u uw toestel veilig naar ons opsturen. Na ontvangst controleren we het toestel en voeren we de afgesproken reparatie uit."
+      },
+      {
+        "category": "opsturen",
+        "q": "Hoe verpak ik mijn toestel veilig voor verzending?",
+        "a": "Verpak uw toestel bij voorkeur in de originele doos of een stevige doos met voldoende opvulmateriaal, zodat het niet kan verschuiven tijdens transport."
+      },
+      {
+        "category": "opsturen",
+        "q": "Hoe lang duurt het voordat ik mijn toestel terug ontvang?",
+        "a": "Na ontvangst repareren we uw toestel doorgaans binnen 1 tot 2 werkdagen en sturen we het direct weer naar u terug."
+      },
+      {
+        "category": "opsturen",
+        "q": "Wat kost het opsturen van mijn toestel?",
+        "a": "De verzendkosten zijn afhankelijk van het gekozen verzendpakket; dit bespreken we vooraf, zodat er geen verrassingen zijn."
+      },
+      {
+        "category": "garantie",
+        "q": "Hoeveel garantie krijg ik op een reparatie?",
+        "a": "Standaard 90 dagen garantie op alle reparaties. Werkt het achteraf niet goed, dan lossen we dit kosteloos voor u op."
+      },
+      {
+        "category": "garantie",
+        "q": "Wat kost een reparatie bij jullie?",
+        "a": "Schermen vanaf €49, batterijen vanaf €39, waterschade-diagnose €25. Voor uw exacte model krijgt u vooraf een vaste prijs."
+      },
+      {
+        "category": "garantie",
+        "q": "Betaal ik vooraf of pas na de reparatie?",
+        "a": "U betaalt pas nadat de reparatie is uitgevoerd en u tevreden bent met het resultaat."
+      },
+      {
+        "category": "garantie",
+        "q": "Vervalt mijn garantie als ik zelf al iets heb geprobeerd te repareren?",
+        "a": "Eerdere reparatiepogingen door uzelf of derden kunnen invloed hebben op de garantie. We beoordelen dit altijd eerlijk per situatie."
+      },
+      {
+        "category": "gegevens",
+        "q": "Ben ik mijn gegevens kwijt tijdens een reparatie?",
+        "a": "In de meeste gevallen blijven al uw gegevens en foto's gewoon behouden. Voor de zekerheid raden we altijd aan vooraf een back-up te maken."
+      },
+      {
+        "category": "gegevens",
+        "q": "Wat gebeurt er met mijn gegevens als ik mijn toestel inlever?",
+        "a": "We gaan zorgvuldig met uw gegevens om en gebruiken uw toestel alleen voor de afgesproken reparatie. Na afronding bewaren we geen gegevens."
+      },
+      {
+        "category": "gegevens",
+        "q": "Moet ik mijn toestel ontgrendelen voor een reparatie?",
+        "a": "Voor sommige reparaties moeten we het toestel kunnen testen. We vragen dit alleen wanneer het echt noodzakelijk is voor uw reparatie."
+      },
+      {
+        "category": "winkel",
+        "q": "Moet ik een afspraak maken of kan ik gewoon binnenlopen?",
+        "a": "Beide kan. Met een afspraak bent u sneller geholpen, maar walk-ins zijn altijd welkom tijdens openingstijden."
+      },
+      {
+        "category": "winkel",
+        "q": "Wat zijn jullie openingstijden?",
+        "a": "We zijn geopend van maandag tot en met zaterdag; op zondag zijn we gesloten. Bekijk de actuele tijden op onze contactpagina."
+      },
+      {
+        "category": "winkel",
+        "q": "Waar zijn jullie te vinden?",
+        "a": "U vindt onze winkel aan de Molenstraat 2 in Naaldwijk, midden in het Westland."
+      },
+      {
+        "category": "winkel",
+        "q": "Werken jullie ook voor bedrijven?",
+        "a": "Ja. We bedienen 120+ Westlandse bedrijven met factuur op rekening, pickup-service en same-day SLA voor toestellen die voor 11u binnen zijn."
+      }
+    ],
+    "bottomTitle": "Nog geen antwoord gevonden?",
+    "bottomSub": "We helpen je graag verder.",
+    "bottomCtaWhatsapp": "WhatsApp ons",
+    "bottomCtaRepair": "Plan reparatie"
+  },
   "locations": {
     "eyebrow": "In de buurt",
     "title": "Het reparatie-adres\nvan het Westland.",
@@ -528,12 +674,12 @@
     "viewOnGoogle": "Bekijk op Google",
     "writeReview": "Schrijf review",
     "ratingNote": "Gebaseerd op 200+ reviews",
-    "heroRatingCount": "Gebaseerd op 487 reviews",
+    "heroRatingCount": "Gebaseerd op 200+ reviews",
     "heroQuoteText": "Snel geholpen en mijn scherm was dezelfde dag nog gerepareerd.",
     "heroQuoteDate": "10 april 2024",
     "reviewPromptEyebrow": "REVIEWS",
     "reviewPromptTitle": "Ook een review achterlaten?",
-    "reviewPromptSub": "We waarderen jouw mening enorm. Je review helpt ons én andere klanten om steeds beter te worden.",
+    "reviewPromptSub": "Wij waarderen jouw mening enorm. Je review helpt ons om steeds beter te worden.",
     "reviewPromptCta": "Schrijf een review",
     "ratingRows": [
       {
@@ -572,7 +718,7 @@
       {
         "val": "4.8/5",
         "title": "Google reviews",
-        "sub": "487 reviews"
+        "sub": "200+ reviews"
       }
     ],
     "featured": [
@@ -1207,7 +1353,14 @@
     "s1Chip1": "Transparante prijzen",
     "s1Chip2": "Snelle service",
     "s1Chip3": "Garantie op reparatie",
-    "s1Hint": "Stap 1 van 4 — Kies het merk van uw toestel.",
+    "s1Hint": "Stap 1 van 4 — Zoek je model of selecteer een merk.",
+    "s1SearchPlaceholder": "Zoek uw model",
+    "s1FindBtn": "Vind mijn model",
+    "s1SearchEmpty": "Geen model gevonden. Probeer een andere naam of neem contact op.",
+    "s1Or": "OF",
+    "s1BrandLabel": "Of selecteer een merk",
+    "s1TrustWarranty": "12 maanden garantie",
+    "s1TrustFast": "Snelle service",
     "notFoundTitle": "Staat uw merk er niet tussen?",
     "notFoundSub": "Neem contact met ons op, wij helpen u graag verder.",
     "notFoundCta": "Neem contact op →",
@@ -1215,18 +1368,21 @@
     "trustSecureSub": "Uw gegevens zijn 100% veilig bij 4MOBILES.",
     "trustExpertTitle": "Deskundig & betrouwbaar",
     "trustExpertSub": "Onze specialisten staan klaar met 12+ jaar ervaring.",
-    "s2Title": "Kies uw {{brand}} model",
-    "s2Sub": "Selecteer eenvoudig het exacte model, zodat wij u de juiste reparatie en prijs kunnen tonen.",
+    "s2Title": "Kies je model",
+    "s2Sub": "Uw {{brand}} model",
     "s2SearchPlaceholder": "Zoek uw {{brand}} model",
-    "s2Hint": "Stap 2 van 4 — Kies uw {{brand}} model.",
+    "s2Hint": "Stap 2 van 4 — Selecteer uw model.",
+    "s2HelperTitle": "Weet je je model niet?",
     "notFoundModelTitle": "Staat uw model er niet tussen?",
     "s3ColorTitle": "1  Selecteer de kleur van je toestel",
     "s3RepairTitle": "2  Selecteer je reparatie",
-    "badge6mnd": "6 mnd garantie",
-    "badgeTransparent": "Transparante prijzen",
-    "badgeFast": "Snelle service",
+    "s3Hint": "Stap 3 van 4 — Kies uw reparatie.",
+    "s3Warranty": "90 dagen garantie",
+    "qualityLink": "kwaliteit",
+    "lastStep": "Laatste stap",
+    "sidebarColorLabel": "Gekozen kleur",
     "inStock": "Op voorraad",
-    "lowStock": "Beperkt op voorraad",
+    "lowStock": "Beperkt",
     "mostChosen": "Meest gekozen",
     "planRepair": "Plan reparatie",
     "s4DetailsTitle": "1. Jouw gegevens",
@@ -1252,7 +1408,9 @@
     "sidebarDurationLabel": "Reparatieduur",
     "sidebarServiceLabel": "Servicemethode",
     "sidebarShopLabel": "Winkel",
+    "sidebarShippingLabel": "Verzending",
     "sidebarAppointmentLabel": "Afspraak",
+    "sidebarPayNote": "Betaling pas achteraf in de winkel of na herstel.",
     "storeMethodValue": "Langskomen in de winkel",
     "postMethodValue": "Versturen per post",
     "shopName": "4MOBILES Naaldwijk",
@@ -1304,36 +1462,34 @@
     ]
   },
   "blog": {
-    "eyebrow": "BLOG",
-    "heroTitle": "Tips, uitleg en advies over je mobiel of tablet.",
+    "eyebrow": "4MOBILES KENNISBANK",
+    "heroTitle1": "Alles over je telefoon.",
+    "heroTitle2": "Helder uitgelegd.",
     "heroSub": "Praktische antwoorden voor reparaties, tips en advies, updates en meer. Wij helpen je snel en eerlijk in Naaldwijk.",
+    "searchPlaceholder": "Waar kunnen we je mee helpen?",
     "callDirect": "Bel direct",
     "planRepair": "Plan reparatie →",
     "heroTrust1": "10.000+ reparaties",
     "heroTrust2": "Binnen 60 min",
+    "featuredLabel": "Uitgelicht",
     "featuredTitle": "iPhone scherm stuk? Dit zijn je opties",
     "featuredSub": "Alles over schermreparatie, kosten, en de beste keuze voor jouw situatie.",
     "featuredCta": "Lees meer →",
     "catsTitle": "Waar kunnen we je mee helpen?",
+    "filtersHeading": "Filters",
+    "allLabel": "Alle artikelen",
+    "articlesHeading": "Alle artikelen",
+    "articlesCount": "{{count}} artikelen",
+    "noResultsTitle": "Geen artikelen gevonden",
+    "noResultsSub": "Probeer een andere zoekterm of een ander filter.",
+    "clearFilters": "Wis filters",
     "categories": [
-      {
-        "label": "Scherm stuk?"
-      },
-      {
-        "label": "Batterij leeg?"
-      },
-      {
-        "label": "Waterschade?"
-      },
-      {
-        "label": "Toestel kapot?"
-      },
-      {
-        "label": "Scherm vernieuwen"
-      },
-      {
-        "label": "Tablet kapot"
-      }
+      { "key": "reparatie", "label": "Reparatie & problemen" },
+      { "key": "batterij", "label": "Batterij & opladen" },
+      { "key": "scherm", "label": "Scherm & display" },
+      { "key": "bescherming", "label": "Bescherming & accessoires" },
+      { "key": "service", "label": "Service & opsturen" },
+      { "key": "tips", "label": "Tips & onderhoud" }
     ],
     "tags": [
       "Reparaties",
@@ -1375,42 +1531,48 @@
         "slug": "iphone-scherm-stuk",
         "title": "iPhone scherm stuk? Dit zijn je opties",
         "excerpt": "Alles over schermproblemen, kosten, en de beste oplossing voor jouw situatie.",
-        "tag": "iPhone",
+        "tag": "Scherm & display",
+        "categoryKey": "scherm",
         "readTime": "4 min"
       },
       {
         "slug": "batterij-leeg",
         "title": "Batterij leeg? Dit kun je doen",
         "excerpt": "Waarom je batterij snel leegloopt en wanneer je hem beter kunt vervangen.",
-        "tag": "Batterij",
+        "tag": "Batterij & opladen",
+        "categoryKey": "batterij",
         "readTime": "3 min"
       },
       {
         "slug": "iphone-kapot",
         "title": "iPhone kapot? Zo is het aan te pakken",
         "excerpt": "Stap voor stap wat je kunt doen als je iPhone niet meer werkt.",
-        "tag": "iPhone",
+        "tag": "Reparatie & problemen",
+        "categoryKey": "reparatie",
         "readTime": "5 min"
       },
       {
         "slug": "tablet-scherm-kapot",
         "title": "Tablet scherm kapot? Repareren of vervangen?",
         "excerpt": "Wanneer reparatie loont en wanneer een nieuw toestel de slimmere keuze is.",
-        "tag": "Reparaties",
+        "tag": "Scherm & display",
+        "categoryKey": "scherm",
         "readTime": "4 min"
       },
       {
         "slug": "samsung-scherm-reparatie",
         "title": "Samsung scherm reparatie: wat kost het?",
         "excerpt": "Overzicht van kosten en hoe lang een Samsung schermdisplay reparatie duurt.",
-        "tag": "Samsung",
+        "tag": "Scherm & display",
+        "categoryKey": "scherm",
         "readTime": "3 min"
       },
       {
         "slug": "waterschade-telefoon",
         "title": "Waterschade aan je telefoon? Doe dit meteen",
         "excerpt": "De eerste stappen die je direct moet nemen om erger te voorkomen.",
-        "tag": "Reparaties",
+        "tag": "Tips & onderhoud",
+        "categoryKey": "tips",
         "readTime": "3 min"
       }
     ],

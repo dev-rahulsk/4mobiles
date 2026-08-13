@@ -229,22 +229,74 @@ function StepIndicator({ step }: { step: number }) {
 
 function Step1({ form, onChange, onNext }: { form: FormState; onChange: (p: Partial<FormState>) => void; onNext: () => void }) {
   const { t } = useTranslation()
+  const [search, setSearch] = useState('')
+  const [showFindModal, setShowFindModal] = useState(false)
+
+  const searchResults = useMemo(() => {
+    const q = search.trim().toLowerCase()
+    if (!q) return []
+    const results: { brand: Brand; model: DeviceModel }[] = []
+    for (const b of BRANDS) {
+      for (const m of MODELS[b.id] ?? []) {
+        if (m.name.toLowerCase().includes(q) || m.code.toLowerCase().includes(q)) results.push({ brand: b, model: m })
+      }
+    }
+    return results.slice(0, 6)
+  }, [search])
+
+  function selectModel(brandId: string, model: DeviceModel) {
+    onChange({ brandId, modelId: model.id, colorId: model.colors[0]?.id ?? '', repairCatId: '', repairOptId: '' })
+    onNext(); onNext()
+  }
+
   return (
     <div className="rp-step-content">
-      {/* 1. Top Section Background: Homepage Notification Bar Style */}
-      <div className="rp-top-banner-dark">
-        <div className="rp-top-banner-inner">
-          <span className="rp-top-banner-chip">
-            <Icon.Zap width={13} height={13} /> Snel & Professioneel
-          </span>
-          <h2 className="rp-top-banner-title">{t('reparatie.s1Title')}</h2>
-          <p className="rp-top-banner-sub">{t('reparatie.s1Sub')}</p>
-        </div>
-      </div>
+      {/* 1. Gradient surface: title + step copy + search / find-model + brand grid, all one block */}
+      <div className="rp-gradient-surface">
+        <span className="rp-top-banner-chip">
+          <Icon.Zap width={13} height={13} /> Snel & Professioneel
+        </span>
+        <h2 className="rp-s1-title">{t('reparatie.s1Title')}</h2>
+        <p className="rp-s1-subtext">{t('reparatie.s1Hint')}</p>
 
-      {/* 2. Brand Selection Area: Soft Light-Blue Background */}
-      <div className="rp-brands-light-blue-box">
-        <p className="rp-brand-selection-hint">{t('reparatie.s1Hint')}</p>
+        <div className="rp-s1-search-row">
+          <div className="rp-search-wrap">
+            <Icon.Search width={16} height={16} />
+            <input
+              className="rp-search-input"
+              placeholder={t('reparatie.s1SearchPlaceholder')}
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+          </div>
+          <button type="button" className="rp-s1-find-btn" onClick={() => setShowFindModal(true)}>
+            <span className="rp-s1-find-icon">
+              <Icon.Phone width={16} height={16} />
+              <span className="rp-s1-find-qmark">?</span>
+            </span>
+            {t('reparatie.s1FindBtn')}
+          </button>
+        </div>
+
+        {search.trim() && (
+          <div className="rp-s1-search-results">
+            {searchResults.length ? searchResults.map(({ brand, model }) => (
+              <button key={brand.id + model.id} className="rp-s1-search-result" onClick={() => selectModel(brand.id, model)}>
+                <span className="rp-s1-search-result-logo" style={{ background: brand.bg, color: brand.fg }}>{brand.wordmark}</span>
+                <span className="rp-s1-search-result-text">
+                  <span className="rp-s1-search-result-name">{model.name}</span>
+                  <span className="rp-s1-search-result-code">{model.code}</span>
+                </span>
+              </button>
+            )) : (
+              <p className="rp-s1-search-empty">{t('reparatie.s1SearchEmpty')}</p>
+            )}
+          </div>
+        )}
+
+        <div className="rp-s1-divider"><span>{t('reparatie.s1Or')}</span></div>
+
+        <p className="rp-s1-brand-label">{t('reparatie.s1BrandLabel')}</p>
 
         <div className="rp-brands-grid">
           {BRANDS.map(b => (
@@ -261,7 +313,7 @@ function Step1({ form, onChange, onNext }: { form: FormState; onChange: (p: Part
         </div>
       </div>
 
-      {/* 3. Alignment of Three Items (Contact Help Banner) */}
+      {/* 2. Contact help card */}
       <div className="rp-help-centered-group">
         <div className="rp-not-found-card">
           <div className="rp-not-found-icon"><Icon.Chat width={24} height={24} /></div>
@@ -273,24 +325,14 @@ function Step1({ form, onChange, onNext }: { form: FormState; onChange: (p: Part
         </div>
       </div>
 
-      {/* 4. Trust Badges: Glassmorphism Badges */}
-      <div className="rp-glass-trust-badges">
-        <div className="rp-glass-badge">
-          <div className="rp-glass-badge-icon"><Icon.Shield width={20} height={20} /></div>
-          <div>
-            <p className="rp-glass-badge-title">{t('reparatie.trustSecureTitle')}</p>
-            <p className="rp-glass-badge-sub">{t('reparatie.trustSecureSub')}</p>
-          </div>
-        </div>
-
-        <div className="rp-glass-badge">
-          <div className="rp-glass-badge-icon"><Icon.Check width={20} height={20} /></div>
-          <div>
-            <p className="rp-glass-badge-title">{t('reparatie.trustExpertTitle')}</p>
-            <p className="rp-glass-badge-sub">{t('reparatie.trustExpertSub')}</p>
-          </div>
-        </div>
+      {/* 3. Trust badge row */}
+      <div className="rp-s1-trust-row">
+        <div className="rp-s1-trust-badge"><Icon.Shield width={15} height={15} /><span>{t('reparatie.trustSecureTitle')}</span></div>
+        <div className="rp-s1-trust-badge"><Icon.Star width={15} height={15} /><span>{t('reparatie.s1TrustWarranty')}</span></div>
+        <div className="rp-s1-trust-badge"><Icon.Clock width={15} height={15} /><span>{t('reparatie.s1TrustFast')}</span></div>
       </div>
+
+      {showFindModal && <FindMyModelModal onClose={() => setShowFindModal(false)} />}
     </div>
   )
 }
@@ -406,62 +448,58 @@ function Step2({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
 
   return (
     <div className="rp-step-content">
-      {/* Aligned Header Group */}
-      <div className="rp-step2-header-group">
-        <h2 className="rp-step2-title">Kies je model</h2>
-        <p className="rp-step2-sub">Uw {brand?.name ?? 'telefoon'} model</p>
-      </div>
+      <div className="rp-gradient-surface">
+        <h2 className="rp-step2-title">{t('reparatie.s2Title', { brand: brand?.name ?? '' })}</h2>
+        <p className="rp-step2-sub">{t('reparatie.s2Sub', { brand: brand?.name ?? '' })}</p>
+        <p className="rp-s1-subtext">{t('reparatie.s2Hint', { brand: brand?.name ?? '' })}</p>
 
-      {/* Light-Blue Contact Bar */}
-      <div className="rp-step2-contact-bar">
-        <Icon.Phone width={20} height={20} style={{ color: 'var(--accent)', flexShrink: 0 }} />
-        <span>Kies hieronder het juiste type. Twijfel je over jouw model? Wij helpen je direct.</span>
-      </div>
-
-      <div className="rp-model-search-wrap">
-        <Icon.Search width={16} height={16} />
-        <input
-          className="rp-model-search"
-          placeholder={t('reparatie.s2SearchPlaceholder', { brand: brand?.name })}
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
-      </div>
-
-      {/* 5-Column Grid with Helper Card as Card 1 */}
-      <div className="rp-models-grid-5">
-        {/* Helper Card */}
-        <button className="rp-model-tile rp-model-tile--helper" onClick={() => setShowFindModal(true)}>
-          <div className="rp-model-helper-icon">
-            <Icon.HelpCircle width={28} height={28} />
-          </div>
-          <span className="rp-model-name">Weet je je model niet?</span>
-          <span className="rp-model-code-text">Help mij mijn model te vinden</span>
-        </button>
-
-        {filtered.map(m => (
-          <button
-            key={m.id}
-            className={`rp-model-tile${form.modelId === m.id ? ' rp-model-tile--selected' : ''}`}
-            onClick={() => { onChange({ modelId: m.id, colorId: m.colors[0]?.id ?? '', repairCatId: '', repairOptId: '' }); onNext() }}
-          >
-            {form.modelId === m.id && <span className="rp-model-check"><Icon.Check width={12} height={12} /></span>}
-            <div className="rp-model-img" style={{ background: `linear-gradient(150deg, ${m.imgColor}dd 0%, ${m.imgColor}66 100%)` }}>
-              <Icon.Phone width={28} height={28} style={{ color: '#fff', opacity: 0.9 }} />
-            </div>
-            <span className="rp-model-name">{m.name}</span>
-            <span className="rp-model-code-text">{m.code}</span>
-          </button>
-        ))}
-      </div>
-
-      <div className="rp-not-found-card">
-        <div className="rp-not-found-icon"><Icon.Chat width={24} height={24} /></div>
-        <div className="rp-not-found-info">
-          <p className="rp-not-found-title">{t('reparatie.notFoundModelTitle')}</p>
-          <p className="rp-not-found-sub">{t('reparatie.notFoundSub')}</p>
+        <div className="rp-search-wrap">
+          <Icon.Search width={16} height={16} />
+          <input
+            className="rp-search-input"
+            placeholder={t('reparatie.s2SearchPlaceholder', { brand: brand?.name })}
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
         </div>
-        <a href="/contact" className="rp-not-found-cta">{t('reparatie.notFoundCta')}</a>
+
+        {/* 5-Column Grid with Helper Card as Card 1 */}
+        <div className="rp-models-grid-5">
+          {/* Helper Card */}
+          <button className="rp-model-tile rp-model-tile--helper" onClick={() => setShowFindModal(true)}>
+            <div className="rp-model-helper-icon">
+              <Icon.HelpCircle width={24} height={24} />
+              <span className="rp-model-helper-qmark">?</span>
+            </div>
+            <span className="rp-model-name">{t('reparatie.s2HelperTitle')}</span>
+          </button>
+
+          {filtered.map(m => (
+            <button
+              key={m.id}
+              className={`rp-model-tile${form.modelId === m.id ? ' rp-model-tile--selected' : ''}`}
+              onClick={() => { onChange({ modelId: m.id, colorId: m.colors[0]?.id ?? '', repairCatId: '', repairOptId: '' }); onNext() }}
+            >
+              {form.modelId === m.id && <span className="rp-model-check"><Icon.Check width={12} height={12} /></span>}
+              <div className="rp-model-img" style={{ background: `linear-gradient(150deg, ${m.imgColor}dd 0%, ${m.imgColor}66 100%)` }}>
+                <Icon.Phone width={22} height={22} style={{ color: '#fff', opacity: 0.9 }} />
+              </div>
+              <span className="rp-model-name">{m.name}</span>
+              <span className="rp-model-code-text">{m.code}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="rp-help-centered-group">
+        <div className="rp-not-found-card">
+          <div className="rp-not-found-icon"><Icon.Chat width={24} height={24} /></div>
+          <div className="rp-not-found-info">
+            <p className="rp-not-found-title">{t('reparatie.notFoundModelTitle')}</p>
+            <p className="rp-not-found-sub">{t('reparatie.notFoundSub')}</p>
+          </div>
+          <a href="/contact" className="rp-not-found-cta">{t('reparatie.notFoundCta')}</a>
+        </div>
       </div>
 
       <div className="rp-actions">
@@ -529,140 +567,179 @@ function Step3({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
 
   const model = MODELS[form.brandId]?.find(m => m.id === form.modelId)
   const selectedOpt = REPAIR_CATS.flatMap(c => c.options).find(o => o.id === form.repairOptId)
+  const selectedColor = model?.colors.find(c => c.id === form.colorId)
   const isLight = (hex: string) => ['#f5f5f0', '#e8e3d8', '#e8e0d0', '#e8e8e8', '#f0ebe0', '#c0bdb5', '#c0b99e', '#e8d44d', '#e8c84d'].includes(hex)
   const catNames = t('reparatie.repairCats', { returnObjects: true }) as { id: string; name: string }[]
   const getCatName = (id: string) => catNames.find(c => c.id === id)?.name ?? id
+  const shortTime = (time: string) => time.replace(' minuten', ' min')
+
+  const summary = model && (
+    <div className="rp-summary-card">
+      <div className="rp-summary-device">
+        <div className="rp-summary-device-img" style={{ background: `linear-gradient(150deg, ${model.imgColor}dd, ${model.imgColor}55)` }}>
+          <Icon.Phone width={22} height={22} style={{ color: '#fff', opacity: 0.95 }} />
+        </div>
+        <div>
+          <p className="rp-summary-device-name">{model.name}</p>
+          <p className="rp-summary-device-code">{model.code}</p>
+        </div>
+      </div>
+      <div className="rp-summary-rows">
+        <div className="rp-summary-row">
+          <span className="rp-summary-row-label">{t('reparatie.sidebarColorLabel')}</span>
+          <span className="rp-summary-row-value">{selectedColor?.name ?? '—'}</span>
+        </div>
+        <div className="rp-summary-row">
+          <span className="rp-summary-row-label">{t('reparatie.sidebarRepairLabel')}</span>
+          <span className="rp-summary-row-value">{selectedOpt ? selectedOpt.name : '—'}</span>
+        </div>
+        <div className="rp-summary-row">
+          <span className="rp-summary-row-label">{t('reparatie.sidebarDurationLabel')}</span>
+          <span className="rp-summary-row-value">{selectedOpt ? shortTime(selectedOpt.repairTime) : '—'}</span>
+        </div>
+      </div>
+      <div className="rp-summary-total">
+        <span>{t('reparatie.totalInclVat')}</span>
+        <span className="rp-summary-total-price">{selectedOpt ? `€${selectedOpt.price.toFixed(2).replace('.', ',')}` : '—'}</span>
+      </div>
+      <button className="rp-btn rp-btn--primary rp-summary-cta" onClick={onNext} disabled={!selectedOpt}>
+        {t('reparatie.lastStep')} <Icon.ArrowRight width={16} height={16} />
+      </button>
+    </div>
+  )
 
   return (
     <div className="rp-step-content">
       {model && (
-        <div className="rp-device-header-clean">
-          {/* 2x Phone Image without card/border */}
+        <div className="rp-device-header-clean rp-gradient-surface">
+          {/* Larger Phone Image, no surrounding frame */}
           <div className="rp-device-large-img" style={{ background: `linear-gradient(150deg, ${model.imgColor}dd, ${model.imgColor}55)` }}>
-            <Icon.Phone width={48} height={48} style={{ color: '#fff', opacity: 0.95 }} />
+            <Icon.Phone width={56} height={56} style={{ color: '#fff', opacity: 0.95 }} />
           </div>
           <div className="rp-device-clean-info">
             <h3 className="rp-device-large-title">{model.name}</h3>
             <p className="rp-device-code-sub">{model.code}</p>
+            <span className="rp-device-warranty"><Icon.Shield width={13} height={13} /> {t('reparatie.s3Warranty')}</span>
+          </div>
+        </div>
+      )}
 
-            {/* Desktop Only Badges */}
-            <div className="rp-device-header-badges rp-desktop-only">
-              <span><Icon.Shield width={12} height={12} /> {t('reparatie.badge6mnd')}</span>
-              <span><Icon.Check width={12} height={12} /> {t('reparatie.badgeTransparent')}</span>
-              <span><Icon.Clock width={12} height={12} /> {t('reparatie.badgeFast')}</span>
+      <p className="rp-s1-subtext">{t('reparatie.s3Hint')}</p>
+
+      <div className="rp-flow-grid">
+        <div className="rp-flow-main">
+          {model && (
+            <div className="rp-color-section">
+              <p className="rp-section-title">{t('reparatie.s3ColorTitle')}</p>
+              <div className="rp-color-row">
+                {model.colors.map(c => (
+                  <button
+                    key={c.id}
+                    className={`rp-color-swatch${form.colorId === c.id ? ' rp-color-swatch--selected' : ''}`}
+                    style={{ background: c.hex }}
+                    title={c.name}
+                    onClick={() => onChange({ colorId: c.id })}
+                  >
+                    {form.colorId === c.id && (
+                      <Icon.Check width={10} height={10} style={{ color: isLight(c.hex) ? '#333' : '#fff' }} />
+                    )}
+                  </button>
+                ))}
+                <span className="rp-color-label">{selectedColor?.name}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Repair Accordion — Collapsed by default */}
+          <div className="rp-repair-section">
+            <p className="rp-section-title">{t('reparatie.s3RepairTitle')}</p>
+            <div className="rp-repair-cats">
+              {REPAIR_CATS.map(cat => {
+                const CatIcon = CAT_ICONS[cat.id] ?? Icon.Wrench
+                return (
+                  <div key={cat.id} className={`rp-cat${openCat === cat.id ? ' rp-cat--open' : ''}`}>
+                    <button className="rp-cat-header" onClick={() => setOpenCat(openCat === cat.id ? '' : cat.id)}>
+                      {/* Large Icon without surrounding frame */}
+                      <span className="rp-cat-icon-frameless"><CatIcon width={26} height={26} /></span>
+                      <span className="rp-cat-name">{getCatName(cat.id)}</span>
+                      {/* Lowercase vanaf */}
+                      <span className="rp-cat-from">vanaf €{cat.fromPrice.toFixed(2).replace('.', ',')}</span>
+                      <span className="rp-cat-chevron">›</span>
+                    </button>
+                    {openCat === cat.id && (
+                      <div className="rp-cat-options">
+                        {cat.options.map(opt => (
+                          <label key={opt.id} className={`rp-option${form.repairOptId === opt.id ? ' rp-option--selected' : ''}`}>
+                            <input
+                              type="radio"
+                              name="repair"
+                              value={opt.id}
+                              checked={form.repairOptId === opt.id}
+                              onChange={() => onChange({ repairCatId: cat.id, repairOptId: opt.id })}
+                              className="rp-option-radio"
+                            />
+                            <div className="rp-option-body">
+                              <div className="rp-option-top">
+                                <span className="rp-option-name">{opt.name}</span>
+                                {/* Accessible Darker Green Price */}
+                                <span className="rp-option-price-dark">€{opt.price.toFixed(2).replace('.', ',')}</span>
+                              </div>
+                              {/* Blue "Meest gekozen" Badge — own line, flush with the title/desc column */}
+                              {opt.badge && <span className="rp-option-badge-blue">{t('reparatie.mostChosen')}</span>}
+                              <p className="rp-option-desc">{opt.desc}</p>
+                              <div className="rp-option-meta">
+                                <span className={`rp-option-stock${opt.stock === 'Op voorraad' ? ' rp-option-stock--ok' : ' rp-option-stock--low'}`}>
+                                  <span className="rp-stock-dot" /> {opt.stock === 'Op voorraad' ? t('reparatie.inStock') : t('reparatie.lowStock')}
+                                </span>
+                                <span className="rp-option-time">
+                                  <Icon.Clock width={12} height={12} /> {shortTime(opt.repairTime)}
+                                </span>
+                                {/* Visible, underlined "kwaliteit" link for the Quality Modal */}
+                                {cat.id === 'screen' && (
+                                  <button
+                                    type="button"
+                                    className="rp-quality-link"
+                                    onClick={(e) => { e.stopPropagation(); setShowQualityModal(true) }}
+                                  >
+                                    <Icon.Info width={13} height={13} /> {t('reparatie.qualityLink')}
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          </label>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
             </div>
           </div>
-        </div>
-      )}
 
-      {model && (
-        <div className="rp-color-section">
-          <p className="rp-section-title">{t('reparatie.s3ColorTitle')}</p>
-          <div className="rp-color-row">
-            {model.colors.map(c => (
-              <button
-                key={c.id}
-                className={`rp-color-swatch${form.colorId === c.id ? ' rp-color-swatch--selected' : ''}`}
-                style={{ background: c.hex }}
-                title={c.name}
-                onClick={() => onChange({ colorId: c.id })}
-              >
-                {form.colorId === c.id && (
-                  <Icon.Check width={10} height={10} style={{ color: isLight(c.hex) ? '#333' : '#fff' }} />
-                )}
-              </button>
-            ))}
-            <span className="rp-color-label">{model.colors.find(c => c.id === form.colorId)?.name}</span>
+          {/* Back Button */}
+          <div className="rp-actions">
+            <button className="rp-btn rp-btn--ghost" onClick={onBack}>{t('reparatie.back')}</button>
+          </div>
+        </div>
+
+        {/* Desktop-only summary panel — precursor to the Step 4 summary */}
+        {summary && <aside className="rp-flow-summary rp-flow-summary--precursor">{summary}</aside>}
+      </div>
+
+      {/* Mobile-only sticky CTA — appears once a repair is selected */}
+      {selectedOpt && (
+        <div className="rp-sticky-bar-wrap">
+          <div className="rp-sticky-bar active">
+            <div className="rp-sticky-bar-info">
+              <span className="rp-sticky-bar-repair">{selectedOpt.name}</span>
+              <span className="rp-sticky-bar-price">€{selectedOpt.price.toFixed(2).replace('.', ',')}</span>
+            </div>
+            <button className="rp-btn rp-btn--primary" onClick={onNext}>
+              {t('reparatie.lastStep')} <Icon.ArrowRight width={16} height={16} />
+            </button>
           </div>
         </div>
       )}
-
-      {/* Repair Accordion — Collapsed by default */}
-      <div className="rp-repair-section">
-        <p className="rp-section-title">{t('reparatie.s3RepairTitle')}</p>
-        <div className="rp-repair-cats">
-          {REPAIR_CATS.map(cat => {
-            const CatIcon = CAT_ICONS[cat.id] ?? Icon.Wrench
-            return (
-              <div key={cat.id} className={`rp-cat${openCat === cat.id ? ' rp-cat--open' : ''}`}>
-                <button className="rp-cat-header" onClick={() => setOpenCat(openCat === cat.id ? '' : cat.id)}>
-                  {/* Large Icon without surrounding frame */}
-                  <span className="rp-cat-icon-frameless"><CatIcon width={26} height={26} /></span>
-                  <span className="rp-cat-name">{getCatName(cat.id)}</span>
-                  {/* Lowercase vanaf */}
-                  <span className="rp-cat-from">vanaf €{cat.fromPrice.toFixed(2).replace('.', ',')}</span>
-                  <span className="rp-cat-chevron">›</span>
-                </button>
-                {openCat === cat.id && (
-                  <div className="rp-cat-options">
-                    {cat.options.map(opt => (
-                      <label key={opt.id} className={`rp-option${form.repairOptId === opt.id ? ' rp-option--selected' : ''}`}>
-                        <input
-                          type="radio"
-                          name="repair"
-                          value={opt.id}
-                          checked={form.repairOptId === opt.id}
-                          onChange={() => onChange({ repairCatId: cat.id, repairOptId: opt.id })}
-                          className="rp-option-radio"
-                        />
-                        <div className="rp-option-body">
-                          <div className="rp-option-top">
-                            <span className="rp-option-name">
-                              {opt.name}
-                              {/* Blue "Meest gekozen" Badge */}
-                              {opt.badge && <span className="rp-option-badge-blue">Meest gekozen</span>}
-                            </span>
-                            {/* Accessible Darker Green Price */}
-                            <span className="rp-option-price-dark">€{opt.price.toFixed(2).replace('.', ',')}</span>
-                          </div>
-                          <p className="rp-option-desc">{opt.desc}</p>
-                          <div className="rp-option-meta">
-                            <span className={`rp-option-stock${opt.stock === 'Op voorraad' ? ' rp-option-stock--ok' : ' rp-option-stock--low'}`}>
-                              <span className="rp-stock-dot" /> {opt.stock === 'Op voorraad' ? t('reparatie.inStock') : t('reparatie.lowStock')}
-                            </span>
-                            <span className="rp-option-time">
-                              <Icon.Clock width={12} height={12} /> {opt.repairTime}
-                              {/* Blue Info Icon for Screen Quality Modal */}
-                              {cat.id === 'screen' && (
-                                <button
-                                  type="button"
-                                  className="rp-info-btn-blue"
-                                  onClick={(e) => { e.stopPropagation(); setShowQualityModal(true) }}
-                                  title="Bekijk schermkwaliteiten"
-                                >
-                                  <Icon.Info width={15} height={15} />
-                                </button>
-                              )}
-                            </span>
-                          </div>
-                        </div>
-                      </label>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )
-          })}
-        </div>
-      </div>
-
-      {/* Back Button */}
-      <div className="rp-actions">
-        <button className="rp-btn rp-btn--ghost" onClick={onBack}>{t('reparatie.back')}</button>
-      </div>
-
-      {/* Single Sticky CTA Bar: "Laatste stap" */}
-      <div className="rp-sticky-bar-wrap">
-        <div className={`rp-sticky-bar${selectedOpt ? ' active' : ''}`}>
-          <div className="rp-sticky-bar-info">
-            <span className="rp-sticky-bar-repair">{selectedOpt ? selectedOpt.name : 'Selecteer een reparatie...'}</span>
-            <span className="rp-sticky-bar-price">{selectedOpt ? `€${selectedOpt.price.toFixed(2).replace('.', ',')}` : ''}</span>
-          </div>
-          <button className="rp-btn rp-btn--primary" onClick={onNext} disabled={!selectedOpt}>
-            Laatste stap <Icon.ArrowRight width={16} height={16} />
-          </button>
-        </div>
-      </div>
 
       {/* SEO Content Section */}
       <div className="rp-seo-section">
@@ -708,8 +785,8 @@ function Step4({ form, onChange, onConfirm, onBack }: {
     (!isPost || (form.straat.trim() && form.huisnummer.trim() && form.postcode.trim() && form.plaats.trim()))
 
   return (
-    <div className="rp-booking-wrap">
-      <div className="rp-booking-form">
+    <div className="rp-flow-grid">
+      <div className="rp-flow-main">
         {/* Contact Details */}
         <div className="rp-booking-section">
           <div className="rp-booking-section-header">
@@ -750,12 +827,12 @@ function Step4({ form, onChange, onConfirm, onBack }: {
                 <div className="rp-service-card-row">
                   <Icon.Cart width={18} height={18} />
                   <div>
-                    <p className="rp-service-title">Langskomen in de winkel (Walk-in)</p>
-                    <p className="rp-service-sub">Loop zonder afspraak of op tijdstip binnen bij onze winkel.</p>
+                    <p className="rp-service-title">{t('reparatie.storeMethodTitle')}</p>
+                    <p className="rp-service-sub">{t('reparatie.storeMethodSub')}</p>
                   </div>
                 </div>
                 <p className="rp-service-address">
-                  <Icon.Pin width={13} height={13} /> 4Mobiles Winkel
+                  <Icon.Pin width={13} height={13} /> {t('reparatie.shopName')}
                 </p>
               </div>
             </label>
@@ -766,8 +843,8 @@ function Step4({ form, onChange, onConfirm, onBack }: {
                 <div className="rp-service-card-row">
                   <Icon.Truck width={18} height={18} />
                   <div>
-                    <p className="rp-service-title">Versturen per post</p>
-                    <p className="rp-service-sub">Stuur je toestel gratis & verzekerd naar 4Mobiles.</p>
+                    <p className="rp-service-title">{t('reparatie.postMethodTitle')}</p>
+                    <p className="rp-service-sub">{t('reparatie.postMethodSub')}</p>
                   </div>
                 </div>
               </div>
@@ -840,77 +917,75 @@ function Step4({ form, onChange, onConfirm, onBack }: {
         </div>
       </div>
 
-      {/* Appointment Summary Sidebar */}
-      <aside className="rp-booking-sidebar">
-        <div className="rp-sidebar-card">
+      {/* Same summary component as Step 3, enriched with the final confirmation details */}
+      <aside className="rp-flow-summary">
+        <div className="rp-summary-card">
           {model && (
-            <div className="rp-sidebar-device-frameless">
-              {/* Larger device image without frame */}
-              <div className="rp-sidebar-large-img" style={{ background: `linear-gradient(150deg, ${model.imgColor}dd, ${model.imgColor}55)` }}>
-                <Icon.Phone width={36} height={36} style={{ color: '#fff', opacity: 0.95 }} />
+            <div className="rp-summary-device">
+              <div className="rp-summary-device-img" style={{ background: `linear-gradient(150deg, ${model.imgColor}dd, ${model.imgColor}55)` }}>
+                <Icon.Phone width={22} height={22} style={{ color: '#fff', opacity: 0.95 }} />
               </div>
               <div>
-                <p className="rp-sidebar-device-name">{model.name}</p>
-                <p className="rp-sidebar-device-code">{model.code}</p>
+                <p className="rp-summary-device-name">{model.name}</p>
+                <p className="rp-summary-device-code">{model.code}</p>
                 {color && (
-                  <p className="rp-sidebar-device-color">
-                    <span className="rp-sidebar-color-dot" style={{ background: color.hex }} />{color.name}
+                  <p className="rp-summary-device-color">
+                    <span className="rp-summary-color-dot" style={{ background: color.hex }} />{color.name}
                   </p>
                 )}
               </div>
             </div>
           )}
 
-          <div className="rp-sidebar-rows">
+          <div className="rp-summary-rows">
             {selectedOpt && (
               <>
-                <div className="rp-sidebar-row">
-                  <Icon.Wrench width={14} height={14} />
-                  <span className="rp-sidebar-label">Reparatie</span>
-                  <span className="rp-sidebar-value">{selectedOpt.name}</span>
+                <div className="rp-summary-row">
+                  <span className="rp-summary-row-label">{t('reparatie.sidebarRepairLabel')}</span>
+                  <span className="rp-summary-row-value">{selectedOpt.name}</span>
                 </div>
-                <div className="rp-sidebar-row">
-                  <Icon.Clock width={14} height={14} />
-                  <span className="rp-sidebar-label">Duur</span>
-                  <span className="rp-sidebar-value">{selectedOpt.repairTime}</span>
+                <div className="rp-summary-row">
+                  <span className="rp-summary-row-label">{t('reparatie.sidebarDurationLabel')}</span>
+                  <span className="rp-summary-row-value">{selectedOpt.repairTime}</span>
                 </div>
               </>
             )}
-            <div className="rp-sidebar-row">
-              <Icon.Cart width={14} height={14} />
-              <span className="rp-sidebar-label">Service</span>
-              <span className="rp-sidebar-value">
-                {form.serviceMethod === 'store' ? 'Walk-in' : 'Versturen per post'}
+            <div className="rp-summary-row">
+              <span className="rp-summary-row-label">{t('reparatie.sidebarServiceLabel')}</span>
+              <span className="rp-summary-row-value">
+                {form.serviceMethod === 'store' ? t('reparatie.storeMethodValue') : t('reparatie.postMethodValue')}
               </span>
             </div>
-            {form.serviceMethod === 'store' && (
-              <div className="rp-sidebar-row">
-                <Icon.Pin width={14} height={14} />
-                <span className="rp-sidebar-label">Locatie</span>
-                <span className="rp-sidebar-value">4Mobiles</span>
+            {form.serviceMethod === 'store' ? (
+              <div className="rp-summary-row">
+                <span className="rp-summary-row-label">{t('reparatie.sidebarShopLabel')}</span>
+                <span className="rp-summary-row-value">{t('reparatie.shopName')}</span>
+              </div>
+            ) : (
+              <div className="rp-summary-row">
+                <span className="rp-summary-row-label">{t('reparatie.sidebarShippingLabel')}</span>
+                <span className="rp-summary-row-value">{t('reparatie.postMethodValue')}</span>
               </div>
             )}
             {form.datum && (
-              <div className="rp-sidebar-row">
-                <Icon.Calendar width={14} height={14} />
-                <span className="rp-sidebar-label">Tijdstip</span>
-                <span className="rp-sidebar-value">{formatLongDate(form.datum, dayLongArr, monthLongArr)}{form.tijd && `, ${form.tijd} uur`}</span>
+              <div className="rp-summary-row">
+                <span className="rp-summary-row-label">{t('reparatie.sidebarAppointmentLabel')}</span>
+                <span className="rp-summary-row-value">{formatLongDate(form.datum, dayLongArr, monthLongArr)}{form.tijd && `, ${form.tijd} uur`}</span>
               </div>
             )}
           </div>
 
           {selectedOpt && (
-            <div className="rp-sidebar-total">
-              <span>Totaal (incl. BTW)</span>
-              <span className="rp-sidebar-total-price">€{selectedOpt.price.toFixed(2).replace('.', ',')}</span>
+            <div className="rp-summary-total">
+              <span>{t('reparatie.totalInclVat')}</span>
+              <span className="rp-summary-total-price">€{selectedOpt.price.toFixed(2).replace('.', ',')}</span>
             </div>
           )}
 
-          {/* CTA: Bevestig afspraak */}
-          <button className="rp-btn rp-btn--primary rp-sidebar-btn" onClick={onConfirm} disabled={!canSubmit}>
-            Bevestig afspraak <Icon.ArrowRight width={16} height={16} />
+          <button className="rp-btn rp-btn--primary rp-summary-cta" onClick={onConfirm} disabled={!canSubmit}>
+            {t('reparatie.confirmAppointment')} <Icon.ArrowRight width={16} height={16} />
           </button>
-          <p className="rp-sidebar-pay-note">Betaling pas achteraf in de winkel of na herstel.</p>
+          <p className="rp-summary-pay-note">{t('reparatie.sidebarPayNote')}</p>
         </div>
       </aside>
     </div>
@@ -950,7 +1025,7 @@ function ConfirmationModal({ form, onClose }: { form: FormState; onClose: () => 
             </div>
           )}
           <div className="rp-modal-row">
-            <Icon.Cart width={15} height={15} /><span className="rp-modal-label">Service:</span><span className="rp-modal-value">{form.serviceMethod === 'store' ? 'Walk-in' : 'Versturen per post'}</span>
+            <Icon.Cart width={15} height={15} /><span className="rp-modal-label">Service:</span><span className="rp-modal-value">{form.serviceMethod === 'store' ? t('reparatie.storeMethodValue') : t('reparatie.postMethodValue')}</span>
           </div>
         </div>
 

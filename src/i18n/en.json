@@ -280,6 +280,152 @@
       }
     ]
   },
+  "faqPage": {
+    "eyebrow": "Frequently asked questions",
+    "title": "Quick answers to your question.",
+    "sub": "Everything about repairs, mail-in service, warranty and our store. Can't find your question? We're happy to help.",
+    "searchPlaceholder": "What can we help you with?",
+    "filtersHeading": "Filters",
+    "allLabel": "All",
+    "questionsCount": "{{count}} questions",
+    "noResultsTitle": "No questions found",
+    "noResultsSub": "Try a different search term or filter, or ask our team directly.",
+    "clearFilters": "Clear filters",
+    "categories": [
+      { "key": "reparatie", "label": "Repairs" },
+      { "key": "batterij", "label": "Battery & charging" },
+      { "key": "opsturen", "label": "Mail-in service" },
+      { "key": "garantie", "label": "Warranty & costs" },
+      { "key": "gegevens", "label": "Your data" },
+      { "key": "winkel", "label": "Store & appointments" }
+    ],
+    "items": [
+      {
+        "category": "reparatie",
+        "q": "How long does a phone repair take?",
+        "a": "Most repairs — such as a screen repair or battery replacement — are done within 30 to 60 minutes while you wait in the store."
+      },
+      {
+        "category": "reparatie",
+        "q": "Which brands and devices do you repair?",
+        "a": "We repair Apple, Samsung, Xiaomi, OnePlus, Oppo, Motorola, Sony and most other smartphone and tablet brands."
+      },
+      {
+        "category": "reparatie",
+        "q": "Can my device always be repaired?",
+        "a": "In the vast majority of cases, yes. If a repair isn't possible or worthwhile, we'll give you honest, free advice on the best next step."
+      },
+      {
+        "category": "reparatie",
+        "q": "Can I wait while my device is being repaired?",
+        "a": "Yes, most repairs are done on the spot while you wait. For more extensive repairs we'll agree on a pickup time together."
+      },
+      {
+        "category": "reparatie",
+        "q": "Do you also repair older or discontinued models?",
+        "a": "Yes, we often still have parts in stock for older models. Get in touch to check whether your model is available."
+      },
+      {
+        "category": "batterij",
+        "q": "When should I have my battery replaced?",
+        "a": "Notice your device draining quickly, switching off unexpectedly, or getting warm while charging? A battery replacement is usually the fix."
+      },
+      {
+        "category": "batterij",
+        "q": "How long does a battery replacement take?",
+        "a": "A battery replacement takes 30 to 45 minutes on average, depending on the model."
+      },
+      {
+        "category": "batterij",
+        "q": "Can a different charger damage my device?",
+        "a": "A non-original or damaged charger can harm the battery and charging port over time. We advise on and sell certified chargers."
+      },
+      {
+        "category": "batterij",
+        "q": "Do I get a warranty on a new battery?",
+        "a": "Yes, every battery replacement comes with a standard 90-day warranty."
+      },
+      {
+        "category": "opsturen",
+        "q": "Can I mail in my phone for repair?",
+        "a": "Yes. Can't make it to our store in Naaldwijk? You can safely mail in your device. Once received, we inspect it and carry out the agreed repair."
+      },
+      {
+        "category": "opsturen",
+        "q": "How do I package my device safely for shipping?",
+        "a": "Preferably use the original box or a sturdy box with enough padding, so the device can't shift during transport."
+      },
+      {
+        "category": "opsturen",
+        "q": "How long until I get my device back?",
+        "a": "Once received, we typically repair your device within 1 to 2 business days and ship it straight back to you."
+      },
+      {
+        "category": "opsturen",
+        "q": "What does it cost to mail in my device?",
+        "a": "Shipping costs depend on the shipping option you choose; we'll discuss this upfront so there are no surprises."
+      },
+      {
+        "category": "garantie",
+        "q": "How long is the warranty on a repair?",
+        "a": "A standard 90-day warranty applies to all repairs. If something's not right afterwards, we'll fix it for you free of charge."
+      },
+      {
+        "category": "garantie",
+        "q": "What does a repair cost?",
+        "a": "Screens from €49, batteries from €39, water damage diagnosis €25. You'll get a fixed price for your exact model upfront."
+      },
+      {
+        "category": "garantie",
+        "q": "Do I pay upfront or after the repair?",
+        "a": "You only pay once the repair has been carried out and you're happy with the result."
+      },
+      {
+        "category": "garantie",
+        "q": "Does my warranty become void if I've already tried to fix it myself?",
+        "a": "Previous repair attempts by you or a third party can affect the warranty. We always assess this fairly, case by case."
+      },
+      {
+        "category": "gegevens",
+        "q": "Will I lose my data during a repair?",
+        "a": "In most cases all your data and photos remain untouched. To be safe, we always recommend making a backup beforehand."
+      },
+      {
+        "category": "gegevens",
+        "q": "What happens to my data when I hand in my device?",
+        "a": "We handle your data carefully and only use your device for the agreed repair. No data is kept once the repair is complete."
+      },
+      {
+        "category": "gegevens",
+        "q": "Do I need to unlock my device for a repair?",
+        "a": "For some repairs we need to be able to test the device. We only ask for this when it's genuinely necessary for your repair."
+      },
+      {
+        "category": "winkel",
+        "q": "Do I need an appointment or can I just walk in?",
+        "a": "Both work. With an appointment you'll be helped faster, but walk-ins are always welcome during opening hours."
+      },
+      {
+        "category": "winkel",
+        "q": "What are your opening hours?",
+        "a": "We're open Monday through Saturday; closed on Sundays. Check our contact page for current hours."
+      },
+      {
+        "category": "winkel",
+        "q": "Where can I find you?",
+        "a": "You'll find our store at Molenstraat 2 in Naaldwijk, in the heart of the Westland."
+      },
+      {
+        "category": "winkel",
+        "q": "Do you also work with businesses?",
+        "a": "Yes. We serve 120+ Westland businesses with invoiced billing, pickup service and same-day SLA for devices dropped off before 11am."
+      }
+    ],
+    "bottomTitle": "Still haven't found an answer?",
+    "bottomSub": "We're happy to help.",
+    "bottomCtaWhatsapp": "WhatsApp us",
+    "bottomCtaRepair": "Plan repair"
+  },
   "locations": {
     "eyebrow": "Nearby",
     "title": "The repair address\nof the Westland.",
@@ -548,12 +694,12 @@
     "viewOnGoogle": "View on Google",
     "writeReview": "Write a review",
     "ratingNote": "Based on 200+ reviews",
-    "heroRatingCount": "Based on 487 reviews",
+    "heroRatingCount": "Based on 200+ reviews",
     "heroQuoteText": "Helped quickly, and my screen was repaired the very same day.",
     "heroQuoteDate": "10 April 2024",
     "reviewPromptEyebrow": "REVIEWS",
     "reviewPromptTitle": "Leaving a review too?",
-    "reviewPromptSub": "We appreciate your opinion enormously. Your review helps us and other customers keep getting better.",
+    "reviewPromptSub": "We value your opinion enormously. Your review helps us keep getting better.",
     "reviewPromptCta": "Write a review",
     "ratingRows": [
       {
@@ -592,7 +738,7 @@
       {
         "val": "4.8/5",
         "title": "Google reviews",
-        "sub": "487 reviews"
+        "sub": "200+ reviews"
       }
     ],
     "featured": [
@@ -1244,7 +1390,14 @@
     "s1Chip1": "Transparent pricing",
     "s1Chip2": "Fast service",
     "s1Chip3": "Repair warranty",
-    "s1Hint": "Step 1 of 4 — Choose your device brand.",
+    "s1Hint": "Step 1 of 4 — Search your model or select a brand.",
+    "s1SearchPlaceholder": "Search your model",
+    "s1FindBtn": "Find my model",
+    "s1SearchEmpty": "No model found. Try a different name or contact us.",
+    "s1Or": "OR",
+    "s1BrandLabel": "Or select a brand",
+    "s1TrustWarranty": "12 months warranty",
+    "s1TrustFast": "Fast service",
     "notFoundTitle": "Can't find your brand?",
     "notFoundSub": "Contact us and we'll be happy to help.",
     "notFoundCta": "Get in touch →",
@@ -1252,18 +1405,21 @@
     "trustSecureSub": "Your data is 100% safe with 4MOBILES.",
     "trustExpertTitle": "Expert & reliable",
     "trustExpertSub": "Our specialists are ready with 12+ years of experience.",
-    "s2Title": "Choose your {{brand}} model",
-    "s2Sub": "Easily select the exact model so we can show you the right repair and price.",
+    "s2Title": "Choose your model",
+    "s2Sub": "Your {{brand}} model",
     "s2SearchPlaceholder": "Search your {{brand}} model",
-    "s2Hint": "Step 2 of 4 — Choose your {{brand}} model.",
+    "s2Hint": "Step 2 of 4 — Select your model.",
+    "s2HelperTitle": "Not sure of your model?",
     "notFoundModelTitle": "Can't find your model?",
     "s3ColorTitle": "1  Select your device colour",
     "s3RepairTitle": "2  Select your repair",
-    "badge6mnd": "6 month warranty",
-    "badgeTransparent": "Transparent pricing",
-    "badgeFast": "Fast service",
+    "s3Hint": "Step 3 of 4 — Choose your repair.",
+    "s3Warranty": "90 days warranty",
+    "qualityLink": "quality",
+    "lastStep": "Last step",
+    "sidebarColorLabel": "Chosen colour",
     "inStock": "In stock",
-    "lowStock": "Limited stock",
+    "lowStock": "Limited",
     "mostChosen": "Most popular",
     "planRepair": "Book repair",
     "s4DetailsTitle": "1. Your details",
@@ -1289,7 +1445,9 @@
     "sidebarDurationLabel": "Repair time",
     "sidebarServiceLabel": "Service method",
     "sidebarShopLabel": "Shop",
+    "sidebarShippingLabel": "Shipping",
     "sidebarAppointmentLabel": "Appointment",
+    "sidebarPayNote": "Payment only after the repair, in store or once it's done.",
     "storeMethodValue": "Visit the store",
     "postMethodValue": "Send by post",
     "shopName": "4MOBILES Naaldwijk",
@@ -1341,36 +1499,34 @@
     ]
   },
   "blog": {
-    "eyebrow": "BLOG",
-    "heroTitle": "Tips, explanations and advice about your mobile or tablet.",
+    "eyebrow": "4MOBILES KNOWLEDGE BASE",
+    "heroTitle1": "Everything about your phone.",
+    "heroTitle2": "Clearly explained.",
     "heroSub": "Practical answers for repairs, tips and advice, updates and more. We help you quickly and honestly in Naaldwijk.",
+    "searchPlaceholder": "What can we help you with?",
     "callDirect": "Call us",
     "planRepair": "Book repair →",
     "heroTrust1": "10,000+ repairs",
     "heroTrust2": "Within 30 min",
+    "featuredLabel": "Featured",
     "featuredTitle": "iPhone screen broken? These are your options",
     "featuredSub": "Everything about screen repair, costs, and the best choice for your situation.",
     "featuredCta": "Read more →",
     "catsTitle": "What can we help you with?",
+    "filtersHeading": "Filters",
+    "allLabel": "All articles",
+    "articlesHeading": "All articles",
+    "articlesCount": "{{count}} articles",
+    "noResultsTitle": "No articles found",
+    "noResultsSub": "Try a different search term or filter.",
+    "clearFilters": "Clear filters",
     "categories": [
-      {
-        "label": "Screen broken?"
-      },
-      {
-        "label": "Battery dead?"
-      },
-      {
-        "label": "Water damage?"
-      },
-      {
-        "label": "Device broken?"
-      },
-      {
-        "label": "Replace screen"
-      },
-      {
-        "label": "Tablet broken"
-      }
+      { "key": "reparatie", "label": "Repairs & issues" },
+      { "key": "batterij", "label": "Battery & charging" },
+      { "key": "scherm", "label": "Screen & display" },
+      { "key": "bescherming", "label": "Protection & accessories" },
+      { "key": "service", "label": "Service & mail-in" },
+      { "key": "tips", "label": "Tips & maintenance" }
     ],
     "tags": [
       "Repairs",
@@ -1412,42 +1568,48 @@
         "slug": "iphone-scherm-stuk",
         "title": "iPhone screen broken? These are your options",
         "excerpt": "Everything about screen problems, costs, and the best solution for your situation.",
-        "tag": "iPhone",
+        "tag": "Screen & display",
+        "categoryKey": "scherm",
         "readTime": "4 min"
       },
       {
         "slug": "batterij-leeg",
         "title": "Battery dead? Here's what to do",
         "excerpt": "Why your battery drains quickly and when it's better to replace it.",
-        "tag": "Battery",
+        "tag": "Battery & charging",
+        "categoryKey": "batterij",
         "readTime": "3 min"
       },
       {
         "slug": "iphone-kapot",
         "title": "iPhone broken? Here's how to handle it",
         "excerpt": "Step by step what you can do when your iPhone stops working.",
-        "tag": "iPhone",
+        "tag": "Repairs & issues",
+        "categoryKey": "reparatie",
         "readTime": "5 min"
       },
       {
         "slug": "tablet-scherm-kapot",
         "title": "Tablet screen broken? Repair or replace?",
         "excerpt": "When repair is worth it and when a new device is the smarter choice.",
-        "tag": "Repairs",
+        "tag": "Screen & display",
+        "categoryKey": "scherm",
         "readTime": "4 min"
       },
       {
         "slug": "samsung-scherm-reparatie",
         "title": "Samsung screen repair: what does it cost?",
         "excerpt": "Overview of costs and how long a Samsung screen repair takes.",
-        "tag": "Samsung",
+        "tag": "Screen & display",
+        "categoryKey": "scherm",
         "readTime": "3 min"
       },
       {
         "slug": "waterschade-telefoon",
         "title": "Water damage on your phone? Do this immediately",
         "excerpt": "The first steps you must take immediately to prevent further damage.",
-        "tag": "Repairs",
+        "tag": "Tips & maintenance",
+        "categoryKey": "tips",
         "readTime": "3 min"
       }
     ],
