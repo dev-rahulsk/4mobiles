@@ -16,7 +16,7 @@ export function TopBar() {
           <span className="stars">
             {[0,1,2,3,4].map(i => <Icon.Star key={i} width="11" height="11" />)}
           </span>
-          <span><b>4.9</b> · {t('topbar.reviews', { count: 487 })}</span>
+          <span><b>4.9</b> · {t('topbar.reviews', { count: '200+' })}</span>
         </a>
         <a href="tel:0174237022" className="topbar-item">
           <Icon.Phone width="14" height="14" />
@@ -234,7 +234,7 @@ export function Nav() {
             <div className="stars" style={{ display: 'inline-flex', gap: 2, color: '#fbbf24' }}>
               {[0,1,2,3,4].map(i => <Icon.Star key={i} width="13" height="13" />)}
             </div>
-            <span>4.9 · {t('topbar.reviews', { count: 487 })}</span>
+            <span>4.9 · {t('topbar.reviews', { count: '200+' })}</span>
           </div>
         </div>
       </div>

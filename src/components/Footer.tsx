@@ -37,7 +37,7 @@ export function Footer() {
             <div className="footer-stars">
               {[0,1,2,3,4].map(i => <Icon.Star key={i} width="12" height="12" />)}
             </div>
-            <span className="footer-meta"><b>4.9</b> · {t('topbar.reviews', { count: 487 })}</span>
+            <span className="footer-meta"><b>4.9</b> · {t('topbar.reviews', { count: '200+' })}</span>
           </div>
         </div>
 
