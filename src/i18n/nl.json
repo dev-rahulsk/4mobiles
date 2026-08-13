@@ -282,7 +282,7 @@
     "title": "Snel antwoord op je vraag.",
     "sub": "Alles over reparaties, opsturen, garantie en onze winkel. Staat je vraag er niet tussen? We helpen je graag verder.",
     "searchPlaceholder": "Waar kunnen we je mee helpen?",
-    "filtersHeading": "Filters",
+    "filtersHeading": "Categorieën",
     "allLabel": "Alles",
     "questionsCount": "{{count}} vragen",
     "noResultsTitle": "Geen vragen gevonden",
@@ -1486,7 +1486,8 @@
     "seoKb4Excerpt": "Veelvoorkomende camera- en lensproblemen uitgelegd."
   },
   "blog": {
-    "eyebrow": "4MOBILES KENNISBANK",
+    "eyebrowBrand": "4Mobiles",
+    "eyebrowSuffix": "Kennisbank",
     "heroTitle1": "Alles over je telefoon.",
     "heroTitle2": "Helder uitgelegd.",
     "heroSub": "Praktische antwoorden voor reparaties, tips en advies, updates en meer. Wij helpen je snel en eerlijk in Naaldwijk.",
@@ -1498,9 +1499,9 @@
     "featuredLabel": "Uitgelicht",
     "featuredTitle": "iPhone scherm stuk? Dit zijn je opties",
     "featuredSub": "Alles over schermreparatie, kosten, en de beste keuze voor jouw situatie.",
-    "featuredCta": "Lees meer →",
+    "featuredCta": "Lees verder →",
     "catsTitle": "Waar kunnen we je mee helpen?",
-    "filtersHeading": "Filters",
+    "filtersHeading": "Categorieën",
     "allLabel": "Alle artikelen",
     "articlesHeading": "Alle artikelen",
     "articlesCount": "{{count}} artikelen",
@@ -1527,29 +1528,15 @@
     ],
     "filterDefaultTag": "Reparaties",
     "viewMoreCats": "Bekijk alle categorieën →",
-    "readMore": "Lees meer →",
+    "readMore": "Lees verder →",
     "viewMore": "Bekijk meer artikelen →",
     "popularTitle": "Populaire artikelen",
     "sidebarCtaTitle": "Twijfel je wat er aan de hand is?",
     "sidebarCtaSub": "Kom langs of neem contact in Naaldwijk. Wij helpen je graag uit de hand te helpen.",
-    "servicesStripLabel": "iPhone, Samsung, tablets en reparaties",
-    "serviceLinks": [
-      {
-        "label": "Samsung reparatie"
-      },
-      {
-        "label": "Tablet reparatie"
-      },
-      {
-        "label": "Batterij vervangen"
-      },
-      {
-        "label": "Scherm reparatie"
-      },
-      {
-        "label": "Waterschade herstellen"
-      }
-    ],
+    "bottomTitle": "Hulp nodig bij je reparatie?",
+    "bottomSub": "We denken graag met je mee — stuur een bericht of plan direct een afspraak.",
+    "bottomCtaWhatsapp": "WhatsApp ons",
+    "bottomCtaRepair": "Plan afspraak",
     "articles": [
       {
         "slug": "iphone-scherm-stuk",
@@ -1627,19 +1614,7 @@
         "label": "Overige reparaties",
         "href": "/reparatie"
       }
-    ],
-    "helpTodayEyebrow": "4,8/5 — 10.000+ klanten",
-    "helpTodayTitle": "Vandaag nog geholpen?",
-    "helpTodaySub": "Geen lang wachten, geen gedoe. Kom langs in Naaldwijk — uw toestel is vaak binnen 30–60 minuten als nieuw.",
-    "helpTodayCta1": "Plan reparatie",
-    "helpTodayCta2": "WhatsApp ons",
-    "helpTodayCta3": "Bel direct",
-    "helpCard1Title": "30–60 min",
-    "helpCard1Sub": "Gemiddelde reparatietijd",
-    "helpCard2Title": "6 mnd",
-    "helpCard2Sub": "Garantie op elke reparatie",
-    "helpCard3Title": "Geen fix?",
-    "helpCard3Sub": "Dan betaalt u niets"
+    ]
   },
   "blogPost": {
     "popularTitle": "Populaire artikelen",

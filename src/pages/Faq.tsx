@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { FaqAccordion, type FaqAccordionItem } from '../components/FaqAccordion'
-import { CtaButton, Pill } from '../components/global'
+import { PageBottomCta, Pill } from '../components/global'
 
 type CategoryKey = 'reparatie' | 'batterij' | 'opsturen' | 'garantie' | 'gegevens' | 'winkel'
 
@@ -50,18 +50,20 @@ export function Faq() {
 
   return (
     <Layout>
-      {/* Header — search + intro, reuses the site's generic section header typography */}
-      <section className="fq-hero">
-        <div className="container fq-hero-inner">
-          <span className="section-eyebrow">{t('faqPage.eyebrow')}</span>
-          <h1 className="section-title">{t('faqPage.title')}</h1>
-          <p className="section-sub">{t('faqPage.sub')}</p>
+    <div className="fq-page">
+      {/* Header — shared page-hero styling, kept in sync with the Blog page header.
+          fq-hero adds a mobile-only nav-clearance offset on top of the shared class. */}
+      <section className="page-hero fq-hero">
+        <div className="container page-hero-inner">
+          <span className="page-hero-eyebrow">{t('faqPage.eyebrow')}</span>
+          <h1 className="page-hero-title">{t('faqPage.title')}</h1>
+          <p className="page-hero-sub">{t('faqPage.sub')}</p>
 
-          <div className="fq-search-wrap">
-            <Icon.Search width="18" height="18" className="fq-search-icon" />
+          <div className="page-hero-search-wrap">
+            <Icon.Search width="18" height="18" className="page-hero-search-icon" />
             <input
               type="text"
-              className="fq-search-input"
+              className="page-hero-search-input"
               placeholder={t('faqPage.searchPlaceholder')}
               value={query}
               onChange={e => setQuery(e.target.value)}
@@ -102,15 +104,18 @@ export function Faq() {
           </aside>
 
           {/* Mobile — familiar horizontal filter pill row above the list */}
-          <div className="fq-mobile-filters g-mobile-only">
-            <Pill selected={activeCategory === null} onClick={() => setActiveCategory(null)}>
-              {t('faqPage.allLabel')}
-            </Pill>
-            {categories.map(cat => (
-              <Pill key={cat.key} selected={activeCategory === cat.key} onClick={() => setActiveCategory(cat.key)}>
-                {cat.label}
+          <div className="fq-mobile-filters-wrap g-mobile-only">
+            <span className="fq-mobile-filters-label">{t('faqPage.filtersHeading')}</span>
+            <div className="fq-mobile-filters">
+              <Pill selected={activeCategory === null} onClick={() => setActiveCategory(null)}>
+                {t('faqPage.allLabel')}
               </Pill>
-            ))}
+              {categories.map(cat => (
+                <Pill key={cat.key} selected={activeCategory === cat.key} onClick={() => setActiveCategory(cat.key)}>
+                  {cat.label}
+                </Pill>
+              ))}
+            </div>
           </div>
 
           <div className="fq-list-col">
@@ -134,36 +139,14 @@ export function Faq() {
         </div>
       </section>
 
-      <section className="fq-bottom">
-        <div className="container">
-          <div className="fq-bottom-card">
-            <div className="fq-bottom-icon">
-              <Icon.Chat width="22" height="22" />
-            </div>
-            <div className="fq-bottom-text">
-              <h2 className="fq-bottom-title">{t('faqPage.bottomTitle')}</h2>
-              <p className="fq-bottom-sub">{t('faqPage.bottomSub')}</p>
-            </div>
-            <div className="fq-bottom-ctas">
-              <CtaButton
-                variant="outline"
-                href="https://wa.me/31612345678"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fq-bottom-btn"
-              >
-                <Icon.WhatsApp width="18" height="18" />
-                <span>{t('faqPage.bottomCtaWhatsapp')}</span>
-              </CtaButton>
-              <CtaButton variant="primary" href="/reparatie" className="fq-bottom-btn">
-                <Icon.Calendar width="18" height="18" />
-                <span>{t('faqPage.bottomCtaRepair')}</span>
-                <Icon.ArrowRight width="16" height="16" />
-              </CtaButton>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Bottom CTA — shared component, kept in sync with the Blog page */}
+      <PageBottomCta
+        title={t('faqPage.bottomTitle')}
+        sub={t('faqPage.bottomSub')}
+        whatsappLabel={t('faqPage.bottomCtaWhatsapp')}
+        repairLabel={t('faqPage.bottomCtaRepair')}
+      />
+    </div>
     </Layout>
   )
 }

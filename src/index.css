@@ -10947,20 +10947,11 @@ input {
 }
 
 /* ============================================
-   BLOG PAGE — /blog
+   SHARED PAGE HERO — Blog (/blog) + FAQ (/faq)
+   Search-first hero with eyebrow/title/sub, used
+   identically by both pages so they stay in sync.
    ============================================ */
-.bl-eyebrow {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-/* Hero */
-.bl-hero {
+.page-hero {
   position: relative;
   overflow: hidden;
   padding-top: var(--section-space-mobile);
@@ -10972,20 +10963,36 @@ input {
 }
 
 @media (min-width: 1024px) {
-  .bl-hero {
+  .page-hero {
     padding-top: var(--section-space-desktop);
     padding-bottom: 40px;
   }
 }
 
-.bl-hero-inner {
+.page-hero-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.bl-hero-title {
+.page-hero-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* Keeps the brand name in its exact "4Mobiles" casing inside an
+   otherwise-uppercase eyebrow. */
+.page-hero-eyebrow-brand {
+  text-transform: none;
+}
+
+.page-hero-title {
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 800;
   color: var(--ink-900);
@@ -10994,7 +11001,7 @@ input {
   line-height: 1.2;
 }
 
-.bl-hero-sub {
+.page-hero-sub {
   font-size: 15.5px;
   line-height: 1.7;
   color: var(--ink-500);
@@ -11002,13 +11009,20 @@ input {
   margin: 0 0 28px;
 }
 
-.bl-search-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 620px;
+@media (max-width: 768px) {
+  .page-hero-sub {
+    font-size: 14.5px;
+    margin-bottom: 20px;
+  }
 }
 
-.bl-search-icon {
+.page-hero-search-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+}
+
+.page-hero-search-icon {
   position: absolute;
   left: 22px;
   top: 50%;
@@ -11017,7 +11031,7 @@ input {
   pointer-events: none;
 }
 
-.bl-search-input {
+.page-hero-search-input {
   width: 100%;
   height: 58px;
   padding: 0 24px 0 54px;
@@ -11031,14 +11045,35 @@ input {
   transition: border-color .15s ease, box-shadow .15s ease;
 }
 
-.bl-search-input::placeholder {
+.page-hero-search-input::placeholder {
   color: var(--ink-400);
 }
 
-.bl-search-input:focus {
+.page-hero-search-input:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+/* ============================================
+   BLOG PAGE — /blog
+   ============================================ */
+
+/* Mobile — the hero gradient continues down the whole page instead of
+   stopping at the hero section; desktop keeps the segmented look. */
+@media (max-width: 991px) {
+  .bl-page {
+    background:
+      linear-gradient(90deg, rgba(122, 184, 39, .10), rgba(37, 99, 235, .07), rgba(245, 158, 11, .09)),
+      rgba(255, 255, 255, .96);
+  }
+
+  .bl-page .page-hero,
+  .bl-page .bl-body,
+  .bl-page .page-bottom-cta {
+    background: transparent;
+    border-bottom: none;
+  }
 }
 
 .bl-btn {
@@ -11063,11 +11098,6 @@ input {
   border: 1.5px solid var(--ink-300);
   color: var(--ink-700);
   background: transparent;
-}
-
-.bl-help-ctas .btn-accent {
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
-  color: #fff;
 }
 
 .bl-btn-outline-dark {
@@ -11157,7 +11187,7 @@ input {
 .bl-body {
   padding-top: var(--section-space-mobile);
   padding-bottom: var(--section-space-mobile);
-  background: var(--ink-50);
+  background: #fff;
 }
 
 @media (min-width: 1024px) {
@@ -11183,8 +11213,9 @@ input {
 .bl-sidebar-heading {
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: .4px;
-  color: var(--ink-900);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-dark);
   margin: 0 0 14px;
 }
 
@@ -11242,11 +11273,27 @@ input {
 }
 
 /* Mobile — horizontal swipeable filter pill row */
+.bl-mobile-filters-wrap {
+  min-width: 0;
+  margin-bottom: 24px;
+}
+
+.bl-mobile-filters-label {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-bottom: 12px;
+}
+
 .bl-mobile-filters {
+  display: flex;
   gap: 8px;
   overflow-x: auto;
   padding-bottom: 4px;
-  margin-bottom: 24px;
   scrollbar-width: none;
 }
 
@@ -11454,61 +11501,6 @@ input {
 .bl-empty-reset:hover {
   border-color: var(--accent);
   color: var(--accent-dark);
-}
-
-/* Services strip */
-.bl-services-strip {
-  background: #fff;
-  padding-top: var(--section-space-mobile);
-  padding-bottom: var(--section-space-mobile);
-  border-top: 1px solid var(--ink-100);
-}
-
-@media (min-width: 1024px) {
-  .bl-services-strip {
-    padding-top: var(--section-space-desktop);
-    padding-bottom: var(--section-space-desktop);
-  }
-}
-
-.bl-services-strip-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--ink-400);
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  text-align: center;
-  margin: 0 0 14px;
-}
-
-.bl-services-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.bl-service-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--ink-600);
-  text-decoration: none;
-  padding: 7px 14px;
-  border: 1.5px solid var(--ink-200);
-  border-radius: 8px;
-  transition: border-color .15s, color .15s;
-}
-
-.bl-service-link:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.bl-service-link svg {
-  color: var(--accent);
 }
 
 @media (max-width: 1200px) {
@@ -11900,7 +11892,7 @@ input {
   margin-top: auto;
 }
 
-/* Bottom CTA bar — distinct gradient from the flat Footer bg below it, same treatment as .bl-help-today */
+/* Bottom CTA bar — distinct dark gradient from the flat Footer bg below it */
 .bp-bottom-cta {
   background: linear-gradient(135deg, var(--ink-900) 0%, #1a2a1a 100%);
   padding-block: var(--section-space-mobile);
@@ -12737,11 +12729,6 @@ input {
    ============================================================ */
 
 @media (max-width: 768px) {
-  .bl-hero-sub {
-    font-size: 14.5px;
-    margin-bottom: 20px;
-  }
-
   .bl-btn {
     width: 100%;
     justify-content: center;
@@ -12749,11 +12736,6 @@ input {
 
   .bl-body-grid {
     gap: 32px;
-  }
-
-  .bl-service-link {
-    font-size: 12.5px;
-    padding: 6px 12px;
   }
 }
 
@@ -14892,152 +14874,6 @@ input {
   color: var(--ink-400);
 }
 
-/* WhatsApp CTA button in hero */
-.bl-btn-wa {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 22px;
-  border-radius: 10px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
-  color: #fff;
-  font-weight: 700;
-  font-size: 14.5px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: opacity .15s;
-  white-space: nowrap;
-}
-
-.bl-btn-wa:hover {
-  opacity: .85;
-}
-
-
-/* Vandaag nog geholpen */
-.bl-help-today {
-  padding-block: var(--section-space-mobile);
-  background: linear-gradient(135deg, var(--ink-900) 0%, #1a2a1a 100%);
-}
-
-@media (min-width: 1024px) {
-  .bl-help-today {
-    padding-block: var(--section-space-desktop);
-  }
-}
-
-.bl-help-inner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 60px;
-  align-items: center;
-}
-
-.bl-help-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, .55);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-.bl-help-title {
-  font-size: clamp(28px, 4vw, 42px);
-  font-weight: 900;
-  color: #fff;
-  margin: 0 0 16px;
-  line-height: 1.15;
-}
-
-.bl-help-sub {
-  font-size: 16px;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, .7);
-  margin: 0 0 28px;
-}
-
-.bl-help-ctas {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.bl-help-ctas .bl-btn-outline-dark {
-  color: #fff;
-  border-color: #fff;
-}
-
-.bl-help-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  min-width: 220px;
-}
-
-.bl-help-card {
-  padding: 18px 20px;
-  background: rgba(255, 255, 255, .07);
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, .12);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.bl-help-card-icon {
-  color: var(--accent);
-  margin-bottom: 6px;
-}
-
-.bl-help-card-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: #fff;
-  margin: 0;
-}
-
-.bl-help-card-sub {
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, .6);
-  margin: 0;
-}
-
-@media (max-width: 768px) {
-  .bl-help-inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .bl-help-cards {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .bl-help-card {
-    flex: 1;
-    min-width: 140px;
-  }
-
-  .bl-help-ctas {
-    flex-direction: column;
-  }
-
-  .bl-btn-wa {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .bl-help-today {
-    padding: 48px 0 56px;
-  }
-}
 
 /* ============================================
    CONTACT — Accessories + FAQ split section
@@ -18362,7 +18198,6 @@ input {
   .ct-visit-section,
   .rg-steps,
   .rg-cities,
-  .bl-help-today,
   .bp-section,
   .bp-related,
   .bp-bottom-cta {
@@ -18380,7 +18215,6 @@ input {
   .zk-seo-section,
   .ct-visit-section,
   .rg-cities,
-  .bl-help-today,
   .bp-related,
   .bp-bottom-cta {
     padding-bottom: var(--section-space-mobile);
@@ -18412,87 +18246,24 @@ input {
    FAQ PAGE — /veelgestelde-vragen
    ============================================ */
 
-.fq-hero {
-  position: relative;
-  overflow: hidden;
-  padding: 64px 0 40px;
-  background: #fff;
-}
+/* .fq-hero sits alongside the shared .page-hero class — it only
+   compensates for the fixed mobile nav, see the media queries below. */
 
-@media (min-width: 1024px) {
-  .fq-hero {
-    padding-top: var(--section-space-desktop);
+/* Mobile — the hero gradient continues down the whole page instead of
+   stopping at the hero section; desktop keeps the segmented look. */
+@media (max-width: 991px) {
+  .fq-page {
+    background:
+      linear-gradient(90deg, rgba(122, 184, 39, .10), rgba(37, 99, 235, .07), rgba(245, 158, 11, .09)),
+      rgba(255, 255, 255, .96);
   }
-}
 
-.fq-hero::before {
-  content: "";
-  position: absolute;
-  top: -120px;
-  right: -160px;
-  width: 480px;
-  height: 480px;
-  pointer-events: none;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-}
-
-.fq-hero-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.fq-hero-inner .section-title {
-  max-width: 720px;
-}
-
-.fq-hero-inner .section-sub {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.fq-search-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 640px;
-  margin-top: 32px;
-}
-
-.fq-search-icon {
-  position: absolute;
-  left: 22px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--ink-400);
-  pointer-events: none;
-}
-
-.fq-search-input {
-  width: 100%;
-  height: 60px;
-  padding: 0 24px 0 54px;
-  border-radius: 999px;
-  border: 1px solid var(--ink-100);
-  background: #fff;
-  font-family: var(--font-body);
-  font-size: 15px;
-  color: var(--ink-900);
-  box-shadow: var(--shadow);
-  transition: border-color .15s ease, box-shadow .15s ease;
-}
-
-.fq-search-input::placeholder {
-  color: var(--ink-400);
-}
-
-.fq-search-input:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft);
+  .fq-page .page-hero,
+  .fq-page .fq-body,
+  .fq-page .page-bottom-cta {
+    background: transparent;
+    border-bottom: none;
+  }
 }
 
 .fq-body {
@@ -18503,6 +18274,7 @@ input {
 @media (min-width: 1024px) {
   .fq-body {
     padding-top: var(--section-space-desktop);
+    padding-bottom: 120px;
   }
 }
 
@@ -18522,8 +18294,9 @@ input {
 .fq-sidebar-heading {
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: .4px;
-  color: var(--ink-900);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-dark);
   margin: 0 0 14px;
 }
 
@@ -18581,11 +18354,27 @@ input {
 }
 
 /* Mobile — horizontal filter pill row (display:none/block itself is owned by .g-mobile-only) */
+.fq-mobile-filters-wrap {
+  min-width: 0;
+  margin-bottom: 24px;
+}
+
+.fq-mobile-filters-label {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-bottom: 12px;
+}
+
 .fq-mobile-filters {
+  display: flex;
   gap: 8px;
   overflow-x: auto;
   padding-bottom: 4px;
-  margin-bottom: 24px;
   scrollbar-width: none;
 }
 
@@ -18669,12 +18458,17 @@ input {
   color: var(--accent-dark);
 }
 
-.fq-bottom {
+/* ============================================
+   SHARED BOTTOM CTA — Blog (/blog) + FAQ (/faq)
+   Simple "still need help" card, used identically
+   by both pages so they stay in sync.
+   ============================================ */
+.page-bottom-cta {
   padding: 0 0 var(--section-space-desktop);
   background: #fff;
 }
 
-.fq-bottom-card {
+.page-bottom-cta-card {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -18687,7 +18481,7 @@ input {
   box-shadow: 0 20px 48px rgba(122, 184, 39, 0.12);
 }
 
-.fq-bottom-icon {
+.page-bottom-cta-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18699,31 +18493,31 @@ input {
   color: var(--accent-dark);
 }
 
-.fq-bottom-text {
+.page-bottom-cta-text {
   flex: 1;
   min-width: 0;
 }
 
-.fq-bottom-title {
+.page-bottom-cta-title {
   font-size: 19px;
   font-weight: 800;
   color: var(--ink-900);
   margin: 0 0 4px;
 }
 
-.fq-bottom-sub {
+.page-bottom-cta-sub {
   font-size: 14.5px;
   color: var(--ink-500);
   margin: 0;
 }
 
-.fq-bottom-ctas {
+.page-bottom-cta-ctas {
   display: flex;
   gap: 12px;
   flex-shrink: 0;
 }
 
-.fq-bottom-btn.g-button {
+.page-bottom-cta-btn.g-button {
   min-height: 48px;
   padding: 0 20px;
   font-size: 14.5px;
@@ -18731,53 +18525,33 @@ input {
 }
 
 @media (max-width: 991px) {
-  .fq-mobile-filters {
-    display: flex !important;
-  }
-
-  .bl-mobile-filters {
-    display: flex !important;
-  }
-
   .fq-body-grid {
     grid-template-columns: 1fr;
   }
 
-  .fq-bottom-card {
+  .page-bottom-cta-card {
     flex-wrap: wrap;
   }
 
-  .fq-bottom-ctas {
+  .page-bottom-cta-ctas {
     width: 100%;
   }
 
-  .fq-bottom-ctas .fq-bottom-btn {
+  .page-bottom-cta-ctas .page-bottom-cta-btn {
     flex: 1;
   }
 }
 
 @media (max-width: 600px) {
-  .fq-hero {
-    padding: 40px 0 32px;
-  }
-
-  .fq-search-wrap {
-    margin-top: 24px;
-  }
-
-  .fq-search-input {
-    height: 54px;
-  }
-
   .fq-body {
     padding-top: 28px;
   }
 
-  .fq-bottom-card {
+  .page-bottom-cta-card {
     padding: 24px 20px;
   }
 
-  .fq-bottom-ctas {
+  .page-bottom-cta-ctas {
     flex-direction: column;
   }
 }

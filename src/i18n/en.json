@@ -285,7 +285,7 @@
     "title": "Quick answers to your question.",
     "sub": "Everything about repairs, mail-in service, warranty and our store. Can't find your question? We're happy to help.",
     "searchPlaceholder": "What can we help you with?",
-    "filtersHeading": "Filters",
+    "filtersHeading": "Categories",
     "allLabel": "All",
     "questionsCount": "{{count}} questions",
     "noResultsTitle": "No questions found",
@@ -1523,7 +1523,8 @@
     "seoKb4Excerpt": "Common camera and lens issues explained."
   },
   "blog": {
-    "eyebrow": "4MOBILES KNOWLEDGE BASE",
+    "eyebrowBrand": "4Mobiles",
+    "eyebrowSuffix": "Knowledge base",
     "heroTitle1": "Everything about your phone.",
     "heroTitle2": "Clearly explained.",
     "heroSub": "Practical answers for repairs, tips and advice, updates and more. We help you quickly and honestly in Naaldwijk.",
@@ -1537,7 +1538,7 @@
     "featuredSub": "Everything about screen repair, costs, and the best choice for your situation.",
     "featuredCta": "Read more →",
     "catsTitle": "What can we help you with?",
-    "filtersHeading": "Filters",
+    "filtersHeading": "Categories",
     "allLabel": "All articles",
     "articlesHeading": "All articles",
     "articlesCount": "{{count}} articles",
@@ -1569,24 +1570,10 @@
     "popularTitle": "Popular articles",
     "sidebarCtaTitle": "Not sure what's wrong?",
     "sidebarCtaSub": "Stop by or contact us in Naaldwijk. We're happy to help you.",
-    "servicesStripLabel": "iPhone, Samsung, tablets and repairs",
-    "serviceLinks": [
-      {
-        "label": "Samsung repair"
-      },
-      {
-        "label": "Tablet repair"
-      },
-      {
-        "label": "Battery replacement"
-      },
-      {
-        "label": "Screen repair"
-      },
-      {
-        "label": "Water damage repair"
-      }
-    ],
+    "bottomTitle": "Need help with your repair?",
+    "bottomSub": "We're happy to think it through with you — send a message or book an appointment.",
+    "bottomCtaWhatsapp": "WhatsApp us",
+    "bottomCtaRepair": "Book appointment",
     "articles": [
       {
         "slug": "iphone-scherm-stuk",
@@ -1664,19 +1651,7 @@
         "label": "Other repairs",
         "href": "/reparatie"
       }
-    ],
-    "helpTodayEyebrow": "4.8/5 — 10,000+ customers",
-    "helpTodayTitle": "Helped today?",
-    "helpTodaySub": "No long waits, no hassle. Stop by in Naaldwijk — your device is often as good as new within 30–60 minutes.",
-    "helpTodayCta1": "Book repair",
-    "helpTodayCta2": "WhatsApp us",
-    "helpTodayCta3": "Call us",
-    "helpCard1Title": "30–60 min",
-    "helpCard1Sub": "Average repair time",
-    "helpCard2Title": "6 months",
-    "helpCard2Sub": "Warranty on every repair",
-    "helpCard3Title": "No fix?",
-    "helpCard3Sub": "Then you pay nothing"
+    ]
   },
   "blogPost": {
     "popularTitle": "Popular articles",

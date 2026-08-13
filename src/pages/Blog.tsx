@@ -2,7 +2,7 @@ import { useMemo, useState, type ComponentType, type SVGProps } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { Pill } from '../components/global'
+import { PageBottomCta, Pill } from '../components/global'
 
 type CategoryKey = 'reparatie' | 'batterij' | 'scherm' | 'bescherming' | 'service' | 'tips'
 
@@ -74,7 +74,6 @@ export function Blog() {
 
   const categories = t('blog.categories', { returnObjects: true }) as BlogCategory[]
   const articles = t('blog.articles', { returnObjects: true }) as Article[]
-  const serviceLinks = t('blog.serviceLinks', { returnObjects: true }) as { label: string }[]
 
   const normalizedQuery = query.trim().toLowerCase()
   const showFeatured = !activeCategory && !normalizedQuery
@@ -96,21 +95,24 @@ export function Blog() {
 
   return (
     <Layout>
-      {/* Hero — gradient background reused from the Repair/Reviews pages, search-first and calm */}
-      <section className="bl-hero">
-        <div className="container bl-hero-inner">
-          <span className="bl-eyebrow">{t('blog.eyebrow')}</span>
-          <h1 className="bl-hero-title">
+    <div className="bl-page">
+      {/* Hero — shared page-hero styling, kept in sync with the FAQ page header */}
+      <section className="page-hero">
+        <div className="container page-hero-inner">
+          <span className="page-hero-eyebrow">
+            <span className="page-hero-eyebrow-brand">{t('blog.eyebrowBrand')}</span> {t('blog.eyebrowSuffix')}
+          </span>
+          <h1 className="page-hero-title">
             {t('blog.heroTitle1')}<br />
             {t('blog.heroTitle2')}
           </h1>
-          <p className="bl-hero-sub">{t('blog.heroSub')}</p>
+          <p className="page-hero-sub">{t('blog.heroSub')}</p>
 
-          <div className="bl-search-wrap">
-            <Icon.Search width="18" height="18" className="bl-search-icon" />
+          <div className="page-hero-search-wrap">
+            <Icon.Search width="18" height="18" className="page-hero-search-icon" />
             <input
               type="text"
-              className="bl-search-input"
+              className="page-hero-search-input"
               placeholder={t('blog.searchPlaceholder')}
               value={query}
               onChange={e => setQuery(e.target.value)}
@@ -151,15 +153,18 @@ export function Blog() {
           </aside>
 
           {/* Mobile — horizontal swipeable filter pill row */}
-          <div className="bl-mobile-filters g-mobile-only">
-            <Pill selected={activeCategory === null} onClick={() => setActiveCategory(null)}>
-              {t('blog.allLabel')}
-            </Pill>
-            {categories.map(cat => (
-              <Pill key={cat.key} selected={activeCategory === cat.key} onClick={() => setActiveCategory(cat.key)}>
-                {cat.label}
+          <div className="bl-mobile-filters-wrap g-mobile-only">
+            <span className="bl-mobile-filters-label">{t('blog.filtersHeading')}</span>
+            <div className="bl-mobile-filters">
+              <Pill selected={activeCategory === null} onClick={() => setActiveCategory(null)}>
+                {t('blog.allLabel')}
               </Pill>
-            ))}
+              {categories.map(cat => (
+                <Pill key={cat.key} selected={activeCategory === cat.key} onClick={() => setActiveCategory(cat.key)}>
+                  {cat.label}
+                </Pill>
+              ))}
+            </div>
           </div>
 
           <div className="bl-main">
@@ -208,63 +213,14 @@ export function Blog() {
         </div>
       </section>
 
-      {/* Services strip */}
-      <section className="bl-services-strip">
-        <div className="container">
-          <p className="bl-services-strip-label">{t('blog.servicesStripLabel')}</p>
-          <div className="bl-services-row">
-            {serviceLinks.map(s => (
-              <a key={s.label} href="/" className="bl-service-link">
-                <Icon.ArrowRight width="14" height="14" />
-                {s.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Vandaag nog geholpen? */}
-      <section className="bl-help-today">
-        <div className="container">
-          <div className="bl-help-inner">
-            <div className="bl-help-text">
-              <span className="bl-help-eyebrow">
-                <Icon.Star width="14" height="14" style={{ color: '#f59e0b' }} /> {t('blog.helpTodayEyebrow')}
-              </span>
-              <h2 className="bl-help-title">{t('blog.helpTodayTitle')}</h2>
-              <p className="bl-help-sub">{t('blog.helpTodaySub')}</p>
-              <div className="bl-help-ctas">
-                <a href="/reparatie" className="btn-accent bl-btn">
-                  <Icon.Calendar width="16" height="16" /> {t('blog.helpTodayCta1')}
-                </a>
-                <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="bl-btn bl-btn-wa">
-                  <Icon.WhatsApp width="16" height="16" /> {t('blog.helpTodayCta2')}
-                </a>
-                <a href="tel:+31174123456" className="bl-btn bl-btn-outline-dark">
-                  <Icon.Phone width="16" height="16" /> {t('blog.helpTodayCta3')}
-                </a>
-              </div>
-            </div>
-            <div className="bl-help-cards">
-              <div className="bl-help-card">
-                <span className="bl-help-card-icon"><Icon.Clock width="22" height="22" /></span>
-                <p className="bl-help-card-title">{t('blog.helpCard1Title')}</p>
-                <p className="bl-help-card-sub">{t('blog.helpCard1Sub')}</p>
-              </div>
-              <div className="bl-help-card">
-                <span className="bl-help-card-icon"><Icon.Shield width="22" height="22" /></span>
-                <p className="bl-help-card-title">{t('blog.helpCard2Title')}</p>
-                <p className="bl-help-card-sub">{t('blog.helpCard2Sub')}</p>
-              </div>
-              <div className="bl-help-card">
-                <span className="bl-help-card-icon"><Icon.Check width="22" height="22" /></span>
-                <p className="bl-help-card-title">{t('blog.helpCard3Title')}</p>
-                <p className="bl-help-card-sub">{t('blog.helpCard3Sub')}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Bottom CTA — shared component, kept in sync with the FAQ page */}
+      <PageBottomCta
+        title={t('blog.bottomTitle')}
+        sub={t('blog.bottomSub')}
+        whatsappLabel={t('blog.bottomCtaWhatsapp')}
+        repairLabel={t('blog.bottomCtaRepair')}
+      />
+    </div>
     </Layout>
   )
 }
