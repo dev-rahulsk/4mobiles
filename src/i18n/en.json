@@ -1496,7 +1496,31 @@
         "id": "other",
         "name": "Diagnosis & other"
       }
-    ]
+    ],
+    "seoBreadcrumbHome": "Home",
+    "seoBreadcrumbBrand": "{{brand}} repair",
+    "seoIntroTitle": "Everything about your {{title}} repair",
+    "seoIntroText": "At the top of this page you'll find all available repairs for your {{title}}, including prices and part options. For more explanation and advice, visit our knowledge base.",
+    "seoScreenTitle": "Which screen quality suits your iPhone?",
+    "seoScreenText": "For iPhone screen repairs, several quality options are available, such as LCD/Incell, Soft OLED, refurbished original and original.",
+    "seoScreenCta": "Compare iPhone screen qualities",
+    "seoOtherTitle": "Want to know more about your {{brand}} {{model}}?",
+    "seoOtherText": "See practical explanations of common problems, parts and repairs.",
+    "seoOtherSubtext": "This way you know exactly what to expect and always make the right choice for your device.",
+    "seoOtherCta": "View all {{brand}} repairs",
+    "seoTrust1": "Expert advice",
+    "seoTrust2": "Clear information",
+    "seoTrust3": "Tips from our specialists",
+    "seoKbTitle": "From our {{brand}} knowledge base",
+    "seoKbSub": "Practical explanations and tips from our specialists.",
+    "seoKb1Title": "{{model}} battery replacement",
+    "seoKb1Excerpt": "When is replacement worthwhile and how do you recognise a worn battery?",
+    "seoKb2Title": "{{model}} not charging anymore",
+    "seoKb2Excerpt": "Possible causes of charging problems and what you can check yourself.",
+    "seoKb3Title": "What to do about {{model}} water damage?",
+    "seoKb3Excerpt": "What to do — and not do — immediately after contact with water.",
+    "seoKb4Title": "Problems with the {{model}} camera",
+    "seoKb4Excerpt": "Common camera and lens issues explained."
   },
   "blog": {
     "eyebrow": "4MOBILES KNOWLEDGE BASE",

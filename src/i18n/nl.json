@@ -1459,7 +1459,31 @@
         "id": "other",
         "name": "Onderzoek & overige"
       }
-    ]
+    ],
+    "seoBreadcrumbHome": "Home",
+    "seoBreadcrumbBrand": "{{brand}} reparatie",
+    "seoIntroTitle": "Alles over uw {{title}} reparatie",
+    "seoIntroText": "Bovenaan deze pagina vindt u alle beschikbare reparaties voor uw {{title}}, inclusief prijzen en onderdelenopties. Voor meer uitleg en advies kunt u terecht in onze kennisbank.",
+    "seoScreenTitle": "Welke schermkwaliteit past bij uw iPhone?",
+    "seoScreenText": "Bij iPhone-schermreparaties zijn er meerdere kwaliteitsopties beschikbaar, zoals LCD/Incell, Soft OLED, refurbished origineel en origineel.",
+    "seoScreenCta": "Vergelijk iPhone-schermkwaliteiten",
+    "seoOtherTitle": "Meer weten over uw {{brand}} {{model}}?",
+    "seoOtherText": "Bekijk praktische uitleg over veelvoorkomende problemen, onderdelen en reparaties.",
+    "seoOtherSubtext": "Zo weet u precies wat u kunt verwachten en maakt u altijd de juiste keuze voor uw toestel.",
+    "seoOtherCta": "Bekijk alle {{brand}} reparaties",
+    "seoTrust1": "Deskundig advies",
+    "seoTrust2": "Duidelijke informatie",
+    "seoTrust3": "Tips van onze specialisten",
+    "seoKbTitle": "Uit onze {{brand}}-kennisbank",
+    "seoKbSub": "Praktische uitleg en tips van onze specialisten.",
+    "seoKb1Title": "{{model}} batterij vervangen",
+    "seoKb1Excerpt": "Wanneer is vervangen verstandig en hoe herkent u een versleten batterij?",
+    "seoKb2Title": "{{model}} laadt niet meer op",
+    "seoKb2Excerpt": "Mogelijke oorzaken van laadproblemen en wat u zelf kunt controleren.",
+    "seoKb3Title": "Wat te doen bij {{model}} waterschade?",
+    "seoKb3Excerpt": "Wat u direct wel en niet moet doen na contact met water.",
+    "seoKb4Title": "Problemen met de {{model}}-camera",
+    "seoKb4Excerpt": "Veelvoorkomende camera- en lensproblemen uitgelegd."
   },
   "blog": {
     "eyebrow": "4MOBILES KENNISBANK",

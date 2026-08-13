@@ -313,6 +313,14 @@ const ShieldCheck = (p: IconProps) => (
   </svg>
 )
 
+const Book = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M12 6.5c-1.6-1.2-3.7-1.8-5.8-1.8-.7 0-1.2.55-1.2 1.2v11.6c0 .7.55 1.2 1.2 1.2 2.1 0 4.2.6 5.8 1.8 1.6-1.2 3.7-1.8 5.8-1.8.7 0 1.2-.55 1.2-1.2V5.9c0-.65-.5-1.2-1.2-1.2-2.1 0-4.2.6-5.8 1.8Z" />
+    <path d="M12 6.5v13" />
+    <path d="m13.1 9.3-1.4 2.4h1.9l-1.4 2.3" />
+  </svg>
+)
+
 const Rocket = (p: IconProps) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
     <path d="M12 2.5c3 1 5.5 4 5.5 8.5 0 2-.6 3.6-1.4 5l-4.1 4-4.1-4c-.8-1.4-1.4-3-1.4-5 0-4.5 2.5-7.5 5.5-8.5Z" />
@@ -380,7 +388,7 @@ export const Icon = {
   Camera, Wrench, Check, Pin, Clock, Shield, Euro, Park, Calendar, Truck,
   Star, ArrowRight, Chat, Plus, Menu, Cart, WhatsApp, X, Quote, MapLink,
   ChevronDown, ChevronLeft, ChevronRight, Zap, Google, Apple, Users, Headset, Devices, Accessory, Info, HelpCircle, User, Scale, ShieldCheck, Store,
-  Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target, Edit,
+  Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target, Edit, Book,
 }
 
 

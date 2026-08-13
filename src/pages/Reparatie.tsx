@@ -741,26 +741,97 @@ function Step3({ form, onChange, onNext, onBack }: { form: FormState; onChange: 
         </div>
       )}
 
-      {/* SEO Content Section */}
-      <div className="rp-seo-section">
-        <h3 className="rp-seo-title">Telefoon Reparatie bij 4Mobiles in het Westland</h3>
-        <p className="rp-seo-text">
-          Is het beeldscherm van jouw smartphone gebroken, laadt de batterij niet meer goed op of heeft je telefoon waterschade opgelopen? Bij <strong>4Mobiles</strong> in Naaldwijk staan onze professionele monteurs klaar om jouw telefoon snel, vakkundig en transparant te herstellen. Wij werken uitsluitend met hoogwaardige onderdelen en bieden standaard garantie op al onze reparaties.
-        </p>
-        <div className="rp-seo-grid">
-          <div>
-            <strong>Schermvervanging</strong>
-            <p>Van iPhone en Samsung tot Xiaomi en Oppo: wij vervangen je gebroken scherm binnen 30-60 minuten met behoud van True Tone en touchkwaliteit.</p>
+      {/* Bottom SEO Section — Template 1 (iPhone) or Template 2 (other brands) */}
+      {model && (() => {
+        const isApple = form.brandId === 'apple'
+        const brand = BRANDS.find(b => b.id === form.brandId)
+        const displayBrand = isApple ? 'iPhone' : (brand?.name ?? '')
+        const deviceTitle = isApple ? model.name : `${brand?.name ?? ''} ${model.name}`.trim()
+        const brandSlug = isApple ? 'iphone' : form.brandId
+        const kbCards: { icon: typeof Icon.Battery; titleKey: string; excerptKey: string; slug: string }[] = [
+          { icon: Icon.Battery, titleKey: 'reparatie.seoKb1Title', excerptKey: 'reparatie.seoKb1Excerpt', slug: 'batterij-leeg' },
+          { icon: Icon.Zap, titleKey: 'reparatie.seoKb2Title', excerptKey: 'reparatie.seoKb2Excerpt', slug: 'batterij-leeg' },
+          { icon: Icon.Drop, titleKey: 'reparatie.seoKb3Title', excerptKey: 'reparatie.seoKb3Excerpt', slug: 'waterschade-telefoon' },
+          { icon: Icon.Camera, titleKey: 'reparatie.seoKb4Title', excerptKey: 'reparatie.seoKb4Excerpt', slug: isApple ? 'iphone-kapot' : form.brandId === 'samsung' ? 'samsung-scherm-reparatie' : 'tablet-scherm-kapot' },
+        ]
+
+        return (
+          <div className="rp-model-seo">
+            <div className="rp-model-seo-grid">
+              <div className="rp-model-seo-card">
+                <h3 className="rp-model-seo-title">{t('reparatie.seoIntroTitle', { title: deviceTitle })}</h3>
+                <p className="rp-model-seo-text">{t('reparatie.seoIntroText', { title: deviceTitle })}</p>
+              </div>
+
+              {isApple ? (
+                <div className="rp-model-seo-card">
+                  <h3 className="rp-model-seo-title">{t('reparatie.seoScreenTitle')}</h3>
+                  <p className="rp-model-seo-text">{t('reparatie.seoScreenText')}</p>
+                  <button type="button" className="rp-model-seo-cta" onClick={() => setShowQualityModal(true)}>
+                    <span className="rp-model-seo-cta-icon"><Icon.Phone width={18} height={18} /></span>
+                    <span className="rp-model-seo-cta-label">{t('reparatie.seoScreenCta')}</span>
+                    <Icon.ChevronRight width={16} height={16} />
+                  </button>
+                </div>
+              ) : (
+                <div className="rp-model-seo-card">
+                  <div className="rp-model-seo-header">
+                    <div className="rp-model-seo-icon"><Icon.Book width={26} height={26} /></div>
+                    <h3 className="rp-model-seo-title">{t('reparatie.seoOtherTitle', { brand: displayBrand, model: model.name })}</h3>
+                  </div>
+                  <p className="rp-model-seo-text">{t('reparatie.seoOtherText')}</p>
+                  <div className="rp-model-seo-trust">
+                    <div className="rp-model-seo-trust-item">
+                      <Icon.ShieldCheck width={22} height={22} />
+                      <span style={{ maxWidth: 74 }}>{t('reparatie.seoTrust1')}</span>
+                    </div>
+                    <span className="rp-model-seo-trust-sep" />
+                    <div className="rp-model-seo-trust-item">
+                      <Icon.Search width={22} height={22} />
+                      <span style={{ maxWidth: 80 }}>{t('reparatie.seoTrust2')}</span>
+                    </div>
+                    <span className="rp-model-seo-trust-sep" />
+                    <div className="rp-model-seo-trust-item">
+                      <Icon.Check width={22} height={22} />
+                      <span style={{ maxWidth: 108 }}>{t('reparatie.seoTrust3')}</span>
+                    </div>
+                  </div>
+                  <p className="rp-model-seo-text">{t('reparatie.seoOtherSubtext')}</p>
+                  <a href={`/reparatie/${brandSlug}`} className="rp-model-seo-cta rp-model-seo-cta--outline">
+                    <span className="rp-model-seo-cta-label">{t('reparatie.seoOtherCta', { brand: displayBrand })}</span>
+                    <Icon.ArrowRight width={16} height={16} />
+                  </a>
+                </div>
+              )}
+            </div>
+
+            <div className="rp-model-seo-kb">
+              <h3 className="rp-model-seo-title">{t('reparatie.seoKbTitle', { brand: displayBrand })}</h3>
+              <p className="rp-model-seo-kb-sub">{t('reparatie.seoKbSub')}</p>
+              <div className="rp-model-seo-kb-grid">
+                {kbCards.map((c, i) => (
+                  <a key={i} href={`/blog/${c.slug}`} className="rp-model-seo-kb-card">
+                    <span className="rp-model-seo-kb-icon"><c.icon width={20} height={20} /></span>
+                    <span className="rp-model-seo-kb-body">
+                      <span className="rp-model-seo-kb-card-title">{t(c.titleKey, { model: model.name })}</span>
+                      <span className="rp-model-seo-kb-card-excerpt">{t(c.excerptKey)}</span>
+                    </span>
+                    <Icon.ChevronRight width={16} height={16} className="rp-model-seo-kb-arrow" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <nav className="rp-model-seo-breadcrumb" aria-label="Breadcrumb">
+              <a href="/">{t('reparatie.seoBreadcrumbHome')}</a>
+              <span>›</span>
+              <a href={`/reparatie/${brandSlug}`}>{t('reparatie.seoBreadcrumbBrand', { brand: displayBrand })}</a>
+              <span>›</span>
+              <span>{model.name}</span>
+            </nav>
           </div>
-          <div>
-            <strong>Batterij & Opladen</strong>
-            <p>Loopt je accu snel leeg of laadt het toestel niet meer op? Wij vervangen je batterij en laadpoort direct uit voorraad.</p>
-          </div>
-        </div>
-        <p className="rp-seo-links">
-          Heb je vragen of specifieke verzoeken? <a href="/contact" className="rp-link">Neem contact met ons op</a> of bekijk onze <a href="/regio" className="rp-link">regionale vestigingsinformatie</a>.
-        </p>
-      </div>
+        )
+      })()}
 
       {showQualityModal && <ScreenQualityModal onClose={() => setShowQualityModal(false)} />}
     </div>
