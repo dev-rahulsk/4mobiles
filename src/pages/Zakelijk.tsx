@@ -170,8 +170,6 @@ export function Zakelijk() {
   }
 
   const serviceCardStyle = (i: number) => {
-    // Below the pin breakpoint, the grid isn't sticky-scrolled — reveal is
-    // handled by the .zk-services-grid.in-view CSS stagger instead.
     if (window.innerWidth <= 900) return {}
     const start = i < 3 ? 0.35 + i * 0.03 : 0.55 + (i - 3) * 0.03
     const end = i < 3 ? 0.60 : 0.80
@@ -344,10 +342,6 @@ export function Zakelijk() {
                 </div>
               </div>
 
-              {/* Mobile: eyebrow + H1 overlaid on the image itself (same
-                  seamless block) — on desktop the wrapper below is
-                  display:none, so this header-top renders in normal flow
-                  right before zk-services-header-bottom as before */}
               <div className="zk-services-mobile-hero">
                 <div className="zk-services-header-top">
                   <span className="zk-eyebrow-tag" style={servicesHeaderStyle(0.20)}>{t('zakelijk.servicesEyebrow')}</span>
@@ -357,8 +351,6 @@ export function Zakelijk() {
                   </h2>
                 </div>
 
-                {/* Mobile Top Hero Image Wrapper — decorative composition only,
-                    no floating badge/CTA over it per the new mobile design */}
                 <div className="zk-services-mobile-img-wrap">
                   <img src={section4MobileImg} alt={t('zakelijk.servicesImgAlt')} className="zk-services-mobile-img" />
                 </div>

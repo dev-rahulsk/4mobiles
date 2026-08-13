@@ -230,9 +230,6 @@ function ProcessPeelStack({ variant }: { variant: 'desktop' | 'mobile' }) {
                     style={{
                       zIndex,
                       opacity,
-                      // Hidden well before opacity hits 0 so the fading outgoing card
-                      // doesn't linger semi-transparent and blend/muddy with the card
-                      // underneath — the transform/opacity trajectory itself is unchanged.
                       visibility: opacity <= 0.4 ? 'hidden' : 'visible',
                       transform: `translate3d(0, calc(${translateYPct.toFixed(2)}% + ${revealTranslate.toFixed(2)}px), 0) rotate(${rotateDeg.toFixed(2)}deg) scale(${scale.toFixed(4)})`,
                     }}

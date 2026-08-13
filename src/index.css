@@ -98,7 +98,7 @@ input {
   padding: 12px 18px;
   font-weight: 600;
   font-size: 14px;
-  border-radius: 999px;
+  border-radius: 18px;
   transition: transform .15s ease, background .15s ease, box-shadow .15s ease, color .15s ease;
   white-space: nowrap;
 }
@@ -4574,14 +4574,8 @@ input {
   margin-bottom: 24px;
 }
 
-/* Desktop revision (card-first layout): no eyebrow, generous nav/title/card
-   rhythm (nav→h1 56-72px, h1→sub 12-16px, sub→card 40-48px), card kept at its
-   original proportion/size with a softer floating shadow */
 @media (min-width: 721px) {
   .process-desktop-only .process-sticky-container {
-    /* nav's real bottom edge (87px) + 25px clearance, so the section pins/stops
-       a little below the nav instead of flush against it — padding-top stays 0
-       so this doesn't touch the normal-flow gap above the section */
     top: 112px;
     padding-top: 0;
   }
@@ -4815,7 +4809,7 @@ input {
   align-items: center;
   gap: 8px;
   padding: 13px 22px;
-  border-radius: 999px;
+  border-radius: 18px;
   background: var(--accent);
   color: var(--ink-900);
   font-weight: 700;
@@ -4833,7 +4827,7 @@ input {
   align-items: center;
   gap: 8px;
   padding: 13px 22px;
-  border-radius: 999px;
+  border-radius: 18px;
   background: transparent;
   color: #fff;
   font-weight: 600;
@@ -5283,9 +5277,6 @@ input {
   }
 }
 
-/* Post-repair: "problem solved" trust badges, pinned to the right-center of the phone visual.
-   The phone itself sits higher than the visual box's geometric center once
-   scaled/translated for the repair animation, so this anchors higher than 50%. */
 .mhero-done-badges {
   position: absolute;
   top: 42%;
@@ -5993,7 +5984,6 @@ input {
   opacity: 0.8;
 }
 
-/* Outline CTA sitting directly on the hero photography needs light text/border, not the deep green meant for light backgrounds */
 .rv2-hero-outline-on-dark.g-button--outline {
   color: #fff;
   border-color: rgba(255, 255, 255, .55);
@@ -6575,7 +6565,7 @@ input {
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  border-radius: 999px;
+  border-radius: 18px;
   border: 1.5px solid var(--ink-200);
   background: #fff;
   color: var(--ink-800);
@@ -6743,15 +6733,11 @@ input {
   }
 }
 
-/* Floating mobile sticky CTA reuses the Home page's .mhero-sticky-cta / .mhero-cta styles directly. */
-
 /* ============================================
    RESPONSIVE — Tablet
    ============================================ */
 @media (max-width: 960px) and (min-width: 601px) {
 
-  /* Hero: use store_hero_bg.png with white left gradient on tablet */
-  /* Previous bg image: url('./assets/mobileherobg.png'); */
   .rv2-hero {
     background-image:
       linear-gradient(90deg,
@@ -7085,8 +7071,6 @@ input {
     font-size: 10px;
   }
 
-  /* Trust row lives BELOW the hero photo on mobile (see hero_render_3.png) — solid
-     white band of its own, not glass-over-photo like the rating/quote cards above. */
   .rv2-hero-trust-row {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -9863,7 +9847,7 @@ input {
   padding: 14px 28px;
   background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
   color: #ffffff;
-  border-radius: 9999px;
+  border-radius: 18px;
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
@@ -16589,7 +16573,7 @@ input {
   margin: 0 0 4px;
 }
 
-.rp-model-seo-text + .rp-model-seo-text {
+.rp-model-seo-text+.rp-model-seo-text {
   margin-top: 10px;
 }
 

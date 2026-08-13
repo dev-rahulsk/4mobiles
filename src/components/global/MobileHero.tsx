@@ -44,12 +44,6 @@ export function MobileHero({
 }: MobileHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
-  // The circle/curve and image-fill math inside the hero used to trust
-  // `100svh` as a stand-in for the section's real rendered height. Real iOS
-  // Safari's viewport (dynamic toolbar) frequently doesn't match `100svh`,
-  // which left gaps/black bands that never showed up in devtools. Measuring
-  // the actual height and publishing it as a CSS var (same pattern as
-  // Header.tsx's --nav-fixed-bottom) makes the CSS immune to that mismatch.
   useLayoutEffect(() => {
     const el = sectionRef.current
     if (!el) return
