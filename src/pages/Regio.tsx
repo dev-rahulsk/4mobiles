@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema } from '../lib/seo/schema'
 
 const STEP_ICONS = [Icon.Star, Icon.Shield, Icon.Clock, Icon.Check]
 
@@ -19,6 +22,8 @@ export function Regio() {
 
   return (
     <Layout>
+      <Seo title={t('seo.regio.title')} description={t('seo.regio.description')} path="/regio" />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('regio.eyebrow'), path: '/regio' }])} />
       {/* Hero */}
       <section className="rg-hero">
         <div className="container">

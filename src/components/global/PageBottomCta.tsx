@@ -17,7 +17,7 @@ export function PageBottomCta({
   sub,
   whatsappLabel,
   repairLabel,
-  whatsappHref = 'https://wa.me/31612345678',
+  whatsappHref = 'https://wa.me/31174237022',
   repairHref = '/reparatie',
   className = '',
 }: PageBottomCtaProps) {

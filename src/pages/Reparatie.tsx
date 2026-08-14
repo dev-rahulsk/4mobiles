@@ -3,6 +3,10 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema } from '../lib/seo/schema'
+import BRAND_DISPLAY_NAMES from '../lib/seo/reparatie-brands.json'
 
 interface Brand { id: string; name: string; wordmark: string; bg: string; fg: string }
 interface DeviceColor { id: string; name: string; hex: string }
@@ -1109,6 +1113,7 @@ const BRAND_FROM_SLUG: Record<string, string> = {
 }
 
 export function Reparatie() {
+  const { t } = useTranslation()
   const { slug } = useParams<{ slug?: string }>()
   const presetBrand = slug
     ? (Object.entries(BRAND_FROM_SLUG).find(([k]) => slug.toLowerCase().startsWith(k))?.[1] ?? '')
@@ -1121,8 +1126,22 @@ export function Reparatie() {
   function next() { setStep(s => Math.min(s + 1, 4)); window.scrollTo({ top: 0, behavior: 'smooth' }) }
   function back() { setStep(s => Math.max(s - 1, 1)); window.scrollTo({ top: 0, behavior: 'smooth' }) }
 
+  const brandSlugLower = slug?.toLowerCase()
+  const knownBrandName = brandSlugLower ? (BRAND_DISPLAY_NAMES as Record<string, string>)[brandSlugLower] : undefined
+  const canonicalPath = knownBrandName ? `/reparatie/${brandSlugLower}` : '/reparatie'
+  const isUnrecognizedSlug = Boolean(slug) && !knownBrandName
+
   return (
     <Layout>
+      <Seo
+        title={knownBrandName ? t('seo.reparatieBrand.title', { brand: knownBrandName }) : t('seo.reparatie.title')}
+        description={knownBrandName ? t('seo.reparatieBrand.description', { brand: knownBrandName }) : t('seo.reparatie.description')}
+        path={canonicalPath}
+        noindex={isUnrecognizedSlug}
+      />
+      <JsonLd data={breadcrumbSchema(knownBrandName
+        ? [{ name: 'Home', path: '/' }, { name: t('nav.repairs'), path: '/reparatie' }, { name: knownBrandName, path: `/reparatie/${brandSlugLower}` }]
+        : [{ name: 'Home', path: '/' }, { name: t('nav.repairs'), path: '/reparatie' }])} />
       <section className="rp-page">
         <div className="rp-container">
           <div className="rp-card">

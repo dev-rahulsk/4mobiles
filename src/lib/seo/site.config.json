@@ -1,0 +1,24 @@
+{
+  "siteUrl": "https://www.4mobiles.nl",
+  "siteName": "4Mobiles",
+  "business": {
+    "name": "4Mobiles",
+    "legalName": "4Mobiles",
+    "telephone": "+31174237022",
+    "telephoneDisplay": "0174 23 70 22",
+    "whatsapp": "31174237022",
+    "email": "info@4mobiles.nl",
+    "streetAddress": "Molenstraat 2",
+    "postalCode": "2671 EX",
+    "addressLocality": "Naaldwijk",
+    "addressCountry": "NL",
+    "openingHours": [
+      { "dayOfWeek": "Monday", "opens": "13:00", "closes": "17:30" },
+      { "dayOfWeek": "Tuesday", "opens": "09:30", "closes": "17:30" },
+      { "dayOfWeek": "Wednesday", "opens": "09:30", "closes": "17:30" },
+      { "dayOfWeek": "Thursday", "opens": "09:30", "closes": "17:30" },
+      { "dayOfWeek": "Friday", "opens": "09:30", "closes": "20:00" },
+      { "dayOfWeek": "Saturday", "opens": "09:30", "closes": "17:00" }
+    ]
+  }
+}

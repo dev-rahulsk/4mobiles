@@ -6,6 +6,9 @@ import { FaqAccordion } from '../components/FaqAccordion'
 import { MobileHero } from '../components/global'
 import { getOpenStatus } from '../lib/openStatus'
 import contactHeroImg from '../assets/chatgpt_store_hero.png'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
 
 const CONTACT_HERO_GRADIENT = 'linear-gradient(180deg, #080504 0%, #080504 36%, #804726 44%, #382519 62%, #140e0b 82%, #050303 100%)'
 
@@ -38,14 +41,14 @@ export function Contact() {
     {
       icon: <Icon.Phone width="22" height="22" />,
       label: t('contact.callUs'),
-      value: '+31 174 123 456',
-      href: 'tel:+31174123456',
+      value: '+31 174 23 70 22',
+      href: 'tel:+31174237022',
     },
     {
       icon: <Icon.WhatsApp width="22" height="22" />,
       label: t('nav.whatsappUs'),
-      value: '+31 6 12 34 56 78',
-      href: 'https://wa.me/31612345678',
+      value: '+31 174 23 70 22',
+      href: 'https://wa.me/31174237022',
     },
     {
       icon: (
@@ -64,7 +67,7 @@ export function Contact() {
   const visitFaqItems = t('contact.visitFaqItems', { returnObjects: true }) as { q: string; a: string }[]
 
   function copyAddress() {
-    navigator.clipboard.writeText('Molenstraat 2, 2671 BE Naaldwijk').then(() => {
+    navigator.clipboard.writeText('Molenstraat 2, 2671 EX Naaldwijk').then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     })
@@ -72,6 +75,9 @@ export function Contact() {
 
   return (
     <Layout>
+      <Seo title={t('seo.contact.title')} description={t('seo.contact.description')} path="/contact" />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('nav.contact'), path: '/contact' }])} />
+      <JsonLd data={faqPageSchema(visitFaqItems)} />
       {/* Hero — DESKTOP VIEW (unchanged flat hero) */}
       <section className="ct-hero g-desktop-only">
         <div className="ct-hero-bg" aria-hidden="true" />
@@ -193,7 +199,7 @@ export function Contact() {
               <div className="ct-map-content">
                 <div className="ct-address-row">
                   <div>
-                    <p className="ct-address">Molenstraat 2<br />2671 BE Naaldwijk</p>
+                    <p className="ct-address">Molenstraat 2<br />2671 EX Naaldwijk</p>
                   </div>
                   <button className="ct-copy-btn" onClick={copyAddress} title="Adres kopiëren">
                     {copied ? <Icon.Check width="16" height="16" /> : (
@@ -224,7 +230,7 @@ export function Contact() {
                   <a href="https://maps.google.com/?q=Molenstraat+2+Naaldwijk" target="_blank" rel="noopener noreferrer" className="ct-btn-primary">
                     <Icon.MapLink width="18" height="18" /> {t('contact.getDirections')}
                   </a>
-                  <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="ct-btn-dark">
+                  <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="ct-btn-dark">
                     <Icon.WhatsApp width="18" height="18" /> {t('contact.whatsappUs')}
                   </a>
                 </div>

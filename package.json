@@ -4,8 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "npm run generate:seo && vite",
+    "generate:seo": "node scripts/generate-sitemap.mjs",
+    "build": "npm run generate:seo && tsc && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && wrangler deploy"
   },
@@ -13,6 +14,7 @@
     "i18next": "^26.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^3.0.0",
     "react-i18next": "^17.0.8",
     "react-router-dom": "^7.17.0"
   },

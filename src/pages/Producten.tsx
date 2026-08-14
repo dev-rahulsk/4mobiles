@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { Pill, MobileHero, GlassBadge, CtaButton } from '../components/global'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
 
 import storeMobileHeroImg from '../assets/product_new_mobile_hero.png'
 import desktopNewPhoneApprovedImg from '../assets/ChatGPT_Image_9_jul_2026%2C_19_57_39.png'
@@ -327,7 +330,7 @@ function DesktopNewPhoneSection() {
               <a href="/contact" className="btn-accent pd-btn">
                 <Icon.Pin width="16" height="16" /> {t('producten.upsellCta1')}
               </a>
-              <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="pd-btn pd-btn-wa">
+              <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="pd-btn pd-btn-wa">
                 <Icon.WhatsApp width="16" height="16" /> {t('producten.upsellCta2')}
               </a>
             </div>
@@ -651,6 +654,9 @@ export function Producten() {
 
   return (
     <Layout>
+      <Seo title={t('seo.producten.title')} description={t('seo.producten.description')} path="/producten" />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('nav.products'), path: '/producten' }])} />
+      <JsonLd data={faqPageSchema(faqItems)} />
       <div className="pd-desktop-only">
         <ParallaxHero />
       </div>
@@ -778,7 +784,7 @@ export function Producten() {
                   <span>{item.q}</span>
                   <span className="faq-icon"><Icon.Plus width="18" height="18" /></span>
                 </button>
-                {openFaq === i && <div className="faq-a">{item.a}</div>}
+                <div className="faq-a" hidden={openFaq !== i}>{item.a}</div>
               </div>
             ))}
           </div>
@@ -836,7 +842,7 @@ export function Producten() {
               >
                 <Icon.MapLink width="18" height="18" /> {t('producten.storeVisitRoute')}
               </a>
-              <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="ct-btn-dark">
+              <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="ct-btn-dark">
                 <Icon.WhatsApp width="18" height="18" /> {t('producten.storeVisitWhatsapp')}
               </a>
             </div>
@@ -881,7 +887,7 @@ export function Producten() {
                 <a href="/contact" className="btn btn-primary">
                   <Icon.Chat width="16" height="16" /> {t('producten.faqCtaChat')}
                 </a>
-                <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+                <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
                   <Icon.WhatsApp width="16" height="16" /> {t('producten.faqCtaWhatsapp')}
                 </a>
               </div>
@@ -894,7 +900,7 @@ export function Producten() {
                     <span>{item.q}</span>
                     <span className="faq-icon"><Icon.Plus width="18" height="18" /></span>
                   </button>
-                  {openFaq === i && <div className="faq-a">{item.a}</div>}
+                  <div className="faq-a" hidden={openFaq !== i}>{item.a}</div>
                 </div>
               ))}
             </div>
@@ -956,7 +962,7 @@ export function Producten() {
                 >
                   <Icon.MapLink width="16" height="16" /> {t('producten.storeVisitRoute')}
                 </a>
-                <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="pd-btn pd-btn-dark">
+                <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="pd-btn pd-btn-dark">
                   <Icon.WhatsApp width="16" height="16" /> {t('producten.storeVisitWhatsapp')}
                 </a>
               </div>

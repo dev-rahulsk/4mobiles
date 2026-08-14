@@ -12,6 +12,9 @@ import { Reviews } from '../components/Reviews'
 import { RegionalSeoSection } from '../components/RegionalSeoSection'
 import { FAQ } from '../components/FAQ'
 import { Locations } from '../components/Locations'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
 
 interface RegioCityEntry {
   name: string
@@ -61,6 +64,17 @@ export function RegioCity() {
 
   return (
     <Layout>
+      <Seo
+        title={t('seo.regioCity.title', { city: name })}
+        description={t('seo.regioCity.description', { city: name, minutes })}
+        path={`/regio/${city.slug}`}
+      />
+      <JsonLd data={breadcrumbSchema([
+        { name: 'Home', path: '/' },
+        { name: t('regio.eyebrow'), path: '/regio' },
+        { name, path: `/regio/${city.slug}` },
+      ])} />
+      <JsonLd data={faqPageSchema(faqItems)} />
       <Hero
         accent={ACCENT}
         title={t('regioCity.hero.title')}

@@ -1736,5 +1736,61 @@
         ]
       }
     }
+  },
+  "notFound": {
+    "title": "Pagina niet gevonden",
+    "sub": "Deze pagina bestaat niet (meer) of is verplaatst. Gebruik onderstaande links om verder te gaan.",
+    "cta": "Terug naar de homepage",
+    "ctaRepair": "Reparatie plannen"
+  },
+  "seo": {
+    "home": {
+      "title": "4Mobiles — Telefoonreparatie & accessoires in Naaldwijk",
+      "description": "Snelle, betrouwbare reparatie van telefoons en tablets in Naaldwijk. Scherm, batterij en meer — vaak dezelfde dag klaar. Kom langs of maak een afspraak."
+    },
+    "aboutUs": {
+      "title": "Over ons — 4Mobiles Naaldwijk",
+      "description": "Maak kennis met 4Mobiles: ons team, onze werkwijze en waarom klanten in Naaldwijk en omstreken voor ons kiezen voor telefoonreparatie."
+    },
+    "reviews": {
+      "title": "Reviews — wat klanten zeggen over 4Mobiles",
+      "description": "Lees ervaringen van klanten over reparaties en service bij 4Mobiles in Naaldwijk, met een 4,9 op basis van 200+ Google reviews."
+    },
+    "contact": {
+      "title": "Contact — 4Mobiles Naaldwijk",
+      "description": "Bel, WhatsApp of kom langs bij 4Mobiles in Naaldwijk. Adres, openingstijden en routebeschrijving vind je hier."
+    },
+    "regio": {
+      "title": "Regio — telefoonreparatie bij jou in de buurt | 4Mobiles",
+      "description": "4Mobiles in Naaldwijk repareert telefoons voor klanten in het hele Westland en omgeving. Bekijk welke plaatsen we bedienen."
+    },
+    "regioCity": {
+      "title": "Telefoonreparatie {{city}} — 4Mobiles Naaldwijk",
+      "description": "Woon of werk je in {{city}}? 4Mobiles in Naaldwijk repareert je telefoon snel en vakkundig, op {{minutes}} minuten rijden."
+    },
+    "producten": {
+      "title": "Producten & accessoires — 4Mobiles",
+      "description": "Hoesjes, screenprotectors, opladers en meer. Bekijk het assortiment accessoires en toestellen bij 4Mobiles in Naaldwijk."
+    },
+    "zakelijk": {
+      "title": "Zakelijke reparaties — 4Mobiles voor bedrijven",
+      "description": "Telefoon- en tabletreparatie voor bedrijven in Naaldwijk en omgeving. Snelle service en persoonlijk contact."
+    },
+    "blog": {
+      "title": "Blog — tips over telefoons en reparaties | 4Mobiles",
+      "description": "Handige tips, uitleg en nieuws over telefoonreparatie, batterijen en accessoires van het 4Mobiles team."
+    },
+    "reparatie": {
+      "title": "Reparatie aanvragen — kies je toestel | 4Mobiles",
+      "description": "Start je reparatie: kies merk en model en bekijk direct prijs en reparatietijd. Snelle service bij 4Mobiles in Naaldwijk."
+    },
+    "reparatieBrand": {
+      "title": "{{brand}} reparatie — 4Mobiles Naaldwijk",
+      "description": "Scherm, batterij of een andere {{brand}}-reparatie? Kies je model en bekijk direct prijs en reparatietijd bij 4Mobiles."
+    },
+    "faq": {
+      "title": "Veelgestelde vragen — 4Mobiles",
+      "description": "Antwoorden op de meest gestelde vragen over reparaties, garantie, verzending en meer bij 4Mobiles."
+    }
   }
 }

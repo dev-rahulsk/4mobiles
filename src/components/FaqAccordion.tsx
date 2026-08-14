@@ -23,7 +23,7 @@ export function FaqAccordion({ items, defaultOpen = 0, moreLink }: FaqAccordionP
             <span>{item.q}</span>
             <span className="faq-icon"><Icon.Plus width="18" height="18" /></span>
           </button>
-          {open === i && <div className="faq-a">{item.a}</div>}
+          <div className="faq-a" hidden={open !== i}>{item.a}</div>
         </div>
       ))}
       {moreLink && (

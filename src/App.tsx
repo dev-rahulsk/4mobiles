@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Home } from './pages/Home'
 import { AboutUs } from './pages/AboutUs'
 import { Reviews } from './pages/Reviews'
@@ -12,6 +13,10 @@ import { Blog } from './pages/Blog'
 import { BlogPost } from './pages/BlogPost'
 import { Reparatie } from './pages/Reparatie'
 import { Faq } from './pages/Faq'
+import { NotFound } from './pages/NotFound'
+import { JsonLd } from './lib/seo/JsonLd'
+import { localBusinessSchema, websiteSchema } from './lib/seo/schema'
+import { AnalyticsRouteTracker } from './lib/seo/AnalyticsRouteTracker'
 
 function ScrollToHash() {
   const location = useLocation()
@@ -28,10 +33,24 @@ function ScrollToHash() {
   return null
 }
 
+function HtmlLangSync() {
+  const { i18n } = useTranslation()
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language
+  }, [i18n.language])
+
+  return null
+}
+
 export default function App() {
   return (
     <BrowserRouter>
+      <HtmlLangSync />
       <ScrollToHash />
+      <AnalyticsRouteTracker />
+      <JsonLd data={localBusinessSchema()} />
+      <JsonLd data={websiteSchema()} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/over-ons" element={<AboutUs />} />
@@ -46,6 +65,7 @@ export default function App() {
         <Route path="/reparatie" element={<Reparatie />} />
         <Route path="/reparatie/:slug" element={<Reparatie />} />
         <Route path="/veelgestelde-vragen" element={<Faq />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { Pill, MobileHero, GlassBadge, CtaButton } from '../components/global'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
 import desktopHeroImg from '../assets/business_desktop_hero.png'
 import mobileHeroImg from '../assets/business_mobile_hero.png'
 import section4Img from '../assets/section_4_image.png'
@@ -179,6 +182,9 @@ export function Zakelijk() {
 
   return (
     <Layout>
+      <Seo title={t('seo.zakelijk.title')} description={t('seo.zakelijk.description')} path="/zakelijk" />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('nav.business'), path: '/zakelijk' }])} />
+      <JsonLd data={faqPageSchema(businessFaqs)} />
       {/* Business Page Hero Section */}
       <section className="zk-hero-section">
         {/* DESKTOP HERO VIEW */}
@@ -494,10 +500,10 @@ export function Zakelijk() {
                     {t('zakelijk.contactEmailCta')}
                   </a>
                   <div className="zk-contact-ctas-secondary">
-                    <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="zk-btn zk-btn-wa">
+                    <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="zk-btn zk-btn-wa">
                       <Icon.WhatsApp width="16" height="16" /> {t('zakelijk.whatsappUs')}
                     </a>
-                    <a href="tel:+31174123456" className="zk-btn zk-btn-outline">
+                    <a href="tel:+31174237022" className="zk-btn zk-btn-outline">
                       <Icon.Phone width="16" height="16" /> {t('zakelijk.contactPhone')}
                     </a>
                   </div>
@@ -515,7 +521,7 @@ export function Zakelijk() {
                       <span>{f.q}</span>
                       <span className="zk-faq-icon"><Icon.Plus width="16" height="16" /></span>
                     </button>
-                    {openFaq === i && <div className="zk-faq-a">{f.a}</div>}
+                    <div className="zk-faq-a" hidden={openFaq !== i}>{f.a}</div>
                   </div>
                 ))}
               </div>

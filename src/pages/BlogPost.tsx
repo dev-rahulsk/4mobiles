@@ -2,6 +2,11 @@ import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
+import { ARTICLE_DATES } from './Blog'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema, blogPostingSchema } from '../lib/seo/schema'
+import { parseDutchDate } from '../lib/seo/dutchDate'
 
 interface Article {
   slug: string
@@ -51,6 +56,7 @@ export function BlogPost() {
   if (!article) {
     return (
       <Layout>
+        <Seo title={t('blogPost.notFoundTitle')} description={t('blogPost.notFoundSub')} path={`/blog/${slug ?? ''}`} noindex />
         <div className="bp-not-found">
           <div className="container">
             <h1 className="bp-not-found-title">{t('blogPost.notFoundTitle')}</h1>
@@ -75,9 +81,17 @@ export function BlogPost() {
 
   const locale = i18n.language === 'nl' ? 'nl-NL' : 'en-US'
   const today = new Date().toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
+  const datePublished = parseDutchDate(slug ? ARTICLE_DATES[slug] : undefined)
 
   return (
     <Layout>
+      <Seo title={`${article.title} | 4Mobiles Blog`} description={article.excerpt} path={`/blog/${article.slug}`} type="article" />
+      <JsonLd data={breadcrumbSchema([
+        { name: 'Home', path: '/' },
+        { name: 'Blog', path: '/blog' },
+        { name: article.title, path: `/blog/${article.slug}` },
+      ])} />
+      <JsonLd data={blogPostingSchema({ title: article.title, description: article.excerpt, path: `/blog/${article.slug}`, datePublished })} />
       {/* Breadcrumb */}
       <nav className="bp-breadcrumb" aria-label="Breadcrumb">
         <div className="container">
@@ -147,7 +161,7 @@ export function BlogPost() {
                 <h3 className="bp-sidebar-cta-title">{t('blogPost.sidebarCtaTitle')}</h3>
                 <p className="bp-sidebar-cta-sub">{t('blogPost.sidebarCtaSub')}</p>
                 <Link to="/#reparatie" className="bl-btn btn-accent bp-sidebar-cta-btn">{t('blogPost.planRepair')}</Link>
-                <a href="tel:+31174123456" className="bl-btn bl-btn-outline-dark bp-sidebar-cta-btn">
+                <a href="tel:+31174237022" className="bl-btn bl-btn-outline-dark bp-sidebar-cta-btn">
                   <Icon.Phone width="14" height="14" />
                   {t('blogPost.callDirect')}
                 </a>
@@ -177,11 +191,11 @@ export function BlogPost() {
             </div>
             <div className="bp-bottom-cta-actions">
               <Link to="/#reparatie" className="bl-btn btn-accent">{t('blogPost.planRepair')}</Link>
-              <a href="tel:+31174123456" className="bl-btn bl-btn-outline">
+              <a href="tel:+31174237022" className="bl-btn bl-btn-outline">
                 <Icon.Phone width="15" height="15" />
                 {t('blogPost.callDirect')}
               </a>
-              <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" className="bl-btn bp-whatsapp-btn">
+              <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="bl-btn bp-whatsapp-btn">
                 <Icon.WhatsApp width="16" height="16" />
                 WhatsApp
               </a>

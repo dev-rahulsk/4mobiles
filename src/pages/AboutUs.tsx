@@ -3,6 +3,9 @@ import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { MobileHero, GlassBadge } from '../components/global'
 import aboutMobileHeroImg from '../assets/ChatGPT_Image_10_jul_2026_11_20_55.png'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema } from '../lib/seo/schema'
 
 const ABOUTUS_HERO_GRADIENT = 'linear-gradient(180deg, #050804 0%, #050804 36%, #2c6b18 44%, #1a3311 62%, #0c1409 82%, #030503 100%)'
 
@@ -14,6 +17,8 @@ export function AboutUs() {
 
   return (
     <Layout>
+      <Seo title={t('seo.aboutUs.title')} description={t('seo.aboutUs.description')} path="/over-ons" />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('nav.about'), path: '/over-ons' }])} />
       <div className="aou-page-redesign">
 
         {/* ─── SECTION 01: HERO ───────────────────────────────────────────── */}
@@ -313,7 +318,7 @@ export function AboutUs() {
                     <Icon.MapLink width={16} height={16} /> {t('aboutUs.visit.routeBtn')}
                   </a>
                   <a
-                    href="https://wa.me/31612345678"
+                    href="https://wa.me/31174237022"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-ghost"

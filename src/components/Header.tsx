@@ -7,11 +7,11 @@ export function TopBar() {
   return (
     <div className="topbar">
       <div className="container topbar-inner">
-        <a href="#" className="topbar-item">
+        <a href="https://maps.google.com/?q=Molenstraat+2+Naaldwijk" target="_blank" rel="noopener noreferrer" className="topbar-item">
           <Icon.Pin width="14" height="14" />
           <span>{t('topbar.address')}</span>
         </a>
-        <a href="#" className="topbar-item topbar-rating">
+        <a href="/reviews" className="topbar-item topbar-rating">
           <Icon.Google width="18" height="18" />
           <span className="stars">
             {[0,1,2,3,4].map(i => <Icon.Star key={i} width="11" height="11" />)}

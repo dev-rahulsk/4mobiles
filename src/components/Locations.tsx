@@ -85,7 +85,7 @@ export function Locations({ regionalNote }: LocationsProps) {
                   <Icon.MapLink width="16" height="16" /> {t('contact.getDirections')}
                 </a>
                 <a
-                  href="https://wa.me/31612345678"
+                  href="https://wa.me/31174237022"
                   target="_blank"
                   rel="noopener"
                   className="ct-btn-dark"

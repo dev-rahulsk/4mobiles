@@ -4,6 +4,9 @@ import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { PageHero, MobileHero, GlassBadge, Pill } from '../components/global'
 import reviewsHeroImg from '../assets/store_hero_bg.png'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema } from '../lib/seo/schema'
 
 const REVIEWS_HERO_GRADIENT = 'linear-gradient(180deg, #080604 0%, #080604 36%, #b8b1a9 44%, #6b635a 55%, #332f2a 68%, #141311 84%, #050403 100%)'
 
@@ -72,6 +75,8 @@ export function Reviews() {
 
   return (
     <Layout>
+      <Seo title={t('seo.reviews.title')} description={t('seo.reviews.description')} path="/reviews" />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('nav.reviews'), path: '/reviews' }])} />
       {/* Hero Section — shared global PageHero (desktop) / MobileHero (mobile) */}
       <div className="g-desktop-only">
         <PageHero

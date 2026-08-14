@@ -4,7 +4,7 @@ import { Icon } from './Icons'
 function Logo() {
   const { t } = useTranslation()
   return (
-    <a href="#" className="logo">
+    <a href="/" className="logo">
       <span className="logo-mark" aria-hidden="true">
         <span className="logo-mark-inner">4M</span>
       </span>
@@ -16,7 +16,6 @@ function Logo() {
   )
 }
 
-// footer.col3Items order: Over ons, Onze dienstverlening, Zakelijk, Blog, Veelgestelde vragen, Regio
 const COL3_HREFS = ['/over-ons', undefined, '/zakelijk', '/blog', '/veelgestelde-vragen', '/regio']
 
 export function Footer() {
@@ -35,7 +34,7 @@ export function Footer() {
           <div className="footer-new-rating">
             <Icon.Google width="18" height="18" />
             <div className="footer-stars">
-              {[0,1,2,3,4].map(i => <Icon.Star key={i} width="12" height="12" />)}
+              {[0, 1, 2, 3, 4].map(i => <Icon.Star key={i} width="12" height="12" />)}
             </div>
             <span className="footer-meta"><b>4.9</b> · {t('topbar.reviews', { count: '200+' })}</span>
           </div>
@@ -73,8 +72,8 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="tel:0174720505" className="footer-contact-item">
-                    <Icon.Phone width="14" height="14" /> 0174 72 05 05
+                  <a href="tel:0174237022" className="footer-contact-item">
+                    <Icon.Phone width="14" height="14" /> 0174 23 70 22
                   </a>
                 </li>
                 <li>
@@ -83,7 +82,7 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://wa.me/31612345678" className="footer-contact-item">
+                  <a href="https://wa.me/31174237022" className="footer-contact-item">
                     <Icon.WhatsApp width="14" height="14" /> {t('footer.whatsapp')}
                   </a>
                 </li>

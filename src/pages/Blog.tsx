@@ -2,11 +2,14 @@ import { useMemo, useState, type ComponentType, type SVGProps } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema } from '../lib/seo/schema'
 import { PageBottomCta, Pill } from '../components/global'
 
 type CategoryKey = 'reparatie' | 'batterij' | 'scherm' | 'bescherming' | 'service' | 'tips'
 
-const ARTICLE_DATES: Record<string, string> = {
+export const ARTICLE_DATES: Record<string, string> = {
   'iphone-scherm-stuk':       '14 juni 2026',
   'batterij-leeg':             '10 juni 2026',
   'iphone-kapot':              '6 juni 2026',
@@ -95,6 +98,8 @@ export function Blog() {
 
   return (
     <Layout>
+    <Seo title={t('seo.blog.title')} description={t('seo.blog.description')} path="/blog" />
+    <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('nav.blog'), path: '/blog' }])} />
     <div className="bl-page">
       {/* Hero — shared page-hero styling, kept in sync with the FAQ page header */}
       <section className="page-hero">

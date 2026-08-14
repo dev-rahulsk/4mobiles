@@ -4,6 +4,9 @@ import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { FaqAccordion, type FaqAccordionItem } from '../components/FaqAccordion'
 import { PageBottomCta, Pill } from '../components/global'
+import { Seo } from '../lib/seo/Seo'
+import { JsonLd } from '../lib/seo/JsonLd'
+import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
 
 type CategoryKey = 'reparatie' | 'batterij' | 'opsturen' | 'garantie' | 'gegevens' | 'winkel'
 
@@ -50,6 +53,9 @@ export function Faq() {
 
   return (
     <Layout>
+    <Seo title={t('seo.faq.title')} description={t('seo.faq.description')} path="/veelgestelde-vragen" />
+    <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('faqPage.eyebrow'), path: '/veelgestelde-vragen' }])} />
+    <JsonLd data={faqPageSchema(items)} />
     <div className="fq-page">
       {/* Header — shared page-hero styling, kept in sync with the Blog page header.
           fq-hero adds a mobile-only nav-clearance offset on top of the shared class. */}
