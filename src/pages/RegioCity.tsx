@@ -43,7 +43,13 @@ export function RegioCity() {
     </>
   )
 
-  const mobileHeroSub1 = t('regioCity.mhero.sub1', { city: name, minutes })
+  const mobileHeroSub1 = (
+    <>
+      {t('regioCity.mhero.sub1Prefix', { city: name })}{' '}
+      <strong>{t('regioCity.hero.subBold', { minutes })}</strong>{' '}
+      {t('regioCity.mhero.sub1Suffix')}
+    </>
+  )
 
   const faqItems = [
     { q: t('regioCity.faq.distanceQ', { city: name }), a: t('regioCity.faq.distanceA', { city: name, minutes }) },
@@ -72,9 +78,9 @@ export function RegioCity() {
       <Process />
       <ReviewsHero />
       <Reviews />
-      <RegionalSeoSection city={name} minutes={minutes} />
       <FAQ items={faqItems} />
       <Locations regionalNote={locationsNote} />
+      <RegionalSeoSection city={name} minutes={minutes} />
     </Layout>
   )
 }

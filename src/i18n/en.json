@@ -926,7 +926,8 @@
     },
     "mhero": {
       "titleSuffix": "broken in {{city}}?",
-      "sub1": "From {{city}} you're about {{minutes}} min from 4Mobiles in Naaldwijk."
+      "sub1Prefix": "From {{city}} you're about",
+      "sub1Suffix": "from 4Mobiles in Naaldwijk."
     },
     "serviceBlock": {
       "eyebrow": "For customers from {{city}}",

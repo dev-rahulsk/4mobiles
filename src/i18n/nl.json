@@ -906,7 +906,8 @@
     },
     "mhero": {
       "titleSuffix": "kapot in {{city}}?",
-      "sub1": "Vanuit {{city}} ben je in circa {{minutes}} min bij 4Mobiles in Naaldwijk."
+      "sub1Prefix": "Vanuit {{city}} ben je in circa",
+      "sub1Suffix": "bij 4Mobiles in Naaldwijk."
     },
     "serviceBlock": {
       "eyebrow": "Voor klanten uit {{city}}",

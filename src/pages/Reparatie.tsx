@@ -325,13 +325,6 @@ function Step1({ form, onChange, onNext }: { form: FormState; onChange: (p: Part
         </div>
       </div>
 
-      {/* 3. Trust badge row */}
-      <div className="rp-s1-trust-row">
-        <div className="rp-s1-trust-badge"><Icon.Shield width={15} height={15} /><span>{t('reparatie.trustSecureTitle')}</span></div>
-        <div className="rp-s1-trust-badge"><Icon.Star width={15} height={15} /><span>{t('reparatie.s1TrustWarranty')}</span></div>
-        <div className="rp-s1-trust-badge"><Icon.Clock width={15} height={15} /><span>{t('reparatie.s1TrustFast')}</span></div>
-      </div>
-
       {showFindModal && <FindMyModelModal onClose={() => setShowFindModal(false)} />}
     </div>
   )
@@ -429,7 +422,7 @@ function FindMyModelModal({ onClose }: { onClose: () => void }) {
         </div>
 
         <button className="rp-btn rp-btn--primary rp-fmm-close-btn" onClick={onClose}>
-          Begrepen, terug naar modelleren
+          Begrepen, terug naar modellen
         </button>
       </div>
     </div>
