@@ -802,18 +802,15 @@
     "whyChooseClosing": "Bent u benieuwd waarom zoveel klanten voor 4Mobiles kiezen? Kom gerust langs in onze winkel in Naaldwijk of plan eenvoudig online uw reparatie. Wij helpen u graag verder met eerlijk advies, persoonlijke service en een reparatie waar u op kunt vertrouwen."
   },
   "regio": {
-    "breadcrumbHome": "Home",
-    "breadcrumbRegion": "Servicegebied",
-    "cityHeroTitle": "Telefoon reparatie in",
+    "eyebrow": "ONS SERVICEGEBIED",
     "defaultHeroTitle": "Telefoon reparatie in jouw regio",
-    "defaultHeroSub": "Woon je in Westland, Den Haag, Delft of omgeving? Bij 4MOBILES hebben we je met iPhone, Samsung en andere telefoonreparaties. Kies je plaats en bekijk direct de mogelijkheden.",
-    "planRepair": "Plan je reparatie",
-    "viewAllAreas": "Bekijk alle servicegebieden →",
-    "defaultMapLabel": "Westland & omgeving",
+    "defaultHeroSub": "Woon je in Westland, Den Haag, Delft of omgeving? Kies je plaats en bekijk hoe snel je bij 4Mobiles in Naaldwijk bent of ontdek de mogelijkheden om je toestel op te sturen.",
+    "driveTime": "± {{min}} min rijden",
+    "homeCity": "Je bent er al!",
     "steps": [
       {
-        "title": "Als per ervaring",
-        "sub": "Meer dan 15 jaar expertise"
+        "title": "Experts sinds 2011",
+        "sub": "Meer dan 15 jaar ervaring"
       },
       {
         "title": "Gratis diagnose",
@@ -824,80 +821,143 @@
         "sub": "Meeste reparaties < 60 min"
       },
       {
-        "title": "Snel geholpen",
-        "sub": "90 dagen garantie"
+        "title": "90 dagen garantie",
+        "sub": "No cure, no pay"
       }
     ],
     "citiesEyebrow": "SERVICEGEBIEDEN",
-    "citiesTitle": "Populaire servicegebieden",
+    "citiesTitle": "Kies jouw woonplaats",
     "cities": [
       {
-        "name": "Westland",
-        "sub": "iPhone, Samsung, iPad reparaties",
-        "slug": "westland"
+        "name": "'s-Gravenzande",
+        "minutes": 8,
+        "slug": "s-gravenzande"
       },
       {
-        "name": "Den Haag",
-        "sub": "Scherm, batterij en meer",
-        "slug": "den-haag"
+        "name": "Monster",
+        "minutes": 10,
+        "slug": "monster"
+      },
+      {
+        "name": "De Lier",
+        "minutes": 8,
+        "slug": "de-lier"
+      },
+      {
+        "name": "Wateringen",
+        "minutes": 14,
+        "slug": "wateringen"
+      },
+      {
+        "name": "Poeldijk",
+        "minutes": 8,
+        "slug": "poeldijk"
+      },
+      {
+        "name": "Honselersdijk",
+        "minutes": 5,
+        "slug": "honselersdijk"
+      },
+      {
+        "name": "Maasdijk",
+        "minutes": 10,
+        "slug": "maasdijk"
+      },
+      {
+        "name": "Kwintsheul",
+        "minutes": 11,
+        "slug": "kwintsheul"
+      },
+      {
+        "name": "Hoek van Holland",
+        "minutes": 17,
+        "slug": "hoek-van-holland"
+      },
+      {
+        "name": "Rijswijk",
+        "minutes": 20,
+        "slug": "rijswijk"
       },
       {
         "name": "Delft",
-        "sub": "Officiële 4Mobiles service",
+        "minutes": 18,
         "slug": "delft"
       },
       {
-        "name": "Naaldwijk",
-        "sub": "Onze thuisbasis",
-        "slug": "naaldwijk"
-      },
-      {
-        "name": "Middelharnis",
-        "sub": "Snel gerepareerd",
-        "slug": "middelharnis"
-      },
-      {
-        "name": "Monster",
-        "sub": "Snelle service regio",
-        "slug": "monster"
-      }
-    ],
-    "cityData": {
-      "westland": {
-        "name": "Westland",
-        "region": "regio Westland",
-        "desc": "Wij repareren dagelijks smartphones en tablets voor inwoners van Westland. iPhone, Samsung, iPad — snel en eerlijk bij 4Mobiles in Naaldwijk."
-      },
-      "den-haag": {
         "name": "Den Haag",
-        "region": "Den Haag en omgeving",
-        "desc": "Klanten uit Den Haag en omgeving vinden ons centraal gelegen in Naaldwijk. Snelle service, eerlijke prijzen, vakkundige reparaties."
+        "minutes": 24,
+        "slug": "den-haag"
       },
-      "delft": {
-        "name": "Delft",
-        "region": "Delft en Midden-Delfland",
-        "desc": "Vanuit Delft ben je zo bij ons. 4Mobiles staat klaar voor al je telefoon- en tabletreparaties."
-      },
-      "naaldwijk": {
+      {
         "name": "Naaldwijk",
-        "region": "Naaldwijk centrum",
-        "desc": "Wij zitten in het hart van Naaldwijk. Loop gerust binnen voor een snelle diagnose of reparatie."
-      },
-      "middelharnis": {
-        "name": "Middelharnis",
-        "region": "Goeree-Overflakkee",
-        "desc": "Ook vanuit Middelharnis helpen wij je graag. Meld je aan en kom langs voor een vakkundige reparatie."
-      },
-      "monster": {
-        "name": "Monster",
-        "region": "Westland kust",
-        "desc": "Vanuit Monster ben je zo in Naaldwijk. 4Mobiles repareert je toestel snel en professioneel."
+        "minutes": 0,
+        "slug": "naaldwijk",
+        "isHome": true
       }
+    ]
+  },
+  "regioCity": {
+    "hero": {
+      "title": "iPhone kapot in",
+      "titleAccent": "{{city}}?",
+      "subPrefix": "Vanuit {{city}} ben je vaak in circa",
+      "subBold": "{{minutes}} min",
+      "subSuffix": "bij 4Mobiles in Naaldwijk. Veel reparaties zijn binnen 30–60 minuten klaar."
     },
-    "ctaTitle": "Niet in jouw stad?",
-    "ctaSub": "Wij helpen klanten uit de hele regio. Neem contact op — we kijken mee!",
-    "whatsappUs": "WhatsApp ons",
-    "callDirect": "Bel direct"
+    "mhero": {
+      "titleSuffix": "kapot in {{city}}?",
+      "sub1": "Vanuit {{city}} ben je in circa {{minutes}} min bij 4Mobiles in Naaldwijk."
+    },
+    "serviceBlock": {
+      "eyebrow": "Voor klanten uit {{city}}",
+      "heading": "Even naar Naaldwijk. Je telefoon gemaakt terwijl jij winkelt.",
+      "body": "Lever je toestel bij ons in, parkeer gratis en loop het gezellige winkelgebied van Naaldwijk in. Terwijl jij winkelt of ergens een koffie drinkt, repareren wij je telefoon vaak binnen 30–60 minuten.",
+      "photoCaption": "Winkelrijk Naaldwijk",
+      "row1Title": "± {{minutes}} min rijden",
+      "row1Sub": "Vanuit {{city}}",
+      "row2Title": "Gratis parkeren",
+      "row2Sub": "In het centrum van Naaldwijk",
+      "row3Title": "Lekker overdekt winkelen",
+      "row3Sub": "Terwijl wij je telefoon repareren",
+      "row4Title": "Veel reparaties 30–60 min",
+      "row4Sub": "Klaar terwijl je winkelt",
+      "ctaRoute": "Bekijk route",
+      "ctaShipping": "Liever niet langskomen? Bekijk verzendservice →"
+    },
+    "seo": {
+      "h2": "iPhone en telefoon reparatie voor {{city}}",
+      "p1Pre": "Zoek je een betrouwbare telefoon reparatie in {{city}}? Vanuit {{city}} ben je onder ideale omstandigheden in ongeveer {{minutes}} minuten bij 4Mobiles in Naaldwijk. Hier repareren we dagelijks ",
+      "p1LinkIphone": "iPhones",
+      "p1Mid": ", ",
+      "p1LinkSamsung": "Samsung-toestellen",
+      "p1Post": ", Google Pixels en andere smartphones en tablets.",
+      "p2Pre": "Of het nu gaat om een ",
+      "p2LinkScreen": "gebarsten scherm",
+      "p2Mid1": ", een ",
+      "p2LinkBattery": "batterij die snel leegloopt",
+      "p2Mid2": ", ",
+      "p2LinkCharging": "problemen met opladen",
+      "p2Post": ", de camera of een andere storing: je ziet vooraf welke reparatie bij jouw toestel past en wat deze kost. Veel voorkomende reparaties zijn binnen 30–60 minuten klaar, zodat je jouw telefoon meestal dezelfde dag weer kunt gebruiken.",
+      "p3Pre": "Ook voor een ",
+      "p3LinkIphoneRepair": "iPhone reparatie",
+      "p3Post": " vanuit {{city}} kun je bij ons terecht. Van scherm- en batterijvervanging tot camera-, laad- en andere reparaties: onze monteurs werken dagelijks aan verschillende iPhone-modellen. Op onze reparaties ontvang je 90 dagen garantie en dankzij no cure, no pay betaal je niet wanneer we het probleem niet kunnen verhelpen.",
+      "h3Route": "Vanuit {{city}} naar 4Mobiles in Naaldwijk",
+      "p4": "Een reparatie hoeft je niet meteen een halve dag te kosten. Vanuit {{city}} rijd je in circa {{minutes}} minuten naar onze winkel in het centrum van Naaldwijk. Je kunt in de omgeving gratis parkeren en vanuit 4Mobiles loop je zo het gezellige winkelgebied van Naaldwijk in.",
+      "p5": "Lever je telefoon bij ons af en ga ondertussen winkelen, loop door het overdekte winkelcentrum of drink ergens een koffie. Veel reparaties zijn klaar terwijl je nog in het centrum bent. Zo combineer je de rit vanuit {{city}} eenvoudig met een bezoek aan Naaldwijk en hoef je niet in de winkel op je reparatie te wachten.",
+      "h3Shipping": "Liever je telefoon opsturen?",
+      "p6Pre": "Kun of wil je niet naar Naaldwijk rijden? Dan kun je jouw toestel ook naar 4Mobiles ",
+      "p6LinkShipping": "opsturen",
+      "p6Post": ". Na ontvangst controleren en repareren we het toestel en sturen we het daarna weer naar je terug. Zo kun je ook vanuit {{city}} gebruikmaken van onze reparatieservice zonder zelf naar de winkel te komen."
+    },
+    "faq": {
+      "distanceQ": "Hoe ver is 4Mobiles vanaf {{city}}?",
+      "distanceA": "Vanuit {{city}} ben je onder ideale omstandigheden circa {{minutes}} minuten rijden van onze winkel in het centrum van Naaldwijk. Je kunt er gratis parkeren.",
+      "shippingQ": "Kan ik mijn telefoon vanuit {{city}} ook opsturen?",
+      "shippingA": "Ja. Kun of wil je niet naar Naaldwijk rijden, dan kun je jouw toestel ook veilig naar ons opsturen. Na ontvangst controleren en repareren we het toestel en sturen we het weer naar je terug."
+    },
+    "locations": {
+      "note": "Vanuit {{city}} naar 4Mobiles Naaldwijk — circa {{minutes}} min rijden."
+    }
   },
   "zakelijk": {
     "eyebrow": "ZAKELIJK",

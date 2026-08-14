@@ -1,14 +1,20 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 import { PhoneAnimation } from './PhoneAnimation'
 
 interface HeroProps {
   accent: string
+  title?: string
+  titleAccent?: string
+  sub?: ReactNode
 }
 
-export function Hero({ accent: _accent }: HeroProps) {
+export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
   const { t } = useTranslation()
+  const heroTitle = title ?? t('hero.title')
+  const heroTitleAccent = titleAccent ?? t('hero.titleAccent')
+  const heroSub = sub ?? t('hero.sub')
   const [device, setDevice] = useState('iPhone')
   const [announcementVisible, setAnnouncementVisible] = useState(() => {
     try {
@@ -71,11 +77,11 @@ export function Hero({ accent: _accent }: HeroProps) {
           </div>
 
           <h1 className="hero-title">
-            {t('hero.title')}<br />
-            <span className="hero-title-accent">{t('hero.titleAccent')}</span>
+            {heroTitle}<br />
+            <span className="hero-title-accent">{heroTitleAccent}</span>
           </h1>
 
-          <p className="hero-sub">{t('hero.sub')}</p>
+          <p className="hero-sub">{heroSub}</p>
 
           <div className="repair-finder">
             <div className="finder-label">

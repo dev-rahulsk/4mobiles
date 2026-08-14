@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 
@@ -17,10 +17,16 @@ const mapRange = (p: number, a: number, b: number) => clamp01((p - a) / (b - a))
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-interface MobileHeroProps { accent?: string }
+interface MobileHeroProps {
+  accent?: string
+  titleSuffix?: string
+  sub1?: ReactNode
+}
 
-export function MobileHero({ accent: _accent }: MobileHeroProps) {
+export function MobileHero({ accent: _accent, titleSuffix, sub1 }: MobileHeroProps) {
   const { t } = useTranslation()
+  const heroTitleSuffix = titleSuffix ?? t('mhero.titleSuffix')
+  const heroSub1 = sub1 ?? t('mhero.sub1')
   const wrapRef = useRef<HTMLElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -155,7 +161,7 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
                       </span>
                     ))}
                   </span>{' '}
-                  {t('mhero.titleSuffix')}
+                  {heroTitleSuffix}
                 </h1>
                 <h1
                   className="mhero-title mhero-title-done"
@@ -172,7 +178,7 @@ export function MobileHero({ accent: _accent }: MobileHeroProps) {
                     {t('mhero.title2')} <span className="mhero-accent">{t('mhero.titleAccent')}</span> {t('mhero.title3')}
                   </p>
                   <p className="mhero-sub">
-                    {t('mhero.sub1')}<br />
+                    {heroSub1}<br />
                     {t('mhero.sub2')}<br />
                     {t('mhero.sub3')}
                   </p>

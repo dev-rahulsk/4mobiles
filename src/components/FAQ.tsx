@@ -2,13 +2,23 @@ import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 import { FaqAccordion } from './FaqAccordion'
 
-export function FAQ() {
+interface FaqItem {
+  q: string
+  a: string
+}
+
+interface FAQProps {
+  items?: FaqItem[]
+}
+
+export function FAQ({ items }: FAQProps) {
   const { t } = useTranslation()
 
-  const faqs = [0, 1, 2, 3, 4, 5].map(i => ({
+  const defaultFaqs = [0, 1, 2, 3, 4, 5].map(i => ({
     q: t(`faq.items.${i}.q`),
     a: t(`faq.items.${i}.a`),
   }))
+  const faqs = items ?? defaultFaqs
 
   return (
     <section className="section faq" id="faq">

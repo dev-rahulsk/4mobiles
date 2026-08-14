@@ -5,6 +5,7 @@ import { AboutUs } from './pages/AboutUs'
 import { Reviews } from './pages/Reviews'
 import { Contact } from './pages/Contact'
 import { Regio } from './pages/Regio'
+import { RegioCity } from './pages/RegioCity'
 import { Producten } from './pages/Producten'
 import { Zakelijk } from './pages/Zakelijk'
 import { Blog } from './pages/Blog'
@@ -37,7 +38,7 @@ export default function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/regio" element={<Regio />} />
-        <Route path="/regio/:city" element={<Regio />} />
+        <Route path="/regio/:city" element={<RegioCity />} />
         <Route path="/producten" element={<Producten />} />
         <Route path="/zakelijk" element={<Zakelijk />} />
         <Route path="/blog" element={<Blog />} />

@@ -135,6 +135,23 @@ const Truck = (p: IconProps) => (
   </svg>
 )
 
+const Car = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M3.5 16v-3.5l2-5a2 2 0 0 1 1.9-1.4h9.2a2 2 0 0 1 1.9 1.4l2 5V16" />
+    <path d="M3.5 16h17M5 16v2M19 16v2" />
+    <circle cx="7.5" cy="16" r="1.6" />
+    <circle cx="16.5" cy="16" r="1.6" />
+  </svg>
+)
+
+const Bag = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M6.5 3.5 4 8v11.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V8l-2.5-4.5z" />
+    <path d="M4 8h16" />
+    <path d="M15.5 11a3.5 3.5 0 0 1-7 0" />
+  </svg>
+)
+
 const Star = (p: IconProps) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
     <path d="m12 3 2.7 5.5 6 .9-4.4 4.3 1 6L12 16.9 6.7 19.7l1-6L3.4 9.4l6-.9z" />
@@ -386,7 +403,7 @@ const Target = (p: IconProps) => (
 export const Icon = {
   Search, Phone, Tablet, Laptop, Watch, Battery, Drop, Crack, Speaker,
   Camera, Wrench, Check, Pin, Clock, Shield, Euro, Park, Calendar, Truck,
-  Star, ArrowRight, Chat, Plus, Menu, Cart, WhatsApp, X, Quote, MapLink,
+  Star, ArrowRight, Chat, Plus, Menu, Cart, WhatsApp, X, Quote, MapLink, Car, Bag,
   ChevronDown, ChevronLeft, ChevronRight, Zap, Google, Apple, Users, Headset, Devices, Accessory, Info, HelpCircle, User, Scale, ShieldCheck, Store,
   Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target, Edit, Book,
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 
@@ -19,7 +19,11 @@ const WEEK_HOURS = [
   '09:30 – 17:00',
 ]
 
-export function Locations() {
+interface LocationsProps {
+  regionalNote?: ReactNode
+}
+
+export function Locations({ regionalNote }: LocationsProps) {
   const { t } = useTranslation()
   const [copied, setCopied] = useState(false)
   const days = t('contact.days', { returnObjects: true }) as string[]
@@ -68,6 +72,8 @@ export function Locations() {
                   {copied ? t('contact.copied') : t('contact.copyAddress')}
                 </button>
               </div>
+
+              {regionalNote && <p className="ct-address-note">{regionalNote}</p>}
 
               <div className="ct-map-ctas">
                 <a

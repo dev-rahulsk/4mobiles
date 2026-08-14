@@ -7574,6 +7574,19 @@ input {
   color: #7ab827;
 }
 
+.ct-address-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin: -4px 0 18px;
+}
+
 .ct-map-embed {
   margin-bottom: 20px;
   border-radius: 12px;
@@ -7655,169 +7668,21 @@ input {
 
 /* ============================================
    REGIONAL PAGE — /regio
+   Hero and cities share the same light tri-color gradient used on
+   the repair, reviews, blog and FAQ pages, so the whole section
+   reads as one continuous surface, per site convention.
    ============================================ */
 .rg-hero {
-  background: var(--ink-50);
-  padding: 72px 0 56px;
-  border-bottom: 1px solid var(--ink-100);
+  background:
+    linear-gradient(90deg, rgba(122, 184, 39, .10), rgba(37, 99, 235, .07), rgba(245, 158, 11, .09)),
+    rgba(255, 255, 255, .96);
+  padding: 40px 0 0;
+  overflow: hidden;
 }
 
 @media (min-width: 1024px) {
   .rg-hero {
     padding-top: var(--section-space-desktop);
-  }
-}
-
-.rg-hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 56px;
-  align-items: center;
-}
-
-.rg-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12.5px;
-  color: var(--ink-400);
-  margin-bottom: 16px;
-}
-
-.rg-breadcrumb a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.rg-breadcrumb a:hover {
-  text-decoration: underline;
-}
-
-.rg-hero-title {
-  font-size: clamp(26px, 3.5vw, 42px);
-  font-weight: 800;
-  color: var(--ink-900);
-  margin: 0 0 16px;
-  line-height: 1.2;
-}
-
-.rg-hero-sub {
-  font-size: 15.5px;
-  line-height: 1.7;
-  color: var(--ink-500);
-  margin: 0 0 28px;
-}
-
-.rg-hero-ctas {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.rg-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: opacity .15s;
-  cursor: pointer;
-  border: none;
-}
-
-.rg-btn:hover {
-  opacity: .85;
-}
-
-.rg-btn-outline {
-  border: 1.5px solid var(--ink-300);
-  color: var(--ink-700);
-  background: transparent;
-}
-
-.rg-hero-map {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.rg-map-visual {
-  width: 100%;
-  aspect-ratio: 1;
-  max-width: 280px;
-  background: #fff;
-  border: 1.5px solid var(--ink-200);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: var(--accent);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink-500);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, .06);
-}
-
-.rg-map-visual svg {
-  color: var(--accent);
-}
-
-.rg-steps {
-  background: var(--ink-900);
-  padding: 36px 0;
-}
-
-.rg-steps-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-}
-
-.rg-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px 24px;
-  border-right: 1px solid var(--ink-700);
-}
-
-.rg-step:last-child {
-  border-right: none;
-}
-
-.rg-step-icon {
-  color: var(--accent);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.rg-step-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #fff;
-  margin: 0 0 2px;
-}
-
-.rg-step-sub {
-  font-size: 12px;
-  color: var(--ink-400);
-  margin: 0;
-}
-
-.rg-cities {
-  padding: 72px 0;
-  background: #fff;
-}
-
-@media (min-width: 1024px) {
-  .rg-cities {
-    padding-top: var(--section-space-desktop);
-    padding-bottom: var(--section-space-desktop);
   }
 }
 
@@ -7831,24 +7696,55 @@ input {
   margin-bottom: 12px;
 }
 
-.rg-cities-title {
-  font-size: clamp(22px, 2.5vw, 30px);
+.rg-hero-title {
+  font-size: clamp(26px, 3.5vw, 42px);
   font-weight: 800;
   color: var(--ink-900);
-  margin: 0 0 36px;
+  margin: 0 0 16px;
+  line-height: 1.2;
+  max-width: 720px;
+}
+
+.rg-hero-sub {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink-500);
+  margin: 0;
+  max-width: 640px;
+}
+
+.rg-cities {
+  padding: 40px 0 72px;
+  background:
+    linear-gradient(90deg, rgba(122, 184, 39, .10), rgba(37, 99, 235, .07), rgba(245, 158, 11, .09)),
+    rgba(255, 255, 255, .96);
+}
+
+@media (min-width: 1024px) {
+  .rg-cities {
+    padding-bottom: var(--section-space-desktop);
+  }
+}
+
+.rg-cities-title {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 800;
+  color: var(--ink-900);
+  margin: 0 0 24px;
 }
 
 .rg-cities-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+  margin-bottom: 40px;
 }
 
 .rg-city-card {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 20px 20px;
+  padding: 18px;
   border: 1.5px solid var(--ink-100);
   border-radius: 14px;
   text-decoration: none;
@@ -7856,14 +7752,14 @@ input {
   transition: border-color .15s, box-shadow .15s;
 }
 
-.rg-city-card:hover {
+a.rg-city-card:hover {
   border-color: var(--accent);
   box-shadow: 0 4px 16px rgba(0, 0, 0, .06);
 }
 
 .rg-city-pin {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 12px;
   background: var(--accent-soft);
   color: var(--accent);
@@ -7875,24 +7771,103 @@ input {
 
 .rg-city-info {
   flex: 1;
+  min-width: 0;
 }
 
 .rg-city-name {
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 700;
   color: var(--ink-800);
   margin: 0 0 3px;
 }
 
-.rg-city-sub {
+.rg-city-drivetime {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 12.5px;
   color: var(--ink-400);
+  margin: 0;
+}
+
+.rg-city-drivetime svg {
+  flex-shrink: 0;
+}
+
+.rg-city-home-label {
+  font-size: 12.5px;
+  color: var(--accent-dark);
+  font-weight: 600;
   margin: 0;
 }
 
 .rg-city-arrow {
   color: var(--accent);
   flex-shrink: 0;
+}
+
+/* Trust row — wrapped in its own white card, same treatment as the
+   shared page-bottom-cta card, sitting on top of the gradient. */
+.rg-trust-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: #fff;
+  border: 1px solid var(--ink-100);
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .04);
+}
+
+.rg-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  border-right: 1px solid var(--ink-100);
+}
+
+.rg-trust-item:first-child {
+  padding-left: 0;
+}
+
+.rg-trust-item:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.rg-trust-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.rg-trust-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink-900);
+  margin: 0 0 2px;
+}
+
+.rg-trust-sub {
+  font-size: 13px;
+  color: var(--ink-500);
+  margin: 0;
+}
+
+@media (max-width: 991px) {
+  .rg-cities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rg-trust-card {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .rg-trust-item {
+    border-right: none;
+    padding: 0;
+  }
 }
 
 .rg-cta {
@@ -7938,28 +7913,6 @@ input {
 }
 
 @media (max-width: 768px) {
-  .rg-hero-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .rg-hero-map {
-    display: none;
-  }
-
-  .rg-steps-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .rg-step {
-    border-right: none;
-    border-bottom: 1px solid var(--ink-700);
-  }
-
-  .rg-step:nth-child(2),
-  .rg-step:last-child {
-    border-bottom: none;
-  }
-
   .rg-cities-grid {
     grid-template-columns: 1fr;
   }
@@ -7971,17 +7924,239 @@ input {
 }
 
 @media (max-width: 480px) {
-  .rg-steps-grid {
+  .rg-trust-card {
     grid-template-columns: 1fr;
+    gap: 0;
+    padding: 20px;
   }
 
-  .rg-step {
-    border-bottom: 1px solid var(--ink-700) !important;
+  .rg-trust-item {
+    padding: 16px 0;
+    border-top: 1px solid var(--ink-100);
   }
 
-  .rg-step:last-child {
-    border-bottom: none !important;
+  .rg-trust-item:first-child {
+    padding-top: 0;
+    border-top: none;
   }
+
+  .rg-trust-item:last-child {
+    padding-bottom: 0;
+  }
+}
+
+/* ============================================
+   REGIONAL SERVICE BLOCK — /regio/:city
+   Sits directly under the (regionally-worded) Hero.
+   ============================================ */
+.rsb {
+  padding-block: var(--section-space-mobile);
+  background: #fff;
+}
+
+@media (min-width: 1024px) {
+  .rsb {
+    padding-block: var(--section-space-desktop);
+  }
+}
+
+.rsb-card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--ink-100);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, .06);
+}
+
+.rsb-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.rsb-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.rsb-heading {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 800;
+  color: var(--ink-900);
+  line-height: 1.25;
+  margin: 0 0 14px;
+}
+
+.rsb-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-500);
+  margin: 0 0 24px;
+}
+
+.rsb-photo-placeholder {
+  aspect-ratio: 16/9;
+  border-radius: 16px;
+  margin: 0 0 24px;
+  background: linear-gradient(135deg, var(--accent-soft), rgba(37, 99, 235, .08));
+  border: 1px solid rgba(122, 184, 39, .18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--accent-dark);
+}
+
+.rsb-photo-placeholder figcaption {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.rsb-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.rsb-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--ink-100);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.rsb-row-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rsb-row-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.rsb-row-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-800);
+  margin: 0 0 2px;
+}
+
+.rsb-row-sub {
+  font-size: 12.5px;
+  color: var(--ink-400);
+  margin: 0;
+}
+
+.rsb-row-chevron {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.rsb-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity .15s;
+  margin-bottom: 16px;
+}
+
+.rsb-cta:hover {
+  opacity: .9;
+}
+
+.rsb-secondary-link {
+  display: block;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .rsb-card {
+    padding: 24px 20px;
+  }
+}
+
+/* ============================================
+   REGIONAL SEO SECTION — /regio/:city
+   Mirrors the .zk-seo-* prose pattern (Zakelijk page).
+   ============================================ */
+.regio-seo-section {
+  padding: 56px 0 72px;
+  background: #fff;
+  border-top: 1.5px solid var(--ink-100);
+}
+
+@media (min-width: 1024px) {
+  .regio-seo-section {
+    padding-top: var(--section-space-desktop);
+    padding-bottom: var(--section-space-desktop);
+  }
+}
+
+.regio-seo-h2 {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+  color: var(--ink-900);
+  margin: 0 0 18px;
+  max-width: 760px;
+}
+
+.regio-seo-h3 {
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 700;
+  color: var(--ink-900);
+  margin: 32px 0 12px;
+  max-width: 760px;
+}
+
+.regio-seo-text {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--ink-500);
+  margin: 0 0 16px;
+  max-width: 760px;
+}
+
+.regio-seo-text:last-child {
+  margin-bottom: 0;
+}
+
+.regio-seo-text a {
+  color: var(--accent-dark);
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 /* ============================================
@@ -12067,7 +12242,6 @@ input {
   .aou-btn,
   .rv2-btn,
   .ct-btn,
-  .rg-btn,
   .pd-btn,
   .zk-btn,
   .bl-btn,
@@ -12397,42 +12571,19 @@ input {
 
 @media (max-width: 768px) {
   .rg-hero {
-    padding: 48px 0 40px;
+    padding: calc(var(--nav-fixed-bottom, 70px) + 32px) 0 0;
   }
 
   .rg-hero-sub {
     font-size: 14.5px;
-    margin-bottom: 20px;
-  }
-
-  .rg-hero-ctas {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .rg-btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .rg-steps {
-    padding: 28px 0;
-  }
-
-  .rg-step {
-    padding: 14px 16px;
-  }
-
-  .rg-cities {
-    padding: 48px 0;
   }
 
   .rg-cities-title {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .rg-city-card {
-    padding: 16px;
+    padding: 14px 16px;
     gap: 12px;
   }
 
@@ -12462,23 +12613,15 @@ input {
 
 @media (max-width: 480px) {
   .rg-hero {
-    padding: 40px 0 32px;
+    padding: calc(var(--nav-fixed-bottom, 70px) + 28px) 0 0;
   }
 
-  .rg-cities {
-    padding: 40px 0;
+  .rg-trust-title {
+    font-size: 14.5px;
   }
 
-  .rg-step {
-    gap: 10px;
-  }
-
-  .rg-step-title {
-    font-size: 13px;
-  }
-
-  .rg-step-sub {
-    font-size: 11px;
+  .rg-trust-sub {
+    font-size: 12.5px;
   }
 }
 
@@ -18196,7 +18339,6 @@ input {
   .ct-methods-section,
   .ct-info-section,
   .ct-visit-section,
-  .rg-steps,
   .rg-cities,
   .bp-section,
   .bp-related,
