@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { MobileHero, GlassBadge } from '../components/global'
+import { MobileHero, GlassBadge, DesktopHero } from '../components/global'
 import aboutMobileHeroImg from '../assets/ChatGPT_Image_10_jul_2026_11_20_55.png'
+import aboutDesktopHeroImg from '../assets/new_desktop_hero.png'
 import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
 import { breadcrumbSchema } from '../lib/seo/schema'
@@ -23,47 +24,27 @@ export function AboutUs() {
 
         {/* ─── SECTION 01: HERO ───────────────────────────────────────────── */}
         <div className="g-desktop-only">
-          <section className="aou-hero-v2">
-            <div className="container aou-hero-v2-container">
-              <div className="aou-hero-v2-content">
-                <span className="aou-tag-badge">{t('aboutUs.hero.eyebrow')}</span>
-                <h1 className="aou-hero-v2-title">
-                  {t('aboutUs.hero.titleLine1')}<br />
-                  {t('aboutUs.hero.titleLine2Pre')}{t('aboutUs.hero.titleAccent')}{t('aboutUs.hero.titleLine2Post')}
-                </h1>
-                <p className="aou-hero-v2-sub">
-                  {t('aboutUs.hero.sub')}
-                </p>
-
-                {/* 3 Glassmorphism Badges */}
-                <div className="aou-hero-v2-badges">
-                  <div className="aou-glass-badge">
-                    <div className="aou-glass-icon"><Icon.Shield width={20} height={20} /></div>
-                    <div className="aou-glass-text">
-                      <strong>{t('aboutUs.hero.badge1Value')}</strong>
-                      <span>{t('aboutUs.hero.badge1Label')}</span>
-                    </div>
-                  </div>
-
-                  <div className="aou-glass-badge">
-                    <div className="aou-glass-icon"><Icon.Star width={20} height={20} /></div>
-                    <div className="aou-glass-text">
-                      <strong>{t('aboutUs.hero.badge2Value')}</strong>
-                      <span>{t('aboutUs.hero.badge2Label')}</span>
-                    </div>
-                  </div>
-
-                  <div className="aou-glass-badge">
-                    <div className="aou-glass-icon"><Icon.Wrench width={20} height={20} /></div>
-                    <div className="aou-glass-text">
-                      <strong>{t('aboutUs.hero.badge3Value')}</strong>
-                      <span>{t('aboutUs.hero.badge3Label')}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <DesktopHero
+            eyebrow={t('aboutUs.hero.eyebrow')}
+            title={
+              <>
+                {t('aboutUs.hero.titleLine1')}{' '}
+                {t('aboutUs.hero.titleLine2Pre')}
+                <span className="accent">{t('aboutUs.hero.titleAccent')}</span>
+                {t('aboutUs.hero.titleLine2Post')}
+              </>
+            }
+            description={t('aboutUs.hero.subMobile')}
+            cta={{ label: t('aboutUs.hero.cta'), href: '/contact' }}
+            image={{ src: aboutDesktopHeroImg, alt: t('aboutUs.hero.imageAlt') }}
+            imagePosition="center 38%"
+            badges={[
+              { icon: Icon.Shield, value: t('aboutUs.hero.badge1Value'), title: t('aboutUs.hero.badge1Label') },
+              { icon: Icon.Google, value: t('aboutUs.hero.badge2Value'), title: t('aboutUs.hero.badge2Label'), rating: 5 },
+              { icon: Icon.Wrench, value: t('aboutUs.hero.badge3Value'), title: t('aboutUs.hero.badge3Label') },
+              { icon: Icon.ShieldCheck, value: t('aboutUs.hero.badge4Value'), title: t('aboutUs.hero.badge4Label') },
+            ]}
+          />
         </div>
 
         <div className="g-mobile-only">

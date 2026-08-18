@@ -2,18 +2,17 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { Pill, MobileHero, GlassBadge, CtaButton } from '../components/global'
+import { Pill, MobileHero, GlassBadge, CtaButton, DesktopHero } from '../components/global'
 import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
 import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
-import desktopHeroImg from '../assets/business_desktop_hero.png'
+import desktopBusinessHeroImg from '../assets/new_desktop_hero.png'
 import mobileHeroImg from '../assets/business_mobile_hero.png'
 import section4Img from '../assets/section_4_image.png'
 import section4MobileImg from '../assets/ChatGPT_Image_10_aug_2026_19_39_28.png'
 import sec5DesktopImg from '../assets/section_5_image1.png'
 import sec5MobileImg from '../assets/section_5_mobilei_image.png'
 
-const DESKTOP_STAT_ICONS = [Icon.Apple, Icon.Calendar, Icon.Wrench, Icon.Users]
 const MOBILE_STAT_ICONS = [Icon.Star, Icon.Calendar, Icon.Wrench, Icon.Users]
 const SERVICE_ICONS = [Icon.Wrench, Icon.Shield, Icon.Accessory, Icon.Devices, Icon.Pin, Icon.Headset]
 
@@ -187,61 +186,27 @@ export function Zakelijk() {
       <JsonLd data={faqPageSchema(businessFaqs)} />
       {/* Business Page Hero Section */}
       <section className="zk-hero-section">
-        {/* DESKTOP HERO VIEW */}
-        <div className="zk-hero-desktop-wrapper">
-          <div className="zk-hero-container">
-            {/* White Top Hero Card */}
-            <div className="zk-hero-card">
-              <div className="zk-hero-left">
-                <span className="zk-eyebrow-tag">{t('zakelijk.eyebrow')}</span>
-                <h1 className="zk-hero-h1">
-                  {t('zakelijk.heroTitle1')}<br />
-                  <span className="zk-green-text">{t('zakelijk.heroTitleAccent')}</span>
-                </h1>
-                <p className="zk-hero-body">{t('zakelijk.heroSub')}</p>
-                <div className="zk-hero-cta-wrap">
-                  <a href="/contact" className="zk-btn-green-pill">
-                    <Icon.Phone width="18" height="18" />
-                    {t('zakelijk.contactUs')}
-                  </a>
-                </div>
-              </div>
-              <div className="zk-hero-right">
-                <div className="zk-hero-img-mask">
-                  <img src={desktopHeroImg} alt={t('zakelijk.heroImgPlaceholder')} className="zk-hero-desktop-img" />
-                </div>
-              </div>
-            </div>
-
-            {/* Dark Bottom Stat Bar — Infinite Marquee */}
-            <div className="zk-dark-stats-bar">
-              <div className="zk-marquee-track">
-                <div className="zk-marquee-inner">
-                  {[...stats, ...stats].map((s, i) => {
-                    const Ic = DESKTOP_STAT_ICONS[i % DESKTOP_STAT_ICONS.length] || Icon.Star
-                    return (
-                      <div key={i} className="zk-dark-stat-card">
-                        <div className="zk-dark-stat-icon-tile">
-                          <Ic width="26" height="26" />
-                        </div>
-                        <div className="zk-dark-stat-content">
-                          <span className="zk-dark-stat-num">{s.num}</span>
-                          <span className="zk-dark-stat-label">{s.label}</span>
-                          {i % stats.length === 0 && (
-                            <div className="zk-dark-stat-stars">
-                              {Array.from({ length: 5 }, (_, k) => (
-                                <Icon.Star key={k} width="13" height="13" style={{ color: '#f59e0b' }} />
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* DESKTOP HERO VIEW — shared global DesktopHero component */}
+        <div className="g-desktop-only">
+          <DesktopHero
+            eyebrow={t('zakelijk.eyebrow')}
+            title={
+              <>
+                {t('zakelijk.heroTitle1')}{' '}
+                <span className="accent">{t('zakelijk.heroTitleAccent')}</span>
+              </>
+            }
+            description={t('zakelijk.heroSubShort')}
+            cta={{ label: t('zakelijk.contactUs'), href: '/contact' }}
+            image={{ src: desktopBusinessHeroImg, alt: t('zakelijk.heroImgPlaceholder') }}
+            imagePosition="center 38%"
+            badges={stats.map((s, i) => ({
+              icon: i === 0 ? Icon.Google : MOBILE_STAT_ICONS[i] || Icon.Star,
+              value: s.num,
+              title: s.label,
+              rating: i === 0 ? 5 : undefined,
+            }))}
+          />
         </div>
 
         {/* MOBILE HERO VIEW — shared global MobileHero component */}

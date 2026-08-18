@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { PageHero, MobileHero, GlassBadge, Pill } from '../components/global'
+import { MobileHero, GlassBadge, Pill, DesktopHero } from '../components/global'
 import reviewsHeroImg from '../assets/store_hero_bg.png'
 import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
@@ -77,63 +77,31 @@ export function Reviews() {
     <Layout>
       <Seo title={t('seo.reviews.title')} description={t('seo.reviews.description')} path="/reviews" />
       <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('nav.reviews'), path: '/reviews' }])} />
-      {/* Hero Section — shared global PageHero (desktop) / MobileHero (mobile) */}
+      {/* Hero Section — shared global DesktopHero (desktop) / MobileHero (mobile) */}
       <div className="g-desktop-only">
-        <PageHero
-          tone="light"
-          badgeCount={4}
-          className="rv2-page-hero"
-          image={{ src: reviewsHeroImg, alt: t('reviewsPage.eyebrow') }}
+        <DesktopHero
           eyebrow={t('reviewsPage.eyebrow')}
           title={
             <>
               {t('reviewsPage.heroTitle')}{' '}
-              <span style={{ color: 'var(--green-light)' }}>{t('reviewsPage.heroTitleAccent')}</span>
+              <span className="accent">{t('reviewsPage.heroTitleAccent')}</span>
             </>
           }
-          subtext={t('reviewsPage.heroSub')}
-          aside={
-            <>
-              {/* Google Rating Glass Card */}
-              <div className="rv2-glass-card rv2-rating-card-hero">
-                <div className="rv2-rating-header">
-                  <GoogleLogo size={36} />
-                  <div className="rv2-rating-score-box">
-                    <span className="rv2-big-score">4.8</span>
-                    <span className="rv2-max-score">/5</span>
-                  </div>
-                </div>
-                <div className="rv2-rating-stars-line">
-                  <Stars n={5} />
-                </div>
-                <p className="rv2-rating-subtext">{t('reviewsPage.heroRatingCount')}</p>
-              </div>
-
-              {/* Featured Quote Glass Card */}
-              <div className="rv2-glass-card rv2-quote-card-hero">
-                <div className="rv2-quote-mark">“</div>
-                <p className="rv2-quote-text">
-                  "{t('reviewsPage.heroQuoteText')}"
-                </p>
-                <div className="rv2-quote-author">
-                  <div className="rv2-quote-avatar">H</div>
-                  <div>
-                    <strong className="rv2-author-name">Hilde de Jong</strong>
-                    <span className="rv2-author-sub">{t('reviewsPage.heroQuoteDate')}</span>
-                  </div>
-                </div>
-              </div>
-            </>
-          }
-          badges={trustItems.map((item, index) => (
-            <GlassBadge
-              key={index}
-              icon={TRUST_ICONS[index] || Icon.Star}
-              value={item.val}
-              title={item.title}
-              text={item.sub}
-            />
-          ))}
+          description={t('reviewsPage.heroSub')}
+          cta={{
+            label: t('reviewsPage.reviewPromptCta'),
+            href: 'https://g.page/4mobiles/review',
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          }}
+          image={{ src: reviewsHeroImg, alt: t('reviewsPage.eyebrow') }}
+          imagePosition="center 38%"
+          badges={trustItems.map((item, index) => ({
+            icon: TRUST_ICONS[index] || Icon.Star,
+            value: item.val,
+            title: item.title,
+            rating: index === 3 ? 5 : undefined,
+          }))}
         />
       </div>
 

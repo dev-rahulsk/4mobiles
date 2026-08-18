@@ -2,12 +2,13 @@ import { useRef, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
-import { Pill, MobileHero, GlassBadge, CtaButton } from '../components/global'
+import { Pill, MobileHero, GlassBadge, CtaButton, DesktopHero } from '../components/global'
 import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
 import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
 
 import storeMobileHeroImg from '../assets/product_new_mobile_hero.png'
+import storeDesktopHeroImg from '../assets/new_desktop_hero.png'
 import desktopNewPhoneApprovedImg from '../assets/ChatGPT_Image_9_jul_2026%2C_19_57_39.png'
 import storeInteriorWideImg from '../assets/ChatGPT_Image_30_jul_2026_20_05_04.png'
 import newDeviceLayer1Img from '../assets/layer1.png'
@@ -48,32 +49,29 @@ const CITY_PILLS = [
 
 function ParallaxHero() {
   const { t } = useTranslation()
-  const bgRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (!bgRef.current) return
-      bgRef.current.style.transform = `translateY(${window.scrollY * 0.35}px)`
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const uspPillars = t('producten.uspPillars', { returnObjects: true }) as { title: string; sub: string }[]
 
   return (
-    <section className="pd-hero">
-      <div className="pd-hero-bg" ref={bgRef} />
-      <div className="pd-hero-overlay" />
-      <div className="container pd-hero-inner">
-        <div className="pd-hero-content">
-          <span className="pd-eyebrow">{t('producten.heroEyebrow')}</span>
-          <h1 className="pd-hero-title">{t('producten.heroTitle')}</h1>
-          <p className="pd-hero-sub">{t('producten.heroSub')}</p>
-          <a href="/contact" className="pd-hero-link">
-            {t('producten.heroLink')}
-          </a>
-        </div>
-      </div>
-    </section>
+    <DesktopHero
+      eyebrow={t('producten.heroEyebrow')}
+      title={
+        <>
+          {t('producten.heroTitleMobileLine1')} {t('producten.heroTitleMobileLine2Pre')}
+          <span className="accent">{t('producten.heroTitleMobileAccent')}</span>
+          {t('producten.heroTitleMobileLine2Post')} {t('producten.heroTitleMobileLine3')}
+        </>
+      }
+      description={t('producten.heroSubMobile')}
+      cta={{ label: t('producten.heroMobileCta'), href: '/contact' }}
+      image={{ src: storeDesktopHeroImg, alt: t('producten.heroBgAlt') }}
+      imagePosition="center 38%"
+      badges={[
+        { icon: Icon.Google, value: '4.8/5', title: t('producten.heroTrustGoogleLabel') },
+        { icon: Icon.Cart, value: t('producten.heroTrustCount'), title: t('producten.heroTrustCountSub') },
+        { icon: Icon.Truck, value: uspPillars[0]?.title, title: uspPillars[0]?.sub },
+        { icon: Icon.Chat, value: uspPillars[1]?.title, title: uspPillars[1]?.sub },
+      ]}
+    />
   )
 }
 
