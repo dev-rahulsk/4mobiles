@@ -260,13 +260,13 @@ export function Zakelijk() {
               <div key={i} className="zk-test-card">
                 <div className="zk-test-quote-icon">
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path d="M9.333 21.333C7.493 21.333 6 19.84 6 18V14.667C6 10.985 8.985 8 12.667 8h.666v2.667h-.666c-2.206 0-4 1.794-4 4v.666h4v6zm13.334 0C20.827 21.333 19.333 19.84 19.333 18V14.667c0-3.682 2.985-6.667 6.667-6.667H26.667v2.667H26c-2.206 0-4 1.794-4 4v.666h4v6z" fill="#16a34a" opacity="0.3" />
+                    <path d="M9.333 21.333C7.493 21.333 6 19.84 6 18V14.667C6 10.985 8.985 8 12.667 8h.666v2.667h-.666c-2.206 0-4 1.794-4 4v.666h4v6zm13.334 0C20.827 21.333 19.333 19.84 19.333 18V14.667c0-3.682 2.985-6.667 6.667-6.667H26.667v2.667H26c-2.206 0-4 1.794-4 4v.666h4v6z" fill="#7AB827" opacity="0.3" />
                   </svg>
                 </div>
                 <Stars n={item.stars} />
                 <p className="zk-test-text">{item.text}</p>
                 <div className="zk-test-author">
-                  <div className="zk-photo-avatar" style={{ background: i === 0 ? 'linear-gradient(135deg, #1e3a2f 0%, #16a34a 100%)' : 'linear-gradient(135deg, #1e2e3a 0%, #2563eb 100%)' }}>
+                  <div className="zk-photo-avatar" style={{ background: i === 0 ? 'linear-gradient(135deg, #1e3a2f 0%, #7AB827 100%)' : 'linear-gradient(135deg, #1e2e3a 0%, #2563eb 100%)' }}>
                     <span className="zk-avatar-initial">{item.initial}</span>
                   </div>
                   <div className="zk-author-info">

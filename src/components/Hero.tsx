@@ -57,21 +57,21 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
       </div>
 
       <div className="container hero-inner">
-        <div className="hero-content">
-          {announcementVisible && (
-            <div className="hero-announcement" role="banner">
-              <span className="hero-announcement-text">{t('ann.text')}</span>
-              <button
-                className="hero-announcement-close"
-                type="button"
-                aria-label={t('ann.dismiss')}
-                onClick={dismissAnnouncement}
-              >
-                <Icon.X width="18" height="18" />
-              </button>
-            </div>
-          )}
+        {announcementVisible && (
+          <div className="hero-announcement" role="banner">
+            <span className="hero-announcement-text">{t('ann.text')}</span>
+            <button
+              className="hero-announcement-close"
+              type="button"
+              aria-label={t('ann.dismiss')}
+              onClick={dismissAnnouncement}
+            >
+              <Icon.X width="18" height="18" />
+            </button>
+          </div>
+        )}
 
+        <div className="hero-content">
           <div className="hero-eyebrow">
             <span className="dot" /> {t('hero.eyebrow')}
           </div>

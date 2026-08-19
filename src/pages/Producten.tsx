@@ -9,10 +9,10 @@ import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
 
 import storeMobileHeroImg from '../assets/product_new_mobile_hero.png'
 import storeDesktopHeroImg from '../assets/new_desktop_hero.png'
-import desktopNewPhoneApprovedImg from '../assets/ChatGPT_Image_9_jul_2026%2C_19_57_39.png'
 import storeInteriorWideImg from '../assets/ChatGPT_Image_30_jul_2026_20_05_04.png'
 import newDeviceLayer1Img from '../assets/layer1.png'
 import newDeviceLeftHandImg from '../assets/lefthand_dummyfile.png'
+import newDeviceDesktopBgImg from '../assets/new_device_bg.png'
 import cases2Img from '../assets/cases2.png'
 import screenprotectors2Img from '../assets/screenprotectors2.png'
 import chargers2Img from '../assets/chargers2.png'
@@ -228,44 +228,61 @@ function DesktopNewPhoneSection() {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLDivElement>(null)
   const bgRef = useRef<HTMLImageElement>(null)
+  const giftRef = useRef<HTMLDivElement>(null)
   const textCardRef = useRef<HTMLDivElement>(null)
+  const [badgesIn, setBadgesIn] = useState(false)
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduceMotion) return
+    if (reduceMotion) { setBadgesIn(true); return }
 
     const smoothstep = (edge0: number, edge1: number, x: number) => {
       const t = Math.min(Math.max((x - edge0) / (edge1 - edge0), 0), 1)
       return t * t * (3 - 2 * t)
     }
 
-    const cur = { zoom: 0, reveal: 0 }
+    const cur = { gift: 0, zoom: 0, reveal: 0 }
     let rafId = 0
     let active = false
+    let badgesShown = false
 
     const getTargets = () => {
-      if (!sectionRef.current) return { zoom: 0, reveal: 0 }
+      if (!sectionRef.current) return { gift: 0, zoom: 0, reveal: 0 }
       const rect = sectionRef.current.getBoundingClientRect()
       const scrollableDistance = rect.height - window.innerHeight
-      if (scrollableDistance <= 0) return { zoom: 0, reveal: 0 }
+      if (scrollableDistance <= 0) return { gift: 0, zoom: 0, reveal: 0 }
       const p = Math.min(Math.max(-rect.top / scrollableDistance, 0), 1)
-      return { zoom: p, reveal: smoothstep(0, 0.55, p) }
+      return {
+        gift: smoothstep(0.05, 0.68, p),
+        zoom: p,
+        reveal: smoothstep(0.38, 0.82, p),
+      }
     }
 
     const render = () => {
-      if (!bgRef.current || !textCardRef.current) return
+      if (!bgRef.current || !giftRef.current || !textCardRef.current) return
       const target = getTargets()
-      cur.zoom += (target.zoom - cur.zoom) * 0.1
-      cur.reveal += (target.reveal - cur.reveal) * 0.14
+      cur.gift += (target.gift - cur.gift) * 0.07
+      cur.zoom += (target.zoom - cur.zoom) * 0.08
+      cur.reveal += (target.reveal - cur.reveal) * 0.1
 
-      const scale = 1 + cur.zoom * 0.04
-      const translateY = (1 - cur.reveal) * 48
+      const bgScale = 1.04 + cur.zoom * 0.03
+      const giftX = -cur.gift * 210
+      const giftY = cur.gift * 34
+      const giftRotate = -cur.gift * 3.5
 
-      bgRef.current.style.transform = `scale(${scale})`
-      textCardRef.current.style.transform = `translate3d(0, ${translateY}px, 0)`
+      bgRef.current.style.transform = `scale(${bgScale})`
+      giftRef.current.style.transform = `translate3d(${giftX}px, ${giftY}px, 0) rotate(${giftRotate}deg)`
+      textCardRef.current.style.transform = `translate3d(0, ${(1 - cur.reveal) * 40}px, 0)`
       textCardRef.current.style.opacity = `${cur.reveal}`
 
+      if (!badgesShown && cur.reveal > 0.5) {
+        badgesShown = true
+        setBadgesIn(true)
+      }
+
       const settled =
+        Math.abs(target.gift - cur.gift) < 0.001 &&
         Math.abs(target.zoom - cur.zoom) < 0.001 &&
         Math.abs(target.reveal - cur.reveal) < 0.001
 
@@ -300,16 +317,25 @@ function DesktopNewPhoneSection() {
     }
   }, [])
 
+  const badges = [
+    { icon: Icon.Store, label: t('producten.upsellBullet1') },
+    { icon: Icon.Devices, label: t('producten.upsellBullet2') },
+    { icon: Icon.Chat, label: t('producten.upsellBullet3') },
+    { icon: Icon.ClipboardCheck, label: t('producten.upsellBullet4') },
+  ]
+
   return (
     <section ref={sectionRef} className="pd-desktop-newphone-section">
       <div className="pd-desktop-newphone-sticky">
         <img
           ref={bgRef}
-          src={desktopNewPhoneApprovedImg}
+          src={newDeviceDesktopBgImg}
           alt={t('producten.newPhoneProtectionAlt')}
           className="pd-desktop-newphone-bg"
         />
-        <div className="pd-desktop-newphone-gradient-overlay" />
+        <div ref={giftRef} className="pd-desktop-newphone-gift">
+          <img src={newDeviceLeftHandImg} alt="" aria-hidden="true" />
+        </div>
 
         <div className="container pd-desktop-newphone-container">
           <div ref={textCardRef} className="pd-desktop-newphone-text-card">
@@ -317,12 +343,18 @@ function DesktopNewPhoneSection() {
             <h2 className="pd-desktop-newphone-title">{t('producten.upsellTitle')}</h2>
             <p className="pd-desktop-newphone-sub">{t('producten.upsellSub')}</p>
 
-            <ul className="pd-desktop-newphone-bullets">
-              <li><Icon.Check width="16" height="16" /> {t('producten.upsellBullet1')}</li>
-              <li><Icon.Check width="16" height="16" /> {t('producten.upsellBullet2')}</li>
-              <li><Icon.Check width="16" height="16" /> {t('producten.upsellBullet3')}</li>
-              <li><Icon.Check width="16" height="16" /> {t('producten.upsellBullet4')}</li>
-            </ul>
+            <div className={`pd-newphone-badges${badgesIn ? ' pd-newphone-in' : ''}`}>
+              {badges.map((b, i) => (
+                <div
+                  key={i}
+                  className="pd-newphone-badge"
+                  style={{ transitionDelay: `${i * 90}ms` }}
+                >
+                  <span className="pd-newphone-badge-icon"><b.icon width={16} height={16} /></span>
+                  <span>{b.label}</span>
+                </div>
+              ))}
+            </div>
 
             <div className="pd-desktop-newphone-ctas">
               <a href="/contact" className="btn-accent pd-btn">

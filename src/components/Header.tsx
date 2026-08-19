@@ -1,6 +1,13 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { Icon } from './Icons'
+import logoIcon from '../assets/logo/logo-icon.png'
+import BRAND_DISPLAY_NAMES from '../lib/seo/reparatie-brands.json'
+
+const DARK_HERO_PATHS = new Set(['/producten', '/over-ons', '/zakelijk', '/reviews', '/contact'])
+
+const REPAIR_BRANDS = Object.entries(BRAND_DISPLAY_NAMES as Record<string, string>)
 
 export function TopBar() {
   const { t } = useTranslation()
@@ -14,7 +21,7 @@ export function TopBar() {
         <a href="/reviews" className="topbar-item topbar-rating">
           <Icon.Google width="18" height="18" />
           <span className="stars">
-            {[0,1,2,3,4].map(i => <Icon.Star key={i} width="11" height="11" />)}
+            {[0, 1, 2, 3, 4].map(i => <Icon.Star key={i} width="11" height="11" />)}
           </span>
           <span><b>4.9</b> · {t('topbar.reviews', { count: '200+' })}</span>
         </a>
@@ -31,8 +38,8 @@ function Logo() {
   const { t } = useTranslation()
   return (
     <a href="/" className="logo">
-      <span className="logo-mark" aria-hidden="true">
-        <span className="logo-mark-inner">4M</span>
+      <span className="logo-mark">
+        <img src={logoIcon} alt="4Mobiles" />
       </span>
       <span className="logo-text">
         <span className="logo-name">4Mobiles</span>
@@ -43,46 +50,81 @@ function Logo() {
 }
 
 function LangToggle() {
-  const { i18n } = useTranslation()
-  const current = i18n.language
+  const { t, i18n } = useTranslation()
+  const current = i18n.language === 'en' ? 'en' : 'nl'
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
 
-  const toggle = (lang: string) => {
+  const select = (lang: string) => {
     i18n.changeLanguage(lang)
     localStorage.setItem('lang', lang)
+    setOpen(false)
   }
 
+  useEffect(() => {
+    if (!open) return
+    const onDocClick = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false)
+    }
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    document.addEventListener('mousedown', onDocClick)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDocClick)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
   return (
-    <div className="lang-toggle">
+    <div className="lang-dropdown" ref={rootRef}>
       <button
-        className={`lang-btn${current === 'nl' ? ' lang-btn-active' : ''}`}
-        onClick={() => toggle('nl')}
-        aria-label="Nederlands"
-        title="Nederlands"
+        type="button"
+        className="lang-dropdown-trigger"
+        onClick={() => setOpen(o => !o)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label={t('nav.language')}
       >
-        🇳🇱
+        <span>{current.toUpperCase()}</span>
+        <Icon.ChevronDown width="12" height="12" className={`lang-dropdown-caret${open ? ' lang-dropdown-caret-open' : ''}`} />
       </button>
-      <button
-        className={`lang-btn${current === 'en' ? ' lang-btn-active' : ''}`}
-        onClick={() => toggle('en')}
-        aria-label="English"
-        title="English"
-      >
-        🇬🇧
-      </button>
+      {open && (
+        <div className="lang-dropdown-menu" role="listbox">
+          <button
+            type="button"
+            role="option"
+            aria-selected={current === 'nl'}
+            className={`lang-dropdown-item${current === 'nl' ? ' lang-dropdown-item-active' : ''}`}
+            onClick={() => select('nl')}
+          >
+            {t('nav.dutch')}
+          </button>
+          <button
+            type="button"
+            role="option"
+            aria-selected={current === 'en'}
+            className={`lang-dropdown-item${current === 'en' ? ' lang-dropdown-item-active' : ''}`}
+            onClick={() => select('en')}
+          >
+            {t('nav.english')}
+          </button>
+        </div>
+      )}
     </div>
   )
 }
 
 export function Nav() {
   const { t } = useTranslation()
+  const location = useLocation()
   const [open, setOpen] = useState<number | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [repairsOpen, setRepairsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const navRef = useRef<HTMLElement>(null)
 
-  // The mobile nav is position:fixed and its height varies across breakpoints
-  // (padding/wrapping changes). Publish its real bottom edge as a CSS var so
-  // anything pinned below it (e.g. the mobile hero) can space off the actual
-  // height instead of a hardcoded guess.
+  const isDarkHeroPage = DARK_HERO_PATHS.has(location.pathname)
+
   useLayoutEffect(() => {
     const el = navRef.current
     if (!el) return
@@ -90,6 +132,7 @@ export function Nav() {
     const update = () => {
       const rect = el.getBoundingClientRect()
       document.documentElement.style.setProperty('--nav-fixed-bottom', `${rect.bottom}px`)
+      document.documentElement.style.setProperty('--nav-h', `${rect.height}px`)
     }
 
     update()
@@ -102,35 +145,48 @@ export function Nav() {
     }
   }, [])
 
-  const navItems = [
-    {
-      label: t('nav.repairs'),
-      href: '/reparatie',
-      sub: [
-        { label: 'iPhone', icon: '📱', href: '/reparatie/iphone' },
-        { label: 'Samsung', icon: '📱', href: '/reparatie/samsung' },
-        { label: 'iPad', icon: '📟', href: '/reparatie/ipad' },
-        { label: 'OnePlus', icon: '📱', href: '/reparatie/oneplus' },
-        { label: 'Xiaomi', icon: '📱', href: '/reparatie/xiaomi' },
-        { label: t('nav.otherBrands'), icon: '🔧', href: '/reparatie' },
-      ],
-    },
-    { label: t('nav.products'), href: '/producten' },
-    { label: t('nav.business'), href: '/zakelijk' },
-    { label: t('nav.about'), href: '/over-ons' },
-    { label: t('nav.reviews'), href: '/reviews' },
-    { label: t('nav.blog'), href: '/blog' },
-    { label: t('nav.contact'), href: '/contact' },
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    setMenuOpen(false)
+    setRepairsOpen(false)
+  }, [location.pathname])
+
+  const repairSub = [
+    ...REPAIR_BRANDS.map(([slug, name]) => ({ label: name, href: `/reparatie/${slug}` })),
+    { label: t('nav.allRepairs'), href: '/reparatie' },
   ]
+
+  const allNavItems = [
+    { key: 'repairs', label: t('nav.repairs'), href: '/reparatie', sub: repairSub, desktop: true },
+    { key: 'products', label: t('nav.products'), href: '/producten', desktop: true },
+    { key: 'business', label: t('nav.business'), href: '/zakelijk', desktop: true },
+    { key: 'about', label: t('nav.about'), href: '/over-ons', desktop: false },
+    { key: 'reviews', label: t('nav.reviews'), href: '/reviews', desktop: true },
+    { key: 'blog', label: t('nav.tipsAdvies'), href: '/blog', desktop: false },
+    { key: 'contact', label: t('nav.contact'), href: '/contact', desktop: true },
+  ]
+  const desktopNavItems = allNavItems.filter(i => i.desktop)
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  const navClassName = [
+    'nav',
+    scrolled ? 'nav-scrolled' : '',
+    !scrolled && isDarkHeroPage ? 'nav-on-dark' : '',
+  ].filter(Boolean).join(' ')
+
   return (
     <>
-      <nav className="nav" ref={navRef}>
+      <nav className={navClassName} ref={navRef}>
         <div className="container nav-inner">
           {/* Mobile: hamburger left */}
           <button
@@ -145,9 +201,9 @@ export function Nav() {
 
           {/* Desktop links */}
           <ul className="nav-links">
-            {navItems.map((l, i) => (
+            {desktopNavItems.map((l, i) => (
               <li
-                key={i}
+                key={l.key}
                 className="nav-link"
                 onMouseEnter={() => setOpen(i)}
                 onMouseLeave={() => setOpen(null)}
@@ -160,7 +216,6 @@ export function Nav() {
                   <div className="nav-dropdown">
                     {l.sub.map((s, j) => (
                       <a key={j} href={s.href ?? '#'}>
-                        {s.icon && <span className="nav-dd-icon">{s.icon}</span>}
                         {s.label}
                       </a>
                     ))}
@@ -183,13 +238,8 @@ export function Nav() {
           {/* Desktop CTA + language toggle */}
           <div className="nav-cta">
             <LangToggle />
-            <a href="/reparatie" className="btn btn-ghost btn-sm">
-              <Icon.Search width="16" height="16" />
+            <a href="/reparatie" className="nav-repair-pill">
               {t('nav.findRepair')}
-            </a>
-            <a href="/reparatie" className="btn btn-primary btn-sm">
-              {t('nav.makeAppointment')}
-              <Icon.ArrowRight width="14" height="14" />
             </a>
           </div>
         </div>
@@ -212,29 +262,71 @@ export function Nav() {
         </div>
 
         <nav className="nav-overlay-links">
-          {navItems.map((item, i) => (
-            <a key={i} href={item.href ?? '#'} className="nav-overlay-item" onClick={() => setMenuOpen(false)}>
-              <span>{item.label}</span>
-              <Icon.ArrowRight width="18" height="18" />
-            </a>
-          ))}
+          {allNavItems.map((item) => {
+            if (item.sub) {
+              return (
+                <div className="nav-overlay-accordion" key={item.key}>
+                  <button
+                    type="button"
+                    className="nav-overlay-item nav-overlay-accordion-trigger"
+                    onClick={() => setRepairsOpen(o => !o)}
+                    aria-expanded={repairsOpen}
+                  >
+                    <span>{item.label}</span>
+                    <Icon.ChevronDown
+                      width="18"
+                      height="18"
+                      className={`nav-overlay-accordion-chevron${repairsOpen ? ' nav-overlay-accordion-chevron-open' : ''}`}
+                    />
+                  </button>
+                  {repairsOpen && (
+                    <div className="nav-overlay-accordion-panel">
+                      {item.sub.map((s, j) => (
+                        <a
+                          key={j}
+                          href={s.href ?? '#'}
+                          className="nav-overlay-subitem"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          <span>{s.label}</span>
+                          <Icon.ArrowRight width="16" height="16" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            }
+            return (
+              <a key={item.key} href={item.href ?? '#'} className="nav-overlay-item" onClick={() => setMenuOpen(false)}>
+                <span>{item.label}</span>
+                <Icon.ArrowRight width="18" height="18" />
+              </a>
+            )
+          })}
         </nav>
 
         <div className="nav-overlay-bottom">
-          <a href="https://wa.me/31174237022" className="nav-overlay-contact">
-            <Icon.WhatsApp width="20" height="20" />
-            {t('nav.whatsappUs')}
+          <a href="/reparatie" className="nav-overlay-contact" onClick={() => setMenuOpen(false)}>
+            <span className="nav-overlay-contact-label">
+              <Icon.Wrench width="20" height="20" />
+              {t('nav.findRepair')}
+            </span>
+            <Icon.ArrowRight width="16" height="16" />
           </a>
-          <a href="tel:0174237022" className="nav-overlay-contact">
-            <Icon.Phone width="20" height="20" />
-            {t('topbar.phone')}
+          <a href="https://wa.me/31174237022" className="nav-overlay-contact">
+            <span className="nav-overlay-contact-label">
+              <Icon.WhatsApp width="20" height="20" />
+              {t('nav.whatsappUs')}
+            </span>
+            <Icon.ArrowRight width="16" height="16" />
           </a>
           <div className="nav-overlay-rating">
             <Icon.Google width="18" height="18" />
             <div className="stars" style={{ display: 'inline-flex', gap: 2, color: '#fbbf24' }}>
-              {[0,1,2,3,4].map(i => <Icon.Star key={i} width="13" height="13" />)}
+              {[0, 1, 2, 3, 4].map(i => <Icon.Star key={i} width="13" height="13" />)}
             </div>
-            <span>4.9 · {t('topbar.reviews', { count: '200+' })}</span>
+            <span>4.8 · {t('topbar.reviews', { count: '200+' })}</span>
           </div>
         </div>
       </div>

@@ -113,6 +113,8 @@ export function DesktopHero({
         style={{ clipPath: `url(#${glowFilterId}-dark-clip)` }}
         aria-hidden="true"
       />
+      <div className="desktop-hero__top-fade" aria-hidden="true" />
+      <div className="desktop-hero__bottom-fade" aria-hidden="true" />
       <div className="desktop-hero__ambient-glow" aria-hidden="true" />
 
       <svg
@@ -195,7 +197,7 @@ export function DesktopHero({
           </linearGradient>
         </defs>
         <g transform="translate(80, 0)">
-          <g transform="translate(-55, 0)">
+          <g transform="translate(-50, 0)">
             <path
               className="hero-glow-path hero-glow-path--blur"
               style={{ filter: `url(#${glowFilterId}-blur)` }}

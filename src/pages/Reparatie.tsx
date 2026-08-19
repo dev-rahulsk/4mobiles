@@ -196,7 +196,7 @@ interface FormState {
   repairCatId: string; repairOptId: string
   naam: string; telefoon: string; email: string; agree: boolean
   serviceMethod: 'store' | 'post'
-  straat: string; huisnummer: string; postcode: string; plaats: string
+  straat: string; huisnummer: string; toevoeging: string; postcode: string; plaats: string
   shippingOption: 'standard' | 'registered'
   datum: string; tijd: string
 }
@@ -205,7 +205,7 @@ const INITIAL: FormState = {
   brandId: '', modelId: '', colorId: '', repairCatId: '', repairOptId: '',
   naam: '', telefoon: '', email: '', agree: false,
   serviceMethod: 'store',
-  straat: '', huisnummer: '', postcode: '', plaats: '',
+  straat: '', huisnummer: '', toevoeging: '', postcode: '', plaats: '',
   shippingOption: 'standard',
   datum: '', tijd: '',
 }
@@ -849,13 +849,51 @@ function Step4({ form, onChange, onConfirm, onBack }: {
   const color = model?.colors.find(c => c.id === form.colorId)
 
   const isPost = form.serviceMethod === 'post'
-  const canSubmit = form.naam.trim() && form.telefoon.trim() && form.email.trim() && form.agree && form.datum && form.tijd &&
-    (!isPost || (form.straat.trim() && form.huisnummer.trim() && form.postcode.trim() && form.plaats.trim()))
+  const canSubmit = form.naam.trim() && form.telefoon.trim() && form.email.trim() && form.agree &&
+    (isPost
+      ? (form.straat.trim() && form.huisnummer.trim() && form.postcode.trim() && form.plaats.trim())
+      : (form.datum && form.tijd))
 
   return (
     <div className="rp-flow-grid">
       <div className="rp-flow-main">
-        {/* Contact Details */}
+        {/* Service Method Section */}
+        <div className="rp-booking-section">
+          <div className="rp-booking-section-header">
+            <Icon.Cart width={20} height={20} />
+            <h3 className="rp-booking-section-title">{t('reparatie.s4ServiceTitle')}</h3>
+          </div>
+
+          <div className="rp-service-methods">
+            <label className={`rp-service-card${form.serviceMethod === 'store' ? ' rp-service-card--selected' : ''}`}>
+              <div className="rp-service-card-inner">
+                <div className="rp-service-card-row">
+                  <input type="radio" name="service" value="store" checked={form.serviceMethod === 'store'} onChange={() => onChange({ serviceMethod: 'store' })} />
+                  <Icon.Cart width={18} height={18} />
+                  <div>
+                    <p className="rp-service-title">{t('reparatie.storeMethodTitle')}</p>
+                    <p className="rp-service-sub">{t('reparatie.storeMethodSub')}</p>
+                  </div>
+                </div>
+              </div>
+            </label>
+
+            <label className={`rp-service-card${form.serviceMethod === 'post' ? ' rp-service-card--selected' : ''}`}>
+              <div className="rp-service-card-inner">
+                <div className="rp-service-card-row">
+                  <input type="radio" name="service" value="post" checked={form.serviceMethod === 'post'} onChange={() => onChange({ serviceMethod: 'post' })} />
+                  <Icon.Truck width={18} height={18} />
+                  <div>
+                    <p className="rp-service-title">{t('reparatie.postMethodTitle')}</p>
+                    <p className="rp-service-sub">{t('reparatie.postMethodSub')}</p>
+                  </div>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        {/* Contact + Address Details */}
         <div className="rp-booking-section">
           <div className="rp-booking-section-header">
             <Icon.Shield width={20} height={20} />
@@ -875,110 +913,109 @@ function Step4({ form, onChange, onConfirm, onBack }: {
               <input id="rp-email" className="rp-input" type="email" placeholder={t('reparatie.placeholderEmail')} value={form.email} onChange={e => onChange({ email: e.target.value })} />
             </div>
           </div>
+
+          <div className="rp-address-block">
+            <p className="rp-booking-section-label">
+              {isPost ? t('reparatie.s4AddressTitleRequired') : t('reparatie.s4AddressTitleOptional')}
+            </p>
+            {!isPost && <p className="rp-address-hint">{t('reparatie.s4AddressHint')}</p>}
+            <div className="rp-form-grid rp-form-grid--3col">
+              <div className="rp-field">
+                <label className="rp-label">{t('reparatie.labelPostcode')} {isPost && <span className="rp-required">*</span>}</label>
+                <input className="rp-input" type="text" placeholder={t('reparatie.placeholderPostcode')} value={form.postcode} onChange={e => onChange({ postcode: e.target.value })} />
+              </div>
+              <div className="rp-field">
+                <label className="rp-label">{t('reparatie.labelHuisnummer')} {isPost && <span className="rp-required">*</span>}</label>
+                <input className="rp-input" type="text" placeholder={t('reparatie.placeholderHuisnummer')} value={form.huisnummer} onChange={e => onChange({ huisnummer: e.target.value })} />
+              </div>
+              <div className="rp-field">
+                <label className="rp-label">{t('reparatie.labelToevoeging')}</label>
+                <input className="rp-input" type="text" placeholder={t('reparatie.placeholderToevoeging')} value={form.toevoeging} onChange={e => onChange({ toevoeging: e.target.value })} />
+              </div>
+            </div>
+            <div className="rp-form-grid">
+              <div className="rp-field">
+                <label className="rp-label">{t('reparatie.labelStraat')} {isPost && <span className="rp-required">*</span>}</label>
+                <input className="rp-input" type="text" placeholder={t('reparatie.placeholderStraat')} value={form.straat} onChange={e => onChange({ straat: e.target.value })} />
+              </div>
+              <div className="rp-field">
+                <label className="rp-label">{t('reparatie.labelPlaats')} {isPost && <span className="rp-required">*</span>}</label>
+                <input className="rp-input" type="text" placeholder={t('reparatie.placeholderPlaats')} value={form.plaats} onChange={e => onChange({ plaats: e.target.value })} />
+              </div>
+            </div>
+          </div>
+
+          {isPost && (
+            /* Shipping info — folded into "Jouw gegevens" rather than a separate step */
+            <div className="rp-shipping-info">
+              <p className="rp-shipping-info-title"><Icon.Info width={15} height={15} /> {t('reparatie.s4ShippingTitle')}</p>
+              <div className="rp-shipping-steps">
+                <div className="rp-shipping-step">
+                  <span className="rp-shipping-step-icon"><Icon.Bag width={16} height={16} /></span>
+                  <div>
+                    <p className="rp-shipping-step-title">{t('reparatie.shipStep1Title')}</p>
+                    <p className="rp-shipping-step-sub">{t('reparatie.shipStep1Sub')}</p>
+                  </div>
+                </div>
+                <div className="rp-shipping-step">
+                  <span className="rp-shipping-step-icon"><Icon.Truck width={16} height={16} /></span>
+                  <div>
+                    <p className="rp-shipping-step-title">{t('reparatie.shipStep2Title')}</p>
+                    <p className="rp-shipping-step-sub">{t('reparatie.shipStep2Sub')}</p>
+                  </div>
+                </div>
+                <div className="rp-shipping-step">
+                  <span className="rp-shipping-step-icon"><Icon.Wrench width={16} height={16} /></span>
+                  <div>
+                    <p className="rp-shipping-step-title">{t('reparatie.shipStep3Title')}</p>
+                    <p className="rp-shipping-step-sub">{t('reparatie.shipStep3Sub')}</p>
+                  </div>
+                </div>
+                <div className="rp-shipping-step">
+                  <span className="rp-shipping-step-icon"><Icon.ClipboardCheck width={16} height={16} /></span>
+                  <div>
+                    <p className="rp-shipping-step-title">{t('reparatie.shipStep4Title')}</p>
+                    <p className="rp-shipping-step-sub">{t('reparatie.shipStep4Sub')}</p>
+                  </div>
+                </div>
+              </div>
+              <p className="rp-shipping-tip"><Icon.Info width={14} height={14} /> {t('reparatie.shipTip')}</p>
+            </div>
+          )}
+
           <label className="rp-agree-row">
             <input type="checkbox" checked={form.agree} onChange={e => onChange({ agree: e.target.checked })} />
             <span>{t('reparatie.agreeText')} <a href="/algemene-voorwaarden" className="rp-link">{t('reparatie.termsLabel')}</a> {t('reparatie.andLabel')} <a href="/privacybeleid" className="rp-link">{t('reparatie.privacyLabel')}</a>.</span>
           </label>
         </div>
 
-        {/* Service Method Section */}
-        <div className="rp-booking-section">
-          <div className="rp-booking-section-header">
-            <Icon.Cart width={20} height={20} />
-            <h3 className="rp-booking-section-title">{t('reparatie.s4ServiceTitle')}</h3>
-          </div>
-
-          <div className="rp-service-methods">
-            <label className={`rp-service-card${form.serviceMethod === 'store' ? ' rp-service-card--selected' : ''}`}>
-              <input type="radio" name="service" value="store" checked={form.serviceMethod === 'store'} onChange={() => onChange({ serviceMethod: 'store' })} />
-              <div className="rp-service-card-inner">
-                <div className="rp-service-card-row">
-                  <Icon.Cart width={18} height={18} />
-                  <div>
-                    <p className="rp-service-title">{t('reparatie.storeMethodTitle')}</p>
-                    <p className="rp-service-sub">{t('reparatie.storeMethodSub')}</p>
-                  </div>
-                </div>
-                <p className="rp-service-address">
-                  <Icon.Pin width={13} height={13} /> {t('reparatie.shopName')}
-                </p>
-              </div>
-            </label>
-
-            <label className={`rp-service-card${form.serviceMethod === 'post' ? ' rp-service-card--selected' : ''}`}>
-              <input type="radio" name="service" value="post" checked={form.serviceMethod === 'post'} onChange={() => onChange({ serviceMethod: 'post' })} />
-              <div className="rp-service-card-inner">
-                <div className="rp-service-card-row">
-                  <Icon.Truck width={18} height={18} />
-                  <div>
-                    <p className="rp-service-title">{t('reparatie.postMethodTitle')}</p>
-                    <p className="rp-service-sub">{t('reparatie.postMethodSub')}</p>
-                  </div>
-                </div>
-              </div>
-            </label>
-          </div>
-
-          {/* Postal Dropdown Form Container */}
-          {form.serviceMethod === 'post' && (
-            <div className="rp-post-dropdown-container">
-              <h4 className="rp-post-dropdown-title">Adresgegevens voor retourzending</h4>
-              <div className="rp-form-grid">
-                <div className="rp-field">
-                  <label className="rp-label">Straatnaam <span className="rp-required">*</span></label>
-                  <input className="rp-input" type="text" placeholder="bijv. Molenstraat" value={form.straat} onChange={e => onChange({ straat: e.target.value })} />
-                </div>
-                <div className="rp-field">
-                  <label className="rp-label">Huisnummer & Toevoeging <span className="rp-required">*</span></label>
-                  <input className="rp-input" type="text" placeholder="bijv. 12B" value={form.huisnummer} onChange={e => onChange({ huisnummer: e.target.value })} />
-                </div>
-                <div className="rp-field">
-                  <label className="rp-label">Postcode <span className="rp-required">*</span></label>
-                  <input className="rp-input" type="text" placeholder="bijv. 2671 BW" value={form.postcode} onChange={e => onChange({ postcode: e.target.value })} />
-                </div>
-                <div className="rp-field">
-                  <label className="rp-label">Plaats <span className="rp-required">*</span></label>
-                  <input className="rp-input" type="text" placeholder="bijv. Naaldwijk" value={form.plaats} onChange={e => onChange({ plaats: e.target.value })} />
-                </div>
-              </div>
-
-              <div className="rp-post-instructions">
-                <p className="rp-post-inst-title"><Icon.Info width={15} height={15} /> Opstuurinstructies:</p>
-                <ul>
-                  <li>Pak je toestel stevig in met bubbeltjesplastic.</li>
-                  <li>Stuur je telefoon op zonder SIM-kaart, hoesje of accessoires.</li>
-                  <li>Na bevestiging ontvang je direct een gratis verzendlabel per e-mail.</li>
-                </ul>
-              </div>
+        {!isPost && (
+          /* Appointment Date & Time Section — in-store only */
+          <div className="rp-booking-section">
+            <div className="rp-booking-section-header">
+              <Icon.Calendar width={20} height={20} />
+              <h3 className="rp-booking-section-title">{t('reparatie.s4DateTitle')}</h3>
             </div>
-          )}
-        </div>
-
-        {/* Appointment Date & Time Section */}
-        <div className="rp-booking-section">
-          <div className="rp-booking-section-header">
-            <Icon.Calendar width={20} height={20} />
-            <h3 className="rp-booking-section-title">{t('reparatie.s4DateTitle')}</h3>
+            <p className="rp-booking-section-label">{t('reparatie.s4DateLabel')}</p>
+            <div className="rp-week-grid">
+              {days.map(d => (
+                <button key={d.value} className={`rp-week-btn${form.datum === d.value ? ' rp-week-btn--selected' : ''}`} onClick={() => onChange({ datum: d.value })}>
+                  <span className="rp-week-day">{d.dayShort}</span>
+                  <span className="rp-week-date">{d.dateNum}</span>
+                  <span className="rp-week-month">{d.monthShort}</span>
+                </button>
+              ))}
+            </div>
+            <p className="rp-booking-section-label" style={{ marginTop: 16 }}>
+              {t('reparatie.s4TimeLabel')} <span className="rp-popular-badge">{t('reparatie.popularBadge')}</span>
+            </p>
+            <div className="rp-time-full-grid">
+              {TIME_SLOTS.map(slot => (
+                <button key={slot} className={`rp-time-btn${form.tijd === slot ? ' rp-time-btn--selected' : ''}`} onClick={() => onChange({ tijd: slot })}>{slot}</button>
+              ))}
+            </div>
           </div>
-          <p className="rp-booking-section-label">{t('reparatie.s4DateLabel')}</p>
-          <div className="rp-week-grid">
-            {days.map(d => (
-              <button key={d.value} className={`rp-week-btn${form.datum === d.value ? ' rp-week-btn--selected' : ''}`} onClick={() => onChange({ datum: d.value })}>
-                <span className="rp-week-day">{d.dayShort}</span>
-                <span className="rp-week-date">{d.dateNum}</span>
-                <span className="rp-week-month">{d.monthShort}</span>
-              </button>
-            ))}
-          </div>
-          <p className="rp-booking-section-label" style={{ marginTop: 16 }}>
-            {t('reparatie.s4TimeLabel')} <span className="rp-popular-badge">{t('reparatie.popularBadge')}</span>
-          </p>
-          <div className="rp-time-full-grid">
-            {TIME_SLOTS.map(slot => (
-              <button key={slot} className={`rp-time-btn${form.tijd === slot ? ' rp-time-btn--selected' : ''}`} onClick={() => onChange({ tijd: slot })}>{slot}</button>
-            ))}
-          </div>
-        </div>
+        )}
 
         <div className="rp-actions rp-actions--spread">
           <button className="rp-btn rp-btn--ghost" onClick={onBack}>{t('reparatie.back')}</button>
@@ -1030,10 +1067,16 @@ function Step4({ form, onChange, onConfirm, onBack }: {
                 <span className="rp-summary-row-value">{t('reparatie.shopName')}</span>
               </div>
             ) : (
-              <div className="rp-summary-row">
-                <span className="rp-summary-row-label">{t('reparatie.sidebarShippingLabel')}</span>
-                <span className="rp-summary-row-value">{t('reparatie.postMethodValue')}</span>
-              </div>
+              <>
+                <div className="rp-summary-row">
+                  <span className="rp-summary-row-label">{t('reparatie.sidebarShippingLabel')}</span>
+                  <span className="rp-summary-row-value">{t('reparatie.postMethodValue')}</span>
+                </div>
+                <div className="rp-summary-row">
+                  <span className="rp-summary-row-label">{t('reparatie.sidebarReturnLabel')}</span>
+                  <span className="rp-summary-row-value">{t('reparatie.sidebarReturnValue')}</span>
+                </div>
+              </>
             )}
             {form.datum && (
               <div className="rp-summary-row">
@@ -1053,7 +1096,7 @@ function Step4({ form, onChange, onConfirm, onBack }: {
           <button className="rp-btn rp-btn--primary rp-summary-cta" onClick={onConfirm} disabled={!canSubmit}>
             {t('reparatie.confirmAppointment')} <Icon.ArrowRight width={16} height={16} />
           </button>
-          <p className="rp-summary-pay-note">{t('reparatie.sidebarPayNote')}</p>
+          <p className="rp-summary-pay-note">{isPost ? t('reparatie.sidebarPayNotePost') : t('reparatie.sidebarPayNote')}</p>
         </div>
       </aside>
     </div>

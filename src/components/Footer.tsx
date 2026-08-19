@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
+import logoIcon from '../assets/logo/logo-icon.png'
 
 function Logo() {
   const { t } = useTranslation()
   return (
     <a href="/" className="logo">
-      <span className="logo-mark" aria-hidden="true">
-        <span className="logo-mark-inner">4M</span>
+      <span className="logo-mark">
+        <img src={logoIcon} alt="4Mobiles" />
       </span>
       <span className="logo-text">
         <span className="logo-name">4Mobiles</span>
