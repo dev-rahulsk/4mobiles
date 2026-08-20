@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { FaqAccordion } from '../components/FaqAccordion'
-import { MobileHero } from '../components/global'
+import { MobileHero, DesktopHero } from '../components/global'
 import { getOpenStatus } from '../lib/openStatus'
 import contactHeroImg from '../assets/chatgpt_store_hero.png'
 import { Seo } from '../lib/seo/Seo'
@@ -36,6 +36,7 @@ export function Contact() {
     '09:30 – 17:00',
     t('contact.closed'),
   ]
+  const todayHours = HOURS[TODAY === 0 ? 6 : TODAY - 1]
 
   const CONTACT_METHODS = [
     {
@@ -78,21 +79,27 @@ export function Contact() {
       <Seo title={t('seo.contact.title')} description={t('seo.contact.description')} path="/contact" />
       <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: t('nav.contact'), path: '/contact' }])} />
       <JsonLd data={faqPageSchema(visitFaqItems)} />
-      {/* Hero — DESKTOP VIEW (unchanged flat hero) */}
-      <section className="ct-hero g-desktop-only">
-        <div className="ct-hero-bg" aria-hidden="true" />
-        <div className="container ct-hero-inner">
-          <span className="ct-eyebrow">CONTACT</span>
-          <h1 className="ct-hero-title">4Mobiles</h1>
-          <p className="ct-hero-subtext">{t('contact.heroSubtext')}</p>
-          <div className="ct-hero-chips">
+      {/* Hero — DESKTOP VIEW — shared global DesktopHero (same as About Us / Producten / Zakelijk / Reviews) */}
+      <div className="g-desktop-only">
+        <DesktopHero
+          eyebrow={t('contact.eyebrow')}
+          title="4Mobiles"
+          description={t('contact.heroSubtext')}
+          extra={
             <span className={`ct-open-badge${openStatus.open ? ' ct-open-badge--open' : ' ct-open-badge--closed'}`}>
               <span className="ct-open-dot" />
               {openLabel}
             </span>
-          </div>
-        </div>
-      </section>
+          }
+          image={{ src: contactHeroImg, alt: t('contact.eyebrow') }}
+          badges={[
+            { icon: Icon.Phone, value: t('contact.callUs'), title: '0174 23 70 22' },
+            { icon: Icon.WhatsApp, value: t('contact.whatsappUs'), title: '0174 23 70 22' },
+            { icon: Icon.Mail, value: t('contact.email'), title: 'info@4mobiles.nl' },
+            { icon: Icon.Clock, value: t('contact.today'), title: todayHours },
+          ]}
+        />
+      </div>
 
       <div className="g-mobile-only">
         <MobileHero

@@ -238,7 +238,7 @@ export function Nav() {
           {/* Desktop CTA + language toggle */}
           <div className="nav-cta">
             <LangToggle />
-            <a href="/reparatie" className="nav-repair-pill">
+            <a href="/login" className="nav-repair-pill">
               {t('nav.findRepair')}
             </a>
           </div>

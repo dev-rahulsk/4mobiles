@@ -2,6 +2,9 @@ import { useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 import { PhoneAnimation } from './PhoneAnimation'
+import { getOpenStatus } from '../lib/openStatus'
+
+const OPEN_STATUS = getOpenStatus()
 
 interface HeroProps {
   accent: string
@@ -15,7 +18,7 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
   const heroTitle = title ?? t('hero.title')
   const heroTitleAccent = titleAccent ?? t('hero.titleAccent')
   const heroSub = sub ?? t('hero.sub')
-  const [device, setDevice] = useState('iPhone')
+  const [query, setQuery] = useState('')
   const [announcementVisible, setAnnouncementVisible] = useState(() => {
     try {
       return sessionStorage.getItem('ann-v1') !== '1'
@@ -23,21 +26,19 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
       return true
     }
   })
-  const devices = ['iPhone', 'Samsung', 'iPad', 'OnePlus', 'Xiaomi', t('hero.deviceOther')]
+
+  const days = t('contact.days', { returnObjects: true }) as string[]
+  const openLabel = t(`contact.${OPEN_STATUS.type}`, {
+    hour: OPEN_STATUS.hour,
+    mins: OPEN_STATUS.mins,
+    day: OPEN_STATUS.dayIndex !== undefined ? days[OPEN_STATUS.dayIndex] : undefined,
+  })
 
   const trust = [
     { icon: Icon.Shield, label: t('hero.trust.warranty') },
     { icon: Icon.Clock,  label: t('hero.trust.ready') },
     { icon: Icon.Euro,   label: t('hero.trust.nocure') },
-    { icon: Icon.Park,   label: t('hero.trust.parking') },
   ]
-
-  const placeholder =
-    device === 'Samsung'
-      ? 'Galaxy S23'
-      : device === 'iPad'
-      ? 'iPad Air 5'
-      : 'iPhone 15 Pro'
 
   const dismissAnnouncement = () => {
     try {
@@ -83,32 +84,43 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
 
           <p className="hero-sub">{heroSub}</p>
 
-          <div className="repair-finder">
-            <div className="finder-label">
-              <span className="finder-step">1</span>
-              {t('hero.step1')}
-            </div>
-            <div className="finder-chips">
-              {devices.map(d => (
-                <button
-                  key={d}
-                  className={`chip${device === d ? ' chip-active' : ''}`}
-                  onClick={() => setDevice(d)}
+          <div className="border-beam-container hero-finder-beam">
+            <div className="border-beam" />
+            <div className="border-beam-inner search-card repair-search-card__surface">
+              <div className="repair-search-card__content">
+                <h2 className="search-title">{t('search.title')}</h2>
+                <div className="search-underline" />
+                <form
+                  className="search-form"
+                  onSubmit={e => {
+                    e.preventDefault()
+                    if (query.trim()) alert(`${t('search.button')}: ${query}`)
+                  }}
                 >
-                  {d}
-                </button>
-              ))}
-            </div>
-            <div className="finder-search">
-              <span className="finder-step">2</span>
-              <div className="finder-input">
-                <Icon.Search width="18" height="18" />
-                <input placeholder={t('hero.searchPlaceholder', { device, placeholder })} />
+                  <div className="search-input-wrap">
+                    <Icon.Search width="18" height="18" className="search-icon" />
+                    <input
+                      type="text"
+                      className="search-input"
+                      placeholder={t('hero.searchPlaceholder')}
+                      value={query}
+                      onChange={e => setQuery(e.target.value)}
+                    />
+                  </div>
+                  <button type="submit" className="search-btn">
+                    {t('search.button')}
+                  </button>
+                </form>
+                <a
+                  href="/contact"
+                  className={`search-hours-chip${OPEN_STATUS.open ? ' search-hours-chip--open' : ' search-hours-chip--closed'}`}
+                >
+                  <span className="search-hours-dot" />
+                  <Icon.Store width="16" height="16" />
+                  {openLabel}
+                  <Icon.ChevronRight width="14" height="14" />
+                </a>
               </div>
-              <button className="btn btn-primary btn-lg">
-                {t('hero.viewPrice')}
-                <Icon.ArrowRight width="16" height="16" />
-              </button>
             </div>
           </div>
 
@@ -149,8 +161,13 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
             </div>
 
             <div className="hero-stat">
-              <div className="hero-stat-num">7.500+</div>
+              <div className="hero-stat-num">{t('hero.statNum')}</div>
               <div className="hero-stat-label">{t('hero.stat')}</div>
+              <div className="hero-stat-stars" aria-hidden="true">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Icon.Star key={i} width="11" height="11" />
+                ))}
+              </div>
             </div>
           </div>
         </div>

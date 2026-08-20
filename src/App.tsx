@@ -13,6 +13,10 @@ import { Blog } from './pages/Blog'
 import { BlogPost } from './pages/BlogPost'
 import { Reparatie } from './pages/Reparatie'
 import { Faq } from './pages/Faq'
+import { Login } from './pages/Login'
+import { Disclaimer } from './pages/Disclaimer'
+import { PrivacyPolicy } from './pages/PrivacyPolicy'
+import { TermsAndConditions } from './pages/TermsAndConditions'
 import { NotFound } from './pages/NotFound'
 import { JsonLd } from './lib/seo/JsonLd'
 import { localBusinessSchema, websiteSchema } from './lib/seo/schema'
@@ -65,6 +69,13 @@ export default function App() {
         <Route path="/reparatie" element={<Reparatie />} />
         <Route path="/reparatie/:slug" element={<Reparatie />} />
         <Route path="/veelgestelde-vragen" element={<Faq />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/mijn-reparatie" element={<Login />} />
+        <Route path="/disclaimer" element={<Disclaimer />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/privacybeleid" element={<PrivacyPolicy />} />
+        <Route path="/algemene-voorwaarden" element={<TermsAndConditions />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

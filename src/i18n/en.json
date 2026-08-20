@@ -30,12 +30,12 @@
     "english": "English"
   },
   "hero": {
-    "eyebrow": "Since 2014 · Naaldwijk · Westland",
+    "eyebrow": "Since 2011 · Naaldwijk · Westland",
     "title": "Phone broken?",
-    "titleAccent": "Fixed within the hour.",
-    "sub": "Expert repair of iPhone, Samsung, iPad and more. Transparent prices, 90-day warranty — and your device is truly ready within an hour.",
+    "titleAccent": "Fixed in 60 minutes and back in use.",
+    "sub": "Cracked screen, dead battery or water damage? We repair your device quickly and professionally. Often ready while you wait.",
     "step1": "What device do you have?",
-    "searchPlaceholder": "Search your {{device}} model — e.g. {{placeholder}}",
+    "searchPlaceholder": "Search your iPhone model — e.g. iPhone 15 Pro",
     "viewPrice": "View price",
     "deviceOther": "Other",
     "trust": {
@@ -52,6 +52,7 @@
       "waterTitle": "Water damage",
       "waterSub": "custom quote"
     },
+    "statNum": "10,000+",
     "stat": "repairs completed",
     "brandStrip": "We repair devices from"
   },
@@ -477,6 +478,130 @@
     "privacy": "Privacy",
     "terms": "Terms & conditions",
     "disclaimer": "Disclaimer"
+  },
+  "login": {
+    "title": "My repair",
+    "subtitle": "Easily check the status of your repair.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "Enter your email address",
+    "submitBtn": "Check status",
+    "helpBtn": "Need help? Contact us.",
+    "securityNote": "Safe and private. Your data is secure with us.",
+    "statusTitle": "Repair status for {{email}}",
+    "statusFound": "1 active repair found",
+    "repairNumber": "Repair #4M-8921",
+    "statusInProcess": "In progress",
+    "statusStep1": "Received",
+    "statusStep2": "Repairing",
+    "statusStep3": "Ready for pickup",
+    "estimatedReady": "Estimated completion: Today within 60 minutes",
+    "deviceLabel": "Device",
+    "deviceSample": "iPhone 14 - Screen Replacement",
+    "storeLocation": "Location: Molenstraat 2, Naaldwijk",
+    "enterValidEmail": "Please enter a valid email address."
+  },
+  "disclaimerPage": {
+    "title": "Disclaimer",
+    "lastUpdated": "4Mobiles V.O.F. — CoC 80071260",
+    "eyebrow": "LEGAL",
+    "p1": "Welcome to www.4mobiles.nl, created and maintained by 4Mobiles V.O.F. with CoC number 80071260. By using our website, you agree to this disclaimer.",
+    "p2": "4Mobiles reserves the right to modify the content of the website and disclaimer at any time without prior notice.",
+    "p3": "Although we strive to carefully compile the content of this website, you use the website at your own risk. 4Mobiles will endeavor to keep information as accurate as possible, but we cannot guarantee that information is always correct or complete.",
+    "p4": "Information, including our offering of services, may contain errors or be outdated. 4Mobiles is not responsible for damage or other adverse consequences resulting from the use or unavailability of our website. Actions taken based on our website or information provided are at your own risk. No agreement can be established based on errors or outdated information.",
+    "p5": "Trademarks mentioned on this website are not affiliated with 4Mobiles and we do not represent them. Apple, Inc. is the owner of trademarks iPhone®, iPod®, and iPad®, while other trademarks belong to their respective owners. We do not monitor user-posted content, but we reserve the right to adapt user content.",
+    "p6": "If you have complaints regarding content, we welcome your feedback at info@4Mobiles.nl. You may use our website, but no rights are granted to our intellectual property or that of our licensors. 4Mobiles retains all rights regarding website content. For public usage of content, contact us at info@4Mobiles.nl."
+  },
+  "privacyPage": {
+    "title": "Privacy Statement",
+    "lastUpdated": "Updated on: 20-04-2022",
+    "eyebrow": "PRIVACY",
+    "sec1Title": "Introductory Provisions",
+    "sec1P1": "Hereby you find the privacy statement of 4Mobiles V.O.F., located at Molenstraat 2 in Naaldwijk, registered under CoC number 80071260. We advise you to read this statement carefully. For questions, reach us at info@4Mobiles.nl or 0631312231.",
+    "sec1P2": "This privacy statement explains how 4Mobiles handles personal data, what data is collected, and for what purposes. Data processing by 4Mobiles falls under statutory exemption rules.",
+    "sec1P3": "This privacy statement applies to all website visitors. If you do not agree, please leave the website. The most recent version was updated on 20-04-2022.",
+    "sec2Title": "Legal Basis for Processing Personal Data",
+    "sec2P1": "Personal data collected by 4Mobiles is necessary for the proper execution of agreements, online appointments, and webshop orders. Withholding personal data may result in non-delivery of services.",
+    "sec3Title": "Types, Purposes, and Retention Periods of Data Processing",
+    "sec3P1": "When making an online appointment or account, required fields include your first name, last name, email, phone number, repair type, and device model. Technical data via Google Analytics is collected for website optimization.",
+    "sec3P2": "Upon account deletion, data is retained for up to 72 hours. Online appointment data is retained for 1 year.",
+    "sec4Title": "Cookies",
+    "sec4P1": "4Mobiles uses cookies to optimize user experience, gather basic technical information, and track visitors during their site visit.",
+    "sec5Title": "Links to Other Websites",
+    "sec5P1": "This privacy statement applies only to this website. External third-party links operate under their own respective privacy policies.",
+    "sec6Title": "Transfer to Processors and Third Parties",
+    "sec6P1": "Entities engaged by 4Mobiles (e.g. hosting, delivery services) process personal data under our responsibility.",
+    "sec6P2": "4Mobiles may also share data with third parties if required by law.",
+    "sec7Title": "Security",
+    "sec7P1": "4Mobiles has implemented adequate technical and organizational measures, including SSL certificates, to protect your data.",
+    "sec8Title": "Privacy Rights",
+    "sec8P1": "Under GDPR, you have the right to access, rectify, or delete your personal data. Account holders can view and modify their data directly.",
+    "sec9Title": "Complaints",
+    "sec9P1": "If you have complaints regarding data processing, contact us at info@4Mobiles.nl or file a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens)."
+  },
+  "termsPage": {
+    "title": "Terms and Conditions",
+    "lastUpdated": "Copyright 2022 4Mobiles",
+    "eyebrow": "TERMS",
+    "sec1Title": "1. Definitions",
+    "sec1Items": [
+      "1.1 4Mobiles V.O.F. was founded to repair damaged smartphones and tablets.",
+      "1.2 In these terms, 4Mobiles also includes all employees of the company.",
+      "1.3 Customer refers to any person or organization using 4Mobiles Services.",
+      "1.4 Services refers to all work performed by 4Mobiles, including repairs, pickup, and delivery.",
+      "1.5 Products refers to equipment submitted by Customers for repair.",
+      "1.6 Original parts refers to new original parts and parts harvested from original equipment.",
+      "1.7 Website refers to www.4mobiles.nl."
+    ],
+    "sec2Title": "2. Applicability of Terms",
+    "sec2Items": [
+      "2.1 These terms apply to all 4Mobiles customers.",
+      "2.2 Deviations are valid only if explicitly agreed upon in writing."
+    ],
+    "sec3Title": "3. Agreement",
+    "sec3Items": [
+      "3.1 An agreement is established once the Customer accepts an offer or quote.",
+      "3.2 If unforeseen work is required, 4Mobiles may charge additional costs. The Customer may cancel unexecuted work upon settling prior work.",
+      "3.3 Cancellation is permitted only for work not yet executed."
+    ],
+    "sec4Title": "4. Execution of Services",
+    "sec4Items": [
+      "4.1 Customers with appointments take precedence.",
+      "4.2 Access codes requested upon drop-off are strictly for testing purposes. Providing codes is NOT mandatory.",
+      "4.3 4Mobiles reserves the right to reset products to factory settings.",
+      "4.4 Customers are responsible for providing correct information.",
+      "4.5 4Mobiles aims to use Original parts, or highest quality available alternatives.",
+      "4.6 4Mobiles may engage third parties for service execution.",
+      "4.7 Most common repairs aim for a 30-minute completion.",
+      "4.8 Unclaimed products after 30 days transfer ownership to 4Mobiles."
+    ],
+    "sec5Title": "5. Warranty, Costs & Payments",
+    "sec5Items": [
+      "5.1 4Mobiles provides a lifetime warranty on the functionality of replaced parts. Exclusions include cracked glass, drops, water damage, or user damage.",
+      "5.2 Manufacturer warranty status cannot be guaranteed post-repair.",
+      "5.3 No repair, no fee (except diagnostic fee for water damage).",
+      "5.4 Repair costs are listed on the website and payable upon pickup.",
+      "5.5 4Mobiles is not liable for device water resistance post-repair."
+    ],
+    "sec6Title": "6. Liability",
+    "sec6Items": [
+      "6.1 4Mobiles operates on a best-effort basis.",
+      "6.2 Liability is capped at the repair invoice value.",
+      "6.3 Claims expire if not submitted in writing within 14 days.",
+      "6.4 4Mobiles is not liable for data loss.",
+      "6.5 Force majeure exclusions apply (fire, flood, burglary).",
+      "6.6 4Mobiles maintains adequate insurance coverage.",
+      "6.7 Total loss compensation is capped at market value up to €350."
+    ],
+    "sec7Title": "7. Identity",
+    "sec7Items": [
+      "7.1 4Mobiles B.V. CoC number: 80071260. VAT: 861546015B01. Address: Molenstraat 2, 2671EX Naaldwijk.",
+      "7.2 Contact: info@4Mobiles.nl."
+    ],
+    "sec8Title": "8. Applicable Law & Jurisdiction",
+    "sec8Items": [
+      "8.1 Governed by Dutch law.",
+      "8.2 Disputes resolved by competent court in 's-Gravenhage."
+    ]
   },
   "sticky": {
     "title": "Often ready within 1 hour",

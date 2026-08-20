@@ -318,10 +318,8 @@ function DesktopNewPhoneSection() {
   }, [])
 
   const badges = [
-    { icon: Icon.Store, label: t('producten.upsellBullet1') },
-    { icon: Icon.Devices, label: t('producten.upsellBullet2') },
-    { icon: Icon.Chat, label: t('producten.upsellBullet3') },
-    { icon: Icon.ClipboardCheck, label: t('producten.upsellBullet4') },
+    { icon: Icon.Store, label: t('producten.newDeviceBullet1') },
+    { icon: Icon.Devices, label: t('producten.newDeviceBullet2') },
   ]
 
   return (
@@ -339,9 +337,11 @@ function DesktopNewPhoneSection() {
 
         <div className="container pd-desktop-newphone-container">
           <div ref={textCardRef} className="pd-desktop-newphone-text-card">
-            <span className="pd-eyebrow">{t('producten.upsellEyebrow')}</span>
-            <h2 className="pd-desktop-newphone-title">{t('producten.upsellTitle')}</h2>
-            <p className="pd-desktop-newphone-sub">{t('producten.upsellSub')}</p>
+            <span className="pd-eyebrow">{t('producten.newDeviceEyebrow')}</span>
+            <h2 className="pd-desktop-newphone-title">{t('producten.newDeviceTitle')}</h2>
+            <p className="pd-desktop-newphone-sub">
+              {t('producten.newDeviceCardLead')} {t('producten.newDeviceCardBody')}
+            </p>
 
             <div className={`pd-newphone-badges${badgesIn ? ' pd-newphone-in' : ''}`}>
               {badges.map((b, i) => (
@@ -736,13 +736,6 @@ export function Producten() {
         />
       </div>
 
-      <section className="pd-mobile-only pd-brands-section">
-        <div className="container">
-          <h3 className="pd-brands-heading">{t('producten.brandsLabel')}</h3>
-          <BrandsSlider />
-        </div>
-      </section>
-
       <section className="pd-usps">
         <div className="container">
           <div className="pd-usp-grid">
@@ -759,6 +752,13 @@ export function Producten() {
               )
             })}
           </div>
+        </div>
+      </section>
+
+      <section className="pd-brands-section">
+        <div className="container">
+          <h3 className="pd-brands-heading">{t('producten.brandsLabel')}</h3>
+          <BrandsSlider />
         </div>
       </section>
 
@@ -882,18 +882,6 @@ export function Producten() {
       </section>
 
       <div className="pd-desktop-only">
-        <section className="pd-brands-strip">
-          <div className="container">
-            <p className="pd-brands-label">{t('producten.brandsLabel')}</p>
-            <div className="pd-brands-row">
-              {BRANDS.map(b => (
-                <span key={b} className="pd-brand-chip">{b}</span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-
         <section className="pd-cities">
           <div className="container">
             <p className="pd-cities-label">{t('producten.citiesLabel')}</p>

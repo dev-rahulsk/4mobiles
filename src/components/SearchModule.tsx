@@ -1,21 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 import { getOpenStatus } from '../lib/openStatus'
 
 const OPEN_STATUS = getOpenStatus()
 
-const ease = (t: number) => t * t * (3 - 2 * t)
-const clamp01 = (v: number) => Math.max(0, Math.min(1, v))
-
-const prefersReducedMotion = () =>
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
 export function SearchModule() {
   const { t } = useTranslation()
   const [query, setQuery] = useState('')
-  const sectionRef = useRef<HTMLElement>(null)
-  const [lift, setLift] = useState(10)
   const days = t('contact.days', { returnObjects: true }) as string[]
   const openLabel = t(`contact.${OPEN_STATUS.type}`, {
     hour: OPEN_STATUS.hour,
@@ -23,33 +15,8 @@ export function SearchModule() {
     day: OPEN_STATUS.dayIndex !== undefined ? days[OPEN_STATUS.dayIndex] : undefined,
   })
 
-  useEffect(() => {
-    let rafId: number | null = null
-    const onScroll = () => {
-      if (rafId !== null) return
-      rafId = requestAnimationFrame(() => {
-        rafId = null
-        const el = sectionRef.current
-        if (!el) return
-        const rect = el.getBoundingClientRect()
-        const vh = window.innerHeight
-        const raw = (vh - rect.top) / (vh * 0.6)
-        const p = clamp01(raw)
-        setLift(prefersReducedMotion() ? 0 : (1 - ease(p)) * 10)
-      })
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      if (rafId !== null) cancelAnimationFrame(rafId)
-    }
-  }, [])
-
   return (
-    <section ref={sectionRef} className="search-section" style={{ transform: `translateY(${lift}px)` }}>
+    <section className="search-section">
       <div className="container">
         <div className="border-beam-container repair-search-card">
           <div className="border-beam" />

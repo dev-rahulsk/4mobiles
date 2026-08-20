@@ -25,5 +25,18 @@
     "typescript": "^5.5.3",
     "vite": "^5.4.2",
     "wrangler": "^4.86.0"
-  }
+  },
+  "description": "This is a **handoff bundle** from Claude Design (claude.ai/design).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-rahulsk/4mobiles.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dev-rahulsk/4mobiles/issues"
+  },
+  "homepage": "https://github.com/dev-rahulsk/4mobiles#readme"
 }

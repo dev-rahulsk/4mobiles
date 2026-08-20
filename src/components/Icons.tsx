@@ -400,12 +400,35 @@ const Target = (p: IconProps) => (
   </svg>
 )
 
+const Lock = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <rect x="5" y="11" width="14" height="10" rx="2" />
+    <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+  </svg>
+)
+
+const Mail = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="m3 7 9 6 9-6" />
+  </svg>
+)
+
+const PhoneCheck = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <rect x="6" y="2.5" width="12" height="19" rx="2.5" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="9" y="8" width="6" height="6" rx="1.5" stroke="#22c55e" strokeWidth="1.5" fill="#f0fdf4" />
+    <path d="m10.5 11 1 1 2-2" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
+
 export const Icon = {
   Search, Phone, Tablet, Laptop, Watch, Battery, Drop, Crack, Speaker,
   Camera, Wrench, Check, Pin, Clock, Shield, Euro, Park, Calendar, Truck,
   Star, ArrowRight, Chat, Plus, Menu, Cart, WhatsApp, X, Quote, MapLink, Car, Bag,
   ChevronDown, ChevronLeft, ChevronRight, Zap, Google, Apple, Users, Headset, Devices, Accessory, Info, HelpCircle, User, Scale, ShieldCheck, Store,
-  Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target, Edit, Book,
+  Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target, Edit, Book, Lock, Mail, PhoneCheck,
 }
+
 
 

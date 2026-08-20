@@ -110,9 +110,9 @@ export function Footer() {
           </div>
           <div className="footer-new-copy">{t('footer.copyright')}</div>
           <div className="footer-new-links">
-            <a href="#">{t('footer.privacy')}</a>
-            <a href="#">{t('footer.terms')}</a>
-            <a href="#">{t('footer.disclaimer')}</a>
+            <a href="/privacybeleid">{t('footer.privacy')}</a>
+            <a href="/algemene-voorwaarden">{t('footer.terms')}</a>
+            <a href="/disclaimer">{t('footer.disclaimer')}</a>
           </div>
         </div>
       </div>

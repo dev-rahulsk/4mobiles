@@ -30,12 +30,12 @@
     "english": "Engels"
   },
   "hero": {
-    "eyebrow": "Sinds 2014 · Naaldwijk · Westland",
+    "eyebrow": "Sinds 2011 · Naaldwijk · Westland",
     "title": "Je telefoon stuk?",
-    "titleAccent": "Binnen het uur weer als nieuw.",
-    "sub": "Vakkundige reparatie van iPhone, Samsung, iPad en meer. Transparante prijzen, 90 dagen garantie — en je toestel is écht binnen een uur klaar.",
+    "titleAccent": "Binnen 60 minuten weer in gebruik.",
+    "sub": "Scherm stuk, batterij leeg of waterschade? Wij repareren je toestel snel en vakkundig. Vaak klaar terwijl je wacht.",
     "step1": "Welk toestel heb je?",
-    "searchPlaceholder": "Zoek je {{device}} model — bv. {{placeholder}}",
+    "searchPlaceholder": "Zoek je iPhone model — bv. iPhone 15 Pro",
     "viewPrice": "Bekijk prijs",
     "deviceOther": "Andere",
     "trust": {
@@ -52,6 +52,7 @@
       "waterTitle": "Waterschade",
       "waterSub": "offerte op maat"
     },
+    "statNum": "10.000+",
     "stat": "reparaties uitgevoerd",
     "brandStrip": "Wij repareren toestellen van"
   },
@@ -474,6 +475,130 @@
     "privacy": "Privacy",
     "terms": "Algemene voorwaarden",
     "disclaimer": "Disclaimer"
+  },
+  "login": {
+    "title": "Mijn reparatie",
+    "subtitle": "Bekijk eenvoudig de status van jouw reparatie.",
+    "emailLabel": "E-mailadres",
+    "emailPlaceholder": "Vul je e-mailadres in",
+    "submitBtn": "Bekijk status",
+    "helpBtn": "Hulp nodig? Neem contact met ons op.",
+    "securityNote": "Veilig en privé. Jouw gegevens zijn bij ons veilig.",
+    "statusTitle": "Reparatiestatus voor {{email}}",
+    "statusFound": "1 actieve reparatie gevonden",
+    "repairNumber": "Reparatie #4M-8921",
+    "statusInProcess": "In behandeling",
+    "statusStep1": "Ontvangen",
+    "statusStep2": "Reparatie",
+    "statusStep3": "Klaar voor ophalen",
+    "estimatedReady": "Verwachte oplevertijd: Vandaag binnen 60 minuten",
+    "deviceLabel": "Apparaat",
+    "deviceSample": "iPhone 14 - Schermvervanging",
+    "storeLocation": "Locatie: Molenstraat 2, Naaldwijk",
+    "enterValidEmail": "Vul a.u.b. een geldig e-mailadres in."
+  },
+  "disclaimerPage": {
+    "title": "Disclaimer",
+    "lastUpdated": "4Mobiles V.O.F. — KvK 80071260",
+    "eyebrow": "JURIDISCH",
+    "p1": "Welkom op www.4mobiles.nl gecreëerd en onderhouden door 4Mobiles V.O.F. met KvK-nummer 80071260. Door gebruik te maken van onze website ga je akkoord met deze disclaimer.",
+    "p2": "4Mobiles behoudt zich het recht voor om de inhoud van de website en de disclaimer op elk moment aan te passen zonder jou daarvan op de hoogte te stellen.",
+    "p3": "Hoewel we ons best doen om de inhoud van de website zorgvuldig samen te stellen, gebruik je de website op eigen risico. 4Mobiles zal zich inspannen om de inhoud van de website zo accuraat mogelijk te houden, maar we kunnen niet garanderen dat de informatie altijd juist of volledig is.",
+    "p4": "De informatie, inclusief ons aanbod van diensten, kan fouten bevatten of achterhaald zijn. 4Mobiles is niet verantwoordelijk voor schade of andere nadelige gevolgen als gevolg van het gebruik van onze website of de onbereikbaarheid ervan. Handelingen die je op basis van onze website of verstrekte informatie verricht, zijn voor eigen risico. Op basis van fouten of achterhaalde informatie kan er ook geen overeenkomst tussen 4Mobiles en jou tot stand komen.",
+    "p5": "De merken die op deze website worden genoemd, zijn niet verbonden aan 4Mobiles en wij vertegenwoordigen ze niet. Apple, Inc. is de eigenaar van de handelsmerken iPhone®, iPod® en iPad®, terwijl andere handelsmerken eigendom zijn van hun respectievelijke eigenaars. We controleren de inhoud die gebruikers op onze website plaatsen niet, maar we kunnen deze gebruikersinhoud wel aanpassen.",
+    "p6": "Als je klachten hebt over de inhoud, horen we dat graag en kun je deze sturen naar info@4Mobiles.nl. Je mag onze website gebruiken, maar je hebt geen rechten op onze intellectuele eigendomsrechten of die van onze licentiegevers en gebruikers van onze website. 4Mobiles behoudt alle rechten met betrekking tot de inhoud van de website. Voor het gebruik van inhoud van onze website op publiekelijk toegankelijke plaatsen kun je altijd contact met ons opnemen via info@4Mobiles.nl."
+  },
+  "privacyPage": {
+    "title": "Privacy statement",
+    "lastUpdated": "Bijgewerkt op: 20-04-2022",
+    "eyebrow": "PRIVACY",
+    "sec1Title": "Inleidende bepalingen",
+    "sec1P1": "Hierbij treft u de privacyverklaring van 4Mobiles V.O.F. aan, gevestigd aan de Molenstraat 2 te Naaldwijk en ingeschreven bij de Kamer van Koophandel onder nummer 80071260. Wij raden u aan om deze privacyverklaring zorgvuldig door te nemen. Mocht u vragen hebben, dan kunt u ons bereiken via info@4Mobiles.nl of telefonisch op 0631312231.",
+    "sec1P2": "Deze privacyverklaring legt uit hoe 4Mobiles omgaat met persoonsgegevens en welke gegevens er worden verzameld en voor welke doeleinden deze gegevens worden gebruikt. 4Mobiles maakt tevens duidelijk op welke wettelijke gronden deze persoonsgegevens worden verwerkt. De verwerking van persoonsgegevens door 4Mobiles valt onder de wettelijke vrijstellingsregelingen en is daarom niet gemeld bij de Autoriteit Persoonsgegevens.",
+    "sec1P3": "Deze privacyverklaring is van toepassing op alle bezoekers van onze website. Als u niet akkoord gaat met deze privacyverklaring, dan verzoeken wij u om de website te verlaten. 4Mobiles behoudt zich het recht voor om deze privacyverklaring aan te passen. De meest recente versie van de privacyverklaring is bijgewerkt op 20-04-2022.",
+    "sec2Title": "Rechtsgrond voor de verwerking van persoonsgegevens",
+    "sec2P1": "De persoonsgegevens die verzameld worden door 4Mobiles zijn noodzakelijk voor een correcte uitvoering van de overeenkomst. Dit betekent dat 4Mobiles de gegevens nodig heeft om producten in de webshop aan te bieden en online afspraken te maken. Wanneer u ervoor kiest om geen persoonsgegevens te verstrekken, kan 4Mobiles zijn diensten niet aan u leveren. Dit kan resulteren in het niet nakomen van contractuele, wettelijke en noodzakelijke verplichtingen. De eventuele gevolgen van het niet verstrekken van persoonsgegevens zijn dan ook voor uw eigen rekening en risico.",
+    "sec3Title": "Soorten, doelen, rechtsgronden en termijn van verwerking van persoonsgegevens",
+    "sec3P1": "Wanneer u een online-afspraak maakt, wordt aangegeven welke persoonsgegevens u verplicht moet invullen op het contactformulier. Dit omvat uw voornaam, achternaam, e-mailadres, telefoonnummer, soort reparatie, het model en de kleur van uw telefoon of tablet. Bij het aanmaken van een account om producten te bestellen in onze webshop, wordt ook aangegeven welke gegevens verplicht moeten worden ingevuld. Dit zijn gegevens die betrekking hebben op de reparatie die zal worden uitgevoerd. Deze persoonsgegevens zijn nodig om uw bestelling of vraag te verwerken. Zelfs als u geen bestelling plaatst op onze website en/of geen online-afspraak maakt, kunnen wij nog steeds persoonlijke informatie van u verzamelen wanneer u onze website bezoekt. Via Google Analytics worden uw demografische gegevens verzameld, zoals uw IP-adres en bezoekfrequentie. Deze tool wordt gebruikt voor marketingdoeleinden en om bij te houden hoe gebruikers onze website gebruiken en hoe we deze kunnen verbeteren.",
+    "sec3P2": "Wanneer u uw account verwijdert, worden uw persoonsgegevens voor maximaal 72 uur opgeslagen. De persoonsgegevens die 4Mobiles verkrijgt via het online-afsprakensysteem en het contactformulier worden gedurende een termijn van 1 jaar opgeslagen.",
+    "sec4Title": "Cookies",
+    "sec4P1": "4Mobiles maakt op haar website gebruik van cookies. Maar wat zijn cookies eigenlijk? Een cookie is een klein bestandje dat door een website op uw computer wordt geplaatst. Telkens wanneer u de website van 4Mobiles bezoekt, verzamelt de website basis technische informatie, zoals de website waarvandaan u op 4Mobiles bent gekomen. Let op: deze privacyverklaring is ook van toepassing op cookies en soortgelijke technologieën. 4Mobiles kan cookies gebruiken om bezoekers te voorzien van op maat gemaakte informatie, informatie te verzamelen en bezoekers te volgen tijdens het bezoek aan de website. Dit draagt bij aan een optimale gebruikerservaring op de website van 4Mobiles.",
+    "sec5Title": "Verwijzing naar andere websites",
+    "sec5P1": "Deze privacyverklaring is enkel van toepassing op deze specifieke website. Let op: deze website kan links bevatten naar andere websites die niet worden beheerd of eigendom zijn van 4Mobiles. Wanneer u via een link op deze website naar een andere website gaat, is de privacyverklaring van die website van toepassing. 4Mobiles is niet aansprakelijk of verantwoordelijk voor die website of de privacyverklaring op die website. We raden u aan om de privacyverklaring van die website goed door te lezen voordat u verder gaat op die website.",
+    "sec6Title": "Doorgifte aan verwerkers en derden",
+    "sec6P1": "Bedrijven die zijn ingeschakeld door 4Mobiles voor de uitvoering van de overeenkomst, ook wel \"verwerkers\" genoemd volgens de wet, verwerken persoonsgegevens. Voorbeelden van verwerkers zijn bijvoorbeeld het bedrijf dat de hosting van onze website verzorgt of een door ons ingeschakelde pakketdienst. Deze verwerkers handelen onder verantwoordelijkheid van 4Mobiles.",
+    "sec6P2": "Daarnaast kan 4Mobiles persoonsgegevens delen met derden indien dit wettelijk verplicht is en bevoegde instanties hierom vragen.",
+    "sec7Title": "Beveiliging",
+    "sec7P1": "4Mobiles heeft adequate technische en organisatorische maatregelen genomen om uw persoonsgegevens te beschermen tegen verlies of ongeoorloofde verwerking. Om ervoor te zorgen dat gegevens via een beveiligde verbinding worden verzonden, heeft de website een SSL-certificaat.",
+    "sec8Title": "Privacy",
+    "sec8P1": "Gegevens die niet langer nodig zijn, zullen worden verwijderd. Volgens de Algemene Verordening Gegevensbescherming heeft u recht op inzage, rectificatie, verwijdering of beperking van de verwerking van uw persoonsgegevens. Wij zullen u vragen om uzelf te identificeren om misbruik en fraude te voorkomen. Indien u een account op onze website heeft, kunt u uw verstrekte gegevens zelf inzien en wijzigen.",
+    "sec9Title": "Klachten",
+    "sec9P1": "Indien u een klacht heeft over de verwerking van uw persoonsgegevens door 4Mobiles, kunt u dit bij ons melden door een e-mail te sturen naar info@4mobiles.nl. U kunt uw klacht ook indienen bij de Autoriteit Persoonsgegevens. Voor meer informatie over hoe u dit kunt doen, kunt u deze link raadplegen https://www.autoriteitpersoonsgegevens.nl/."
+  },
+  "termsPage": {
+    "title": "Algemene Voorwaarden",
+    "lastUpdated": "Copyright 2022 4Mobiles",
+    "eyebrow": "VOORWAARDEN",
+    "sec1Title": "1. Begrippen",
+    "sec1Items": [
+      "1.1 4Mobiles V.O.F. is opgericht om kapotte smartphones en tablets te repareren.",
+      "1.2 In deze algemene voorwaarden wordt onder 4Mobiles ook alle medewerkers van het bedrijf verstaan.",
+      "1.3 In deze algemene voorwaarden wordt onder Klant verstaan: een persoon of organisatie die gebruik maakt van de Diensten van 4Mobiles .",
+      "1.4 In deze algemene voorwaarden wordt onder Diensten verstaan: alle werkzaamheden uitgevoerd door 4Mobiles, waaronder maar niet beperkt tot het repareren van Producten en het ophalen of bezorgen van deze Producten.",
+      "1.5 In deze algemene voorwaarden wordt onder Producten verstaan: apparatuur die door Klanten ter reparatie is ingediend, waaronder maar niet beperkt tot smartphones en tablets.",
+      "1.6 In deze algemene voorwaarden wordt onder Originele onderdelen verstaan: zowel nieuwe originele onderdelen als onderdelen afkomstig van originele apparatuur.",
+      "1.7 In deze algemene voorwaarden wordt onder Website verstaan: de website www.4mobiles.nl."
+    ],
+    "sec2Title": "2. Toepassing van de voorwaarden",
+    "sec2Items": [
+      "2.1 Deze algemene voorwaarden gelden voor alle klanten van 4Mobiles .",
+      "2.2 Eventuele afwijkingen van deze algemene voorwaarden zijn alleen geldig als deze uitdrukkelijk schriftelijk met 4Mobiles zijn overeengekomen."
+    ],
+    "sec3Title": "3. Overeenkomst",
+    "sec3Items": [
+      "3.1 Zodra de Klant een offerte of aanbod van 4Mobiles accepteert, komt de overeenkomst tot stand.",
+      "3.2 Als er door onbekende omstandigheden meer werk moet worden verricht dan bij het aangaan van de overeenkomst bekend was, kan 4Mobiles deze kosten aan de Klant in rekening brengen. Als de Klant bezwaar heeft, kan hij of zij de nog niet uitgevoerde werkzaamheden annuleren en moet de Klant de tot dusver uitgevoerde werkzaamheden van 4Mobiles aan hun Product vergoeden.",
+      "3.3 De Klant kan de Opdracht alleen annuleren voor het deel van de werkzaamheden dat nog niet is uitgevoerd."
+    ],
+    "sec4Title": "4. Uitvoering van Diensten",
+    "sec4Items": [
+      "4.1 Klanten met een afspraak gaan voor op Klanten zonder afspraak.",
+      "4.2 Bij afgifte van het Product vraagt 4Mobiles om de toegangscode om bepaalde functies te testen. Indien een klant deze toegangscode geeft, geeft hij daarmee toestemming om 4Mobiles gebruik te laten maken van deze code om functies te testen. De klant is NIET verplicht om de toegangscode af te geven om zijn of haar toestel te laten repareren.",
+      "4.3 4Mobiles heeft het recht het Product terug te zetten naar de oorspronkelijke fabrieksinstellingen.",
+      "4.4 De Klant is zelf verantwoordelijk voor het verstrekken van de juiste gegevens aan 4Mobiles .",
+      "4.5 4Mobiles probeert voor haar reparaties gebruik van te maken van Originele onderdelen, lukt dit niet dan wordt er gebruik gemaakt van onderdelen van de hoogst haalbare kwaliteit.",
+      "4.6 4Mobiles heeft het recht derden in te schakelen bij het uitvoeren van haar Diensten.",
+      "4.7 4Mobiles probeert veel voorkomende reparaties binnen 30 minuten uit te voeren.",
+      "4.8 Indien het Product niet binnen een week wordt opgehaald wordt de Klant hier op geattendeerd. Als het Product na 30 dagen nog niet is opgehaald gaat het eigendom over op 4Mobiles ."
+    ],
+    "sec5Title": "5. Garantie, kosten en betalingen",
+    "sec5Items": [
+      "5.1 Na reparatie door 4Mobiles heeft de klant levenslange garantie op het functioneren van het gerepareerde onderdeel. Deze garantie is echter niet van toepassing op barsten in het glas of lcd-scherm, val-, stoot-, druk-, water- of andere zichtbare gebruikersschade.",
+      "5.2 Hoewel 4Mobiles hoogwaardige onderdelen gebruikt, kan het bedrijf niet garanderen dat de fabrieksgarantie op het product van kracht blijft.",
+      "5.3 Als het niet mogelijk is om het product te repareren, hoeft de klant hier niet voor te betalen. Bij waterschade worden er wel onderzoekskosten in rekening gebracht.",
+      "5.4 De kosten voor reparatie zijn op de website van 4Mobiles te vinden en deze kosten dienen door klanten bij het ophalen van het product in de winkel te worden voldaan. Zakelijke klanten kunnen op rekening betalen.",
+      "5.5 Fabrikanten produceren sommige telefoons waterdicht, maar na reparatie kan de waterdichtheid verloren gaan. 4Mobiles is na een reparatie niet aansprakelijk voor de waterdichtheid van een toestel."
+    ],
+    "sec6Title": "6. Aansprakelijkheid",
+    "sec6Items": [
+      "6.1 4Mobiles heeft enkel een inspanningsverplichting jegens de Klant en kan daarom niet aansprakelijk worden gesteld als het gewenste resultaat niet wordt behaald.",
+      "6.2 Indien 4Mobiles toch aansprakelijk wordt gesteld, is dit beperkt tot directe schade die aantoonbaar is veroorzaakt door een tekortschieten van onze verplichtingen en tot maximaal de factuurwaarde voor de reparatie van het Product.",
+      "6.3 Aanspraken van de Klant vervallen als ze niet binnen veertien (14) dagen schriftelijk en gemotiveerd zijn gemeld bij 4Mobiles nadat de Klant bekend was of redelijkerwijs bekend kon zijn met de feiten waarop hij zijn aanspraken baseert.",
+      "6.4 4Mobiles is niet aansprakelijk voor het verlies van data.",
+      "6.5 4Mobiles is niet aansprakelijk voor schade aan Producten veroorzaakt door overmacht, waaronder inbraak, lekkage, brand en overstroming.",
+      "6.6 4Mobiles zal zich adequaat verzekeren en verzekerd houden tegen de in artikel 6.4 genoemde schade. De ontvangen schadevergoeding zal pro rato worden uitgekeerd aan de Klant.",
+      "6.7 Bij totaal verlies van een Product wordt de dagwaarde van het Product gehanteerd en zal er tot maximaal 350 euro worden vergoed op dezelfde wijze als in artikel 6.6. 4Mobiles is echter niet verplicht het Product in zijn geheel te vervangen."
+    ],
+    "sec7Title": "7. Identiteit",
+    "sec7Items": [
+      "7.1 4Mobiles B.V. is bij de Kamer van Koophandel geregistreerd onder nummer 80071260. Het Btw-identificatienummer van 4Mobiles is 861546015B01. Het statutaire adres van 4Mobiles is Molenstraat 2, 2671EX in Naaldwijk, dit is tevens het adres van de winkel.",
+      "7.2 4Mobiles is bereikbaar via e-mail op info@4Mobiles.nl."
+    ],
+    "sec8Title": "8. Toepasselijke recht en bevoegde rechter",
+    "sec8Items": [
+      "8.1 De rechtsverhouding tussen 4Mobiles en haar klanten valt onder het Nederlands recht.",
+      "8.2 In het geval van geschillen tussen 4Mobiles en haar klanten, zal de bevoegde rechter van het Arrondissement ‘s-Gravenhage deze beslechten."
+    ]
   },
   "sticky": {
     "title": "Vaak binnen 1 uur klaar",

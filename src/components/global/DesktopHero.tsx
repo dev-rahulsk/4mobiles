@@ -28,6 +28,7 @@ interface DesktopHeroProps {
   title: ReactNode
   description?: ReactNode
   cta?: DesktopHeroCta
+  extra?: ReactNode
   image: DesktopHeroImage
   imagePosition?: string
   badges: DesktopHeroBadge[]
@@ -39,6 +40,7 @@ export function DesktopHero({
   title,
   description,
   cta,
+  extra,
   image,
   imagePosition = 'center',
   badges,
@@ -63,17 +65,17 @@ export function DesktopHero({
         aria-hidden="true"
       >
         <defs>
-          <clipPath id={`${glowFilterId}-dark-clip`} clipPathUnits="objectBoundingBox">
+          <clipPath id={`${glowFilterId}-dark-clip`} clipPathUnits="objectBoundingBox" transform="translate(0.025, 0)">
             <path d="M 0.5493 0 C 0.4521 0.1143, 0.4285 0.2971, 0.4208 0.4543 C 0.4097 0.65, 0.3854 0.7429, 0.3243 0.8929 L -0.2562 1.0429 L -0.2562 -0.0714 Z" />
             <path d="M 0.1292 1.0714 C 0.1639 0.9714, 0.1778 0.9, 0.2125 0.8286 C 0.2681 0.7143, 0.2819 0.7, 0.3264 0.6557 L -0.2181 0.6557 L -0.2181 1.0714 Z" />
           </clipPath>
           <filter id={`${glowFilterId}-fill-blur`} x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="10" />
+            <feGaussianBlur stdDeviation="5" />
           </filter>
         </defs>
-        <g transform="translate(80, 0)" style={{ filter: `url(#${glowFilterId}-fill-blur)` }}>
+        <g transform="translate(115, 0)" style={{ filter: `url(#${glowFilterId}-fill-blur)` }}>
           <g transform="translate(6, 0)">
-            <g transform="translate(-55, 0)">
+            <g transform="translate(-50, 0)">
               <path d={`${GLOW_CURVE_MAIN} L -400 730 L -400 -50 Z`} />
             </g>
             <path d={`${GLOW_CURVE_SECONDARY} L -400 459 L -400 750 Z`} />
@@ -196,7 +198,7 @@ export function DesktopHero({
             <stop offset="100%" stopColor="#8cf24a" stopOpacity="0" />
           </linearGradient>
         </defs>
-        <g transform="translate(80, 0)">
+        <g transform="translate(115, 0)">
           <g transform="translate(-50, 0)">
             <path
               className="hero-glow-path hero-glow-path--blur"
@@ -233,6 +235,7 @@ export function DesktopHero({
               {cta.label}
             </a>
           )}
+          {extra}
         </div>
       </div>
 
