@@ -35,7 +35,7 @@
     "titleAccent": "Fixed in 60 minutes and back in use.",
     "sub": "Cracked screen, dead battery or water damage? We repair your device quickly and professionally. Often ready while you wait.",
     "step1": "What device do you have?",
-    "searchPlaceholder": "Search your iPhone model — e.g. iPhone 15 Pro",
+    "searchPlaceholder": "Search your device model — e.g. iPhone 15 Pro",
     "viewPrice": "View price",
     "deviceOther": "Other",
     "trust": {
@@ -61,7 +61,7 @@
     "dynamicWords": [
       "Phone",
       "Tablet",
-      "Device"
+      "iPhone"
     ],
     "titleSuffix": "broken?",
     "title2": "Fixed in",

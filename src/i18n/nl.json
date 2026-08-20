@@ -35,7 +35,7 @@
     "titleAccent": "Binnen 60 minuten weer in gebruik.",
     "sub": "Scherm stuk, batterij leeg of waterschade? Wij repareren je toestel snel en vakkundig. Vaak klaar terwijl je wacht.",
     "step1": "Welk toestel heb je?",
-    "searchPlaceholder": "Zoek je iPhone model — bv. iPhone 15 Pro",
+    "searchPlaceholder": "Zoek je toestel model — bv. iPhone 15 Pro",
     "viewPrice": "Bekijk prijs",
     "deviceOther": "Andere",
     "trust": {
@@ -58,7 +58,7 @@
   },
   "mhero": {
     "title1": "Telefoon kapot?",
-    "dynamicWords": ["Telefoon", "Tablet", "Device"],
+    "dynamicWords": ["Telefoon", "Tablet", "iPhone"],
     "titleSuffix": "kapot?",
     "title2": "Binnen",
     "titleAccent": "60 minuten",

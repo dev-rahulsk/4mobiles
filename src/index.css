@@ -609,6 +609,34 @@ input {
   color: transparent;
 }
 
+.hero-word-cycle {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+.hero-word-cycle .hero-word {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 480ms cubic-bezier(.4, 0, .2, 1), transform 480ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.hero-word-cycle .hero-word.active {
+  position: static;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-word-cycle .hero-word {
+    transition: none;
+  }
+}
+
 .hero-sub {
   font-size: 17px;
   line-height: 1.55;
@@ -7237,7 +7265,9 @@ input {
   align-items: center;
   gap: 16px;
   padding: 18px 22px;
-  background: #ffffff;
+  background:
+    linear-gradient(90deg, rgba(122, 184, 39, .10), rgba(37, 99, 235, .07), rgba(245, 158, 11, .09)),
+    rgba(255, 255, 255, .96);
   border: 1px solid var(--ink-200);
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
@@ -19084,9 +19114,18 @@ a.rg-city-card:hover {
   margin: 0;
 }
 
+@media (max-width: 768px) {
+  .legal-page-wrap {
+    padding: calc(var(--nav-fixed-bottom, 70px) + 32px) 16px 60px;
+  }
+}
+
 @media (max-width: 640px) {
   .legal-page-wrap {
-    padding: 36px 16px 60px;
+    padding-top: calc(var(--nav-fixed-bottom, 70px) + 24px);
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 60px;
   }
 
   .legal-card {

@@ -1,10 +1,13 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 import { PhoneAnimation } from './PhoneAnimation'
 import { getOpenStatus } from '../lib/openStatus'
 
 const OPEN_STATUS = getOpenStatus()
+
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 interface HeroProps {
   accent: string
@@ -18,6 +21,8 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
   const heroTitle = title ?? t('hero.title')
   const heroTitleAccent = titleAccent ?? t('hero.titleAccent')
   const heroSub = sub ?? t('hero.sub')
+  const dynamicWords = t('mhero.dynamicWords', { returnObjects: true }) as string[]
+  const [wordIndex, setWordIndex] = useState(0)
   const [query, setQuery] = useState('')
   const [announcementVisible, setAnnouncementVisible] = useState(() => {
     try {
@@ -39,6 +44,14 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
     { icon: Icon.Clock,  label: t('hero.trust.ready') },
     { icon: Icon.Euro,   label: t('hero.trust.nocure') },
   ]
+
+  useEffect(() => {
+    if (title || prefersReducedMotion() || dynamicWords.length <= 1) return
+    const id = setInterval(() => {
+      setWordIndex(i => (i + 1) % dynamicWords.length)
+    }, 2400)
+    return () => clearInterval(id)
+  }, [title, dynamicWords.length])
 
   const dismissAnnouncement = () => {
     try {
@@ -78,7 +91,21 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
           </div>
 
           <h1 className="hero-title">
-            {heroTitle}<br />
+            {title ? (
+              heroTitle
+            ) : (
+              <>
+                <span className="hero-word-cycle">
+                  {dynamicWords.map((word, i) => (
+                    <span key={word} className={`hero-word${i === wordIndex ? ' active' : ''}`}>
+                      {word}
+                    </span>
+                  ))}
+                </span>{' '}
+                {t('mhero.titleSuffix')}
+              </>
+            )}
+            <br />
             <span className="hero-title-accent">{heroTitleAccent}</span>
           </h1>
 
