@@ -422,12 +422,28 @@ const PhoneCheck = (p: IconProps) => (
   </svg>
 )
 
+const Eye = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+)
+
+const Tap = (p: IconProps) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M9 12.5V6a1.8 1.8 0 0 1 3.6 0v5" />
+    <path d="M12.6 10.7V5.2a1.8 1.8 0 0 1 3.6 0v6.3" />
+    <path d="M16.2 11.2a1.8 1.8 0 0 1 3.6 0V15c0 3.6-2.4 6.5-6.4 6.5-2.6 0-3.9-.8-5.1-2.3l-3.4-4.4a1.7 1.7 0 0 1 2.6-2.2l1.5 1.5" />
+    <path d="M4 4 2.5 2.5M4 9H2M6 4.5 5 3" />
+  </svg>
+)
+
 export const Icon = {
   Search, Phone, Tablet, Laptop, Watch, Battery, Drop, Crack, Speaker,
   Camera, Wrench, Check, Pin, Clock, Shield, Euro, Park, Calendar, Truck,
   Star, ArrowRight, Chat, Plus, Menu, Cart, WhatsApp, X, Quote, MapLink, Car, Bag,
   ChevronDown, ChevronLeft, ChevronRight, Zap, Google, Apple, Users, Headset, Devices, Accessory, Info, HelpCircle, User, Scale, ShieldCheck, Store,
-  Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target, Edit, Book, Lock, Mail, PhoneCheck,
+  Rocket, ClipboardCheck, Cable, Lanyard, Wand, Wireless, Target, Edit, Book, Lock, Mail, PhoneCheck, Eye, Tap,
 }
 
 

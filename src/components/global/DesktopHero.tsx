@@ -1,4 +1,4 @@
-import { useId, type ComponentType, type CSSProperties, type ReactNode, type SVGProps } from 'react'
+import { useEffect, useId, useRef, type ComponentType, type CSSProperties, type ReactNode, type SVGProps } from 'react'
 import { Icon } from '../Icons'
 
 const GLOW_CURVE_MAIN = 'M 760 0 C 620 80, 586 208, 575 318 C 559 455, 524 520, 436 625'
@@ -33,6 +33,8 @@ interface DesktopHeroProps {
   imagePosition?: string
   badges: DesktopHeroBadge[]
   className?: string
+  /** Subtle scroll parallax on the background photo. Off by default — opt in per page. */
+  parallax?: boolean
 }
 
 export function DesktopHero({
@@ -45,8 +47,33 @@ export function DesktopHero({
   imagePosition = 'center',
   badges,
   className = '',
+  parallax = false,
 }: DesktopHeroProps) {
   const glowFilterId = useId()
+  const photoRef = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    if (!parallax) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let rafId: number | null = null
+    const onScroll = () => {
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        const offset = Math.min(window.scrollY * 0.06, 32)
+        if (photoRef.current) {
+          photoRef.current.style.transform = `translateY(${offset}px) scale(1.08)`
+        }
+      })
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (rafId !== null) cancelAnimationFrame(rafId)
+    }
+  }, [parallax])
 
   const style = {
     '--hero-image-position': imagePosition,
@@ -55,7 +82,7 @@ export function DesktopHero({
   return (
     <section className={`desktop-hero${className ? ` ${className}` : ''}`} style={style}>
       <div className="desktop-hero__photo">
-        <img src={image.src} alt={image.alt} loading="eager" />
+        <img ref={parallax ? photoRef : undefined} src={image.src} alt={image.alt} loading="eager" />
       </div>
 
       <svg
@@ -228,7 +255,7 @@ export function DesktopHero({
       <div className="desktop-container desktop-hero__inner">
         <div className="desktop-hero__copy">
           <p className="desktop-hero__eyebrow">{eyebrow}</p>
-          <h1 className="desktop-hero__title">{title}</h1>
+          <p className="desktop-hero__title">{title}</p>
           {description && <p className="desktop-hero__description">{description}</p>}
           {cta && (
             <a className="desktop-hero__cta" href={cta.href} target={cta.target} rel={cta.rel}>

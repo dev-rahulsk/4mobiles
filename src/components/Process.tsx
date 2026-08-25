@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 
-import newcard1 from '../assets/newcard1.png'
-import newcard2 from '../assets/newcard2.png'
-import newcard3 from '../assets/newcard3.png'
-import newcard4 from '../assets/newcard4.png'
+import newcard1 from '../assets/newcard1.webp'
+import newcard2 from '../assets/newcard2.webp'
+import newcard3 from '../assets/newcard3.webp'
+import newcard4 from '../assets/newcard4.webp'
 
 const CARDS = [
   { id: 1, img: newcard1, colorKey: 'c1', StepIcon: Icon.Calendar, FooterIcon: Icon.Pin },

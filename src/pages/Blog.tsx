@@ -6,6 +6,7 @@ import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
 import { breadcrumbSchema } from '../lib/seo/schema'
 import { PageBottomCta, Pill } from '../components/global'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 type CategoryKey = 'reparatie' | 'batterij' | 'scherm' | 'bescherming' | 'service' | 'tips'
 
@@ -43,10 +44,11 @@ interface Article {
 
 function ArticleCard({ a }: { a: Article }) {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const date = ARTICLE_DATES[a.slug]
   const CatIcon = CATEGORY_ICONS[a.categoryKey]
   return (
-    <a href={`/blog/${a.slug}`} className="bl-card">
+    <a href={toLocale(`/blog/${a.slug}`)} className="bl-card">
       <div className="bl-card-img">
         <Icon.Phone width="30" height="30" />
         <span className="bl-card-badge">
@@ -72,6 +74,7 @@ function ArticleCard({ a }: { a: Article }) {
 
 export function Blog() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null)
   const [query, setQuery] = useState('')
 
@@ -176,7 +179,7 @@ export function Blog() {
             {showFeatured && featured && (
               <>
                 <span className="bl-section-label">{t('blog.featuredLabel')}</span>
-                <a href={`/blog/${featured.slug}`} className="bl-featured">
+                <a href={toLocale(`/blog/${featured.slug}`)} className="bl-featured">
                   <div className="bl-featured-img">
                     <Icon.Crack width="40" height="40" />
                     <span className="bl-card-badge bl-featured-badge">{featured.tag}</span>

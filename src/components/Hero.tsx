@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 import { PhoneAnimation } from './PhoneAnimation'
 import { getOpenStatus } from '../lib/openStatus'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 const OPEN_STATUS = getOpenStatus()
 
@@ -18,6 +19,7 @@ interface HeroProps {
 
 export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const heroTitle = title ?? t('hero.title')
   const heroTitleAccent = titleAccent ?? t('hero.titleAccent')
   const heroSub = sub ?? t('hero.sub')
@@ -90,7 +92,7 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
             <span className="dot" /> {t('hero.eyebrow')}
           </div>
 
-          <h1 className="hero-title">
+          <p className="hero-title">
             {title ? (
               heroTitle
             ) : (
@@ -107,7 +109,7 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
             )}
             <br />
             <span className="hero-title-accent">{heroTitleAccent}</span>
-          </h1>
+          </p>
 
           <p className="hero-sub">{heroSub}</p>
 
@@ -139,7 +141,7 @@ export function Hero({ accent: _accent, title, titleAccent, sub }: HeroProps) {
                   </button>
                 </form>
                 <a
-                  href="/contact"
+                  href={toLocale('/contact')}
                   className={`search-hours-chip${OPEN_STATUS.open ? ' search-hours-chip--open' : ' search-hours-chip--closed'}`}
                 >
                   <span className="search-hours-dot" />

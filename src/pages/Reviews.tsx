@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { MobileHero, GlassBadge, Pill, DesktopHero } from '../components/global'
-import reviewsHeroImg from '../assets/store_hero_bg.png'
+import reviewsHeroImg from '../assets/store_hero_bg.webp'
 import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
 import { breadcrumbSchema } from '../lib/seo/schema'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 const REVIEWS_HERO_GRADIENT = 'linear-gradient(180deg, #080604 0%, #080604 36%, #b8b1a9 44%, #6b635a 55%, #332f2a 68%, #141311 84%, #050403 100%)'
 
@@ -35,6 +36,7 @@ const GoogleLogo = ({ size = 32 }: { size?: number }) => (
 
 export function Reviews() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const [filterKey, setFilterKey] = useState<'all' | 'repairs' | 'accessories'>('all')
   const [visibleReviews, setVisibleReviews] = useState(4)
   const [stickyCtaVisible, setStickyCtaVisible] = useState(false)
@@ -250,7 +252,7 @@ export function Reviews() {
 
       {/* Mobile-only floating sticky CTA, shown after 30% page scroll — reuses Home page's floating CTA */}
       <div className={`mhero-sticky-cta${stickyCtaVisible ? ' visible' : ''}`}>
-        <a href="/reparatie" className="mhero-cta" aria-label={t('reviewsPage.stickyCtaButton')}>
+        <a href={toLocale('/reparatie')} className="mhero-cta" aria-label={t('reviewsPage.stickyCtaButton')}>
           <Icon.Calendar width="20" height="20" />
           <span>{t('reviewsPage.stickyCtaButton')}</span>
           <Icon.ArrowRight width="18" height="18" />

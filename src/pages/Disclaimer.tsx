@@ -11,6 +11,7 @@ export function Disclaimer() {
         title={`${t('disclaimerPage.title')} | 4Mobiles`}
         description={t('disclaimerPage.p1')}
         path="/disclaimer"
+        noindex
       />
       <div className="subtle-gradient-bg legal-page-wrap">
         <div className="container legal-container">

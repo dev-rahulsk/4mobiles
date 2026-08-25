@@ -1,7 +1,12 @@
 {
   "iphone": "iPhone",
-  "samsung": "Samsung",
   "ipad": "iPad",
+  "samsung": "Samsung",
+  "motorola": "Motorola",
+  "xiaomi": "Xiaomi",
+  "oppo": "Oppo",
+  "huawei": "Huawei",
   "oneplus": "OnePlus",
-  "xiaomi": "Xiaomi"
+  "sony": "Sony",
+  "google": "Google"
 }

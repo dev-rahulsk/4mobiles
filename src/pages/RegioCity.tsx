@@ -94,7 +94,7 @@ export function RegioCity() {
       <Reviews />
       <FAQ items={faqItems} />
       <Locations regionalNote={locationsNote} />
-      <RegionalSeoSection city={name} minutes={minutes} />
+      <RegionalSeoSection city={name} minutes={minutes} slug={city.slug} />
     </Layout>
   )
 }

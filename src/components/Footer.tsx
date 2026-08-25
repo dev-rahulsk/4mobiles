@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
-import logoIcon from '../assets/logo/logo-icon.png'
+import logoIcon from '../assets/logo/logo-icon-nav.webp'
+import { localizePath } from '../lib/seo/constants'
 
-function Logo() {
+function Logo({ lang }: { lang: string }) {
   const { t } = useTranslation()
   return (
-    <a href="/" className="logo">
+    <a href={localizePath('/', lang)} className="logo">
       <span className="logo-mark">
         <img src={logoIcon} alt="4Mobiles" />
       </span>
@@ -18,9 +19,11 @@ function Logo() {
 }
 
 const COL3_HREFS = ['/over-ons', undefined, '/zakelijk', '/blog', '/veelgestelde-vragen', '/regio']
+const COL1_HREFS = ['/reparatie/iphone', '/reparatie/samsung', '/reparatie/ipad', '/reparatie/oneplus', '/reparatie/xiaomi', '/reparatie', '/reparatie']
+const COL2_HREFS = ['/reparatie/iphone', '/reparatie/iphone', '/reparatie/iphone', '/reparatie/samsung', '/reparatie/samsung', '/reparatie/ipad']
 
 export function Footer() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const col1Items: string[] = t('footer.col1Items', { returnObjects: true }) as string[]
   const col2Items: string[] = t('footer.col2Items', { returnObjects: true }) as string[]
@@ -30,7 +33,7 @@ export function Footer() {
     <footer className="footer-new">
       <div className="container">
         <div className="footer-new-logo">
-          <Logo />
+          <Logo lang={i18n.language} />
           <p className="footer-new-tag">{t('footer.logoTag')}</p>
           <div className="footer-new-rating">
             <Icon.Google width="18" height="18" />
@@ -46,13 +49,13 @@ export function Footer() {
             <div className="footer-new-col">
               <h4>{t('footer.col1Title')}</h4>
               <ul>
-                {col1Items.map(it => <li key={it}><a href="#">{it}</a></li>)}
+                {col1Items.map((it, i) => <li key={it}><a href={localizePath(COL1_HREFS[i] ?? '/reparatie', i18n.language)}>{it}</a></li>)}
               </ul>
             </div>
             <div className="footer-new-col">
               <h4>{t('footer.col2Title')}</h4>
               <ul>
-                {col2Items.map(it => <li key={it}><a href="#">{it}</a></li>)}
+                {col2Items.map((it, i) => <li key={it}><a href={localizePath(COL2_HREFS[i] ?? '/reparatie', i18n.language)}>{it}</a></li>)}
               </ul>
             </div>
           </div>
@@ -61,7 +64,7 @@ export function Footer() {
             <div className="footer-new-col">
               <h4>{t('footer.col3Title')}</h4>
               <ul>
-                {col3Items.map((it, i) => <li key={it}><a href={COL3_HREFS[i] ?? '#'}>{it}</a></li>)}
+                {col3Items.map((it, i) => <li key={it}><a href={COL3_HREFS[i] ? localizePath(COL3_HREFS[i]!, i18n.language) : '#'}>{it}</a></li>)}
               </ul>
             </div>
             <div className="footer-new-col">
@@ -94,8 +97,8 @@ export function Footer() {
 
         <div className="footer-new-bottom">
           <div className="footer-new-social">
-            <a href="#" aria-label="WhatsApp"><Icon.WhatsApp width="18" height="18" /></a>
-            <a href="#" aria-label="Instagram">
+            <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><Icon.WhatsApp width="18" height="18" /></a>
+            <a href="https://www.instagram.com/4mobilesnaaldwijk/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" />
                 <circle cx="12" cy="12" r="5" />
@@ -110,9 +113,9 @@ export function Footer() {
           </div>
           <div className="footer-new-copy">{t('footer.copyright')}</div>
           <div className="footer-new-links">
-            <a href="/privacybeleid">{t('footer.privacy')}</a>
-            <a href="/algemene-voorwaarden">{t('footer.terms')}</a>
-            <a href="/disclaimer">{t('footer.disclaimer')}</a>
+            <a href={localizePath('/privacybeleid', i18n.language)}>{t('footer.privacy')}</a>
+            <a href={localizePath('/algemene-voorwaarden', i18n.language)}>{t('footer.terms')}</a>
+            <a href={localizePath('/disclaimer', i18n.language)}>{t('footer.disclaimer')}</a>
           </div>
         </div>
       </div>

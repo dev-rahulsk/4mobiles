@@ -2,15 +2,24 @@ import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { Icon } from './Icons'
-import logoIcon from '../assets/logo/logo-icon.png'
+import logoIcon from '../assets/logo/logo-icon-nav.webp'
 import BRAND_DISPLAY_NAMES from '../lib/seo/reparatie-brands.json'
+import { isEnglishPath, localizePath } from '../lib/seo/constants'
 
 const DARK_HERO_PATHS = new Set(['/producten', '/over-ons', '/zakelijk', '/reviews', '/contact'])
 
 const REPAIR_BRANDS = Object.entries(BRAND_DISPLAY_NAMES as Record<string, string>)
 
+function equivalentPath(pathname: string, target: 'nl' | 'en'): string {
+  const currentlyEn = isEnglishPath(pathname)
+  if (target === 'en') return currentlyEn ? pathname : localizePath(pathname, 'en')
+  if (!currentlyEn) return pathname
+  const stripped = pathname.slice('/en'.length)
+  return stripped === '' ? '/' : stripped
+}
+
 export function TopBar() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   return (
     <div className="topbar">
       <div className="container topbar-inner">
@@ -18,7 +27,7 @@ export function TopBar() {
           <Icon.Pin width="14" height="14" />
           <span>{t('topbar.address')}</span>
         </a>
-        <a href="/reviews" className="topbar-item topbar-rating">
+        <a href={localizePath('/reviews', i18n.language)} className="topbar-item topbar-rating">
           <Icon.Google width="18" height="18" />
           <span className="stars">
             {[0, 1, 2, 3, 4].map(i => <Icon.Star key={i} width="11" height="11" />)}
@@ -35,9 +44,9 @@ export function TopBar() {
 }
 
 function Logo() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   return (
-    <a href="/" className="logo">
+    <a href={localizePath('/', i18n.language)} className="logo">
       <span className="logo-mark">
         <img src={logoIcon} alt="4Mobiles" />
       </span>
@@ -51,15 +60,10 @@ function Logo() {
 
 function LangToggle() {
   const { t, i18n } = useTranslation()
+  const location = useLocation()
   const current = i18n.language === 'en' ? 'en' : 'nl'
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
-
-  const select = (lang: string) => {
-    i18n.changeLanguage(lang)
-    localStorage.setItem('lang', lang)
-    setOpen(false)
-  }
 
   useEffect(() => {
     if (!open) return
@@ -90,24 +94,24 @@ function LangToggle() {
       </button>
       {open && (
         <div className="lang-dropdown-menu" role="listbox">
-          <button
-            type="button"
+          <a
+            href={equivalentPath(location.pathname, 'nl')}
             role="option"
             aria-selected={current === 'nl'}
             className={`lang-dropdown-item${current === 'nl' ? ' lang-dropdown-item-active' : ''}`}
-            onClick={() => select('nl')}
+            onClick={() => setOpen(false)}
           >
             {t('nav.dutch')}
-          </button>
-          <button
-            type="button"
+          </a>
+          <a
+            href={equivalentPath(location.pathname, 'en')}
             role="option"
             aria-selected={current === 'en'}
             className={`lang-dropdown-item${current === 'en' ? ' lang-dropdown-item-active' : ''}`}
-            onClick={() => select('en')}
+            onClick={() => setOpen(false)}
           >
             {t('nav.english')}
-          </button>
+          </a>
         </div>
       )}
     </div>
@@ -115,7 +119,7 @@ function LangToggle() {
 }
 
 export function Nav() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const location = useLocation()
   const [open, setOpen] = useState<number | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -123,7 +127,8 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const navRef = useRef<HTMLElement>(null)
 
-  const isDarkHeroPage = DARK_HERO_PATHS.has(location.pathname)
+  const unlocalizedPath = isEnglishPath(location.pathname) ? (location.pathname.slice('/en'.length) || '/') : location.pathname
+  const isDarkHeroPage = DARK_HERO_PATHS.has(unlocalizedPath)
 
   useLayoutEffect(() => {
     const el = navRef.current
@@ -158,18 +163,18 @@ export function Nav() {
   }, [location.pathname])
 
   const repairSub = [
-    ...REPAIR_BRANDS.map(([slug, name]) => ({ label: name, href: `/reparatie/${slug}` })),
-    { label: t('nav.allRepairs'), href: '/reparatie' },
+    ...REPAIR_BRANDS.map(([slug, name]) => ({ label: name, href: localizePath(`/reparatie/${slug}`, i18n.language) })),
+    { label: t('nav.allRepairs'), href: localizePath('/reparatie', i18n.language) },
   ]
 
   const allNavItems = [
-    { key: 'repairs', label: t('nav.repairs'), href: '/reparatie', sub: repairSub, desktop: true },
-    { key: 'products', label: t('nav.products'), href: '/producten', desktop: true },
-    { key: 'business', label: t('nav.business'), href: '/zakelijk', desktop: true },
-    { key: 'about', label: t('nav.about'), href: '/over-ons', desktop: false },
-    { key: 'reviews', label: t('nav.reviews'), href: '/reviews', desktop: true },
-    { key: 'blog', label: t('nav.tipsAdvies'), href: '/blog', desktop: false },
-    { key: 'contact', label: t('nav.contact'), href: '/contact', desktop: true },
+    { key: 'repairs', label: t('nav.repairs'), href: localizePath('/reparatie', i18n.language), sub: repairSub, desktop: true },
+    { key: 'products', label: t('nav.products'), href: localizePath('/producten', i18n.language), desktop: true },
+    { key: 'business', label: t('nav.business'), href: localizePath('/zakelijk', i18n.language), desktop: true },
+    { key: 'about', label: t('nav.about'), href: localizePath('/over-ons', i18n.language), desktop: false },
+    { key: 'reviews', label: t('nav.reviews'), href: localizePath('/reviews', i18n.language), desktop: true },
+    { key: 'blog', label: t('nav.tipsAdvies'), href: localizePath('/blog', i18n.language), desktop: false },
+    { key: 'contact', label: t('nav.contact'), href: localizePath('/contact', i18n.language), desktop: true },
   ]
   const desktopNavItems = allNavItems.filter(i => i.desktop)
 
@@ -238,7 +243,7 @@ export function Nav() {
           {/* Desktop CTA + language toggle */}
           <div className="nav-cta">
             <LangToggle />
-            <a href="/login" className="nav-repair-pill">
+            <a href={localizePath('/login', i18n.language)} className="nav-repair-pill">
               {t('nav.findRepair')}
             </a>
           </div>
@@ -307,7 +312,7 @@ export function Nav() {
         </nav>
 
         <div className="nav-overlay-bottom">
-          <a href="/reparatie" className="nav-overlay-contact" onClick={() => setMenuOpen(false)}>
+          <a href={localizePath('/reparatie', i18n.language)} className="nav-overlay-contact" onClick={() => setMenuOpen(false)}>
             <span className="nav-overlay-contact-label">
               <Icon.Wrench width="20" height="20" />
               {t('nav.findRepair')}

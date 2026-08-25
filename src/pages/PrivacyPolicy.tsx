@@ -11,6 +11,7 @@ export function PrivacyPolicy() {
         title={`${t('privacyPage.title')} | 4Mobiles`}
         description={t('privacyPage.sec1P1')}
         path="/privacybeleid"
+        noindex
       />
       <div className="subtle-gradient-bg legal-page-wrap">
         <div className="container legal-container">

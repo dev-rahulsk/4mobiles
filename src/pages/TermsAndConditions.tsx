@@ -22,6 +22,7 @@ export function TermsAndConditions() {
         title={`${t('termsPage.title')} | 4Mobiles`}
         description="Algemene voorwaarden van 4Mobiles V.O.F."
         path="/algemene-voorwaarden"
+        noindex
       />
       <div className="subtle-gradient-bg legal-page-wrap">
         <div className="container legal-container">

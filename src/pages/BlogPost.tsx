@@ -7,6 +7,7 @@ import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
 import { breadcrumbSchema, blogPostingSchema } from '../lib/seo/schema'
 import { parseDutchDate } from '../lib/seo/dutchDate'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 interface Article {
   slug: string
@@ -25,8 +26,9 @@ interface PopularArticle {
 
 function RelatedCard({ article }: { article: { slug: string; title: string; excerpt: string; tag: string; readTime: string } }) {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   return (
-    <Link to={`/blog/${article.slug}`} className="bp-related-card">
+    <Link to={toLocale(`/blog/${article.slug}`)} className="bp-related-card">
       <div className="bp-related-img">
         <Icon.Phone width="28" height="28" />
       </div>
@@ -48,6 +50,7 @@ function RelatedCard({ article }: { article: { slug: string; title: string; exce
 
 export function BlogPost() {
   const { t, i18n } = useTranslation()
+  const toLocale = useLocalizedPath()
   const { slug } = useParams<{ slug: string }>()
 
   const articlesMap = t('blogPost.articles', { returnObjects: true }) as Record<string, Article>
@@ -61,7 +64,7 @@ export function BlogPost() {
           <div className="container">
             <h1 className="bp-not-found-title">{t('blogPost.notFoundTitle')}</h1>
             <p className="bp-not-found-sub">{t('blogPost.notFoundSub')}</p>
-            <Link to="/blog" className="bp-back-link">{t('blogPost.backToBlog')}</Link>
+            <Link to={toLocale('/blog')} className="bp-back-link">{t('blogPost.backToBlog')}</Link>
           </div>
         </div>
       </Layout>
@@ -96,9 +99,9 @@ export function BlogPost() {
       <nav className="bp-breadcrumb" aria-label="Breadcrumb">
         <div className="container">
           <ol className="bp-breadcrumb-list">
-            <li><Link to="/">Home</Link></li>
+            <li><Link to={toLocale('/')}>Home</Link></li>
             <li aria-hidden="true" className="bp-breadcrumb-sep">›</li>
-            <li><Link to="/blog">Blog</Link></li>
+            <li><Link to={toLocale('/blog')}>Blog</Link></li>
             <li aria-hidden="true" className="bp-breadcrumb-sep">›</li>
             <li aria-current="page" className="bp-breadcrumb-current">{article.title}</li>
           </ol>
@@ -145,7 +148,7 @@ export function BlogPost() {
                 <ul className="bp-popular-list">
                   {popularArticles.map((a, i) => (
                     <li key={a.slug}>
-                      <Link to={`/blog/${a.slug}`} className="bp-popular-item">
+                      <Link to={toLocale(`/blog/${a.slug}`)} className="bp-popular-item">
                         <span className="bp-popular-num">{i + 1}</span>
                         <div className="bp-popular-info">
                           <span className="bl-tag bl-tag-sm">{a.tag}</span>
@@ -160,7 +163,7 @@ export function BlogPost() {
               <div className="bp-sidebar-cta">
                 <h3 className="bp-sidebar-cta-title">{t('blogPost.sidebarCtaTitle')}</h3>
                 <p className="bp-sidebar-cta-sub">{t('blogPost.sidebarCtaSub')}</p>
-                <Link to="/#reparatie" className="bl-btn btn-accent bp-sidebar-cta-btn">{t('blogPost.planRepair')}</Link>
+                <Link to={`${toLocale('/')}#reparatie`} className="bl-btn btn-accent bp-sidebar-cta-btn">{t('blogPost.planRepair')}</Link>
                 <a href="tel:+31174237022" className="bl-btn bl-btn-outline-dark bp-sidebar-cta-btn">
                   <Icon.Phone width="14" height="14" />
                   {t('blogPost.callDirect')}
@@ -190,7 +193,7 @@ export function BlogPost() {
               <p className="bp-bottom-cta-sub">{t('blogPost.ctaSub')}</p>
             </div>
             <div className="bp-bottom-cta-actions">
-              <Link to="/#reparatie" className="bl-btn btn-accent">{t('blogPost.planRepair')}</Link>
+              <Link to={`${toLocale('/')}#reparatie`} className="bl-btn btn-accent">{t('blogPost.planRepair')}</Link>
               <a href="tel:+31174237022" className="bl-btn bl-btn-outline">
                 <Icon.Phone width="15" height="15" />
                 {t('blogPost.callDirect')}

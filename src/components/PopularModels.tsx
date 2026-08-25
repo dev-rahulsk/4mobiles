@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 const MODELS = [
   { name: 'iPhone 15 Pro', screen: '€149', battery: '€119', bg: '#1d1d1f', slug: 'iphone-15-pro' },
@@ -15,6 +16,7 @@ const MODELS = [
 
 export function PopularModels() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const [slide, setSlide] = useState(0)
   const startX = useRef(0)
   const perPage = 2
@@ -46,7 +48,7 @@ export function PopularModels() {
         {/* Desktop grid */}
         <div className="popular-grid">
           {MODELS.slice(0, 6).map((m, i) => (
-            <a key={i} href={`/reparatie/${m.slug}`} className="popular-bar">
+            <a key={i} href={toLocale(`/reparatie/${m.slug}`)} className="popular-bar">
               <div className="popular-bar-visual" style={{ background: `linear-gradient(140deg, ${m.bg}, ${m.bg}cc)` }}>
                 <div className="popular-bar-phone">
                   <div className="popular-bar-screen" />
@@ -83,7 +85,7 @@ export function PopularModels() {
             style={{ transform: `translateX(calc(-${slide * 50}% - ${slide * 8}px))` }}
           >
             {MODELS.map((m, i) => (
-              <a key={i} href={`/reparatie/${m.slug}`} className="popular-slide-card">
+              <a key={i} href={toLocale(`/reparatie/${m.slug}`)} className="popular-slide-card">
                 <div className="popular-bar-visual" style={{ background: `linear-gradient(140deg, ${m.bg}, ${m.bg}cc)` }}>
                   <div className="popular-bar-phone">
                     <div className="popular-bar-screen" />
@@ -124,7 +126,7 @@ export function PopularModels() {
         </div>
 
         <div className="popular-cta-row">
-          <a href="/reparatie" className="btn btn-outline">
+          <a href={toLocale('/reparatie')} className="btn btn-outline">
             <Icon.Phone width="16" height="16" />
             {t('popular.viewAll')}
             <Icon.ArrowRight width="14" height="14" />

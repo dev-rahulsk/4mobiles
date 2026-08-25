@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 import { getOpenStatus } from '../lib/openStatus'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 const OPEN_STATUS = getOpenStatus()
 
 export function SearchModule() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const [query, setQuery] = useState('')
   const days = t('contact.days', { returnObjects: true }) as string[]
   const openLabel = t(`contact.${OPEN_STATUS.type}`, {
@@ -46,7 +48,7 @@ export function SearchModule() {
                 </button>
               </form>
               <a
-                href="/contact"
+                href={toLocale('/contact')}
                 className={`search-hours-chip${OPEN_STATUS.open ? ' search-hours-chip--open' : ' search-hours-chip--closed'}`}
               >
                 <span className="search-hours-dot" />

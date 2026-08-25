@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Layout } from '../components/Layout'
 import { Icon } from '../components/Icons'
 import { Seo } from '../lib/seo/Seo'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 export function Login() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -31,6 +33,7 @@ export function Login() {
         title={`${t('login.title')} | 4Mobiles`}
         description={t('login.subtitle')}
         path="/login"
+        noindex
       />
       <div className="subtle-gradient-bg repair-login-page">
         <div className="repair-login-container">
@@ -81,7 +84,7 @@ export function Login() {
                 </button>
 
                 {/* Contact / Help button */}
-                <a href="/contact" className="repair-login-help">
+                <a href={toLocale('/contact')} className="repair-login-help">
                   <Icon.Headset width="18" height="18" />
                   <span>{t('login.helpBtn')}</span>
                 </a>

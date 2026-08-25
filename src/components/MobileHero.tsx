@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 
 const rawFrames = import.meta.glob(
-  '../assets/frames_no_bg/*.png',
+  '../assets/frames_no_bg/*.webp',
   { eager: true, query: '?url', import: 'default' }
 ) as Record<string, string>
 
@@ -43,11 +43,30 @@ export function MobileHero({ accent: _accent, titleSuffix, sub1 }: MobileHeroPro
   const dynamicWords = t('mhero.dynamicWords', { returnObjects: true }) as string[]
 
   useEffect(() => {
-    FRAME_SRCS.forEach((src, i) => {
+    let cancelled = false
+
+    const loadFrame = (i: number) => {
+      if (cancelled || loadedImages.current[i] || !FRAME_SRCS[i]) return
       const img = new Image()
-      img.src = src
+      img.src = FRAME_SRCS[i]
       img.onload = () => { loadedImages.current[i] = img }
-    })
+    }
+
+    loadFrame(0)
+    let i = 1
+    const loadNext = () => {
+      if (cancelled || i >= FRAME_COUNT) return
+      loadFrame(i)
+      i++
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(loadNext, { timeout: 300 })
+      } else {
+        setTimeout(loadNext, 40)
+      }
+    }
+    loadNext()
+
+    return () => { cancelled = true }
   }, [])
 
   useEffect(() => {
@@ -163,13 +182,13 @@ export function MobileHero({ accent: _accent, titleSuffix, sub1 }: MobileHeroPro
                   </span>{' '}
                   {heroTitleSuffix}
                 </h1>
-                <h1
+                <p
                   className="mhero-title mhero-title-done"
                   style={{ opacity: doneProgress, transform: `translateY(${(1 - doneProgress) * 12}px)` }}
                   aria-hidden={doneProgress < 0.5}
                 >
                   {t('mhero.doneTitle')}
-                </h1>
+                </p>
               </div>
 
               <div className="mhero-secondary-stack">

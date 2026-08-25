@@ -4,6 +4,7 @@ import { Icon } from '../components/Icons'
 import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
 import { breadcrumbSchema } from '../lib/seo/schema'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 const STEP_ICONS = [Icon.Star, Icon.Shield, Icon.Clock, Icon.Check]
 
@@ -16,6 +17,7 @@ interface RegioCity {
 
 export function Regio() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
 
   const steps = t('regio.steps', { returnObjects: true }) as { title: string; sub: string }[]
   const cities = t('regio.cities', { returnObjects: true }) as RegioCity[]
@@ -40,7 +42,7 @@ export function Regio() {
 
           <div className="rg-cities-grid">
             {cities.map(c => (
-              <a key={c.slug} href={`/regio/${c.slug}`} className="rg-city-card">
+              <a key={c.slug} href={toLocale(`/regio/${c.slug}`)} className="rg-city-card">
                 <span className="rg-city-pin"><Icon.Pin width="20" height="20" /></span>
                 <div className="rg-city-info">
                   <h3 className="rg-city-name">{c.name}</h3>

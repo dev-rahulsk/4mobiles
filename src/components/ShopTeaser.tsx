@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 const ITEM_ICONS = [Icon.Phone, Icon.Shield, Icon.Battery, Icon.Pin]
 
@@ -14,6 +15,7 @@ interface ShopItemProps {
 }
 
 function ShopCardItem({ item }: ShopItemProps) {
+  const toLocale = useLocalizedPath()
   const cardRef = useRef<HTMLAnchorElement>(null)
   const [isRevealed, setIsRevealed] = useState(false)
 
@@ -43,7 +45,7 @@ function ShopCardItem({ item }: ShopItemProps) {
   return (
     <a
       ref={cardRef}
-      href="/producten"
+      href={toLocale('/producten')}
       className={`shop-card shop-card-reveal ${isRevealed ? 'is-revealed' : ''}`}
     >
       <div className="shop-icon" style={{ background: item.color }}>
@@ -62,6 +64,7 @@ function ShopCardItem({ item }: ShopItemProps) {
 
 export function ShopTeaser() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
 
   const items = [0, 1, 2, 3].map((i) => ({
     name:  t(`shop.items.${i}.name`),
@@ -85,7 +88,7 @@ export function ShopTeaser() {
           ))}
         </div>
         <div className="shop-cta-row">
-          <a href="/producten" className="btn btn-outline">
+          <a href={toLocale('/producten')} className="btn btn-outline">
             {t('shop.viewMore')} <Icon.ArrowRight width="14" height="14" />
           </a>
         </div>

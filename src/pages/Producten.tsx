@@ -6,18 +6,19 @@ import { Pill, MobileHero, GlassBadge, CtaButton, DesktopHero } from '../compone
 import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
 import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
+import { useLocalizedPath } from '../lib/seo/constants'
+import { StoreVisitSection } from '../components/StoreVisitSection'
 
-import storeMobileHeroImg from '../assets/product_new_mobile_hero.png'
-import storeDesktopHeroImg from '../assets/new_desktop_hero.png'
-import storeInteriorWideImg from '../assets/ChatGPT_Image_30_jul_2026_20_05_04.png'
-import newDeviceLayer1Img from '../assets/layer1.png'
-import newDeviceLeftHandImg from '../assets/lefthand_dummyfile.png'
-import newDeviceDesktopBgImg from '../assets/new_device_bg.png'
-import cases2Img from '../assets/cases2.png'
-import screenprotectors2Img from '../assets/screenprotectors2.png'
-import chargers2Img from '../assets/chargers2.png'
-import carholders2Img from '../assets/carholders2.png'
-import catsMoreBgImg from '../assets/background.png'
+import storeMobileHeroImg from '../assets/product_new_mobile_hero.webp'
+import storeDesktopHeroImg from '../assets/new_desktop_hero.webp'
+import newDeviceLayer1Img from '../assets/layer1.webp'
+import newDeviceLeftHandImg from '../assets/lefthand_dummyfile.webp'
+import newDeviceDesktopBgImg from '../assets/new_device_bg.webp'
+import cases2Img from '../assets/cases2.webp'
+import screenprotectors2Img from '../assets/screenprotectors2.webp'
+import chargers2Img from '../assets/chargers2.webp'
+import carholders2Img from '../assets/carholders2.webp'
+import catsMoreBgImg from '../assets/background.webp'
 
 const PRODUCTEN_HERO_GRADIENT = 'linear-gradient(180deg, #060804 0%, #060804 32%, #5e9020 44%, #3d6414 64%, #12190a 84%, #040503 100%)'
 
@@ -41,11 +42,7 @@ const USP_ICONS = [Icon.Truck, Icon.Chat, Icon.Cart, Icon.Check]
 const CAT_HREF = '/contact'
 
 type CategoryItem = { id: string; title: string; price?: string; bullets: string[]; cta: string }
-
-const CITY_PILLS = [
-  'Naaldwijk', 'Wateringen', 'De Lier', 'Monster', "'s-Gravenzande",
-  'Maasdijk', 'Poeldijk', 'Kwintsheul', 'Den Haag', 'Delft',
-]
+type RegioCityEntry = { name: string; slug: string; isHome?: boolean }
 
 function ParallaxHero() {
   const { t } = useTranslation()
@@ -226,6 +223,7 @@ function MobileNewPhoneSection() {
 
 function DesktopNewPhoneSection() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const sectionRef = useRef<HTMLDivElement>(null)
   const bgRef = useRef<HTMLImageElement>(null)
   const giftRef = useRef<HTMLDivElement>(null)
@@ -357,7 +355,7 @@ function DesktopNewPhoneSection() {
             </div>
 
             <div className="pd-desktop-newphone-ctas">
-              <a href="/contact" className="btn-accent pd-btn">
+              <a href={toLocale('/contact')} className="btn-accent pd-btn">
                 <Icon.Pin width="16" height="16" /> {t('producten.upsellCta1')}
               </a>
               <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="pd-btn pd-btn-wa">
@@ -372,6 +370,7 @@ function DesktopNewPhoneSection() {
 }
 
 function CategoryCardContent({ c }: { c: CategoryItem }) {
+  const toLocale = useLocalizedPath()
   return (
     <>
       {c.price && <p className="cat-card-price">{c.price}</p>}
@@ -380,7 +379,7 @@ function CategoryCardContent({ c }: { c: CategoryItem }) {
           <li key={b}><Icon.Check width="14" height="14" /> {b}</li>
         ))}
       </ul>
-      <a href={CAT_HREF} className="cat-card-link">{c.cta}</a>
+      <a href={toLocale(CAT_HREF)} className="cat-card-link">{c.cta}</a>
     </>
   )
 }
@@ -647,40 +646,15 @@ function CategoryMoreSection() {
 
 export function Producten() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const [openFaq, setOpenFaq] = useState<number | null>(null)
-  const [addressCopied, setAddressCopied] = useState(false)
-  const storeImageRef = useRef<HTMLDivElement>(null)
 
   const uspPillars = t('producten.uspPillars', { returnObjects: true }) as { title: string; sub: string }[]
   const categories = t('producten.categories', { returnObjects: true }) as { id: string; title: string; price?: string; bullets: string[]; cta: string }[]
   const faqItems = t('producten.faq', { returnObjects: true }) as { q: string; a: string }[]
   const faqMobileExtraItems = t('producten.faqMobileExtra', { returnObjects: true }) as { q: string; a: string }[]
   const mobileFaqItems = [...faqItems, ...faqMobileExtraItems]
-
-  const copyAddress = () => {
-    navigator.clipboard.writeText('Molenstraat 2, 2671 EX Naaldwijk')
-    setAddressCopied(true)
-    setTimeout(() => setAddressCopied(false), 2000)
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view')
-          }
-        })
-      },
-      { threshold: 0.15 }
-    )
-
-    if (storeImageRef.current) {
-      observer.observe(storeImageRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  const cities = t('regio.cities', { returnObjects: true }) as RegioCityEntry[]
 
   return (
     <Layout>
@@ -712,7 +686,7 @@ export function Producten() {
           }
           subtext={t('producten.heroSubMobile')}
           cta={
-            <CtaButton variant="primary" href="/contact">
+            <CtaButton variant="primary" href={toLocale('/contact')}>
               <Icon.Pin width="18" height="18" />
               <span>{t('producten.heroMobileCta')}</span>
               <Icon.ArrowRight width="16" height="16" />
@@ -800,9 +774,9 @@ export function Producten() {
           <p className="section-sub">{t('producten.faqSub')}</p>
 
           <div className="pd-cities-row pd-store-faq-cities">
-            {CITY_PILLS.map(c => (
-              <Pill key={c} className="section-pill" href={`/regio/${c.toLowerCase().replace(/['\s]/g, '-')}`}>
-                {c}
+            {cities.map(c => (
+              <Pill key={c.slug} className="section-pill" href={toLocale(`/regio/${c.slug}`)}>
+                {c.name}
               </Pill>
             ))}
           </div>
@@ -818,66 +792,6 @@ export function Producten() {
               </div>
             ))}
           </div>
-
-          <div className="pd-store-promo-card" ref={storeImageRef}>
-            <img src={storeInteriorWideImg} alt={t('producten.storeInteriorAlt')} className="pd-store-promo-bg" />
-            <div className="pd-store-promo-overlay" />
-            <div className="pd-store-promo-content">
-              <h3>{t('producten.storeImageHeadingMobile')}</h3>
-              <ul>
-                <li><Icon.Check width="14" height="14" /> {t('producten.promoBullet1')}</li>
-                <li><Icon.Check width="14" height="14" /> {t('producten.promoBullet2')}</li>
-                <li><Icon.Check width="14" height="14" /> {t('producten.promoBullet3')}</li>
-                <li><Icon.Check width="14" height="14" /> {t('producten.promoBullet4')}</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="ct-map-card pd-store-visit-map-card">
-            <div className="ct-card-header">
-              <Icon.Pin width="20" height="20" />
-              <h3>{t('producten.storeVisitTitle')}</h3>
-            </div>
-            <div className="ct-address-row">
-              <p className="ct-address">Molenstraat 2<br />2671 EX Naaldwijk</p>
-              <button className="ct-copy-btn" onClick={copyAddress}>
-                {addressCopied ? <Icon.Check width="16" height="16" /> : (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-                  </svg>
-                )}
-                {addressCopied ? '✓' : t('producten.storeVisitCopyBtn')}
-              </button>
-            </div>
-
-            <div className="ct-map-embed">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458.0!2d4.2!3d51.99!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b1!2sMolenstraat%202%2C%20Naaldwijk!5e0!3m2!1snl!2snl!4v1"
-                width="100%"
-                height="220"
-                style={{ border: 0, borderRadius: '12px' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={t('producten.storeVisitTitle')}
-              />
-            </div>
-
-            <div className="ct-map-ctas">
-              <a
-                href="https://maps.google.com/?q=Molenstraat+2+2671+EX+Naaldwijk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ct-btn-primary"
-              >
-                <Icon.MapLink width="18" height="18" /> {t('producten.storeVisitRoute')}
-              </a>
-              <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="ct-btn-dark">
-                <Icon.WhatsApp width="18" height="18" /> {t('producten.storeVisitWhatsapp')}
-              </a>
-            </div>
-            <p className="ct-map-note">{t('producten.storeVisitNoAppt')}</p>
-          </div>
         </div>
       </section>
 
@@ -886,9 +800,9 @@ export function Producten() {
           <div className="container">
             <p className="pd-cities-label">{t('producten.citiesLabel')}</p>
             <div className="pd-cities-row">
-              {CITY_PILLS.map(c => (
-                <a key={c} href={`/regio/${c.toLowerCase().replace(/['\s]/g, '-')}`} className="section-pill pd-city-pill">
-                  <Icon.Pin width="12" height="12" /> {c}
+              {cities.map(c => (
+                <a key={c.slug} href={toLocale(`/regio/${c.slug}`)} className="section-pill pd-city-pill">
+                  <Icon.Pin width="12" height="12" /> {c.name}
                 </a>
               ))}
             </div>
@@ -902,7 +816,7 @@ export function Producten() {
               <h2 className="section-title">{t('producten.faqTitle')}</h2>
               <p className="section-sub">{t('producten.faqSub')}</p>
               <div className="faq-cta">
-                <a href="/contact" className="btn btn-primary">
+                <a href={toLocale('/contact')} className="btn btn-primary">
                   <Icon.Chat width="16" height="16" /> {t('producten.faqCtaChat')}
                 </a>
                 <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
@@ -924,71 +838,9 @@ export function Producten() {
             </div>
           </div>
         </section>
-
-        <section className="pd-desktop-visit-section">
-          <div className="container pd-desktop-visit-grid">
-            <div className="pd-desktop-visit-promo">
-              <img src={storeInteriorWideImg} alt={t('producten.storeInteriorWideAlt')} className="pd-desktop-visit-promo-bg" />
-              <div className="pd-desktop-visit-promo-overlay" />
-              <div className="pd-desktop-visit-promo-content">
-                <h3>{t('producten.promoTitle')}</h3>
-                <ul>
-                  <li><Icon.Check width="16" height="16" /> {t('producten.promoBullet1')}</li>
-                  <li><Icon.Check width="16" height="16" /> {t('producten.promoBullet2')}</li>
-                  <li><Icon.Check width="16" height="16" /> {t('producten.promoBullet3')}</li>
-                  <li><Icon.Check width="16" height="16" /> {t('producten.promoBullet4')}</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="pd-desktop-visit-card">
-              <div className="pd-store-visit-head">
-                <div className="pd-desktop-visit-title"><Icon.Pin width="20" height="20" /> {t('producten.storeVisitTitle')}</div>
-                <button className="pd-store-copy-btn" onClick={copyAddress}>
-                  {addressCopied ? '✓' : t('producten.storeVisitCopyBtn')}
-                </button>
-              </div>
-              <p className="pd-desktop-visit-addr">Molenstraat 2<br />2671 EX Naaldwijk</p>
-
-              <div className="pd-desktop-visit-map">
-                <a
-                  href="https://maps.google.com/?q=Molenstraat+2+2671+EX+Naaldwijk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pd-desktop-visit-maplink"
-                >
-                  <Icon.MapLink width="14" height="14" /> {t('producten.openInMaps')}
-                </a>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458.0!2d4.2!3d51.99!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b1!2sMolenstraat%202%2C%20Naaldwijk!5e0!3m2!1snl!2snl!4v1"
-                  width="100%"
-                  height="220"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={t('producten.storeVisitTitle')}
-                />
-              </div>
-
-              <div className="pd-desktop-visit-btns">
-                <a
-                  href="https://maps.google.com/?q=Molenstraat+2+2671+EX+Naaldwijk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-accent pd-btn"
-                >
-                  <Icon.MapLink width="16" height="16" /> {t('producten.storeVisitRoute')}
-                </a>
-                <a href="https://wa.me/31174237022" target="_blank" rel="noopener noreferrer" className="pd-btn pd-btn-dark">
-                  <Icon.WhatsApp width="16" height="16" /> {t('producten.storeVisitWhatsapp')}
-                </a>
-              </div>
-              <p className="pd-store-visit-noappt">{t('producten.storeVisitNoAppt')}</p>
-            </div>
-          </div>
-        </section>
       </div>
+
+      <StoreVisitSection />
 
     </Layout>
   )

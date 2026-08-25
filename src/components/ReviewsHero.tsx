@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
-import heroDesktop from '../assets/reviews-hero-desktop.png'
-import heroMobile from '../assets/reviews-hero-mobile.png'
+import heroDesktop from '../assets/reviews-hero-desktop.webp'
+import heroMobile from '../assets/reviews-hero-mobile.webp'
 
 const ease = (t: number) => t * t * (3 - 2 * t)
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v))

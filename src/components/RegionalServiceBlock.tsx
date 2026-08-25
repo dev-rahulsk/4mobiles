@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 interface RegionalServiceBlockProps {
   city: string
@@ -8,6 +9,7 @@ interface RegionalServiceBlockProps {
 
 export function RegionalServiceBlock({ city, minutes }: RegionalServiceBlockProps) {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
 
   const rows = [
     { icon: Icon.Car, title: t('regioCity.serviceBlock.row1Title', { minutes }), sub: t('regioCity.serviceBlock.row1Sub', { city }) },
@@ -60,7 +62,7 @@ export function RegionalServiceBlock({ city, minutes }: RegionalServiceBlockProp
                 <Icon.ArrowRight width="18" height="18" />
               </a>
 
-              <a href="/veelgestelde-vragen" className="rsb-secondary-link">
+              <a href={toLocale('/veelgestelde-vragen')} className="rsb-secondary-link">
                 {t('regioCity.serviceBlock.ctaShipping')}
               </a>
             </div>

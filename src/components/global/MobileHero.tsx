@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 
 export interface MobileHeroImage {
   src: string
@@ -22,6 +22,8 @@ interface MobileHeroProps {
   readabilityLayer?: boolean
   bgGradient?: string
   className?: string
+  /** Subtle scroll parallax on the background photo. Off by default — opt in per page. */
+  parallax?: boolean
 }
 
 export function MobileHero({
@@ -41,6 +43,7 @@ export function MobileHero({
   readabilityLayer = false,
   bgGradient,
   className = '',
+  parallax = false,
 }: MobileHeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -63,6 +66,29 @@ export function MobileHero({
       window.removeEventListener('resize', update)
     }
   }, [])
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el || !parallax) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let rafId: number | null = null
+    const onScroll = () => {
+      if (rafId !== null) return
+      rafId = requestAnimationFrame(() => {
+        rafId = null
+        const rect = el.getBoundingClientRect()
+        const offset = Math.max(-16, Math.min(16, -rect.top * 0.06))
+        el.style.setProperty('--hero-parallax-y', `${offset}px`)
+      })
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (rafId !== null) cancelAnimationFrame(rafId)
+    }
+  }, [parallax])
 
   const badgeCount = badges.length === 4 ? 4 : badges.length === 3 ? 3 : 2
 

@@ -5,6 +5,9 @@ node_modules/
 dist/
 .vite/
 
+# Wrangler local dev state
+.wrangler/
+
 # Environment
 .env
 .env.local

@@ -5260,7 +5260,7 @@ input {
 
 /* ============ STICKY BOOK CTA ============ */
 .sticky-book {
-  display: none;
+  display: flex;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -5270,17 +5270,19 @@ input {
   color: #fff;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
+  padding: 14px 20px max(14px, var(--safe-bottom, 0px));
   box-shadow: 0 -4px 24px rgba(0, 0, 0, .2);
-  transform: translateY(100%);
+  transform: translateY(120%);
   transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+  pointer-events: none;
 }
 
 .sticky-book-visible {
   transform: translateY(0);
+  pointer-events: auto;
 }
 
-.sticky-book-up {
+.sticky-book-visible.sticky-book-up {
   transform: translateY(-4px);
 }
 
@@ -5323,6 +5325,12 @@ input {
 
 .sticky-book-btn:hover {
   transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-book {
+    transition: none;
+  }
 }
 
 /* ============ MHERO OVERLAY BADGES — premium glassmorphism ============ */
@@ -5992,6 +6000,990 @@ input {
   }
 }
 
+
+/* ==========================================================================
+   NEW ABOUT US REDESIGN STYLES
+   ========================================================================== */
+
+.aou-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.aou-tag-badge--green {
+  background: rgba(57, 181, 74, 0.12);
+  border: 1px solid rgba(57, 181, 74, 0.25);
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
+/* ─── SECTIONS 02 & 03: PINNED STORYTELLING ─── */
+.aou-storytelling-pin-wrapper {
+  position: relative;
+  background: #0b0e14;
+  color: #ffffff;
+  width: 100%;
+}
+
+.aou-storytelling-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.aou-watermark-bg {
+  position: absolute;
+  right: max(0px, calc((100vw - 1200px) / 2));
+  top: 20vh;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.065);
+  font-family: var(--font-display);
+  font-weight: 900;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.aou-watermark-since {
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.075);
+  margin-top: 10px;
+}
+
+.aou-watermark-year {
+  font-size: clamp(12rem, 24vw, 26rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.065);
+  line-height: 0.78;
+}
+
+@media (max-width: 900px) {
+  .aou-watermark-bg {
+    right: 20px;
+    left: 20px;
+    top: 90px;
+    transform: none;
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .aou-watermark-since {
+    font-size: clamp(2.5rem, 13.5vw, 5.5rem);
+    letter-spacing: 0.18em;
+    margin-bottom: 2px;
+    margin-top: 0;
+    line-height: 1;
+    text-align: left;
+    width: 100%;
+  }
+
+  .aou-watermark-year {
+    font-size: clamp(8.5rem, 41vw, 19rem);
+    line-height: 0.78;
+    letter-spacing: 0.005em;
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.aou-pinned-content-layer {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: min(1200px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .aou-pinned-content-layer {
+    max-width: 100%;
+    margin: 0;
+    padding: 0 24px;
+  }
+}
+
+.aou-eyebrow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.aou-eyebrow-num {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.aou-eyebrow-label {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.aou-eyebrow-divider {
+  width: 150px;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 4px;
+  border-radius: 2px;
+}
+
+.aou-storytelling-pin-wrapper.is-static .aou-storytelling-sticky {
+  position: static !important;
+  height: auto !important;
+  padding: var(--section-space-mobile) 0 !important;
+}
+
+@media (min-width: 1024px) {
+  .aou-storytelling-pin-wrapper.is-static .aou-storytelling-sticky {
+    padding: var(--section-space-desktop) 0 !important;
+  }
+}
+
+.aou-storytelling-pin-wrapper.is-static .aou-pinned-content-layer {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.aou-storytelling-pin-wrapper.is-static .aou-sec02-box,
+.aou-storytelling-pin-wrapper.is-static .aou-sec03-grid {
+  position: static !important;
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto !important;
+  display: block !important;
+  grid-area: auto !important;
+}
+
+.aou-storytelling-pin-wrapper.is-static .aou-sec03-grid {
+  display: grid !important;
+}
+
+.aou-sec02-box {
+  grid-area: 1 / 1;
+  max-width: 480px;
+  margin-top: 64px;
+}
+
+.aou-sec02-title-wrap {
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.16;
+  color: #ffffff;
+  margin: 0 0 24px;
+  letter-spacing: -0.02em;
+}
+
+.aou-sec02-line1,
+.aou-sec02-line2 {
+  display: block;
+}
+
+.aou-sec02-title-wrap .accent {
+  color: var(--accent);
+}
+
+.aou-sec02-sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.65;
+  color: #94a3b8;
+  max-width: 440px;
+  margin: 0;
+}
+
+.aou-sec03-grid {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-top: 64px;
+}
+
+@media (max-width: 900px) {
+
+  .aou-sec02-box,
+  .aou-sec03-grid {
+    margin-top: 90px;
+    width: 100%;
+  }
+
+  .aou-sec03-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.aou-sec03-quote-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.aou-sec03-quote {
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.aou-sec03-quote .quote-mark {
+  color: var(--accent);
+  font-family: Georgia, serif;
+}
+
+.aou-sec03-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 48px;
+}
+
+@media (max-width: 900px) {
+  .aou-sec03-text-col {
+    padding-top: 0;
+  }
+}
+
+.aou-sec03-text {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.75;
+  color: #94a3b8;
+  margin: 0;
+}
+
+
+/* ─── SECTION 04: TEAM (WHITE BACKGROUND) ─── */
+.aou-team-section-white {
+  background: #ffffff;
+  color: var(--ink-900);
+  padding-top: var(--section-space-mobile);
+  padding-bottom: 0;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 1024px) {
+  .aou-team-section-white {
+    padding: var(--section-space-desktop) 0;
+  }
+}
+
+.aou-team-header {
+  margin-bottom: 48px;
+}
+
+.aou-team-header-left {
+  max-width: 100%;
+}
+
+.aou-team-eyebrow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.aou-team-eyebrow-num-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.aou-team-eyebrow-num {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.aou-team-eyebrow-divider {
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+.aou-team-eyebrow-label {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.aou-team-title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: var(--ink-900);
+  margin: 10px 0 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.aou-team-title .accent {
+  color: var(--accent) !important;
+}
+
+@media (min-width: 992px) {
+  .aou-team-title {
+    white-space: nowrap;
+  }
+}
+
+.aou-team-sub {
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  line-height: 1.6;
+  color: var(--ink-600);
+  margin: 0;
+  max-width: 520px;
+}
+
+.aou-team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.aou-team-card {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4.5;
+  background: #0b0e14;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .aou-team-card:hover {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.aou-team-brand-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 100px;
+  letter-spacing: -0.01em;
+}
+
+.aou-team-toggle-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--ink-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.25s ease;
+  pointer-events: none;
+}
+
+.aou-team-card.is-active .aou-team-toggle-btn {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .aou-team-card:hover .aou-team-toggle-btn {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  .aou-team-header {
+    margin-bottom: 36px;
+  }
+
+  .aou-team-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .aou-team-card {
+    aspect-ratio: unset;
+    overflow: visible;
+    background: transparent;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .aou-team-toggle-btn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: scale(1) !important;
+  }
+}
+
+.aou-team-photo-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.aou-team-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transform: scale(1.08) translateY(var(--parallax-y, 0px));
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .aou-team-card:hover .aou-team-photo {
+    transform: scale(1.12) translateY(var(--parallax-y, 0px));
+  }
+}
+
+.aou-team-photo-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0) 35%,
+      rgba(0, 0, 0, 0.45) 65%,
+      rgba(0, 0, 0, 0.92) 100%);
+  pointer-events: none;
+}
+
+.aou-team-base-info {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.aou-team-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.aou-team-role {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 4px 0 0;
+  line-height: 1.3;
+}
+
+/* Translucent Card Overlay (Face visible, points positioned low) */
+.aou-team-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: linear-gradient(180deg,
+      rgba(6, 9, 14, 0.15) 0%,
+      rgba(6, 9, 14, 0.65) 45%,
+      rgba(6, 9, 14, 0.92) 100%);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 24px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.aou-team-card.is-active .aou-team-overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .aou-team-card:hover .aou-team-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.aou-team-overlay-content {
+  margin-top: auto;
+  margin-bottom: 8px;
+}
+
+.aou-team-overlay-heading {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.aou-team-spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aou-team-spec-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.aou-spec-icon-check {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* On mobile, expanded details render below the photo (white card, accent border) instead of overlaying it */
+@media (max-width: 991px) {
+  .aou-team-photo-wrap {
+    position: relative;
+    aspect-ratio: 3 / 2.3;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #0b0e14;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    min-width: 0;
+  }
+
+  .aou-team-card.is-active .aou-team-base-info {
+    display: none;
+  }
+
+  /* Never zoom the photo on mobile widths — the hover effect is meant for desktop pointers only */
+  .aou-team-card:hover .aou-team-photo {
+    transform: scale(1.08) translateY(var(--parallax-y, 0px));
+  }
+
+  .aou-team-card.is-active .aou-team-photo-wrap {
+    border-radius: 22px 22px 0 0;
+  }
+
+  .aou-team-overlay {
+    display: none;
+    position: static;
+    inset: auto;
+    z-index: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    background: #ffffff;
+    border: 2px solid var(--accent);
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    margin-top: 0;
+    padding: 18px 20px;
+    gap: 14px;
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .aou-team-card.is-active .aou-team-overlay {
+    display: flex;
+  }
+
+  .aou-team-overlay-content {
+    margin: 0;
+  }
+
+  .aou-team-overlay-heading {
+    color: var(--ink-900);
+  }
+
+  .aou-team-spec-item {
+    color: var(--ink-700);
+  }
+
+  .aou-team-overlay-bottom {
+    order: -1;
+  }
+
+  .aou-team-overlay-bottom .aou-team-name {
+    color: var(--ink-900);
+    font-size: 1.1rem;
+  }
+
+  .aou-team-overlay-bottom .aou-team-role {
+    color: var(--accent);
+  }
+}
+
+/* ─── SECTION 05: MEER DAN REPARATIE ─── */
+.aou-more-section {
+  background: #ffffff;
+  color: var(--ink-900);
+  padding-top: var(--section-space-mobile);
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .aou-more-section {
+    padding-top: var(--section-space-desktop);
+  }
+}
+
+.aou-watermark-bg--more {
+  position: absolute;
+  top: 10px;
+  right: max(0px, calc((100vw - 1200px) / 2));
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  color: rgba(0, 0, 0, 0.035);
+  font-family: var(--font-display);
+  font-weight: 900;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.aou-watermark-bg--more .aou-watermark-since {
+  color: rgba(0, 0, 0, 0.04);
+}
+
+.aou-watermark-bg--more .aou-watermark-year {
+  color: rgba(0, 0, 0, 0.035);
+  font-size: clamp(10rem, 22vw, 24rem);
+  line-height: 0.78;
+}
+
+.aou-more-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 44px;
+}
+
+.aou-service-cards-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.aou-service-card {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  padding: 24px 26px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.aou-service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(122, 184, 39, 0.4);
+  box-shadow: 0 12px 28px rgba(122, 184, 39, 0.08);
+}
+
+.aou-service-card-icon-inline {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.aou-service-card-title {
+  font-size: clamp(1.05rem, 1.3vw, 1.15rem);
+  font-weight: 700;
+  color: var(--ink-900);
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* FULL-WIDTH BLACK TRUST BANNER WRAPPER */
+.aou-trust-banner-wrapper {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  z-index: 1;
+  background:
+    radial-gradient(circle 650px at 88% 0%,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.13) 18%,
+      rgba(255, 255, 255, 0.06) 36%,
+      rgba(255, 255, 255, 0.02) 58%,
+      transparent 85%),
+    #050804;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 48px 0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+.aou-trust-banner-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -70%;
+  right: -20%;
+  z-index: 0;
+  width: 40%;
+  height: 235%;
+  pointer-events: none;
+
+  background: linear-gradient(115deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.03) 34%,
+      rgba(255, 255, 255, 0.18) 48%,
+      rgba(255, 255, 255, 0.08) 55%,
+      rgba(255, 255, 255, 0.02) 64%,
+      transparent 78%);
+
+  filter: blur(12px);
+  opacity: 0;
+  transform: translate3d(0, 0, 0) rotate(7deg);
+  animation: repair-surface-shine 8s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aou-trust-banner-wrapper::after {
+    display: none;
+    animation: none;
+  }
+}
+
+.aou-trust-banner-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.aou-trust-banner-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.aou-trust-banner-circled-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(122, 184, 39, 0.12);
+  border: 1.5px solid rgba(122, 184, 39, 0.35);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.aou-trust-banner-text h4 {
+  font-size: clamp(1.2rem, 1.6vw, 1.35rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.aou-trust-banner-text p {
+  font-size: clamp(0.9rem, 1.1vw, 0.98rem);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.aou-trust-banner-divider {
+  width: 1px;
+  height: 58px;
+  background: rgba(255, 255, 255, 0.16);
+  flex-shrink: 0;
+}
+
+/* RESPONSIVE MEDIA QUERIES FOR SECTION 05 */
+@media (max-width: 991px) {
+
+  .aou-watermark-bg--more {
+    right: 20px;
+    left: 20px;
+    top: 240px;
+    transform: none;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 8px;
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .aou-watermark-bg--more .aou-watermark-since {
+    font-size: clamp(2.5rem, 13.5vw, 5.5rem);
+    letter-spacing: 0.18em;
+    color: rgba(0, 0, 0, 0.04);
+    line-height: 1;
+    margin: 0 0 2px;
+    text-align: left;
+    width: 100%;
+  }
+
+  .aou-watermark-bg--more .aou-watermark-year {
+    font-size: clamp(8.5rem, 41vw, 19rem);
+    line-height: 0.78;
+    letter-spacing: 0.005em;
+    color: rgba(0, 0, 0, 0.035);
+    margin: 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  .aou-service-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .aou-service-card {
+    padding: 16px 20px;
+    gap: 16px;
+    border-radius: 18px;
+    width: 100%;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  .aou-trust-banner-wrapper {
+    padding: 36px 0;
+  }
+
+  .aou-trust-banner-grid {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .aou-trust-banner-divider {
+    width: 80%;
+    height: 1px;
+    margin: 4px auto;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .aou-trust-banner-item {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .aou-trust-banner-circled-icon {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (max-width: 540px) {
+  .aou-service-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .aou-service-card {
+    padding: 16px 18px;
+    gap: 14px;
+  }
+
+  .aou-service-card-title {
+    font-size: 1rem;
+  }
+}
+
 /* ============================================
    REVIEWS PAGE — /reviews
    ============================================ */
@@ -6010,7 +7002,7 @@ input {
   /* Previous bg image: url('./assets/newherobg.png'); */
   background-image:
     linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.96) 35%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0) 52%),
-    url('./assets/store_hero_bg.png');
+    url('./assets/store_hero_bg.webp');
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
@@ -6783,7 +7775,7 @@ input {
         rgba(255, 255, 255, 0.96) 38%,
         rgba(255, 255, 255, 0.6) 48%,
         rgba(255, 255, 255, 0.0) 58%),
-      url('./assets/store_hero_bg.png');
+      url('./assets/store_hero_bg.webp');
     background-size: cover, cover;
     background-position: center right, center left;
     background-repeat: no-repeat;
@@ -6966,7 +7958,7 @@ input {
   }
 
   .rv2-hero-grid {
-    background-image: url('./assets/hero_render_2.png');
+    background-image: url('./assets/hero_render_2.webp');
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
@@ -9565,13 +10557,12 @@ a.rg-city-card:hover {
 
 /* Kom langs / Bezoek onze winkel — Desktop split section */
 .pd-desktop-visit-section {
-  padding: 80px 0 100px;
+  padding: var(--section-space-mobile) 0;
 }
 
 @media (min-width: 1024px) {
   .pd-desktop-visit-section {
-    padding-top: var(--section-space-desktop);
-    padding-bottom: var(--section-space-desktop);
+    padding: var(--section-space-desktop) 0;
   }
 }
 
@@ -9580,6 +10571,25 @@ a.rg-city-card:hover {
   grid-template-columns: 1.2fr 1fr;
   gap: 32px;
   align-items: stretch;
+}
+
+@media (max-width: 991px) {
+  .pd-desktop-visit-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .pd-desktop-visit-promo {
+    min-height: 280px;
+  }
+
+  .pd-desktop-visit-promo-content {
+    padding: 24px;
+  }
+
+  .pd-desktop-visit-card {
+    padding: 20px;
+  }
 }
 
 .pd-desktop-visit-promo {
@@ -16564,497 +17574,6 @@ a.rg-city-card:hover {
   color: #1e3a8a;
 }
 
-/* ─── ABOUT US (OVER ONS) REDESIGN STYLES ──────────────────────────────────── */
-
-.aou-page-redesign {
-  font-family: var(--font-body);
-  color: #0f172a;
-}
-
-/* Reusable Section Tag Badges */
-.aou-tag-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(122, 184, 39, 0.16);
-  color: var(--accent);
-  border: 1px solid rgba(122, 184, 39, 0.3);
-  border-radius: 20px;
-  padding: 4px 14px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-
-.aou-tag-badge--green {
-  background: var(--accent-soft);
-  color: var(--accent);
-  border: 1px solid rgba(122, 184, 39, 0.3);
-}
-
-/* Common Image Placeholder */
-.aou-img-placeholder {
-  width: 100%;
-  min-height: 340px;
-  background: #f1f5f9;
-  border: 2px dashed #cbd5e1;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: #64748b;
-  font-weight: 700;
-  font-size: 13.5px;
-  letter-spacing: 0.5px;
-  padding: 24px;
-  text-align: center;
-}
-
-.aou-img-placeholder--dark {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* ─── Section 01: Hero — see .desktop-hero / .mobile-hero (shared template) ─── */
-
-/* ─── Section 02: Onze Manier Van Werken ─── */
-.aou-way {
-  padding-block: var(--section-space-mobile);
-  background: #f8fafc;
-  position: relative;
-  overflow: hidden;
-}
-
-@media (min-width: 1024px) {
-  .aou-way {
-    padding-block: var(--section-space-desktop);
-  }
-}
-
-.aou-way-container {
-  position: relative;
-}
-
-.aou-way-watermark {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  font-family: var(--font-display);
-  font-size: clamp(80px, 14vw, 180px);
-  font-weight: 900;
-  color: rgba(15, 23, 42, 0.04);
-  letter-spacing: -4px;
-  user-select: none;
-  pointer-events: none;
-  line-height: 1;
-}
-
-.aou-way-content {
-  max-width: 680px;
-  position: relative;
-  z-index: 2;
-}
-
-.aou-way-title {
-  font-size: clamp(26px, 3.5vw, 40px);
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1.2;
-  margin: 0 0 20px;
-  letter-spacing: -0.5px;
-}
-
-.aou-way-highlight {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--accent);
-  margin: 0 0 16px;
-  line-height: 1.5;
-}
-
-.aou-way-body {
-  font-size: 15.5px;
-  line-height: 1.7;
-  color: #475569;
-  margin: 0;
-}
-
-/* ─── Section 03: Ons Verhaal ─── */
-.aou-story-v2 {
-  padding-block: var(--section-space-mobile);
-  background: #ffffff;
-}
-
-@media (min-width: 1024px) {
-  .aou-story-v2 {
-    padding-block: var(--section-space-desktop);
-  }
-}
-
-.aou-story-v2-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.aou-story-v2-title {
-  font-size: clamp(24px, 3vw, 36px);
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1.25;
-  margin: 0 0 20px;
-  letter-spacing: -0.5px;
-}
-
-.aou-story-v2-text {
-  font-size: 15px;
-  line-height: 1.7;
-  color: #475569;
-  margin: 0 0 16px;
-}
-
-.aou-quote-box {
-  margin-top: 24px;
-  padding: 16px 20px 16px 24px;
-  background: var(--accent-soft);
-  border-left: 4px solid var(--accent);
-  border-radius: 0 14px 14px 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.aou-quote-mark {
-  font-size: 32px;
-  font-weight: 900;
-  color: var(--accent);
-  line-height: 1;
-  margin-top: -6px;
-}
-
-.aou-quote-text {
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
-  margin: 0;
-  font-style: italic;
-}
-
-/* ─── Section 04: Ons Team ─── */
-.aou-team {
-  padding-block: var(--section-space-mobile);
-  background: #f8fafc;
-}
-
-@media (min-width: 1024px) {
-  .aou-team {
-    padding-block: var(--section-space-desktop);
-  }
-}
-
-.aou-team-header {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.aou-team-title {
-  font-size: clamp(26px, 3.5vw, 40px);
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0;
-}
-
-.aou-team-collage {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.aou-team-card {
-  background: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 20px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.aou-team-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
-}
-
-.aou-team-card--large {
-  justify-content: center;
-  min-height: 380px;
-}
-
-.aou-team-center-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.aou-team-card--small {
-  flex: 1;
-  min-height: 178px;
-  justify-content: center;
-}
-
-.aou-team-avatar-placeholder {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: #f1f5f9;
-  color: #94a3b8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.aou-team-card--small .aou-team-avatar-placeholder {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 10px;
-}
-
-.aou-team-name {
-  font-size: 18px;
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 4px;
-}
-
-.aou-team-role {
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--accent);
-  margin: 0;
-}
-
-/* ─── Section 05: Meer Dan Reparaties ─── */
-.aou-more {
-  padding-block: var(--section-space-mobile);
-  background: linear-gradient(135deg, #09120b 0%, #162419 100%);
-  color: #ffffff;
-}
-
-@media (min-width: 1024px) {
-  .aou-more {
-    padding-block: var(--section-space-desktop);
-  }
-}
-
-.aou-more-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.aou-more-title {
-  font-size: clamp(26px, 3.5vw, 40px);
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1.2;
-  margin: 0 0 16px;
-  letter-spacing: -0.5px;
-}
-
-.aou-more-sub {
-  font-size: 16px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0 0 32px;
-}
-
-.aou-props-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.aou-prop-card {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.aou-prop-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: rgba(122, 184, 39, 0.18);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.aou-prop-title {
-  font-size: 14.5px;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.aou-more-trust-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.aou-more-trust-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.aou-more-trust-item svg {
-  color: var(--accent);
-  flex-shrink: 0;
-}
-
-/* ─── Section 06: Bezoek Ons ─── */
-.aou-visit {
-  padding-block: var(--section-space-mobile);
-  background: #ffffff;
-}
-
-@media (min-width: 1024px) {
-  .aou-visit {
-    padding-block: var(--section-space-desktop);
-  }
-}
-
-.aou-visit-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.aou-visit-title {
-  font-size: clamp(26px, 3.5vw, 40px);
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 28px;
-  letter-spacing: -0.5px;
-}
-
-.aou-visit-info-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-bottom: 32px;
-}
-
-.aou-visit-info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.aou-visit-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.aou-visit-info-item strong {
-  display: block;
-  font-size: 15px;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 3px;
-}
-
-.aou-visit-info-item p {
-  font-size: 14px;
-  color: #475569;
-  margin: 0;
-  line-height: 1.5;
-}
-
-.aou-visit-ctas {
-  display: flex;
-  gap: 14px;
-}
-
-.aou-visit-ctas .btn {
-  justify-content: center;
-}
-
-.aou-visit-ctas .btn-ghost {
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
-  color: #fff;
-  box-shadow: 0 10px 24px var(--accent-glow);
-}
-
-.aou-visit-ctas .btn-ghost:hover {
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
-}
-
-/* Responsive Media Queries */
-@media (max-width: 992px) {
-
-  .aou-story-v2-grid,
-  .aou-more-grid,
-  .aou-visit-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .aou-team-collage {
-    grid-template-columns: 1fr;
-  }
-
-  .aou-team-card--large {
-    min-height: auto;
-  }
-}
-
-@media (max-width: 640px) {
-  .aou-props-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .aou-visit-ctas {
-    flex-direction: column;
-  }
-}
-
 :root {
   --green-light: var(--accent);
   --green-primary: var(--accent);
@@ -17942,7 +18461,7 @@ a.rg-city-card:hover {
   height: 100%;
   object-fit: cover;
   object-position: var(--hero-image-x, 50%) var(--hero-image-y, 50%);
-  transform: translateX(-50%) translateY(var(--hero-image-offset-y, 0px)) scale(var(--hero-image-zoom, 1));
+  transform: translateX(-50%) translateY(calc(var(--hero-image-offset-y, 0px) + var(--hero-parallax-y, 0px))) scale(var(--hero-image-zoom, 1));
   transform-origin: left top;
 }
 
@@ -19140,5 +19659,40 @@ a.rg-city-card:hover {
 
   .legal-section h2 {
     font-size: 18px;
+  }
+}
+
+.route-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9999;
+  background: var(--accent, #7ab827);
+  animation: route-loading-sweep 1.1s ease-in-out infinite;
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-loading {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+@keyframes route-loading-sweep {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+
+  60% {
+    transform: scaleX(0.75);
+  }
+
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
   }
 }

@@ -666,40 +666,67 @@
       "cta": "Get in touch"
     },
     "way": {
-      "watermark": "SINCE 2012",
+      "watermark": "SINCE 2011",
       "tag": "OUR WAY OF WORKING",
       "title1": "Walk in with a problem.",
       "title2": "Walk out with clarity.",
-      "highlight": "First understand. Then advise. And only repair when it makes sense.",
-      "body": "We listen to your story, ask the right questions and explain everything clearly. So you always know where you stand — no surprises. Honest advice always comes first with us."
+      "highlight": "clarity",
+      "sub": "First understand. Then advise. And only repair when it makes sense."
     },
     "story": {
       "tag": "OUR STORY",
-      "imgPlaceholder": "SHOP / TEAM PHOTO",
       "title": "From telecom colleagues to a trusted address in the heart of the Westland.",
-      "text1": "We got to know each other in the telecom industry and discovered our shared passion for technology and service. What started as helping out in our spare time grew into 4Mobiles: a shop where quality, honesty and personal contact come first.",
-      "text2": "Over the years we've built strong relationships with our customers. Many visitors have become familiar faces.",
-      "quote": "Turning visitors into familiar faces."
+      "quote": "Walk in once. After that you'll know where to find us.",
+      "text1": "We believe in personal attention, honest advice and quality you can count on. That's why so many customers choose 4Mobiles.",
+      "text2": "Not just for the repair, but for the trust."
     },
     "team": {
       "tag": "OUR TEAM",
-      "title": "The faces behind 4Mobiles.",
+      "title": "The faces behind 4Mobiles",
+      "sub": "A dedicated team to help you with repairs, advice, accessories and service.",
+      "hoverHint": "Hover on desktop for more info",
+      "tapHint": "Tap on mobile for more info",
       "members": [
         {
-          "name": "Kevin",
-          "role": "Owner / Technician"
+          "name": "Mustafa",
+          "role": "Repairs & diagnosis",
+          "specialisms": [
+            "Repairs & diagnosis",
+            "Soldering & chip-level",
+            "Screen & battery replacement",
+            "Water & drop damage recovery"
+          ]
         },
         {
-          "name": "Dylan",
-          "role": "Technician"
+          "name": "Etienne",
+          "role": "Store advice & sales",
+          "specialisms": [
+            "Store advice & sales",
+            "Device selection & data transfer",
+            "Premium accessory advice",
+            "Trade-in & valuation"
+          ]
         },
         {
-          "name": "Milan",
-          "role": "Technician"
+          "name": "Samira",
+          "role": "Planning & customer contact",
+          "specialisms": [
+            "Schedule & roster management",
+            "Customer contact & follow-up",
+            "Appointment management",
+            "Service coordination",
+            "Admin & reporting"
+          ]
         },
         {
-          "name": "Ruben",
-          "role": "Owner / Advice"
+          "name": "Nur",
+          "role": "Accessories & service",
+          "specialisms": [
+            "Accessories & service",
+            "Screen protector installation",
+            "Cases & protection",
+            "Direct counter service"
+          ]
         }
       ]
     },
@@ -707,29 +734,29 @@
       "tag": "MORE THAN REPAIRS",
       "title1": "Not just fixing.",
       "title2": "Also helping prevent.",
-      "sub": "With personal advice, suitable accessories and service, we help you use your device longer and worry-free.",
-      "props": [
-        "Personal advice",
-        "Suitable accessories",
-        "Service after purchase",
-        "Honest & transparent"
+      "sub": "At 4Mobiles we think along with you. From honest advice and suitable accessories to optimal protection and tailored service. Keep your device in top condition longer.",
+      "items": [
+        { "title": "Honest advice" },
+        { "title": "Suitable accessories" },
+        { "title": "Optimal protection" },
+        { "title": "Tailored service" }
       ],
-      "trust1": "Trusted by thousands of customers.",
-      "trust2": "90-day warranty on your repair.",
-      "imgPlaceholder": "SHOP & SURROUNDINGS PHOTO"
+      "trust1Title": "Trust of thousands of customers",
+      "trust1Sub": "For over 10 years customers choose 4Mobiles.",
+      "trust2Title": "90-day warranty on your repair",
+      "trust2Sub": "Standard 90-day warranty on every repair."
     },
     "visit": {
       "tag": "VISIT US",
-      "title": "Feel free to walk in.",
+      "title": "Come by and try everything yourself",
       "addrName": "4Mobiles Naaldwijk",
-      "addrLine": "Kerkstraat 54, 2671 CG Naaldwijk",
+      "addrLine": "Molenstraat 2, 2671 EX Naaldwijk",
       "hoursLabel": "Opening hours",
       "hoursLine": "Monday to Saturday: 09:30 - 18:00",
       "contactLabel": "Contact",
-      "contactLine": "0174 - 62 42 42 | WhatsApp: 06 - 12 34 56 78",
+      "contactLine": "0174 - 23 70 22 | WhatsApp: 0174 23 70 22",
       "routeBtn": "View route",
-      "whatsappBtn": "WhatsApp us",
-      "imgPlaceholder": "TEAM IN SHOP PHOTO"
+      "whatsappBtn": "WhatsApp us"
     }
   },
   "contact": {
@@ -1037,6 +1064,11 @@
         "slug": "den-haag"
       },
       {
+        "name": "Den Hoorn",
+        "minutes": 17,
+        "slug": "den-hoorn"
+      },
+      {
         "name": "Naaldwijk",
         "minutes": 0,
         "slug": "naaldwijk",
@@ -1097,6 +1129,22 @@
       "p6Pre": "Can't or don't want to drive to Naaldwijk? Then you can also ",
       "p6LinkShipping": "send in your device",
       "p6Post": " to 4Mobiles. Once received, we'll check and repair the device and send it back to you. That way you can also use our repair service from {{city}} without coming to the shop yourself."
+    },
+    "uniqueFacts": {
+      "wateringen": "Wateringen sits on the Hague side of the Westland and is well connected to Naaldwijk. Even without a car, 4Mobiles is easy to reach: bus 30 runs directly via Kwintsheul and Honselersdijk to Naaldwijk, so no transfers are needed.",
+      "s-gravenzande": "'s-Gravenzande has a lively centre of its own and sits close to both the Westland coast and Naaldwijk. R-net 455 runs directly to Naaldwijk, so you can easily reach 4Mobiles without a car too.",
+      "de-lier": "De Lier and Naaldwijk are close together and well connected both by bike and public transport. If you'd rather not cycle or drive, R-net 455 goes straight to Naaldwijk with no transfers along the way.",
+      "monster": "Monster sits on the Westland coast, close to Ter Heijde and the beach. Naaldwijk is also a comfortable cycling distance away, so a visit to 4Mobiles is easy to combine with a ride through the typical Westland landscape of coast, villages, and greenhouses.",
+      "hoek-van-holland": "Hoek van Holland sits at the striking point where the Nieuwe Waterweg meets the North Sea, and is also the Westland's westernmost neighbour. For specialist phone repairs, 4Mobiles in Naaldwijk is the natural choice on this side of the coast.",
+      "naaldwijk": "Naaldwijk is 4Mobiles' central shop and service location, right in the middle of the Westland's villages. From Naaldwijk itself, our store is an easy walk or bike ride away, so a repair is simple to combine with a trip into the centre.",
+      "kwintsheul": "Kwintsheul sits between Wateringen and Honselersdijk and is also a comfortable bike ride from Naaldwijk. If you'd rather take public transport, bus 30 runs directly between Kwintsheul and Naaldwijk.",
+      "honselersdijk": "Honselersdijk sits right up against Naaldwijk, making it an easy bike ride away. The village is also closely tied to Royal FloraHolland — the site known as 'Naaldwijk' actually sits on the Middel Broekweg in Honselersdijk. Bus 30 also connects the two directly.",
+      "maasdijk": "Maasdijk lies between Naaldwijk and Maassluis, right in the middle of the Westland's greenhouse-growing area. Naaldwijk is reachable from the village both by bike and directly by bus 34, so an iPhone repair doesn't depend on having a car.",
+      "rijswijk": "Rijswijk sits literally between Den Haag and Delft and is well connected to both cities and the rest of Haaglanden. Bus 30 runs directly from Rijswijk towards Naaldwijk, so 4Mobiles is reachable without a car too.",
+      "delft": "Delft proudly calls itself a cycling city, so for many residents the bike is the obvious way to get around. If you'd rather take public transport, R-net 455 runs directly from Delft via De Lier to Naaldwijk, with no transfers.",
+      "den-haag": "For residents of the south-western part of Den Haag, the Westland is surprisingly close. From Den Haag Leyenburg, R-net 456 runs directly to Naaldwijk, so 4Mobiles is easy to reach without a car from this side of the city.",
+      "poeldijk": "Poeldijk sits between Den Haag and Naaldwijk and is also a great bike ride away for short trips. R-net 456 also runs directly through Poeldijk to Naaldwijk, so a phone repair is easy to reach by public transport too.",
+      "den-hoorn": "Den Hoorn sits right against Delft, forming the transition between the city and the green Midden-Delfland area. R-net 455 runs from the Delft/Den Hoorn area via De Lier directly to Naaldwijk, so 4Mobiles is reachable without a transfer."
     },
     "faq": {
       "distanceQ": "How far is 4Mobiles from {{city}}?",
@@ -1595,7 +1643,7 @@
     "trustSecureSub": "Your data is 100% safe with 4MOBILES.",
     "trustExpertTitle": "Expert & reliable",
     "trustExpertSub": "Our specialists are ready with 12+ years of experience.",
-    "s2Title": "Choose your model",
+    "s2Title": "Choose your {{brand}} model",
     "s2Sub": "Your {{brand}} model",
     "s2SearchPlaceholder": "Search your {{brand}} model",
     "s2Hint": "Step 2 of 4 — Select your model.",
@@ -1979,6 +2027,10 @@
     "reparatieBrand": {
       "title": "{{brand}} repair — 4Mobiles Naaldwijk",
       "description": "Screen, battery or another {{brand}} repair? Pick your model and see the price and repair time instantly at 4Mobiles."
+    },
+    "reparatieModel": {
+      "title": "{{model}} repair — 4Mobiles Naaldwijk",
+      "description": "Screen, battery or another {{model}} repair? See the price and repair time instantly and book your appointment at 4Mobiles in Naaldwijk."
     },
     "faq": {
       "title": "Frequently asked questions — 4Mobiles",

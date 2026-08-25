@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_NAME } from './constants'
+import { absoluteUrl, hreflangUrls, DEFAULT_OG_IMAGE, SITE_NAME } from './constants'
 
 interface SeoProps {
   title: string
@@ -14,12 +14,16 @@ interface SeoProps {
 
 export function Seo({ title, description, path, image = DEFAULT_OG_IMAGE, type = 'website', noindex = false, children }: SeoProps) {
   const url = absoluteUrl(path)
+  const alternates = hreflangUrls(path)
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
+      <link rel="alternate" hrefLang="nl" href={alternates.nl} />
+      <link rel="alternate" hrefLang="en" href={alternates.en} />
+      <link rel="alternate" hrefLang="x-default" href={alternates.nl} />
       {noindex ? (
         <meta name="robots" content="noindex, follow" />
       ) : (

@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
 
-export function StickyBookCTA() {
+interface StickyBookCTAProps {
+  showAfterRef?: React.RefObject<HTMLElement | null>
+}
+
+export function StickyBookCTA({ showAfterRef }: StickyBookCTAProps) {
   const { t } = useTranslation()
   const [visible, setVisible] = useState(false)
   const [scrollDir, setScrollDir] = useState<'up' | 'down'>('down')
@@ -13,11 +17,19 @@ export function StickyBookCTA() {
       const y = window.scrollY
       setScrollDir(y < lastY.current ? 'up' : 'down')
       lastY.current = y
-      setVisible(y > window.innerHeight * 0.8)
+
+      if (showAfterRef?.current) {
+        const rect = showAfterRef.current.getBoundingClientRect()
+        // Trigger visibility after passing the bottom of section 04
+        setVisible(rect.bottom <= window.innerHeight * 0.4)
+      } else {
+        setVisible(y > window.innerHeight * 0.8)
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [showAfterRef])
 
   return (
     <div

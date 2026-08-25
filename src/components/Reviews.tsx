@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from './Icons'
+import { useLocalizedPath } from '../lib/seo/constants'
 
 const REVIEW_META = [
   { name: 'Daan V.', initial: 'D', city: 'Naaldwijk', color: '#4285f4' },
@@ -53,6 +54,7 @@ function useSliderMetrics(sliderRef: React.RefObject<HTMLDivElement>) {
 
 export function Reviews() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const [slide, setSlide] = useState(0)
   const [visible, setVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
@@ -254,7 +256,7 @@ export function Reviews() {
         </div>
 
         <div className="rv-cta-row">
-          <a href="/reviews" className="btn btn-outline">
+          <a href={toLocale('/reviews')} className="btn btn-outline">
             <Icon.Google width="18" height="18" />
             {t('reviews.viewAll')}
             <Icon.ArrowRight width="14" height="14" />

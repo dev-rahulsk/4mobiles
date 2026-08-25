@@ -663,53 +663,97 @@
       "cta": "Neem contact op"
     },
     "way": {
-      "watermark": "SINDS 2012",
+      "watermark": "SINDS 2011",
       "tag": "ONZE MANIER VAN WERKEN",
       "title1": "Binnenlopen met een probleem.",
       "title2": "Weggaan met duidelijkheid.",
-      "highlight": "Eerst begrijpen. Dan adviseren. En pas repareren als het zin heeft.",
-      "body": "Wij luisteren naar uw verhaal, stellen de juiste vragen en leggen alles duidelijk uit. Zo weet u altijd waar u aan toe bent — zonder verrassingen. Eerlijk advies staat bij ons altijd op nummer één."
+      "highlight": "duidelijkheid",
+      "sub": "Eerst begrijpen. Dan adviseren. En pas repareren als het zin heeft."
     },
     "story": {
       "tag": "ONS VERHAAL",
-      "imgPlaceholder": "FOTO WINKEL / TEAM OMGEVING",
       "title": "Van telecom collega's tot een vertrouwd adres in het hart van het Westland.",
-      "text1": "We leerden elkaar kennen in de telecomwereld en ontdekten onze gedeelde passie voor techniek en service. Wat begon met helpen in onze vrije tijd, gegroeid uit tot 4Mobiles: een winkel waar kwaliteit, eerlijkheid en persoonlijk contact centraal staan.",
-      "text2": "Door de jaren heen bouwden we aan sterke relaties met onze klanten. Velen van bezoekers zijn vaste gezichten geworden.",
-      "quote": "Van bezoekers vaste gezichten maken."
+      "quote": "Eén keer binnenlopen. Daarna weet je ons te vinden.",
+      "text1": "We geloven in persoonlijke aandacht, eerlijk advies en kwaliteit waar je op kunt rekenen. Daarom kiezen zoveel klanten voor 4Mobiles.",
+      "text2": "Niet alleen voor de reparatie, maar voor het vertrouwen."
     },
     "team": {
       "tag": "ONS TEAM",
-      "title": "De gezichten achter 4Mobiles.",
+      "title": "De gezichten achter 4Mobiles",
+      "sub": "Een vast team dat u helpt met reparaties, advies, accessoires en service.",
+      "hoverHint": "Hover op desktop voor meer info",
+      "tapHint": "Meer info opent via tap op mobiel",
       "members": [
-        { "name": "Kevin", "role": "Eigenaar / Techniek" },
-        { "name": "Dylan", "role": "Technicus" },
-        { "name": "Milan", "role": "Technicus" },
-        { "name": "Ruben", "role": "Eigenaar / Advies" }
+        {
+          "name": "Mustafa",
+          "role": "Reparaties & diagnose",
+          "specialisms": [
+            "Reparaties & diagnose",
+            "Soldeerwerk & chip-level",
+            "Scherm- & batterijvervanging",
+            "Water- & valschade herstel"
+          ]
+        },
+        {
+          "name": "Etienne",
+          "role": "Winkeladvies & verkoop",
+          "specialisms": [
+            "Winkeladvies & verkoop",
+            "Toestelselectie & dataoverzet",
+            "Premium accessoires advies",
+            "Inruil & waardebepaling"
+          ]
+        },
+        {
+          "name": "Samira",
+          "role": "Planning & klantcontact",
+          "specialisms": [
+            "Planning & roosterbeheer",
+            "Klantcontact & opvolging",
+            "Afspraakbeheer",
+            "Servicecoördinatie",
+            "Administratie & rapportage"
+          ]
+        },
+        {
+          "name": "Nur",
+          "role": "Accessoires & service",
+          "specialisms": [
+            "Accessoires & service",
+            "Screenprotector montage",
+            "Hoesjes & bescherming",
+            "Directe balieservice"
+          ]
+        }
       ]
     },
     "more": {
-      "tag": "MEER DAN REPARATIES",
+      "tag": "MEER DAN REPARATIE",
       "title1": "Niet alleen herstellen.",
       "title2": "Ook helpen voorkomen.",
-      "sub": "Met persoonlijk advies, passende accessoires en service helpen wij u om langer en zorgeloos gebruik te maken van uw toestel.",
-      "props": ["Persoonlijk advies", "Passende accessoires", "Service na aankoop", "Eerlijk & transparant"],
-      "trust1": "Vertrouwen van duizenden klanten.",
-      "trust2": "90 dagen garantie op uw reparatie.",
-      "imgPlaceholder": "FOTO WINKEL & OMGEVING"
+      "sub": "Bij 4Mobiles denken we met je mee. Van eerlijk advies en passende accessoires tot optimale bescherming en service op maat. Zo blijft jouw toestel langer in topconditie.",
+      "items": [
+        { "title": "Eerlijk advies" },
+        { "title": "Passende accessoires" },
+        { "title": "Optimale bescherming" },
+        { "title": "Service op maat" }
+      ],
+      "trust1Title": "Vertrouwen van duizenden klanten",
+      "trust1Sub": "Al meer dan 10 jaar kiezen klanten voor 4Mobiles.",
+      "trust2Title": "90 dagen garantie op uw reparatie",
+      "trust2Sub": "Standaard 90 dagen garantie op elke reparatie."
     },
     "visit": {
       "tag": "BEZOEK ONS",
-      "title": "Loop gerust binnen.",
+      "title": "Kom langs en probeer alles zelf",
       "addrName": "4Mobiles Naaldwijk",
-      "addrLine": "Kerkstraat 54, 2671 CG Naaldwijk",
+      "addrLine": "Molenstraat 2, 2671 EX Naaldwijk",
       "hoursLabel": "Openingstijden",
       "hoursLine": "Maandag t/m Zaterdag: 09:30 - 18:00",
       "contactLabel": "Contact",
-      "contactLine": "0174 - 62 42 42 | WhatsApp: 06 - 12 34 56 78",
+      "contactLine": "0174 - 23 70 22 | WhatsApp: 0174 23 70 22",
       "routeBtn": "Route bekijken",
-      "whatsappBtn": "WhatsApp ons",
-      "imgPlaceholder": "FOTO TEAM IN DE WINKEL"
+      "whatsappBtn": "WhatsApp ons"
     }
   },
   "contact": {
@@ -1017,6 +1061,11 @@
         "slug": "den-haag"
       },
       {
+        "name": "Den Hoorn",
+        "minutes": 17,
+        "slug": "den-hoorn"
+      },
+      {
         "name": "Naaldwijk",
         "minutes": 0,
         "slug": "naaldwijk",
@@ -1077,6 +1126,22 @@
       "p6Pre": "Kun of wil je niet naar Naaldwijk rijden? Dan kun je jouw toestel ook naar 4Mobiles ",
       "p6LinkShipping": "opsturen",
       "p6Post": ". Na ontvangst controleren en repareren we het toestel en sturen we het daarna weer naar je terug. Zo kun je ook vanuit {{city}} gebruikmaken van onze reparatieservice zonder zelf naar de winkel te komen."
+    },
+    "uniqueFacts": {
+      "wateringen": "Wateringen ligt aan de Haagse kant van het Westland en is goed verbonden met Naaldwijk. Ook zonder auto is 4Mobiles eenvoudig bereikbaar: bus 30 rijdt rechtstreeks via Kwintsheul en Honselersdijk naar Naaldwijk, waardoor overstappen niet nodig is.",
+      "s-gravenzande": "’s-Gravenzande heeft zelf een levendig centrum en ligt dicht bij zowel de Westlandse kust als Naaldwijk. R-net 455 rijdt rechtstreeks naar Naaldwijk, waardoor u ook zonder auto gemakkelijk bij 4Mobiles kunt komen.",
+      "de-lier": "De Lier en Naaldwijk liggen dicht bij elkaar en zijn zowel per fiets als met het openbaar vervoer goed verbonden. Wie niet wil fietsen of autorijden kan R-net 455 rechtstreeks naar Naaldwijk nemen, zonder onderweg over te stappen.",
+      "monster": "Monster ligt aan de Westlandse kust, met Ter Heijde en het strand vlakbij. Naaldwijk ligt ook op een prima fietsafstand, waardoor een bezoek aan 4Mobiles gemakkelijk te combineren is met een rit door het typische Westlandse landschap tussen kust, dorpen en glastuinbouw.",
+      "hoek-van-holland": "Hoek van Holland ligt op een bijzondere plek waar de Nieuwe Waterweg en de Noordzee samenkomen en vormt tegelijkertijd de westelijke buur van het Westland. Voor specialistische telefoonreparaties is 4Mobiles in Naaldwijk daardoor een logisch alternatief aan de Westlandse kant.",
+      "naaldwijk": "Naaldwijk vormt het centrale winkel- en servicepunt van 4Mobiles en ligt midden tussen de verschillende Westlandse dorpskernen. Vanuit Naaldwijk zelf is onze winkel gemakkelijk lopend of per fiets te bereiken, waardoor een reparatie eenvoudig gecombineerd kan worden met een bezoek aan het centrum.",
+      "kwintsheul": "Kwintsheul ligt tussen Wateringen en Honselersdijk en is vanuit Naaldwijk ook goed per fiets bereikbaar. Wie liever met het OV komt, kan bus 30 rechtstreeks tussen Kwintsheul en Naaldwijk nemen.",
+      "honselersdijk": "Honselersdijk ligt vrijwel tegen Naaldwijk aan en is daardoor uitstekend per fiets bereikbaar. Het dorp is bovendien nauw verbonden met Royal FloraHolland, waarvan de locatie die als Naaldwijk bekendstaat feitelijk aan de Middel Broekweg in Honselersdijk ligt. Ook bus 30 verbindt beide plaatsen rechtstreeks.",
+      "maasdijk": "Maasdijk ligt tussen Naaldwijk en Maassluis, midden in het Westlandse glastuinbouwgebied. Naaldwijk is vanuit het dorp zowel per fiets als met bus 34 rechtstreeks bereikbaar, zodat u voor een iPhone-reparatie niet afhankelijk bent van de auto.",
+      "rijswijk": "Rijswijk ligt letterlijk tussen Den Haag en Delft en is sterk met beide steden en de rest van Haaglanden verbonden. Bus 30 rijdt vanuit Rijswijk rechtstreeks door richting Naaldwijk, waardoor 4Mobiles ook zonder auto bereikbaar is.",
+      "delft": "Delft noemt zichzelf nadrukkelijk een fietsstad, waardoor de fiets voor veel inwoners een vanzelfsprekend vervoermiddel is. Wie liever met het OV reist, kan met R-net 455 rechtstreeks van Delft via De Lier naar Naaldwijk, zonder overstappen.",
+      "den-haag": "Voor inwoners van het zuidwestelijke deel van Den Haag ligt het Westland verrassend dichtbij. Vanaf Den Haag Leyenburg rijdt R-net 456 rechtstreeks naar Naaldwijk, waardoor 4Mobiles ook zonder auto eenvoudig bereikbaar is vanuit deze kant van de stad.",
+      "poeldijk": "Poeldijk ligt tussen Den Haag en Naaldwijk en is voor korte ritten ook uitstekend per fiets bereikbaar. Daarnaast rijdt R-net 456 rechtstreeks via Poeldijk naar Naaldwijk, waardoor u voor een telefoonreparatie ook gemakkelijk het openbaar vervoer kunt gebruiken.",
+      "den-hoorn": "Den Hoorn ligt direct tegen Delft aan en vormt de overgang tussen de stad en het groene Midden-Delfland. R-net 455 rijdt vanuit de omgeving Delft en Den Hoorn via De Lier rechtstreeks naar Naaldwijk, waardoor 4Mobiles zonder overstap bereikbaar is."
     },
     "faq": {
       "distanceQ": "Hoe ver is 4Mobiles vanaf {{city}}?",
@@ -1558,7 +1623,7 @@
     "trustSecureSub": "Uw gegevens zijn 100% veilig bij 4MOBILES.",
     "trustExpertTitle": "Deskundig & betrouwbaar",
     "trustExpertSub": "Onze specialisten staan klaar met 12+ jaar ervaring.",
-    "s2Title": "Kies je model",
+    "s2Title": "Kies je {{brand}} model",
     "s2Sub": "Uw {{brand}} model",
     "s2SearchPlaceholder": "Zoek uw {{brand}} model",
     "s2Hint": "Stap 2 van 4 — Selecteer uw model.",
@@ -1942,6 +2007,10 @@
     "reparatieBrand": {
       "title": "{{brand}} reparatie — 4Mobiles Naaldwijk",
       "description": "Scherm, batterij of een andere {{brand}}-reparatie? Kies je model en bekijk direct prijs en reparatietijd bij 4Mobiles."
+    },
+    "reparatieModel": {
+      "title": "{{model}} reparatie — 4Mobiles Naaldwijk",
+      "description": "Scherm, batterij of een andere {{model}} reparatie? Bekijk direct prijs en reparatietijd en boek je afspraak bij 4Mobiles in Naaldwijk."
     },
     "faq": {
       "title": "Veelgestelde vragen — 4Mobiles",

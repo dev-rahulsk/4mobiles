@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 const rawFrames = import.meta.glob(
-  '../assets/frames_no_bg/*.png',
+  '../assets/frames_no_bg/*.webp',
   { eager: true, query: '?url', import: 'default' }
 ) as Record<string, string>
 
@@ -21,16 +21,34 @@ export function PhoneAnimation() {
   const lastTime = useRef(0)
   const loadedCount = useRef(0)
 
-  // Preload all frames
   useEffect(() => {
-    FRAME_SRCS.forEach((src, i) => {
+    let cancelled = false
+
+    const loadFrame = (i: number) => {
+      if (cancelled || images.current[i] || !FRAME_SRCS[i]) return
       const img = new Image()
-      img.src = src
+      img.src = FRAME_SRCS[i]
       img.onload = () => {
         images.current[i] = img
         loadedCount.current++
       }
-    })
+    }
+
+    loadFrame(0)
+    let i = 1
+    const loadNext = () => {
+      if (cancelled || i >= FRAME_COUNT) return
+      loadFrame(i)
+      i++
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(loadNext, { timeout: 300 })
+      } else {
+        setTimeout(loadNext, 40)
+      }
+    }
+    loadNext()
+
+    return () => { cancelled = true }
   }, [])
 
   // Animation loop

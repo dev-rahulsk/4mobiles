@@ -6,12 +6,13 @@ import { Pill, MobileHero, GlassBadge, CtaButton, DesktopHero } from '../compone
 import { Seo } from '../lib/seo/Seo'
 import { JsonLd } from '../lib/seo/JsonLd'
 import { breadcrumbSchema, faqPageSchema } from '../lib/seo/schema'
-import desktopBusinessHeroImg from '../assets/new_desktop_hero.png'
-import mobileHeroImg from '../assets/business_mobile_hero.png'
-import section4Img from '../assets/section_4_image.png'
-import section4MobileImg from '../assets/ChatGPT_Image_10_aug_2026_19_39_28.png'
-import sec5DesktopImg from '../assets/section_5_image1.png'
-import sec5MobileImg from '../assets/section_5_mobilei_image.png'
+import { useLocalizedPath } from '../lib/seo/constants'
+import desktopBusinessHeroImg from '../assets/new_desktop_hero.webp'
+import mobileHeroImg from '../assets/business_mobile_hero.webp'
+import section4Img from '../assets/section_4_image.webp'
+import section4MobileImg from '../assets/ChatGPT_Image_10_aug_2026_19_39_28.webp'
+import sec5DesktopImg from '../assets/section_5_image1.webp'
+import sec5MobileImg from '../assets/section_5_mobilei_image.webp'
 
 const MOBILE_STAT_ICONS = [Icon.Star, Icon.Calendar, Icon.Wrench, Icon.Users]
 const SERVICE_ICONS = [Icon.Wrench, Icon.Shield, Icon.Accessory, Icon.Devices, Icon.Pin, Icon.Headset]
@@ -50,6 +51,7 @@ function Stars({ n }: { n: number }) {
 
 export function Zakelijk() {
   const { t } = useTranslation()
+  const toLocale = useLocalizedPath()
   const [openFaq, setOpenFaq] = useState(0)
   const [sec5BulletsVisible, setSec5BulletsVisible] = useState(false)
   const [sec5GlassCardVisible, setSec5GlassCardVisible] = useState(false)
@@ -225,7 +227,7 @@ export function Zakelijk() {
             }
             subtext={t('zakelijk.heroSub')}
             cta={
-              <CtaButton variant="light" href="/contact">
+              <CtaButton variant="light" href={toLocale('/contact')}>
                 <Icon.Phone width="18" height="18" />
                 <span>{t('zakelijk.contactUs')}</span>
                 <Icon.ArrowRight width="16" height="16" />
