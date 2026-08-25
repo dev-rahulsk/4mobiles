@@ -688,44 +688,43 @@
       "tapHint": "Tap on mobile for more info",
       "members": [
         {
-          "name": "Mustafa",
+          "name": "Riza",
+          "role": "iPhone & iOS",
+          "specialisms": [
+            "iPhone & iOS",
+            "Repairs & diagnosis",
+            "Screen & battery replacement",
+            "Data transfer & setup"
+          ]
+        },
+        {
+          "name": "Jeroen",
+          "role": "Android & Samsung",
+          "specialisms": [
+            "Android & Samsung",
+            "Accessories & protection",
+            "Screen protectors & cases",
+            "Data transfer & setup"
+          ]
+        },
+        {
+          "name": "Daniel",
+          "role": "Chargers & cables",
+          "specialisms": [
+            "Chargers & cables",
+            "USB-C & fast charging",
+            "MagSafe & wireless charging",
+            "Compatibility & safe charging"
+          ]
+        },
+        {
+          "name": "Erkan",
           "role": "Repairs & diagnosis",
           "specialisms": [
             "Repairs & diagnosis",
-            "Soldering & chip-level",
-            "Screen & battery replacement",
-            "Water & drop damage recovery"
-          ]
-        },
-        {
-          "name": "Etienne",
-          "role": "Store advice & sales",
-          "specialisms": [
-            "Store advice & sales",
-            "Device selection & data transfer",
-            "Premium accessory advice",
-            "Trade-in & valuation"
-          ]
-        },
-        {
-          "name": "Samira",
-          "role": "Planning & customer contact",
-          "specialisms": [
-            "Schedule & roster management",
-            "Customer contact & follow-up",
-            "Appointment management",
-            "Service coordination",
-            "Admin & reporting"
-          ]
-        },
-        {
-          "name": "Nur",
-          "role": "Accessories & service",
-          "specialisms": [
-            "Accessories & service",
-            "Screen protector installation",
-            "Cases & protection",
-            "Direct counter service"
+            "Charging port & connectors",
+            "Water & drop damage",
+            "Soldering & complex repairs"
           ]
         }
       ]

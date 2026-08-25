@@ -685,44 +685,43 @@
       "tapHint": "Meer info opent via tap op mobiel",
       "members": [
         {
-          "name": "Mustafa",
+          "name": "Riza",
+          "role": "iPhone & iOS",
+          "specialisms": [
+            "iPhone & iOS",
+            "Reparaties & diagnose",
+            "Scherm- & batterijvervanging",
+            "Data overzetten & instellingen"
+          ]
+        },
+        {
+          "name": "Jeroen",
+          "role": "Android & Samsung",
+          "specialisms": [
+            "Android & Samsung",
+            "Accessoires & bescherming",
+            "Screenprotectors & hoesjes",
+            "Data overzetten & instellingen"
+          ]
+        },
+        {
+          "name": "Daniel",
+          "role": "Opladers & kabels",
+          "specialisms": [
+            "Opladers & kabels",
+            "USB-C & snelladen",
+            "MagSafe & draadloos laden",
+            "Compatibiliteit & veilig laden"
+          ]
+        },
+        {
+          "name": "Erkan",
           "role": "Reparaties & diagnose",
           "specialisms": [
             "Reparaties & diagnose",
-            "Soldeerwerk & chip-level",
-            "Scherm- & batterijvervanging",
-            "Water- & valschade herstel"
-          ]
-        },
-        {
-          "name": "Etienne",
-          "role": "Winkeladvies & verkoop",
-          "specialisms": [
-            "Winkeladvies & verkoop",
-            "Toestelselectie & dataoverzet",
-            "Premium accessoires advies",
-            "Inruil & waardebepaling"
-          ]
-        },
-        {
-          "name": "Samira",
-          "role": "Planning & klantcontact",
-          "specialisms": [
-            "Planning & roosterbeheer",
-            "Klantcontact & opvolging",
-            "Afspraakbeheer",
-            "Servicecoördinatie",
-            "Administratie & rapportage"
-          ]
-        },
-        {
-          "name": "Nur",
-          "role": "Accessoires & service",
-          "specialisms": [
-            "Accessoires & service",
-            "Screenprotector montage",
-            "Hoesjes & bescherming",
-            "Directe balieservice"
+            "Laadpoort & connectoren",
+            "Water- & valschade",
+            "Soldeerwerk & complexe reparaties"
           ]
         }
       ]

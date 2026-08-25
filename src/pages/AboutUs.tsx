@@ -15,10 +15,10 @@ const ABOUTUS_HERO_GRADIENT = 'linear-gradient(180deg, #050804 0%, #050804 36%, 
 
 // High quality studio portrait photos for the 4 team members
 const TEAM_PHOTOS = [
-  'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80', // Mustafa
-  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80', // Etienne
-  'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80', // Samira
-  'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80', // Nur
+  'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80', // Riza
+  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80', // Jeroen
+  'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80', // Daniel
+  'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80', // Erkan
 ]
 
 const SERVICE_ICONS = [Icon.Chat, Icon.Phone, Icon.ShieldCheck, Icon.Wrench]
@@ -56,6 +56,26 @@ export function AboutUs() {
   // Mobile active team card state for tap interactions
   const [activeTeamIdx, setActiveTeamIdx] = useState<number | null>(null)
   const [teamParallaxY, setTeamParallaxY] = useState(0)
+
+  // Section 05 entrance reveal (reuses Section 02's fade-up behaviour/timing over the SINDS 2011 watermark)
+  const sec05Ref = useRef<HTMLElement>(null)
+  const [sec05InView, setSec05InView] = useState(false)
+
+  useEffect(() => {
+    const el = sec05Ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSec05InView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.25 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   // Subtle parallax effect for Section 04 team photos during scroll
   useEffect(() => {
@@ -229,7 +249,6 @@ export function AboutUs() {
                     transform: `translateY(${(1 - eyebrowFactor) * 30}px)`,
                   }}
                 >
-                  <span className="aou-eyebrow-num">02</span>
                   <span className="aou-eyebrow-label">{t('aboutUs.way.tag')}</span>
                   <div className="aou-eyebrow-divider" />
                 </div>
@@ -286,7 +305,6 @@ export function AboutUs() {
                       transform: `translateY(${(1 - sec03EyebrowFactor) * 30}px)`,
                     }}
                   >
-                    <span className="aou-eyebrow-num">03</span>
                     <span className="aou-eyebrow-label">{t('aboutUs.story.tag')}</span>
                     <div className="aou-eyebrow-divider" />
                   </div>
@@ -326,12 +344,9 @@ export function AboutUs() {
           <div className="container">
             <div className="aou-team-header">
               <div className="aou-team-header-left">
-                <div className="aou-team-eyebrow">
-                  <div className="aou-team-eyebrow-num-box">
-                    <span className="aou-team-eyebrow-num">04</span>
-                    <div className="aou-team-eyebrow-divider" />
-                  </div>
+                <div className="aou-team-eyebrow aou-team-eyebrow--stacked">
                   <span className="aou-team-eyebrow-label">{t('aboutUs.team.tag')}</span>
+                  <div className="aou-team-eyebrow-divider" />
                 </div>
 
                 <h2 className="aou-team-title">
@@ -416,7 +431,7 @@ export function AboutUs() {
 
 
         {/* ─── SECTION 05: MEER DAN REPARATIE ─────────────────────────────── */}
-        <section className="aou-more-section">
+        <section ref={sec05Ref} className="aou-more-section">
           {/* Faint watermark "SINDS 2011" background */}
           <div className="aou-watermark-bg aou-watermark-bg--more">
             <span className="aou-watermark-since">SINDS</span>
@@ -424,14 +439,11 @@ export function AboutUs() {
           </div>
 
           <div className="container">
-            <div className="aou-team-header aou-more-header">
+            <div className={`aou-team-header aou-more-header${sec05InView ? ' is-in-view' : ''}`}>
               <div className="aou-team-header-left">
-                <div className="aou-team-eyebrow">
-                  <div className="aou-team-eyebrow-num-box">
-                    <span className="aou-team-eyebrow-num">05</span>
-                    <div className="aou-team-eyebrow-divider" />
-                  </div>
+                <div className="aou-team-eyebrow aou-team-eyebrow--stacked">
                   <span className="aou-team-eyebrow-label">{t('aboutUs.more.tag')}</span>
+                  <div className="aou-team-eyebrow-divider" />
                 </div>
 
                 <h2 className="aou-team-title">

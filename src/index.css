@@ -5258,81 +5258,6 @@ input {
   }
 }
 
-/* ============ STICKY BOOK CTA ============ */
-.sticky-book {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 90;
-  background: var(--ink-900);
-  color: #fff;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 20px max(14px, var(--safe-bottom, 0px));
-  box-shadow: 0 -4px 24px rgba(0, 0, 0, .2);
-  transform: translateY(120%);
-  transition: transform .3s cubic-bezier(.4, 0, .2, 1);
-  pointer-events: none;
-}
-
-.sticky-book-visible {
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.sticky-book-visible.sticky-book-up {
-  transform: translateY(-4px);
-}
-
-.sticky-book-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.sticky-book-left svg {
-  color: var(--accent);
-  flex-shrink: 0;
-}
-
-.sticky-book-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-}
-
-.sticky-book-sub {
-  font-size: 12px;
-  color: var(--ink-400);
-}
-
-.sticky-book-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
-  color: #fff;
-  padding: 11px 18px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 700;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: transform .15s ease;
-}
-
-.sticky-book-btn:hover {
-  transform: translateY(-1px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sticky-book {
-    transition: none;
-  }
-}
-
 /* ============ MHERO OVERLAY BADGES — premium glassmorphism ============ */
 .mhero-visual {
   position: relative;
@@ -6138,20 +6063,13 @@ input {
   margin-bottom: 28px;
 }
 
-.aou-eyebrow-num {
-  font-size: 15px;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--accent);
-}
-
 .aou-eyebrow-label {
   font-size: 13px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--accent);
 }
 
 .aou-eyebrow-divider {
@@ -6197,7 +6115,7 @@ input {
 .aou-sec02-box {
   grid-area: 1 / 1;
   max-width: 480px;
-  margin-top: 64px;
+  margin-top: 104px;
 }
 
 .aou-sec02-title-wrap {
@@ -6221,7 +6139,7 @@ input {
 .aou-sec02-sub {
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   line-height: 1.65;
-  color: #94a3b8;
+  color: var(--ink-400);
   max-width: 440px;
   margin: 0;
 }
@@ -6241,6 +6159,10 @@ input {
   .aou-sec03-grid {
     margin-top: 90px;
     width: 100%;
+  }
+
+  .aou-sec02-box {
+    margin-top: 130px;
   }
 
   .aou-sec03-grid {
@@ -6284,7 +6206,7 @@ input {
 .aou-sec03-text {
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 1.75;
-  color: #94a3b8;
+  color: var(--ink-400);
   margin: 0;
 }
 
@@ -6351,6 +6273,22 @@ input {
   margin-top: 1px;
 }
 
+/* Numberless variant (Sections 04 & 05): label stacked above its own decorative line */
+.aou-team-eyebrow--stacked {
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.aou-team-eyebrow--stacked .aou-team-eyebrow-label {
+  margin-top: 0;
+}
+
+.aou-team-eyebrow--stacked .aou-team-eyebrow-divider {
+  width: 150px;
+  margin-top: 4px;
+}
+
 .aou-team-title {
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 800;
@@ -6373,7 +6311,7 @@ input {
 .aou-team-sub {
   font-size: clamp(1rem, 1.3vw, 1.12rem);
   line-height: 1.6;
-  color: var(--ink-600);
+  color: var(--ink-400);
   margin: 0;
   max-width: 520px;
 }
@@ -6742,6 +6680,43 @@ input {
   margin-bottom: 44px;
 }
 
+/* Entrance reveal — reuses Section 02's fade-up behaviour/timing, staggered eyebrow → title → subtext */
+.aou-more-header .aou-team-eyebrow,
+.aou-more-header .aou-team-title,
+.aou-more-header .aou-team-sub {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.55s cubic-bezier(0.33, 1, 0.68, 1), transform 0.55s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.aou-more-header.is-in-view .aou-team-eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.aou-more-header.is-in-view .aou-team-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.14s;
+}
+
+.aou-more-header.is-in-view .aou-team-sub {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.28s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .aou-more-header .aou-team-eyebrow,
+  .aou-more-header .aou-team-title,
+  .aou-more-header .aou-team-sub {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .aou-service-cards-grid {
   position: relative;
   z-index: 1;
@@ -6827,7 +6802,7 @@ input {
   filter: blur(12px);
   opacity: 0;
   transform: translate3d(0, 0, 0) rotate(7deg);
-  animation: repair-surface-shine 8s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  animation: repair-surface-shine 4s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -12968,8 +12943,7 @@ a.rg-city-card:hover {
   .pd-btn,
   .zk-btn,
   .bl-btn,
-  .mhero-cta,
-  .sticky-book-btn {
+  .mhero-cta {
     min-height: 44px;
   }
 }
